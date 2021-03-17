@@ -6,7 +6,7 @@
 /*   By: wszurkow <wszurkow@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/25 10:18:48 by wszurkow          #+#    #+#             */
-/*   Updated: 2020/12/12 21:54:38 by wszurkow         ###   ########.fr       */
+/*   Updated: 2021/03/15 19:35:05 by wszurkow         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ static char		**count_letters(char const *str, char charset, char **tab)
 			letters++;
 			i++;
 		}
-		if (!(tab[index] = (char *)malloc(sizeof(char) * letters + 1)))
+		if (!(tab[index] = (char *)malloc(sizeof(char) * (letters + 1))))
 			return (ft_free(tab, index));
 		tab[index][letters] = 0;
 		index++;
@@ -97,7 +97,7 @@ char			**ft_split(char const *str, char c)
 	while (*str && *str == c)
 		str++;
 	words = count_words(str, c);
-	if (!(tab = (char **)malloc(sizeof(char*) * words + 1)))
+	if (!(tab = (char **)malloc(sizeof(char*) * (words + 1))))
 		return (NULL);
 	tab[words] = 0;
 	tab = count_letters(str, c, tab);

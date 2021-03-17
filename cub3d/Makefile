@@ -6,7 +6,7 @@
 #    By: wszurkow <wszurkow@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/01/16 22:40:46 by wszurkow          #+#    #+#              #
-#    Updated: 2021/03/13 17:42:04 by wszurkow         ###   ########.fr        #
+#    Updated: 2021/03/16 02:45:33 by wszurkow         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,11 +15,15 @@ SRCS		= $(addprefix ./srcs/, ${SRCS_FILES})
 SRCS_FILES	= \
 			  gnl.c \
 			  cub3d_entrypoint.c \
+			  parsers/init_struct.c \
+			  parsers/parse_line_resolution.c \
+			  parsers/parse_line_paths.c \
 			  utils/is_in_charset.c \
+			  utils/ft_is_number.c \
 
 OBJS		= ${SRCS:.c=.o}
 %.o: %.c
-				clang -Wall -Werror -Wextra -I ./includes -o $@ -c $<
+				gcc -Wall -Werror -Wextra -I ./includes -o $@ -c $<
 
 all:		${NAME}
 
@@ -29,12 +33,36 @@ ${NAME}:	${OBJS}
 				ar -rcs ${NAME} ${OBJS}
 
 exec:		cub3d.a
-				@clang -Wall -Werror -Wextra main.c cub3d.a \
+				@gcc -Wall -Werror -Wextra main.c cub3d.a \
 					-I ./includes \
 					-I /usr/local/include/  \
 					-L /usr/local/lib/ \
 					-lXext -lX11 -lmlx
 				@echo "Creating and executing ./a.out"
+				@echo "#####################################"
+				@./a.out
+
+execg:		cub3d.a
+				@gcc -g -Wall -Werror -Wextra main.c cub3d.a \
+					-I ./includes \
+					-I /usr/local/include/  \
+					-L /usr/local/lib/ \
+					-lXext -lX11 -lmlx
+				@echo "Creating and executing ./a.out"
+				@echo "#####################################"
+				@echo "# SANITIZING [LLDB].................#"
+				@echo "#####################################"
+				@./a.out
+
+execf:		cub3d.a
+				@gcc -fsanitize=address -Wall -Werror -Wextra main.c cub3d.a \
+					-I ./includes \
+					-I /usr/local/include/  \
+					-L /usr/local/lib/ \
+					-lXext -lX11 -lmlx
+				@echo "Creating and executing ./a.out"
+				@echo "#####################################"
+				@echo "# SANITIZING [FSANITIZE ADDRESS]....#"
 				@echo "#####################################"
 				@./a.out
 

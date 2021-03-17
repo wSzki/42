@@ -6,7 +6,7 @@
 /*   By: wszurkow <wszurkow@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/12 14:55:57 by wszurkow          #+#    #+#             */
-/*   Updated: 2021/03/12 15:16:00 by wszurkow         ###   ########.fr       */
+/*   Updated: 2021/03/16 02:51:23 by wszurkow         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -180,9 +180,9 @@ void cub3d_entrypoint()
 		TEMP = map.number_rows;
 
 
-	window.x = 300;
-	window.y = 400;
-	TEMP = window.x / TEMP;
+	window.x_resolution = 300;
+	window.y_resolution = 400;
+	TEMP = window.x_resolution / TEMP;
 	printf("border cell dimension %d\n", TEMP);
 
 

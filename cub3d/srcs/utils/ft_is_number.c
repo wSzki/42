@@ -1,22 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   is_in_charset.c                                    :+:      :+:    :+:   */
+/*   ft_is_number.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: wszurkow <wszurkow@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/03/13 17:36:54 by wszurkow          #+#    #+#             */
-/*   Updated: 2021/03/15 19:51:19 by wszurkow         ###   ########.fr       */
+/*   Created: 2021/03/15 19:50:55 by wszurkow          #+#    #+#             */
+/*   Updated: 2021/03/15 19:51:03 by wszurkow         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int		is_in_charset(char c, char *charset)
+int	ft_is_number(char *str)
 {
-	while (*charset)
+	if (!str)
+		return (0);
+	while (*str)
 	{
-		if (c == *charset)
-			return (1);
-		charset++;
+		if (!(*str >= '0' && *str <= '9'))
+			return (0);
+		str++;
 	}
-	return (0);
+	return (1);
 }
