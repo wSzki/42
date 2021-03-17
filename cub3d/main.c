@@ -6,7 +6,7 @@
 /*   By: wszurkow <wszurkow@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/12 14:49:10 by wszurkow          #+#    #+#             */
-/*   Updated: 2021/03/16 02:56:53 by wszurkow         ###   ########.fr       */
+/*   Updated: 2021/03/17 18:32:39 by wszurkow         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,8 @@ void print_input_data(t_global *g)
 	printf(" ------------ %s\n",g->map_textures->sprite_texture_path);
 	printf(" ------------ %s\n",g->map_textures->floor_color);
 	printf(" ------------ %s\n",g->map_textures->ceiling_color);
+	printf("error------- %d\n",g->error);
+	printf("valid parameters - %d\n",g->valid_parameter_count);
 }
 
 int detect_map_line(char *line)
@@ -45,37 +47,89 @@ int detect_map_line(char *line)
 	return (1);
 }
 
-int	parse_intput(t_global *g)
+
+char **dual_realloc(char **map_data, char *line)
+{
+	(void)line;
+	int i;
+	int j;
+	char **res;
+	int line_count;
+
+	i = 0;
+	j = 0;
+	line_count = number_of_args(map_data);
+	res = malloc(sizeof(char *) * (line_count + 2));
+	if (!res)
+		return NULL;
+	while (map_data[i])
+	{
+		res[j] = ft_strdup(map_data[i]);
+		free(map_data[i]);
+		i++;
+		j++;
+	}
+	res[line_count] = ft_strdup(line);
+	res[line_count + 1] = NULL;
+	free(map_data);
+
+	return (res);
+}
+
+
+
+int	parse_input(t_global *g)
 {
 
 	int fd;
+	int arg_count;
 	char *line;
+	char **line_split;
+	char **map_data;
+
+	int i = 0;
+
 
 	g = malloc(sizeof(t_global));
 	g->window = malloc(sizeof(t_window));
 	g->map_textures = malloc(sizeof(t_map_textures));
+	map_data = malloc(sizeof(char *));
+	*map_data = NULL;
 	init_struct(g);
 	fd = open("./assets/map.cub", O_RDONLY);
 	if (fd < 0)
 		return (-1);
 	while ((get_next_line(&line, fd) > 0))
 	{
+		arg_count = 0;
 		if (detect_map_line(line))
 		{
-			/*g->map-> = line;*/
+			map_data = dual_realloc(map_data, line);
+			while ((get_next_line(&line, fd) > 0))
+				map_data = dual_realloc(map_data, line);
+			printf("%s\n", " --------------- PRINT MAP----------------");
+			while (map_data[i])
+			{
+				printf("map -> %s\n", map_data[i]);
+				i++;;
+			}
 			break;
 		}
-		parse_line_resolution(line, g);
-		parse_line_paths(line, g);
+		line_split = ft_split(line, ' ');
+		arg_count = number_of_args(line_split);
+		if (arg_count == 1 || arg_count > 3)
+		{
+			g->error++;
+			break;
+		}
+		if (arg_count == 3)
+			parse_line_resolution(line_split, g);
+		if (arg_count == 2)
+			parse_line_paths(line_split, g);
 		printf("--> %s\n", line);
+		free(line_split);
 	}
 
-	printf("%s\n", " --------------- PRINT ----------------");
-	printf("--> %s\n", line);
-	while ((get_next_line(&line, fd) > 0))
-	{
-		printf("--> %s\n", line);
-	}
 	close(fd);
 	print_input_data(g);
 	return 0;
@@ -97,7 +151,7 @@ int main()
 		return (-1);
 
 
-	parse_intput(g);
+	parse_input(g);
 
 	window.x_resolution = 300;
 	window.y_resolution = 400;

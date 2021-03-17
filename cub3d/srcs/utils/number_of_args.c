@@ -1,23 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parse_line_path_north.c                            :+:      :+:    :+:   */
+/*   number_of_args.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: wszurkow <wszurkow@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/03/15 20:27:23 by wszurkow          #+#    #+#             */
-/*   Updated: 2021/03/15 20:44:14 by wszurkow         ###   ########.fr       */
+/*   Created: 2021/03/17 16:40:01 by wszurkow          #+#    #+#             */
+/*   Updated: 2021/03/17 16:56:29 by wszurkow         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+#include <stdio.h>
 
-#include "../../includes/cub3d.h"
-
-void	parse_line_path_north(char **line_split, t_input_data *input_data)
+int	number_of_args(char **line)
 {
-	if (ft_strcmp(line_split[0], "NO") == 0)
-	{
-		if (*(input_data->north_texture_path) == '\0')
-			input_data->north_texture_path = line_split[1];
-	}
+	int i;
 
+	if (!line || !(*line))
+		return (0);
+	i = 0;
+	while (line[i])
+		i++;
+	return (i);
 }

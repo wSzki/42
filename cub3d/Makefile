@@ -6,7 +6,7 @@
 #    By: wszurkow <wszurkow@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/01/16 22:40:46 by wszurkow          #+#    #+#              #
-#    Updated: 2021/03/16 02:45:33 by wszurkow         ###   ########.fr        #
+#    Updated: 2021/03/17 16:42:53 by wszurkow         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,6 +20,7 @@ SRCS_FILES	= \
 			  parsers/parse_line_paths.c \
 			  utils/is_in_charset.c \
 			  utils/ft_is_number.c \
+			  utils/number_of_args.c \
 
 OBJS		= ${SRCS:.c=.o}
 %.o: %.c

@@ -6,7 +6,7 @@
 /*   By: wszurkow <wszurkow@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/12 14:42:55 by wszurkow          #+#    #+#             */
-/*   Updated: 2021/03/16 02:45:14 by wszurkow         ###   ########.fr       */
+/*   Updated: 2021/03/17 18:25:22 by wszurkow         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ typedef struct  s_data {
 
 typedef struct s_map
 {
+	char **map_data;
 	char **map_cells;
 	int cell_count;
 	int number_rows;
@@ -63,6 +64,7 @@ typedef struct s_map_textures
 typedef struct s_global
 {
 	int error;
+	int valid_parameter_count;
 	t_data *data;
 	t_map *map;
 	t_window *window;
@@ -75,12 +77,12 @@ int get_next_line(char **line, int fd);
 // UTILS
 int		is_in_charset(char c, char *charset);
 int		ft_is_number(char *str);
+int		number_of_args(char **line);
 
 // PARSERS
 void	init_struct(t_global *g);
-void	parse_line_resolution(char *line, t_global *g);
-void	parse_line_paths(char *line, t_global *g);
+void	parse_line_resolution(char **line, t_global *g);
+void	parse_line_paths(char **line, t_global *g);
 
 
 #endif
-
