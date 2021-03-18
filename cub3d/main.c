@@ -6,7 +6,7 @@
 /*   By: wszurkow <wszurkow@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/12 14:49:10 by wszurkow          #+#    #+#             */
-/*   Updated: 2021/03/17 18:32:39 by wszurkow         ###   ########.fr       */
+/*   Updated: 2021/03/18 00:46:00 by wszurkow         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,35 @@ char **dual_realloc(char **map_data, char *line)
 	return (res);
 }
 
+void	parse_map(char *line, int fd, t_global *g)
+{
+	int i;
+	char **map_data;
 
+	i = 0;
+	map_data = malloc(sizeof(char *));
+	g->map = malloc(sizeof(t_map));
+	*map_data = NULL;
+	map_data = dual_realloc(map_data, line);
+	while ((get_next_line(&line, fd) > 0))
+	{
+		if (detect_map_line(line) == 0)
+			break ;
+		map_data = dual_realloc(map_data, line);
+	}
+	g->map->map_data = map_data;
+	while ((get_next_line(&line, fd) > 0))
+	{
+		if (*line != '\0')
+			g->error = 2;
+	}
+	printf("%s\n", " --------------- PRINT MAP----------------");
+	while (g->map->map_data[i])
+	{
+		printf("map -> %s\n", g->map->map_data[i]);
+		i++;;
+	}
+}
 
 int	parse_input(t_global *g)
 {
@@ -85,16 +113,10 @@ int	parse_input(t_global *g)
 	int arg_count;
 	char *line;
 	char **line_split;
-	char **map_data;
-
-	int i = 0;
-
 
 	g = malloc(sizeof(t_global));
 	g->window = malloc(sizeof(t_window));
 	g->map_textures = malloc(sizeof(t_map_textures));
-	map_data = malloc(sizeof(char *));
-	*map_data = NULL;
 	init_struct(g);
 	fd = open("./assets/map.cub", O_RDONLY);
 	if (fd < 0)
@@ -104,15 +126,7 @@ int	parse_input(t_global *g)
 		arg_count = 0;
 		if (detect_map_line(line))
 		{
-			map_data = dual_realloc(map_data, line);
-			while ((get_next_line(&line, fd) > 0))
-				map_data = dual_realloc(map_data, line);
-			printf("%s\n", " --------------- PRINT MAP----------------");
-			while (map_data[i])
-			{
-				printf("map -> %s\n", map_data[i]);
-				i++;;
-			}
+			parse_map(line, fd, g);
 			break;
 		}
 		line_split = ft_split(line, ' ');
@@ -126,10 +140,9 @@ int	parse_input(t_global *g)
 			parse_line_resolution(line_split, g);
 		if (arg_count == 2)
 			parse_line_paths(line_split, g);
-		printf("--> %s\n", line);
+		/*printf("--> %s\n", line);*/
 		free(line_split);
 	}
-
 	close(fd);
 	print_input_data(g);
 	return 0;

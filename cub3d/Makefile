@@ -6,7 +6,7 @@
 #    By: wszurkow <wszurkow@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/01/16 22:40:46 by wszurkow          #+#    #+#              #
-#    Updated: 2021/03/17 16:42:53 by wszurkow         ###   ########.fr        #
+#    Updated: 2021/03/18 00:43:35 by wszurkow         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -64,6 +64,10 @@ execf:		cub3d.a
 				@echo "Creating and executing ./a.out"
 				@echo "#####################################"
 				@echo "# SANITIZING [FSANITIZE ADDRESS]....#"
+				@echo "#####################################"
+				@echo "# ERROR 1 : WRONG TEXTURE PATHS     #"
+				@echo "# ERROR 2 : WRONG MAP FORMAT        #"
+				@echo "# ERROR 3 : MAP ERROR               #"
 				@echo "#####################################"
 				@./a.out
 
