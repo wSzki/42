@@ -6,7 +6,7 @@
 /*   By: wszurkow <wszurkow@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/12 14:42:55 by wszurkow          #+#    #+#             */
-/*   Updated: 2021/03/18 15:23:19 by wszurkow         ###   ########.fr       */
+/*   Updated: 2021/03/18 15:38:10 by wszurkow         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,7 @@ char 	**dual_realloc(char **double_ptr, char *line);
 int		detect_map_line(char *line);
 
 // PARSERS
-int		parse_input(t_global *g);
+void	parse_input(t_global *g);
 void	parse_line_resolution(char **line, t_global *g);
 void	parse_line_paths(char **line, t_global *g);
 void	parse_map(char *line, int fd, t_global *g);
