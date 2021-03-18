@@ -6,11 +6,11 @@
 /*   By: wszurkow <wszurkow@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/15 19:53:47 by wszurkow          #+#    #+#             */
-/*   Updated: 2021/03/18 14:55:30 by wszurkow         ###   ########.fr       */
+/*   Updated: 2021/03/18 16:59:11 by wszurkow         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/cub3d.h"
+#include "../../../includes/cub3d.h"
 
 static	void	process_path(char **line_split, char **path_ptr, t_global *g)
 {

@@ -6,7 +6,7 @@
 #    By: wszurkow <wszurkow@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/01/16 22:40:46 by wszurkow          #+#    #+#              #
-#    Updated: 2021/03/18 15:23:20 by wszurkow         ###   ########.fr        #
+#    Updated: 2021/03/18 16:58:32 by wszurkow         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,9 +16,9 @@ SRCS_FILES	= \
 			  gnl.c \
 			  cub3d_entrypoint.c \
 			  parsers/parse_input.c \
-			  parsers/parse_line_resolution.c \
-			  parsers/parse_line_paths.c \
-			  parsers/parse_map.c \
+			  parsers/map/parse_map.c \
+			  parsers/parameters/parse_line_resolution.c \
+			  parsers/parameters/parse_line_paths.c \
 			  utils/is_in_charset.c \
 			  utils/ft_is_number.c \
 			  utils/number_of_args.c \

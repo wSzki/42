@@ -6,12 +6,59 @@
 /*   By: wszurkow <wszurkow@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/12 14:49:10 by wszurkow          #+#    #+#             */
-/*   Updated: 2021/03/18 15:31:21 by wszurkow         ###   ########.fr       */
+/*   Updated: 2021/03/18 17:34:11 by wszurkow         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "includes/cub3d.h"
 #include "libft/libft.h"
+
+// TEMPORARY FUNCTIONS ///////////////////////////////////////////////////////////////
+void print_map(t_global *g)
+{
+	int i;
+
+	i = 0;
+	printf("%s\n", " --------------- PRINT MAP----------------");
+	while (g->map->map_data[i])
+	{
+		printf("map -> %s\n", g->map->map_data[i]);
+		i++;
+	}
+}
+
+void show_errors(t_global *g)
+{
+	printf("\n#####################################\n");
+	printf("# HERE ARE YOUR ERRORS MOTHERFUCKER #\n");
+	printf("#####################################\n\n");
+	int i = -1;
+	if (g->valid_parameter_count != 8)
+		printf("NOT ENOUGH VALID PARAMETERS (%d)\n", g->valid_parameter_count);
+	if (*(g->error))
+	{
+		while (((g->error)[++i]))
+			printf("%s", (g->error)[i]);
+	}
+	printf("\n#####################################\n");
+}
+
+void print_input_data(t_global *g)
+{
+	printf(" ------------ %d\n",g->window->x_resolution);
+	printf(" ------------ %d\n",g->window->y_resolution);
+	printf(" ------------ %s\n",g->map_textures->north_texture_path);
+	printf(" ------------ %s\n",g->map_textures->south_texture_path);
+	printf(" ------------ %s\n",g->map_textures->west_texture_path);
+	printf(" ------------ %s\n",g->map_textures->east_texture_path);
+	printf(" ------------ %s\n",g->map_textures->sprite_texture_path);
+	printf(" ------------ %s\n",g->map_textures->floor_color);
+	printf(" ------------ %s\n",g->map_textures->ceiling_color);
+	printf("\nVALID PARAMS COUNT - %d\n\n",g->valid_parameter_count);
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////
 
 void init_global_struct(t_global *g)
 {
@@ -41,22 +88,6 @@ void init_global_struct(t_global *g)
 	*(g->map->map_data) = NULL;
 }
 
-
-void print_input_data(t_global *g)
-{
-	printf(" ------------ %d\n",g->window->x_resolution);
-	printf(" ------------ %d\n",g->window->y_resolution);
-	printf(" ------------ %s\n",g->map_textures->north_texture_path);
-	printf(" ------------ %s\n",g->map_textures->south_texture_path);
-	printf(" ------------ %s\n",g->map_textures->west_texture_path);
-	printf(" ------------ %s\n",g->map_textures->east_texture_path);
-	printf(" ------------ %s\n",g->map_textures->sprite_texture_path);
-	printf(" ------------ %s\n",g->map_textures->floor_color);
-	printf(" ------------ %s\n",g->map_textures->ceiling_color);
-	printf("valid parameters - %d\n",g->valid_parameter_count);
-}
-
-
 int main()
 {
 	// Location of current MLX instance
@@ -76,20 +107,8 @@ int main()
 
 	parse_input(g);
 	print_input_data(g);
-
-	printf("\n#####################################\n");
-	printf("# HERE ARE YOUR ERRORS MOTHERFUCKER #\n");
-	printf("#####################################\n\n");
-	int i = -1;
-	if (g->valid_parameter_count != 8)
-		printf("NOT ENOUGH VALID PARAMETERS (%d)\n", g->valid_parameter_count);
-	if (*(g->error))
-	{
-		while (((g->error)[++i]))
-			printf("%s", (g->error)[i]);
-	}
-	printf("\n#####################################\n");
-
+	print_map(g);
+	show_errors(g);
 
 	window.x_resolution = 300;
 	window.y_resolution = 400;

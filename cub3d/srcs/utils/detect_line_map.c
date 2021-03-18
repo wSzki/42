@@ -6,13 +6,13 @@
 /*   By: wszurkow <wszurkow@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/18 14:45:07 by wszurkow          #+#    #+#             */
-/*   Updated: 2021/03/18 14:46:11 by wszurkow         ###   ########.fr       */
+/*   Updated: 2021/03/18 17:44:13 by wszurkow         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub3d.h"
 
-int detect_map_line(char *line)
+int	detect_map_line(char *line)
 {
 	int i;
 

@@ -6,14 +6,15 @@
 /*   By: wszurkow <wszurkow@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/17 16:40:01 by wszurkow          #+#    #+#             */
-/*   Updated: 2021/03/17 16:56:29 by wszurkow         ###   ########.fr       */
+/*   Updated: 2021/03/18 17:44:01 by wszurkow         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 #include <stdio.h>
 
 int	number_of_args(char **line)
 {
-	int i;
+	int	i;
 
 	if (!line || !(*line))
 		return (0);

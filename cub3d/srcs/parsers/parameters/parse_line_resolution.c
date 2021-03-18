@@ -6,11 +6,11 @@
 /*   By: wszurkow <wszurkow@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/15 19:48:12 by wszurkow          #+#    #+#             */
-/*   Updated: 2021/03/18 14:56:00 by wszurkow         ###   ########.fr       */
+/*   Updated: 2021/03/18 16:59:26 by wszurkow         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/cub3d.h"
+#include "../../../includes/cub3d.h"
 
 void	parse_line_resolution(char **line_split, t_global *g)
 {
