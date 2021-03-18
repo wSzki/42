@@ -6,7 +6,7 @@
 /*   By: wszurkow <wszurkow@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/12 14:49:10 by wszurkow          #+#    #+#             */
-/*   Updated: 2021/03/18 18:57:04 by wszurkow         ###   ########.fr       */
+/*   Updated: 2021/03/18 20:05:19 by wszurkow         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,10 +95,10 @@ void	free_everything(t_global *g)
 	i = -1;
 	while ((g->map->map_data)[++i])
 		free((g->map->map_data)[i]);
+	free(g->map);
 	i = -1;
 	while ((g->error)[++i])
 		free((g->error)[i]);
-	free(g->map);
 	free(g->error);
 
 	free(g->map_textures->north_texture_path);

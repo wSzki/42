@@ -6,7 +6,7 @@
 /*   By: wszurkow <wszurkow@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/15 19:53:47 by wszurkow          #+#    #+#             */
-/*   Updated: 2021/03/18 18:25:14 by wszurkow         ###   ########.fr       */
+/*   Updated: 2021/03/18 19:37:06 by wszurkow         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,7 @@ static	void	process_path(char **line_split, char **path_ptr, t_global *g)
 		g->valid_parameter_count++;
 	}
 	else
-		g->error = dual_realloc(g->error, ft_strjoin(line_split[0], \
-					" path already set\n"));
+		g->error = dual_realloc(g->error," path already set\n");
 }
 
 void			parse_line_paths(char **line_split, t_global *g)

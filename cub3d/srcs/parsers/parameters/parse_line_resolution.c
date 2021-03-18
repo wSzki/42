@@ -6,7 +6,7 @@
 /*   By: wszurkow <wszurkow@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/15 19:48:12 by wszurkow          #+#    #+#             */
-/*   Updated: 2021/03/18 16:59:26 by wszurkow         ###   ########.fr       */
+/*   Updated: 2021/03/18 19:26:52 by wszurkow         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,6 @@ void	parse_line_resolution(char **line_split, t_global *g)
 			g->error = dual_realloc(g->error, "Resolution takes numbers only");
 		return ;
 	}
-	g->error = dual_realloc(g->error, ft_strjoin(line_split[0], \
-				" wrong parameter ID\n"));
+	g->error = dual_realloc(g->error, " wrong parameter ID\n");
 	return ;
 }

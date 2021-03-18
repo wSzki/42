@@ -6,7 +6,7 @@
 /*   By: wszurkow <wszurkow@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/18 14:43:47 by wszurkow          #+#    #+#             */
-/*   Updated: 2021/03/18 19:09:41 by wszurkow         ###   ########.fr       */
+/*   Updated: 2021/03/18 20:02:35 by wszurkow         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -134,6 +134,7 @@ void	parse_map(char *line, int fd, t_global *g)
 {
 	g->map->map_data = dual_realloc(g->map->map_data, line);
 	free(line);
+	line = NULL;
 	while ((get_next_line(&line, fd) > 0))
 	{
 		if (detect_map_line(line) == 0)
@@ -142,10 +143,12 @@ void	parse_map(char *line, int fd, t_global *g)
 				g->error = dual_realloc(g->error,\
 						"Invalid map, line in middle or wrong data\n");
 			free(line);
+		line = NULL;
 			break ;
 		}
 		g->map->map_data = dual_realloc(g->map->map_data, line);
 		free(line);
+		line = NULL;
 	}
 	while ((get_next_line(&line, fd) > 0))
 	{
@@ -154,9 +157,11 @@ void	parse_map(char *line, int fd, t_global *g)
 			g->error = dual_realloc(g->error,\
 					"Invalid map, line in middle or wrong data\n");
 			free(line);
+			line = NULL;
 			break ;
 		}
 		free(line);
+		line = NULL;
 	}
 	process_map(g);
 }

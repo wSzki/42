@@ -6,7 +6,7 @@
 /*   By: wszurkow <wszurkow@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/18 14:00:15 by wszurkow          #+#    #+#             */
-/*   Updated: 2021/03/18 18:49:40 by wszurkow         ###   ########.fr       */
+/*   Updated: 2021/03/18 20:09:41 by wszurkow         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,11 +29,13 @@ char	**dual_realloc(char **double_ptr, char *line)
 	{
 		res[j] = ft_strdup(double_ptr[i]);
 		free(double_ptr[i]);
+		double_ptr[i] = NULL;
 		i++;
 		j++;
 	}
 	res[line_count] = ft_strdup(line);
 	res[line_count + 1] = NULL;
 	free(double_ptr);
+	double_ptr = NULL;
 	return (res);
 }

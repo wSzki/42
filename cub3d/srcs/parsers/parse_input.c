@@ -6,7 +6,7 @@
 /*   By: wszurkow <wszurkow@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/18 14:58:29 by wszurkow          #+#    #+#             */
-/*   Updated: 2021/03/18 19:08:19 by wszurkow         ###   ########.fr       */
+/*   Updated: 2021/03/18 20:02:12 by wszurkow         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,11 @@
 
 static	void	fetch_arguments(char *line, t_global *g)
 {
+	/*int i;*/
 	int		arg_count;
 	char	**line_split;
 
+	/*i = -1;*/
 	arg_count = 0;
 	line_split = ft_split(line, ' ');
 	arg_count = number_of_args(line_split);
@@ -28,6 +30,8 @@ static	void	fetch_arguments(char *line, t_global *g)
 		parse_line_resolution(line_split, g);
 	if (arg_count == 2)
 		parse_line_paths(line_split, g);
+	/*while (line_split[++i])*/
+	/*free(line_split[i]);*/
 	free(line_split);
 }
 
