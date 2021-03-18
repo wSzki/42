@@ -6,7 +6,7 @@
 /*   By: wszurkow <wszurkow@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/18 14:43:47 by wszurkow          #+#    #+#             */
-/*   Updated: 2021/03/18 17:42:18 by wszurkow         ###   ########.fr       */
+/*   Updated: 2021/03/18 19:09:41 by wszurkow         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,10 +24,6 @@ void	check_borders(t_global *g, int line_count, int largest_line)
 		if (map[0][i] != ' ' && map[0][i] != '1')
 		{
 			g->error = dual_realloc(g->error, "Invalid top map border at ");
-			g->error = dual_realloc(g->error, \
-					ft_strjoin("0", " "));
-			g->error = dual_realloc(g->error, \
-					ft_strjoin(ft_itoa(i), "\n"));
 
 		}
 	i = -1;
@@ -76,10 +72,6 @@ void	check_walls(t_global *g, int line_count, int largest_line)
 				{
 					g->error = dual_realloc(g->error, \
 							"Map is not correctly closed at ");
-					g->error = dual_realloc(g->error, \
-							ft_strjoin(ft_itoa(i), " "));
-					g->error = dual_realloc(g->error, \
-							ft_strjoin(ft_itoa(j), "\n"));
 				}
 			}
 		}
@@ -141,6 +133,7 @@ void	process_map(t_global *g)
 void	parse_map(char *line, int fd, t_global *g)
 {
 	g->map->map_data = dual_realloc(g->map->map_data, line);
+	free(line);
 	while ((get_next_line(&line, fd) > 0))
 	{
 		if (detect_map_line(line) == 0)
@@ -148,15 +141,22 @@ void	parse_map(char *line, int fd, t_global *g)
 			if (*line != '\0')
 				g->error = dual_realloc(g->error,\
 						"Invalid map, line in middle or wrong data\n");
+			free(line);
 			break ;
 		}
 		g->map->map_data = dual_realloc(g->map->map_data, line);
+		free(line);
 	}
 	while ((get_next_line(&line, fd) > 0))
 	{
 		if (*line != '\0')
+		{
 			g->error = dual_realloc(g->error,\
 					"Invalid map, line in middle or wrong data\n");
+			free(line);
+			break ;
+		}
+		free(line);
 	}
 	process_map(g);
 }

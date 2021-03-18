@@ -6,7 +6,7 @@
 /*   By: wszurkow <wszurkow@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/12 14:49:10 by wszurkow          #+#    #+#             */
-/*   Updated: 2021/03/18 17:34:11 by wszurkow         ###   ########.fr       */
+/*   Updated: 2021/03/18 18:57:04 by wszurkow         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,6 +88,30 @@ void init_global_struct(t_global *g)
 	*(g->map->map_data) = NULL;
 }
 
+void	free_everything(t_global *g)
+{
+	int i;
+
+	i = -1;
+	while ((g->map->map_data)[++i])
+		free((g->map->map_data)[i]);
+	i = -1;
+	while ((g->error)[++i])
+		free((g->error)[i]);
+	free(g->map);
+	free(g->error);
+
+	free(g->map_textures->north_texture_path);
+	free(g->map_textures->south_texture_path);
+	free(g->map_textures->east_texture_path);
+	free(g->map_textures->west_texture_path);
+	free(g->map_textures->sprite_texture_path);
+	free(g->map_textures->floor_color);
+	free(g->map_textures->ceiling_color);
+	free(g->map_textures);
+	free(g);
+}
+
 int main()
 {
 	// Location of current MLX instance
@@ -108,7 +132,12 @@ int main()
 	parse_input(g);
 	print_input_data(g);
 	print_map(g);
-	show_errors(g);
+	if (*(g->error))
+	{
+		show_errors(g);
+		free_everything(g);
+		return (1);
+	}
 
 	window.x_resolution = 300;
 	window.y_resolution = 400;
