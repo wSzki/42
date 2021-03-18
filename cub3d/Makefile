@@ -6,7 +6,7 @@
 #    By: wszurkow <wszurkow@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/01/16 22:40:46 by wszurkow          #+#    #+#              #
-#    Updated: 2021/03/18 00:43:35 by wszurkow         ###   ########.fr        #
+#    Updated: 2021/03/18 15:23:20 by wszurkow         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,12 +15,16 @@ SRCS		= $(addprefix ./srcs/, ${SRCS_FILES})
 SRCS_FILES	= \
 			  gnl.c \
 			  cub3d_entrypoint.c \
-			  parsers/init_struct.c \
+			  parsers/parse_input.c \
 			  parsers/parse_line_resolution.c \
 			  parsers/parse_line_paths.c \
+			  parsers/parse_map.c \
 			  utils/is_in_charset.c \
 			  utils/ft_is_number.c \
 			  utils/number_of_args.c \
+			  utils/dual_realloc.c \
+			  utils/detect_line_map.c \
+
 
 OBJS		= ${SRCS:.c=.o}
 %.o: %.c
@@ -64,10 +68,6 @@ execf:		cub3d.a
 				@echo "Creating and executing ./a.out"
 				@echo "#####################################"
 				@echo "# SANITIZING [FSANITIZE ADDRESS]....#"
-				@echo "#####################################"
-				@echo "# ERROR 1 : WRONG TEXTURE PATHS     #"
-				@echo "# ERROR 2 : WRONG MAP FORMAT        #"
-				@echo "# ERROR 3 : MAP ERROR               #"
 				@echo "#####################################"
 				@./a.out
 

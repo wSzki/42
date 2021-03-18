@@ -6,7 +6,7 @@
 /*   By: wszurkow <wszurkow@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/12 14:42:55 by wszurkow          #+#    #+#             */
-/*   Updated: 2021/03/17 18:25:22 by wszurkow         ###   ########.fr       */
+/*   Updated: 2021/03/18 15:23:19 by wszurkow         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ typedef struct s_map_textures
 
 typedef struct s_global
 {
-	int error;
+	char **error;
 	int valid_parameter_count;
 	t_data *data;
 	t_map *map;
@@ -78,11 +78,14 @@ int get_next_line(char **line, int fd);
 int		is_in_charset(char c, char *charset);
 int		ft_is_number(char *str);
 int		number_of_args(char **line);
+char 	**dual_realloc(char **double_ptr, char *line);
+int		detect_map_line(char *line);
 
 // PARSERS
-void	init_struct(t_global *g);
+int		parse_input(t_global *g);
 void	parse_line_resolution(char **line, t_global *g);
 void	parse_line_paths(char **line, t_global *g);
+void	parse_map(char *line, int fd, t_global *g);
 
 
 #endif
