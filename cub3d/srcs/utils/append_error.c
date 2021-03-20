@@ -1,25 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   number_of_args.c                                   :+:      :+:    :+:   */
+/*   append_error.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: wszurkow <wszurkow@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/03/17 16:40:01 by wszurkow          #+#    #+#             */
-/*   Updated: 2021/03/19 20:09:59 by wszurkow         ###   ########.fr       */
+/*   Created: 2021/03/20 16:15:51 by wszurkow          #+#    #+#             */
+/*   Updated: 2021/03/20 16:16:11 by wszurkow         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
+#include "../../includes/cub3d.h"
 
-int	number_of_args(char **line)
+void	append_error(t_global *g, char *id, char *message)
 {
-	int	i;
-
-	if (!line || !(*line))
-		return (0);
-	i = 0;
-	while (line[i])
-		i++;
-	return (i);
+		g->error = dual_realloc(g->error,ft_strjoin(id, message));
 }
+

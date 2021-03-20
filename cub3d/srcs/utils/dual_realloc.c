@@ -6,7 +6,7 @@
 /*   By: wszurkow <wszurkow@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/18 14:00:15 by wszurkow          #+#    #+#             */
-/*   Updated: 2021/03/18 20:09:41 by wszurkow         ###   ########.fr       */
+/*   Updated: 2021/03/20 16:54:28 by wszurkow         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,20 +22,26 @@ char	**dual_realloc(char **double_ptr, char *line)
 	i = 0;
 	j = 0;
 	line_count = number_of_args(double_ptr);
+
 	res = malloc(sizeof(char *) * (line_count + 2));
 	if (!res)
 		return (NULL);
-	while (double_ptr[i])
+	while (i < line_count)
 	{
+
 		res[j] = ft_strdup(double_ptr[i]);
 		free(double_ptr[i]);
-		double_ptr[i] = NULL;
 		i++;
 		j++;
 	}
+	i = 0;
+	/*free(double_ptr[i]);*/
+	/*double_ptr[i] = NULL;*/
 	res[line_count] = ft_strdup(line);
 	res[line_count + 1] = NULL;
 	free(double_ptr);
 	double_ptr = NULL;
+	free(line);
+	line = NULL;
 	return (res);
 }

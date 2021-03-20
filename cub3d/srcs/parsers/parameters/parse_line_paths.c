@@ -6,7 +6,7 @@
 /*   By: wszurkow <wszurkow@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/15 19:53:47 by wszurkow          #+#    #+#             */
-/*   Updated: 2021/03/18 19:37:06 by wszurkow         ###   ########.fr       */
+/*   Updated: 2021/03/20 16:38:37 by wszurkow         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,12 @@ static	void	process_path(char **line_split, char **path_ptr, t_global *g)
 {
 	if (**path_ptr == '\0')
 	{
-		*path_ptr = line_split[1];
+		free(*path_ptr);
+		*path_ptr = ft_strdup(line_split[1]);
 		g->valid_parameter_count++;
 	}
 	else
-		g->error = dual_realloc(g->error," path already set\n");
+		append_error(g, line_split[0], " : path already set\n");
 }
 
 void			parse_line_paths(char **line_split, t_global *g)
@@ -40,6 +41,5 @@ void			parse_line_paths(char **line_split, t_global *g)
 	else if (ft_strcmp(line_split[0], "C") == 0)
 		process_path(line_split, &(g->map_textures->ceiling_color), g);
 	else
-		g->error = dual_realloc(g->error, ft_strjoin(line_split[0], \
-					" wrong parameter ID\n"));
+		append_error(g, line_split[0], " wrong parameter ID\n");
 }

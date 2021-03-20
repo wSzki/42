@@ -6,7 +6,7 @@
 #    By: wszurkow <wszurkow@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/01/16 22:40:46 by wszurkow          #+#    #+#              #
-#    Updated: 2021/03/18 16:58:32 by wszurkow         ###   ########.fr        #
+#    Updated: 2021/03/20 16:48:11 by wszurkow         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,62 +24,65 @@ SRCS_FILES	= \
 			  utils/number_of_args.c \
 			  utils/dual_realloc.c \
 			  utils/detect_line_map.c \
+			  utils/append_error.c \
 
 
 OBJS		= ${SRCS:.c=.o}
 %.o: %.c
-				gcc -Wall -Werror -Wextra -I ./includes -o $@ -c $<
+	gcc -Wall -Werror -Wextra -I ./includes -o $@ -c $<
 
 all:		${NAME}
 
 ${NAME}:	${OBJS}
-				make -C ./libft
-				cp ./libft/libft.a ./${NAME}
-				ar -rcs ${NAME} ${OBJS}
+	make -C ./libft
+	cp ./libft/libft.a ./${NAME}
+	ar -rcs ${NAME} ${OBJS}
 
 exec:		cub3d.a
-				@gcc -Wall -Werror -Wextra main.c cub3d.a \
-					-I ./includes \
-					-I /usr/local/include/  \
-					-L /usr/local/lib/ \
-					-lXext -lX11 -lmlx
-				@echo "Creating and executing ./a.out"
-				@echo "#####################################"
-				@./a.out
+	@clear
+	@gcc -Wall -Werror -Wextra main.c cub3d.a \
+		-I ./includes \
+		-I /usr/local/include/  \
+		-L /usr/local/lib/ \
+		-lXext -lX11 -lmlx
+	@echo "Creating and executing ./a.out"
+	@echo "#####################################"
+	@./a.out
 
 execg:		cub3d.a
-				@gcc -g -Wall -Werror -Wextra main.c cub3d.a \
-					-I ./includes \
-					-I /usr/local/include/  \
-					-L /usr/local/lib/ \
-					-lXext -lX11 -lmlx
-				@echo "Creating and executing ./a.out"
-				@echo "#####################################"
-				@echo "# SANITIZING [LLDB].................#"
-				@echo "#####################################"
-				@./a.out
+	@gcc -g -Wall -Werror -Wextra main.c cub3d.a \
+		-I ./includes \
+		-I /usr/local/include/  \
+		-L /usr/local/lib/ \
+		-lXext -lX11 -lmlx
+	@echo "Creating and executing ./a.out"
+	@echo "#####################################"
+	@echo "# SANITIZING [LLDB].................#"
+	@echo "#####################################"
+	@./a.out
 
 execf:		cub3d.a
-				@gcc -fsanitize=address -Wall -Werror -Wextra main.c cub3d.a \
-					-I ./includes \
-					-I /usr/local/include/  \
-					-L /usr/local/lib/ \
-					-lXext -lX11 -lmlx
-				@echo "Creating and executing ./a.out"
-				@echo "#####################################"
-				@echo "# SANITIZING [FSANITIZE ADDRESS]....#"
-				@echo "#####################################"
-				@./a.out
+	@clear
+	@gcc -fsanitize=address -Wall -Werror -Wextra main.c cub3d.a \
+		-I ./includes \
+		-I /usr/local/include/  \
+		-L /usr/local/lib/ \
+		-lXext -lX11 -lmlx
+	@echo "Creating and executing ./a.out"
+	@echo "#####################################"
+	@echo "# SANITIZING [FSANITIZE ADDRESS]....#"
+	@echo "#####################################"
+	@./a.out
 
 clean:
-				rm -f ${OBJS}
-				make clean -C ./libft
-				rm ./a.out
+	rm -f ${OBJS}
+	make clean -C ./libft
+	rm ./a.out
 
 fclean:		clean
-				rm -f ./${NAME}
-				make fclean -C ./libft
-				rm ./a.out
+	rm -f ./${NAME}
+	make fclean -C ./libft
+	rm ./a.out
 
 re:			fclean all
 

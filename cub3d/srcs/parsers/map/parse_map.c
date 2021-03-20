@@ -6,7 +6,7 @@
 /*   By: wszurkow <wszurkow@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/18 14:43:47 by wszurkow          #+#    #+#             */
-/*   Updated: 2021/03/18 20:02:35 by wszurkow         ###   ########.fr       */
+/*   Updated: 2021/03/20 17:02:40 by wszurkow         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -132,36 +132,29 @@ void	process_map(t_global *g)
 
 void	parse_map(char *line, int fd, t_global *g)
 {
+	(void)fd;
+	(void)g;
+	printf(" -------- %s\n", line);
 	g->map->map_data = dual_realloc(g->map->map_data, line);
-	free(line);
-	line = NULL;
-	while ((get_next_line(&line, fd) > 0))
-	{
-		if (detect_map_line(line) == 0)
-		{
-			if (*line != '\0')
-				g->error = dual_realloc(g->error,\
-						"Invalid map, line in middle or wrong data\n");
-			free(line);
-		line = NULL;
-			break ;
-		}
-		g->map->map_data = dual_realloc(g->map->map_data, line);
-		free(line);
-		line = NULL;
-	}
-	while ((get_next_line(&line, fd) > 0))
-	{
-		if (*line != '\0')
-		{
-			g->error = dual_realloc(g->error,\
-					"Invalid map, line in middle or wrong data\n");
-			free(line);
-			line = NULL;
-			break ;
-		}
-		free(line);
-		line = NULL;
-	}
-	process_map(g);
+	/*while ((get_next_line(&line, fd) > 0))*/
+	/*{*/
+		/*if (detect_map_line(line) == 0)*/
+		/*{*/
+			/*if (*line != '\0')*/
+				/*append_error(g, "", "Invalid map, line in middle or wrong data\n");*/
+			/*break ;*/
+		/*}*/
+		/*g->map->map_data = dual_realloc(g->map->map_data, line);*/
+	/*}*/
+	/*while ((get_next_line(&line, fd) > 0))*/
+	/*{*/
+		/*if (*line != '\0')*/
+		/*{*/
+			/*append_error(g, "", "Invalid map, line in middle or wrong data\n");*/
+			/*break ;*/
+		/*}*/
+		/*free(line);*/
+		/*line = NULL;*/
+	/*}*/
+	/*process_map(g);*/
 }

@@ -6,7 +6,7 @@
 /*   By: wszurkow <wszurkow@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/25 10:18:48 by wszurkow          #+#    #+#             */
-/*   Updated: 2021/03/15 19:46:43 by wszurkow         ###   ########.fr       */
+/*   Updated: 2021/03/19 18:20:20 by wszurkow         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ static char		**count_letters(char const *str, char charset, char **tab)
 			letters++;
 			i++;
 		}
-		if (!(tab[index] = (char *)malloc(sizeof(char) * (letters + 1))))
+		if (!(tab[index] = malloc(sizeof(char) * (letters))))
 			return (ft_free(tab, index));
 		tab[index][letters] = 0;
 		index++;
