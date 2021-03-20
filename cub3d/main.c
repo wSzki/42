@@ -6,7 +6,7 @@
 /*   By: wszurkow <wszurkow@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/12 14:49:10 by wszurkow          #+#    #+#             */
-/*   Updated: 2021/03/20 21:22:49 by wszurkow         ###   ########.fr       */
+/*   Updated: 2021/03/20 22:47:44 by wszurkow         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,19 +27,6 @@ void print_map(t_global *g)
 	}
 }
 
-void show_errors(t_global *g)
-{
-	printf("\n#####################################\n");
-	printf("# ERRORS                            #\n");
-	printf("#####################################\n\n");
-	int i = -1;
-	if (*(g->error))
-	{
-		while (((g->error)[++i]) != NULL)
-			printf("%s", (g->error)[i]);
-	}
-	printf("\n#####################################\n");
-}
 
 void print_input_data(t_global *g)
 {
@@ -57,6 +44,17 @@ void print_input_data(t_global *g)
 
 
 ///////////////////////////////////////////////////////////////////////////////////////
+
+void show_errors(t_global *g)
+{
+	printf("Error\n");
+	int i = -1;
+	if (*(g->error))
+	{
+		while (((g->error)[++i]) != NULL)
+			ft_putstr((g->error)[i]);
+	}
+}
 
 void init_global_struct(t_global *g)
 {
@@ -83,6 +81,33 @@ void init_global_struct(t_global *g)
 	// MAP
 	g->map_data = malloc(sizeof(char *));
 	*(g->map_data) = NULL;
+}
+
+
+
+void	mlx_function(t_global *g)
+{
+	void *mlx;
+	void *win_ptr;
+	t_data img;
+
+	// INIT MLX INSTANCE
+	mlx = mlx_init();
+
+	// POINT TO WINDOW
+	win_ptr = mlx_new_window(mlx, g->window->x_resolution , g->window->y_resolution, "name");
+
+	// CREATE NEW IMAGE
+	img.img = mlx_new_image(mlx, g->window->x_resolution , g->window->y_resolution);
+
+	// POPULATE IMAGE
+	img.addr = mlx_get_data_addr(img.img, &img.bits_per_pixel, &img.line_length, &img.endian);
+
+	// SEND IMAGE TO WINDOW
+	mlx_put_image_to_window(mlx, win_ptr, img.img, 0, 0);
+
+	// WINDOW STAY OPEN
+	/*mlx_loop(mlx);*/
 }
 
 void	free_everything(t_global *g)
@@ -119,49 +144,24 @@ void	free_everything(t_global *g)
 int main()
 {
 	// Location of current MLX instance
-	/*void *mlx;*/
-	/*t_window window;*/
-	/*t_data img;*/
-	/*void *win_ptr;*/
-
 	t_global *g;
 
 	g = malloc(sizeof(t_global));
 	if (!g)
 		return (-1);
-
 	init_global_struct(g);
 	parse_input(g);
+	///////////////////////////
 	print_input_data(g);
 	print_map(g);
+	///////////////////////////
 	if (*(g->error))
 	{
 		show_errors(g);
 		free_everything(g);
 		return (1);
 	}
-
-	/*window.x_resolution = 300;*/
-	/*window.y_resolution = 400;*/
-
-	// INIT MLX INSTANCE
-	/*mlx = mlx_init();*/
-
-	// POINT TO WINDOW
-	/*win_ptr = mlx_new_window(mlx, window.x_resolution , window.y_resolution, "name");*/
-
-	// CREATE NEW IMAGE
-	/*img.img = mlx_new_image(mlx, window.x_resolution , window.y_resolution);*/
-
-	// POPULATE IMAGE
-	/*img.addr = mlx_get_data_addr(img.img, &img.bits_per_pixel, &img.line_length, &img.endian);*/
-
-	// SEND IMAGE TO WINDOW
-	/*mlx_put_image_to_window(mlx, win_ptr, img.img, 0, 0);*/
-
-	// WINDOW STAY OPEN
-	/*mlx_loop(mlx);*/
-
+	mlx_function(g);
 	free_everything(g);
 	return (0);
 }

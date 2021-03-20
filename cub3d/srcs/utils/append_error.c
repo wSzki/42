@@ -6,7 +6,7 @@
 /*   By: wszurkow <wszurkow@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/20 16:15:51 by wszurkow          #+#    #+#             */
-/*   Updated: 2021/03/20 21:16:20 by wszurkow         ###   ########.fr       */
+/*   Updated: 2021/03/20 22:08:59 by wszurkow         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,4 +21,3 @@ void	append_error(t_global *g, char *id, char *message)
 	free(res);
 	res = NULL;
 }
-

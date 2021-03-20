@@ -6,7 +6,7 @@
 /*   By: wszurkow <wszurkow@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/18 14:43:47 by wszurkow          #+#    #+#             */
-/*   Updated: 2021/03/20 22:00:21 by wszurkow         ###   ########.fr       */
+/*   Updated: 2021/03/20 22:29:41 by wszurkow         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,7 @@ static void	fetch_map(t_global *g, char *line, int fd)
 	line = NULL;
 }
 
-static void	check_remaining_map_data(t_global *g, char*line, int fd)
+static void	check_remaining_map_data(t_global *g, char *line, int fd)
 {
 	while ((get_next_line(&line, fd) > 0))
 	{
@@ -102,7 +102,7 @@ static void	check_remaining_map_data(t_global *g, char*line, int fd)
 	line = NULL;
 }
 
-void			parse_map(char *line, int fd, t_global *g)
+void		parse_map(char *line, int fd, t_global *g)
 {
 	g->map_data = dual_realloc(g->map_data, line);
 	fetch_map(g, line, fd);
