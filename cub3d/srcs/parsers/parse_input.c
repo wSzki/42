@@ -6,15 +6,26 @@
 /*   By: wszurkow <wszurkow@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/18 14:58:29 by wszurkow          #+#    #+#             */
-/*   Updated: 2021/03/20 20:50:23 by wszurkow         ###   ########.fr       */
+/*   Updated: 2021/03/20 21:36:49 by wszurkow         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub3d.h"
 
+static	void	check_and_parse(t_global *g, char *line, int fd)
+{
+	if (g->valid_parameter_count != 8)
+	{
+		append_error(g, "", "Not enough valid parameters\n");
+		return ;
+	}
+	parse_map(line, fd, g);
+	return ;
+}
+
 static	void	fetch_arguments(char *line, t_global *g)
 {
-	int i;
+	int		i;
 	int		arg_count;
 	char	**line_split;
 
@@ -50,20 +61,13 @@ void			parse_input(t_global *g)
 	{
 		if (detect_map_line(line))
 		{
-			if (g->valid_parameter_count != 8)
-			{
-				append_error(g, "", "Not enough valid parameters\n");
-				break ;
-			}
-
-			parse_map(line, fd, g);
+			check_and_parse(g, line, fd);
 			break ;
 		}
 		fetch_arguments(line, g);
 		free(line);
 		line = NULL;
 	}
-
 	free(line);
 	line = NULL;
 	close(fd);

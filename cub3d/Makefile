@@ -6,7 +6,7 @@
 #    By: wszurkow <wszurkow@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/01/16 22:40:46 by wszurkow          #+#    #+#              #
-#    Updated: 2021/03/20 16:48:11 by wszurkow         ###   ########.fr        #
+#    Updated: 2021/03/20 21:53:55 by wszurkow         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,6 +17,8 @@ SRCS_FILES	= \
 			  cub3d_entrypoint.c \
 			  parsers/parse_input.c \
 			  parsers/map/parse_map.c \
+			  parsers/map/check_borders.c \
+			  parsers/map/check_walls.c \
 			  parsers/parameters/parse_line_resolution.c \
 			  parsers/parameters/parse_line_paths.c \
 			  utils/is_in_charset.c \
@@ -62,7 +64,6 @@ execg:		cub3d.a
 	@./a.out
 
 execf:		cub3d.a
-	@clear
 	@gcc -fsanitize=address -Wall -Werror -Wextra main.c cub3d.a \
 		-I ./includes \
 		-I /usr/local/include/  \

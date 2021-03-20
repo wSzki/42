@@ -6,7 +6,7 @@
 /*   By: wszurkow <wszurkow@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/12 14:49:10 by wszurkow          #+#    #+#             */
-/*   Updated: 2021/03/20 21:21:05 by wszurkow         ###   ########.fr       */
+/*   Updated: 2021/03/20 21:22:49 by wszurkow         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,9 @@ void print_map(t_global *g)
 
 	i = 0;
 	printf("%s\n", " --------------- PRINT MAP----------------");
-	while (g->map->map_data[i])
+	while (g->map_data[i])
 	{
-		printf("map -> %s\n", g->map->map_data[i]);
+		printf("map -> %s\n", g->map_data[i]);
 		i++;
 	}
 }
@@ -133,7 +133,7 @@ int main()
 	init_global_struct(g);
 	parse_input(g);
 	print_input_data(g);
-	/*print_map(g);*/
+	print_map(g);
 	if (*(g->error))
 	{
 		show_errors(g);

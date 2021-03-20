@@ -6,7 +6,7 @@
 /*   By: wszurkow <wszurkow@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/12 14:42:55 by wszurkow          #+#    #+#             */
-/*   Updated: 2021/03/20 21:11:15 by wszurkow         ###   ########.fr       */
+/*   Updated: 2021/03/20 21:53:41 by wszurkow         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,9 +85,15 @@ void	append_error(t_global *g, char *id, char *message);
 
 // PARSERS
 void	parse_input(t_global *g);
+
+// PARAMS
 void	parse_line_resolution(char **line, t_global *g);
 void	parse_line_paths(char **line, t_global *g);
+
+// MAP
 void	parse_map(char *line, int fd, t_global *g);
+void	check_borders(t_global *g, int line_count, int largest_line);
+void		check_walls(t_global *g, int line_count, int largest_line);
 
 
 #endif
