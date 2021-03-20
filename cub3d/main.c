@@ -6,7 +6,7 @@
 /*   By: wszurkow <wszurkow@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/12 14:49:10 by wszurkow          #+#    #+#             */
-/*   Updated: 2021/03/20 17:06:24 by wszurkow         ###   ########.fr       */
+/*   Updated: 2021/03/20 21:21:05 by wszurkow         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void print_map(t_global *g)
 void show_errors(t_global *g)
 {
 	printf("\n#####################################\n");
-	printf("# HERE ARE YOUR ERRORS MOTHERFUCKER #\n");
+	printf("# ERRORS                            #\n");
 	printf("#####################################\n\n");
 	int i = -1;
 	if (*(g->error))
@@ -60,53 +60,51 @@ void print_input_data(t_global *g)
 
 void init_global_struct(t_global *g)
 {
-	// Errors
+	// ERROR LIST
 	g->error = malloc(sizeof(char *));
 	*(g->error) = NULL;
 	g->valid_parameter_count = 0;
 
-	// Window
+	// WINDOW
 	g->window = malloc(sizeof(t_window));
 	g->window->x_resolution = 0;
 	g->window->y_resolution = 0;
 
-	// Textures
+	// TEXTURES
 	g->map_textures = malloc(sizeof(t_map_textures));
-	g->map_textures->north_texture_path = malloc(sizeof(char));
-	*(g->map_textures->north_texture_path) = '\0';
-	g->map_textures->south_texture_path = malloc(sizeof(char));
-	*(g->map_textures->south_texture_path) = '\0';
-	g->map_textures->east_texture_path = malloc(sizeof(char));
-	*(g->map_textures->east_texture_path) = '\0';
-	g->map_textures->west_texture_path = malloc(sizeof(char));
-	*(g->map_textures->west_texture_path) = '\0';
-	g->map_textures->sprite_texture_path = malloc(sizeof(char));
-	*(g->map_textures->sprite_texture_path) = '\0';
-	g->map_textures->floor_color = malloc(sizeof(char));
-	*(g->map_textures->floor_color) = '\0';
-	g->map_textures->ceiling_color = malloc(sizeof(char));
-	*(g->map_textures->ceiling_color) ='\0';
-	// Map
-	/*g->map = malloc(sizeof(t_map));*/
-	/*g->map->map_data = malloc(sizeof(char *));*/
-	/**(g->map->map_data) = NULL;*/
+	g->map_textures->north_texture_path = NULL;
+	g->map_textures->south_texture_path = NULL;
+	g->map_textures->east_texture_path = NULL;
+	g->map_textures->west_texture_path = NULL;
+	g->map_textures->sprite_texture_path = NULL;
+	g->map_textures->floor_color = NULL;
+	g->map_textures->ceiling_color = NULL;
+
+	// MAP
+	g->map_data = malloc(sizeof(char *));
+	*(g->map_data) = NULL;
 }
 
 void	free_everything(t_global *g)
 {
 	int i;
 
-	/*i = 0;*/
-	/*while ((g->map->map_data)[i])*/
-		/*free((g->map->map_data)[i++]);*/
-	/*free((g->map->map_data)[i]);*/
-	/*free(g->map);*/
+	// FREE MAP
+	i = -1;
+	while ((g->map_data)[++i])
+		free((g->map_data)[i]);
+	free(g->map_data);
+
+	// FREE ERROR LIST
 	i = -1;
 	while ((g->error)[++i])
 		free((g->error)[i]);
-	/*free((g->error)[i]);*/
 	free(g->error);
+
+	// FREE WINDOW
 	free(g->window);
+
+	// FREE TEXTURES
 	free(g->map_textures->north_texture_path);
 	free(g->map_textures->south_texture_path);
 	free(g->map_textures->east_texture_path);
@@ -134,7 +132,7 @@ int main()
 
 	init_global_struct(g);
 	parse_input(g);
-	/*print_input_data(g);*/
+	print_input_data(g);
 	/*print_map(g);*/
 	if (*(g->error))
 	{

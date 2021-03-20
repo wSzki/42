@@ -6,7 +6,7 @@
 /*   By: wszurkow <wszurkow@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/15 19:53:47 by wszurkow          #+#    #+#             */
-/*   Updated: 2021/03/20 16:38:37 by wszurkow         ###   ########.fr       */
+/*   Updated: 2021/03/20 20:44:31 by wszurkow         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 static	void	process_path(char **line_split, char **path_ptr, t_global *g)
 {
-	if (**path_ptr == '\0')
+	if (*path_ptr == NULL)
 	{
 		free(*path_ptr);
 		*path_ptr = ft_strdup(line_split[1]);

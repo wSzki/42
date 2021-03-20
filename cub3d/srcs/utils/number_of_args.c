@@ -6,7 +6,7 @@
 /*   By: wszurkow <wszurkow@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/17 16:40:01 by wszurkow          #+#    #+#             */
-/*   Updated: 2021/03/19 20:09:59 by wszurkow         ###   ########.fr       */
+/*   Updated: 2021/03/20 19:02:05 by wszurkow         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,9 @@ int	number_of_args(char **line)
 {
 	int	i;
 
-	if (!line || !(*line))
+	if (!line)
+		return (0);
+	if(!(*line))
 		return (0);
 	i = 0;
 	while (line[i])

@@ -6,7 +6,7 @@
 /*   By: wszurkow <wszurkow@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/18 14:43:47 by wszurkow          #+#    #+#             */
-/*   Updated: 2021/03/20 17:02:40 by wszurkow         ###   ########.fr       */
+/*   Updated: 2021/03/20 21:20:12 by wszurkow         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,20 +16,19 @@ void	check_borders(t_global *g, int line_count, int largest_line)
 {
 	int i;
 	int j;
+	int flag;
 	char **map;
 
-	map = g->map->map_data;
+	flag = 0;
+	map = g->map_data;
 	i = -1;
 	while (map[0][++i])
 		if (map[0][i] != ' ' && map[0][i] != '1')
-		{
-			g->error = dual_realloc(g->error, "Invalid top map border at ");
-
-		}
+			flag = 1;
 	i = -1;
 	while (map[line_count - 1][++i])
 		if (map[line_count - 1][i] != ' ' && map[line_count - 1][i] != '1')
-			g->error = dual_realloc(g->error, "Invalid bottom map border\n");
+			flag = 1;
 	i = -1;
 	while (map[++i])
 	{
@@ -37,7 +36,7 @@ void	check_borders(t_global *g, int line_count, int largest_line)
 		while (map[i][j] == ' ')
 			j++;
 		if (map[i][j] != '1')
-			g->error = dual_realloc(g->error, "Invalid left map border\n");
+			flag = 1;
 	}
 	i = -1;
 	while (map[++i])
@@ -46,17 +45,21 @@ void	check_borders(t_global *g, int line_count, int largest_line)
 		while (map[i][j] == ' ')
 			j--;
 		if (map[i][j] != '1')
-			g->error = dual_realloc(g->error, "Invalid right map border at");
+			flag = 1;
 	}
+	if (flag)
+		append_error(g, "", "Map is not correctly closed at borders\n");
 }
 
 void	check_walls(t_global *g, int line_count, int largest_line)
 {
 	int i;
 	int j;
+	int flag;
 	char **map;
 
-	map = g->map->map_data;
+	flag = 0;
+	map = g->map_data;
 	i = 0;
 	while (map[++i] && i < line_count - 1)
 	{
@@ -70,12 +73,13 @@ void	check_walls(t_global *g, int line_count, int largest_line)
 							(map[i][j - 1] == ' ' || map[i][j - 1] == '1') && \
 							(map[i][j + 1] == ' ' || map[i][j + 1] == '1')))
 				{
-					g->error = dual_realloc(g->error, \
-							"Map is not correctly closed at ");
+					flag = 1;
 				}
 			}
 		}
 	}
+	if (flag)
+		append_error(g, "", "Invalid map within borders\n");
 }
 
 char	*add_spaces(char *str, int largest_line)
@@ -114,7 +118,7 @@ void	process_map(t_global *g)
 	len = 0;
 	largest_line = 0;
 	line_count = 0;
-	map = g->map->map_data;
+	map = g->map_data;
 	while (map[i])
 	{
 		len = ft_strlen(map[i]);
@@ -132,29 +136,36 @@ void	process_map(t_global *g)
 
 void	parse_map(char *line, int fd, t_global *g)
 {
-	(void)fd;
-	(void)g;
-	printf(" -------- %s\n", line);
-	g->map->map_data = dual_realloc(g->map->map_data, line);
-	/*while ((get_next_line(&line, fd) > 0))*/
-	/*{*/
-		/*if (detect_map_line(line) == 0)*/
-		/*{*/
-			/*if (*line != '\0')*/
-				/*append_error(g, "", "Invalid map, line in middle or wrong data\n");*/
-			/*break ;*/
-		/*}*/
-		/*g->map->map_data = dual_realloc(g->map->map_data, line);*/
-	/*}*/
-	/*while ((get_next_line(&line, fd) > 0))*/
-	/*{*/
-		/*if (*line != '\0')*/
-		/*{*/
-			/*append_error(g, "", "Invalid map, line in middle or wrong data\n");*/
-			/*break ;*/
-		/*}*/
-		/*free(line);*/
-		/*line = NULL;*/
-	/*}*/
-	/*process_map(g);*/
+	g->map_data = dual_realloc(g->map_data, line);
+	while ((get_next_line(&line, fd) > 0))
+	{
+		if (detect_map_line(line) == 0)
+		{
+			if (*line != '\0')
+				append_error(g, "", "Invalid map, line in middle or wrong data\n");
+			free(line);
+			line = NULL;
+			break ;
+		}
+		g->map_data = dual_realloc(g->map_data, line);
+		free(line);
+		line = NULL;
+	}
+	free(line);
+	line = NULL;
+	while ((get_next_line(&line, fd) > 0))
+	{
+		if (*line != '\0')
+		{
+			append_error(g, "", "Invalid map, line in middle or wrong data\n");
+			free(line);
+			line = NULL;
+			break ;
+		}
+		free(line);
+		line = NULL;
+	}
+	free(line);
+	line = NULL;
+	process_map(g);
 }

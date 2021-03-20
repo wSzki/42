@@ -6,7 +6,7 @@
 /*   By: wszurkow <wszurkow@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/12 14:42:55 by wszurkow          #+#    #+#             */
-/*   Updated: 2021/03/20 16:18:37 by wszurkow         ###   ########.fr       */
+/*   Updated: 2021/03/20 21:11:15 by wszurkow         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,7 @@ typedef struct s_map_textures
 typedef struct s_global
 {
 	char **error;
+	char **map_data;
 	int valid_parameter_count;
 	t_data *data;
 	t_map *map;

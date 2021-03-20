@@ -6,7 +6,7 @@
 /*   By: wszurkow <wszurkow@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/18 14:58:29 by wszurkow          #+#    #+#             */
-/*   Updated: 2021/03/20 17:03:34 by wszurkow         ###   ########.fr       */
+/*   Updated: 2021/03/20 20:50:23 by wszurkow         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,13 +56,14 @@ void			parse_input(t_global *g)
 				break ;
 			}
 
-			/*parse_map(line, fd, g);*/
+			parse_map(line, fd, g);
 			break ;
 		}
 		fetch_arguments(line, g);
 		free(line);
 		line = NULL;
 	}
+
 	free(line);
 	line = NULL;
 	close(fd);
