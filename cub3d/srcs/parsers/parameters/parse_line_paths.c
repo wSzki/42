@@ -6,11 +6,30 @@
 /*   By: wszurkow <wszurkow@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/15 19:53:47 by wszurkow          #+#    #+#             */
-/*   Updated: 2021/03/20 22:53:49 by wszurkow         ###   ########.fr       */
+/*   Updated: 2021/03/20 23:34:28 by wszurkow         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../includes/cub3d.h"
+
+static	void	rgb_to_hex(char *str)
+{
+	char **line_split;
+
+	line_split = ft_split(str, ',');
+
+	printf("%s\n", "ping");
+
+	printf("%s\n", line_split[0]);
+	printf("%s\n", line_split[1]);
+	printf("%s\n", line_split[2]);
+
+	free(line_split[0]);
+	free(line_split[1]);
+	free(line_split[2]);
+	free(line_split);
+
+}
 
 static	void	process_path(char **line_split, char **path_ptr, t_global *g)
 {
@@ -36,10 +55,13 @@ void			parse_line_paths(char **line_split, t_global *g)
 		process_path(line_split, &(g->map_textures->east_texture_path), g);
 	else if (ft_strcmp(line_split[0], "S") == 0)
 		process_path(line_split, &(g->map_textures->sprite_texture_path), g);
+
 	else if (ft_strcmp(line_split[0], "F") == 0)
-		process_path(line_split, &(g->map_textures->floor_color), g);
+		rgb_to_hex(line_split[1]);
+		/*process_path(line_split, &(g->map_textures->floor_color), g);*/
 	else if (ft_strcmp(line_split[0], "C") == 0)
 		process_path(line_split, &(g->map_textures->ceiling_color), g);
+
 	else
 		append_error(g, line_split[0], " wrong parameter ID\n");
 }
