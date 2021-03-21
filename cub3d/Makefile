@@ -6,7 +6,7 @@
 #    By: wszurkow <wszurkow@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/01/16 22:40:46 by wszurkow          #+#    #+#              #
-#    Updated: 2021/03/20 22:22:53 by wszurkow         ###   ########.fr        #
+#    Updated: 2021/03/21 01:03:47 by wszurkow         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,14 +30,14 @@ SRCS_FILES	= \
 
 OBJS		= ${SRCS:.c=.o}
 %.o: %.c
-	gcc -Wall -Werror -Wextra -I ./includes -o $@ -c $<
+	@gcc -Wall -Werror -Wextra -I ./includes -o $@ -c $<
 
 all:		${NAME}
 
 ${NAME}:	${OBJS}
-	make -C ./libft
-	cp ./libft/libft.a ./${NAME}
-	ar -rcs ${NAME} ${OBJS}
+	@make -C ./libft
+	@cp ./libft/libft.a ./${NAME}
+	@ar -rcs ${NAME} ${OBJS}
 
 exec:		cub3d.a
 	@clear
@@ -51,7 +51,7 @@ exec:		cub3d.a
 	@./a.out
 
 execg:		cub3d.a
-	@gcc -g -Wall -Werror -Wextra main.c cub3d.a \
+	@gcc  -Wall -Werror -Wextra main.c cub3d.a \
 		-I ./includes \
 		-I /usr/local/include/  \
 		-L /usr/local/lib/ \
@@ -60,7 +60,7 @@ execg:		cub3d.a
 	@echo "#####################################"
 	@echo "# SANITIZING [LLDB].................#"
 	@echo "#####################################"
-	@./a.out
+	@~/.local/bin/colour-valgrind -s --tool=memcheck --leak-check=full  ./a.out
 
 execf:		cub3d.a
 	@gcc -fsanitize=address -Wall -Werror -Wextra main.c cub3d.a \
@@ -75,14 +75,13 @@ execf:		cub3d.a
 	@./a.out
 
 clean:
-	rm -f ${OBJS}
-	make clean -C ./libft
-	rm ./a.out
+	@rm -f ${OBJS}
+	@make clean -C ./libft
+	@rm -f a.out
 
 fclean:		clean
-	rm -f ./${NAME}
-	make fclean -C ./libft
-	rm ./a.out
+	@rm -f ./${NAME}
+	@make fclean -C ./libft
 
 re:			fclean all
 

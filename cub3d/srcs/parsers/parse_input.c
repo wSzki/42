@@ -6,19 +6,11 @@
 /*   By: wszurkow <wszurkow@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/18 14:58:29 by wszurkow          #+#    #+#             */
-/*   Updated: 2021/03/20 22:48:43 by wszurkow         ###   ########.fr       */
+/*   Updated: 2021/03/21 01:09:10 by wszurkow         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub3d.h"
-
-static	void	check_and_parse(t_global *g, char *line, int fd)
-{
-	if (g->valid_parameter_count != 8)
-		return ;
-	parse_map(line, fd, g);
-	return ;
-}
 
 static	void	fetch_arguments(char *line, t_global *g)
 {
@@ -66,7 +58,7 @@ void			parse_input(t_global *g)
 	{
 		if (detect_map_line(line))
 		{
-			check_and_parse(g, line, fd);
+			parse_map(line, fd, g);
 			break ;
 		}
 		fetch_arguments(line, g);

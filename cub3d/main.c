@@ -6,7 +6,7 @@
 /*   By: wszurkow <wszurkow@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/12 14:49:10 by wszurkow          #+#    #+#             */
-/*   Updated: 2021/03/20 22:47:44 by wszurkow         ###   ########.fr       */
+/*   Updated: 2021/03/21 01:05:07 by wszurkow         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,7 +107,7 @@ void	mlx_function(t_global *g)
 	mlx_put_image_to_window(mlx, win_ptr, img.img, 0, 0);
 
 	// WINDOW STAY OPEN
-	/*mlx_loop(mlx);*/
+	mlx_loop(mlx);
 }
 
 void	free_everything(t_global *g)
