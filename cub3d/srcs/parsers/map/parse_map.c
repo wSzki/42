@@ -6,7 +6,7 @@
 /*   By: wszurkow <wszurkow@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/18 14:43:47 by wszurkow          #+#    #+#             */
-/*   Updated: 2021/03/20 22:29:41 by wszurkow         ###   ########.fr       */
+/*   Updated: 2021/03/24 16:18:36 by wsz              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,8 @@ static void	process_map(t_global *g)
 		line_count++;
 		i++;
 	}
+	g->map->number_columns = largest_line;
+	g->map->number_rows = line_count;
 	i = -1;
 	while (map[++i])
 		map[i] = add_spaces(map[i], largest_line);

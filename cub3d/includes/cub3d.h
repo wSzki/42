@@ -6,7 +6,7 @@
 /*   By: wszurkow <wszurkow@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/12 14:42:55 by wszurkow          #+#    #+#             */
-/*   Updated: 2021/03/20 21:53:41 by wszurkow         ###   ########.fr       */
+/*   Updated: 2021/03/24 17:01:18 by wszurkow         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,23 +25,27 @@
 
 typedef struct  s_data {
 	void        *img;
+	void 		*win;
 	char        *addr;
 	int         bits_per_pixel;
 	int         line_length;
 	int         endian;
 }               t_data;
 
+typedef struct s_vars
+{
+	void *mlx;
+	void *win;
+
+}	t_vars;
 ///////////////////////////
 
 typedef struct s_map
 {
 	char **map_data;
 	char **map_cells;
-	int cell_count;
 	int number_rows;
 	int number_columns;
-	int largest_row;
-
 }				t_map;
 
 typedef struct s_window
@@ -57,8 +61,8 @@ typedef struct s_map_textures
 	char *east_texture_path;
 	char *west_texture_path;
 	char *sprite_texture_path;
-	char *floor_color;
-	char *ceiling_color;
+	int floor_color;
+	int ceiling_color;
 }				t_map_textures;
 
 typedef struct s_global
