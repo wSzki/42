@@ -6,7 +6,7 @@
 /*   By: wszurkow <wszurkow@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/18 14:43:47 by wszurkow          #+#    #+#             */
-/*   Updated: 2021/03/24 16:18:36 by wsz              ###   ########.fr       */
+/*   Updated: 2021/03/25 21:14:37 by wszurkow         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,16 +42,14 @@ static void	process_map(t_global *g)
 	int		largest_line;
 	int		line_count;
 	int		len;
-	char	**map;
 
 	i = 0;
 	len = 0;
 	largest_line = 0;
 	line_count = 0;
-	map = g->map_data;
-	while (map[i])
+	while (g->map_data[i])
 	{
-		len = ft_strlen(map[i]);
+		len = ft_strlen(g->map_data[i]);
 		if (largest_line < len)
 			largest_line = len;
 		line_count++;
@@ -60,8 +58,8 @@ static void	process_map(t_global *g)
 	g->map->number_columns = largest_line;
 	g->map->number_rows = line_count;
 	i = -1;
-	while (map[++i])
-		map[i] = add_spaces(map[i], largest_line);
+	while (g->map_data[++i])
+		g->map_data[i] = add_spaces(g->map_data[i], largest_line);
 	check_borders(g, line_count, largest_line);
 	check_walls(g, line_count, largest_line);
 }

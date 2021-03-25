@@ -6,14 +6,13 @@
 /*   By: wszurkow <wszurkow@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/20 21:50:27 by wszurkow          #+#    #+#             */
-/*   Updated: 2021/03/25 20:39:34 by wszurkow         ###   ########.fr       */
+/*   Updated: 2021/03/25 21:15:42 by wszurkow         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../includes/cub3d.h"
 
-
-static int check_neighbour(char **map, int x, int y, char c)
+static int	check_neighbour(char **map, int x, int y, char c)
 {
 	if (c == 'N')
 		x--;
@@ -25,7 +24,7 @@ static int check_neighbour(char **map, int x, int y, char c)
 		y++;
 	if ((map[x][y] == ' ' || map[x][y] == '1'))
 		return (1);
-	return(0);
+	return (0);
 }
 
 static int	check_nswe(char **map, int x, int y, int row_count)
@@ -44,7 +43,7 @@ static int	check_nswe(char **map, int x, int y, int row_count)
 				if (check_neighbour(map, x, y, 'E'))
 					flag = 0;
 	if (x != 0 && x != row_count)
-		if (check_neighbour(map, x , y, 'N'))
+		if (check_neighbour(map, x, y, 'N'))
 			if (check_neighbour(map, x, y, 'S'))
 				if (check_neighbour(map, x, y, 'W'))
 					if (check_neighbour(map, x, y, 'E'))
