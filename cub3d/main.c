@@ -6,7 +6,7 @@
 /*   By: wszurkow <wszurkow@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/12 14:49:10 by wszurkow          #+#    #+#             */
-/*   Updated: 2021/03/24 17:08:29 by wszurkow         ###   ########.fr       */
+/*   Updated: 2021/03/25 21:37:56 by wszurkow         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ int		init_global_struct(t_global *g)
 	g->window->y_resolution = 0;
 
 	// MAP INFO
-	g->map = malloc (sizeof (t_map));
+	g->map = malloc(sizeof (t_map));
 
 	// TEXTURES
 	g->map_textures = malloc(sizeof(t_map_textures));
@@ -66,8 +66,8 @@ int		init_global_struct(t_global *g)
 	g->map_textures->east_texture_path = NULL;
 	g->map_textures->west_texture_path = NULL;
 	g->map_textures->sprite_texture_path = NULL;
-	g->map_textures->floor_color = 0x0;
-	g->map_textures->ceiling_color = 0x0;
+	g->map_textures->floor_color = -1;
+	g->map_textures->ceiling_color = -1;
 
 	// MAP
 	g->map_data = malloc(sizeof(char *));
@@ -94,6 +94,9 @@ void	free_everything(t_global *g)
 	while ((g->error)[++i])
 		free((g->error)[i]);
 	free(g->error);
+
+	// FREE MAP DATA
+	free(g->map);
 
 	// FREE WINDOW
 	free(g->window);
@@ -228,7 +231,7 @@ int main()
 			free_everything(g);
 			return (0);
 		}
-		mlx_function(g);
+		/*mlx_function(g);*/
 	}
 	free_everything(g);
 	return (0);

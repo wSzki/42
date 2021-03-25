@@ -6,7 +6,7 @@
 /*   By: wszurkow <wszurkow@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/15 19:53:47 by wszurkow          #+#    #+#             */
-/*   Updated: 2021/03/25 21:30:40 by wszurkow         ###   ########.fr       */
+/*   Updated: 2021/03/25 21:48:20 by wszurkow         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,9 +45,19 @@ static void	rgb_to_hex(char *rgb_str, char *id, t_global *global)
 	if (!(r >= 0 && r < 256 && g >= 0 && g < 256 && b >= 0 && b < 256))
 		append_error(global, id, " : valid RGB range is [0 - 255]\n");
 	if (ft_strcmp(id, "F") == 0)
-		global->map_textures->floor_color = (t << 24 | r << 16 | g << 8 | b);
+	{
+		if (global->map_textures->floor_color == -1)
+			global->map_textures->floor_color = (t << 24 | r << 16 | g << 8 | b);
+		else
+			append_error(global, id, " : Already set\n");
+	}
 	if (ft_strcmp(id, "C") == 0)
-		global->map_textures->ceiling_color = (t << 24 | r << 16 | g << 8 | b);
+	{
+		if (global->map_textures->ceiling_color == -1)
+			global->map_textures->ceiling_color = (t << 24 | r << 16 | g << 8 | b);
+		else
+			append_error(global, id, " : Already set\n");
+	}
 	free_all(rgb_split);
 	return ;
 }
