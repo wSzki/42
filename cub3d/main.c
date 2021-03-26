@@ -6,7 +6,7 @@
 /*   By: wszurkow <wszurkow@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/12 14:49:10 by wszurkow          #+#    #+#             */
-/*   Updated: 2021/03/25 21:37:56 by wszurkow         ###   ########.fr       */
+/*   Updated: 2021/03/26 12:06:11 by wszurkow         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,8 +53,8 @@ int		init_global_struct(t_global *g)
 
 	// WINDOW
 	g->window = malloc(sizeof(t_window));
-	g->window->x_resolution = 0;
-	g->window->y_resolution = 0;
+	g->window->x_resolution = -1;
+	g->window->y_resolution = -1;
 
 	// MAP INFO
 	g->map = malloc(sizeof (t_map));

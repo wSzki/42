@@ -6,7 +6,7 @@
 /*   By: wszurkow <wszurkow@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/15 19:53:47 by wszurkow          #+#    #+#             */
-/*   Updated: 2021/03/25 21:48:20 by wszurkow         ###   ########.fr       */
+/*   Updated: 2021/03/26 12:25:20 by wszurkow         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ static void	free_all(char **str)
 	str = NULL;
 }
 
-static void	rgb_to_hex(char *rgb_str, char *id, t_global *global)
+static void	rgb_to_hex(char *rgb_str, char *id, int *path_ptr, t_global *global)
 {
 	unsigned int	t;
 	int				r;
@@ -44,25 +44,15 @@ static void	rgb_to_hex(char *rgb_str, char *id, t_global *global)
 	b = ft_atoi(rgb_split[2]);
 	if (!(r >= 0 && r < 256 && g >= 0 && g < 256 && b >= 0 && b < 256))
 		append_error(global, id, " : valid RGB range is [0 - 255]\n");
-	if (ft_strcmp(id, "F") == 0)
-	{
-		if (global->map_textures->floor_color == -1)
-			global->map_textures->floor_color = (t << 24 | r << 16 | g << 8 | b);
-		else
-			append_error(global, id, " : Already set\n");
-	}
-	if (ft_strcmp(id, "C") == 0)
-	{
-		if (global->map_textures->ceiling_color == -1)
-			global->map_textures->ceiling_color = (t << 24 | r << 16 | g << 8 | b);
-		else
-			append_error(global, id, " : Already set\n");
-	}
+	if (*path_ptr == -1)
+		*path_ptr = (t << 24 | r << 16 | g << 8 | b);
+	else
+		append_error(global, id, " : Already set\n");
 	free_all(rgb_split);
 	return ;
 }
 
-static void	parse_rgb(char *id, char *rgb_str, t_global *g)
+static void	parse_rgb(char *id, char *rgb_str, int *path_ptr, t_global *g)
 {
 	char **rgb_split;
 
@@ -73,16 +63,16 @@ static void	parse_rgb(char *id, char *rgb_str, t_global *g)
 			if (ft_is_number(rgb_split[1]))
 				if (ft_is_number(rgb_split[2]))
 				{
-					rgb_to_hex(rgb_str, id, g);
+					rgb_to_hex(rgb_str, id, path_ptr, g);
 					g->valid_parameter_count++;
 					free_all(rgb_split);
 					return ;
 				}
-		append_error(g, id, " : only takes numbers\n");
+		append_error(g, id, " : only takes positive numbers\n");
 		free_all(rgb_split);
 		return ;
 	}
-	append_error(g, id, " : wrong number of arguments\n");
+	append_error(g, id, " : needs 3 numbers [0 -255]\n");
 	free_all(rgb_split);
 	return ;
 }
@@ -115,9 +105,9 @@ void		parse_line_paths(char **line_split, t_global *g)
 	else if (ft_strcmp(line_split[0], "S") == 0)
 		process_path(line_split, &(g->map_textures->sprite_texture_path), g);
 	else if (ft_strcmp(line_split[0], "F") == 0)
-		parse_rgb("F", line_split[1], g);
+		parse_rgb("F", line_split[1], &(g->map_textures->floor_color), g);
 	else if (ft_strcmp(line_split[0], "C") == 0)
-		parse_rgb("C", line_split[1], g);
+		parse_rgb("C", line_split[1], &(g->map_textures->ceiling_color), g);
 	else
 		append_error(g, line_split[0], " wrong parameter ID\n");
 }
