@@ -6,13 +6,15 @@
 #    By: wszurkow <wszurkow@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/01/16 22:40:46 by wszurkow          #+#    #+#              #
-#    Updated: 2021/03/21 01:03:47 by wszurkow         ###   ########.fr        #
+#    Updated: 2021/03/27 16:34:31 by wszurkow         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME		= cub3d.a
 SRCS		= $(addprefix ./srcs/, ${SRCS_FILES})
 SRCS_FILES	= \
+			  memory/init_global_struct.c \
+			  memory/free_everything.c \
 			  parsers/parse_input.c \
 			  parsers/map/parse_map.c \
 			  parsers/map/check_borders.c \
@@ -26,6 +28,7 @@ SRCS_FILES	= \
 			  utils/dual_realloc.c \
 			  utils/detect_line_map.c \
 			  utils/append_error.c \
+			  utils/show_errors.c \
 
 
 OBJS		= ${SRCS:.c=.o}

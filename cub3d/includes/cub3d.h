@@ -6,7 +6,7 @@
 /*   By: wszurkow <wszurkow@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/12 14:42:55 by wszurkow          #+#    #+#             */
-/*   Updated: 2021/03/24 17:01:18 by wszurkow         ###   ########.fr       */
+/*   Updated: 2021/03/27 16:33:42 by wszurkow         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,6 +79,11 @@ typedef struct s_global
 void	cub3d_entrypoint(void);
 int get_next_line(char **line, int fd);
 
+
+// MEMORY
+int		init_global_struct(t_global *g);
+void	free_everything(t_global *g);
+
 // UTILS
 int		is_in_charset(char c, char *charset);
 int		ft_is_number(char *str);
@@ -86,6 +91,7 @@ int		number_of_args(char **line);
 char 	**dual_realloc(char **double_ptr, char *line);
 int		detect_map_line(char *line);
 void	append_error(t_global *g, char *id, char *message);
+void	show_errors(t_global *g);
 
 // PARSERS
 void	parse_input(t_global *g);

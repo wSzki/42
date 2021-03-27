@@ -6,12 +6,13 @@
 /*   By: wszurkow <wszurkow@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/12 14:49:10 by wszurkow          #+#    #+#             */
-/*   Updated: 2021/03/26 12:06:11 by wszurkow         ###   ########.fr       */
+/*   Updated: 2021/03/27 16:39:56 by wszurkow         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "includes/cub3d.h"
 #include "libft/libft.h"
+#include <mlx.h>
 
 // TEMPORARY FUNCTIONS ///////////////////////////////////////////////////////////////
 void print_map(t_global *g)
@@ -41,91 +42,6 @@ void print_input_data(t_global *g)
 	printf("\nVALID PARAMS COUNT - %d\n\n",g->valid_parameter_count);
 }
 
-//// MEMORY ALLOCATION ////////////////////////////////////////////////////////////////
-int		init_global_struct(t_global *g)
-{
-	// ERROR LIST
-	g->error = malloc(sizeof(char *));
-	if (!(g->error))
-		return (0);
-	*(g->error) = NULL;
-	g->valid_parameter_count = 0;
-
-	// WINDOW
-	g->window = malloc(sizeof(t_window));
-	g->window->x_resolution = -1;
-	g->window->y_resolution = -1;
-
-	// MAP INFO
-	g->map = malloc(sizeof (t_map));
-
-	// TEXTURES
-	g->map_textures = malloc(sizeof(t_map_textures));
-	g->map_textures->north_texture_path = NULL;
-	g->map_textures->south_texture_path = NULL;
-	g->map_textures->east_texture_path = NULL;
-	g->map_textures->west_texture_path = NULL;
-	g->map_textures->sprite_texture_path = NULL;
-	g->map_textures->floor_color = -1;
-	g->map_textures->ceiling_color = -1;
-
-	// MAP
-	g->map_data = malloc(sizeof(char *));
-	if (!(g->map_data))
-		return (0);
-	*(g->map_data) = NULL;
-	return (1);
-}
-
-// MEMORY FREE /////////////////////////////////////////////////////////////////////////
-
-void	free_everything(t_global *g)
-{
-	int i;
-
-	// FREE MAP
-	i = -1;
-	while ((g->map_data)[++i])
-		free((g->map_data)[i]);
-	free(g->map_data);
-
-	// FREE ERROR LIST
-	i = -1;
-	while ((g->error)[++i])
-		free((g->error)[i]);
-	free(g->error);
-
-	// FREE MAP DATA
-	free(g->map);
-
-	// FREE WINDOW
-	free(g->window);
-
-	// FREE TEXTURES
-	free(g->map_textures->north_texture_path);
-	free(g->map_textures->south_texture_path);
-	free(g->map_textures->east_texture_path);
-	free(g->map_textures->west_texture_path);
-	free(g->map_textures->sprite_texture_path);
-	/*free(g->map_textures->floor_color);*/
-	/*free(g->map_textures->ceiling_color);*/
-	free(g->map_textures);
-	free(g);
-}
-
-// UTILS ////////////////////////////////////////////////////////////////////////////////
-
-void show_errors(t_global *g)
-{
-	printf("Error\n");
-	int i = -1;
-	if (*(g->error))
-	{
-		while (((g->error)[++i]) != NULL)
-			ft_putstr((g->error)[i]);
-	}
-}
-
 // MLX //////////////////////////////////////////////////////////////////////////////////
 
 void            my_mlx_pixel_put(t_data *data, int x, int y, int color)
@@ -139,6 +55,8 @@ void            my_mlx_pixel_put(t_data *data, int x, int y, int color)
 	char *dst = data->addr + (x * data->line_length + y * (data->bits_per_pixel / 8));
 	*(unsigned int*)dst = color;
 }
+
+////////////////////////////////////////////////////////////////////////////////////////
 
 void	ft_put_square(t_data *img, t_global *g)
 {
@@ -177,42 +95,79 @@ void	ft_put_square(t_data *img, t_global *g)
 					}
 				}
 			}
+			if (g->map_data[x][y] == 'N')
+			{
+				i = 0;
+				while (++i < square_size - 1)
+				{
+					j = 0;
+					while (++j < square_size - 1)
+					{
+						my_mlx_pixel_put(img, i + square_size * x, j + square_size * y, g->map_textures->ceiling_color);
+					}
+				}
+			}
+			if (g->map_data[x][y] == '2')
+			{
+				i = 0;
+				while (++i < square_size - 1)
+				{
+					j = 0;
+					while (++j < square_size - 1)
+					{
+						my_mlx_pixel_put(img, i + square_size * x, j + square_size * y, 0x00191d20);
+					}
+				}
+
+			}
 		}
 	}
 }
+/////////////////////////////////////////////////////////////////////////////////
 
+/*typedef struct  s_data {*/
+	/*void        *img;*/
+	/*void 		*win;*/
+	/*char        *addr;*/
+	/*int         bits_per_pixel;*/
+	/*int         line_length;*/
+	/*int         endian;*/
+/*}               t_data;*/
 void	mlx_function(t_global *g)
 {
-	void *mlx;
+	void *mlx_ptr;
 	void *win_ptr;
-	t_data img;
+	t_data *img;
 
-	// INIT MLX INSTANCE
-	mlx = mlx_init();
+	img = malloc(sizeof(t_data));
 
-	// POINT TO WINDOW
-	win_ptr = mlx_new_window(mlx, g->window->x_resolution , g->window->y_resolution, "name");
+	mlx_ptr = mlx_init(); // INIT MLX INSTANCE
+	win_ptr = mlx_new_window(mlx_ptr, g->window->x_resolution , g->window->y_resolution, "name"); // POINT TO WINDOW
+	img->img = mlx_new_image(mlx_ptr, g->window->x_resolution , g->window->y_resolution); // CREATE NEW IMAGE
 
-	// CREATE NEW IMAGE
-	img.img = mlx_new_image(mlx, g->window->x_resolution , g->window->y_resolution);
 
-	// POPULATE IMAGE
-	img.addr = mlx_get_data_addr(img.img, &img.bits_per_pixel, &img.line_length, &img.endian);
+	img->addr = mlx_get_data_addr(img->img, &(img->bits_per_pixel), &(img->line_length), &(img->endian)); // POPULATE IMAGE
 
-	ft_put_square(&img, g);
+	ft_put_square(img, g);
 
 	// SEND IMAGE TO WINDOW
-	mlx_put_image_to_window(mlx, win_ptr, img.img, 0, 0);
+	mlx_put_image_to_window(mlx_ptr, win_ptr, img->img, 0, 0);
 
 	// WINDOW STAY OPEN
-	mlx_loop(mlx);
+	mlx_loop(mlx_ptr);
+
+	// MEMORY CLEANUP
+	mlx_destroy_image(mlx_ptr, img->img);
+	mlx_destroy_window(mlx_ptr, win_ptr);
+	mlx_destroy_display(mlx_ptr);
+	free(mlx_ptr);
+	free(img);
 }
 
 // MAIN ////////////////////////////////////////////////////////////////////////////////
 
 int main()
 {
-	// Location of current MLX instance
 	t_global *g;
 
 	g = malloc(sizeof(t_global));
@@ -231,7 +186,7 @@ int main()
 			free_everything(g);
 			return (0);
 		}
-		/*mlx_function(g);*/
+		mlx_function(g);
 	}
 	free_everything(g);
 	return (0);
