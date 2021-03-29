@@ -6,7 +6,7 @@
 /*   By: wszurkow <wszurkow@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/12 14:42:55 by wszurkow          #+#    #+#             */
-/*   Updated: 2021/03/27 16:33:42 by wszurkow         ###   ########.fr       */
+/*   Updated: 2021/03/29 17:02:13 by wszurkow         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,6 +78,9 @@ typedef struct s_global
 
 void	cub3d_entrypoint(void);
 int get_next_line(char **line, int fd);
+
+//DISPLAY
+void	mlx_entrypoint(t_global *g);
 
 
 // MEMORY
