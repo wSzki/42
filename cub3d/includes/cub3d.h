@@ -6,7 +6,7 @@
 /*   By: wszurkow <wszurkow@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/12 14:42:55 by wszurkow          #+#    #+#             */
-/*   Updated: 2021/03/29 17:02:13 by wszurkow         ###   ########.fr       */
+/*   Updated: 2021/03/30 13:12:49 by wszurkow         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ typedef struct  s_data {
 	void        *img;
 	void 		*win;
 	char        *addr;
+	void		 *mlx;
 	int         bits_per_pixel;
 	int         line_length;
 	int         endian;

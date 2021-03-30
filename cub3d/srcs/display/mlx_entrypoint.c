@@ -6,11 +6,17 @@
 /*   By: wszurkow <wszurkow@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/29 17:00:12 by wszurkow          #+#    #+#             */
-/*   Updated: 2021/03/29 17:01:39 by wszurkow         ###   ########.fr       */
+/*   Updated: 2021/03/30 15:30:38 by wszurkow         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub3d.h"
+
+#define ESC 65307
+#define LEFT 65361
+#define UP 65362
+#define RIGHT 65363
+#define DOWN 65364
 
 // MLX //////////////////////////////////////////////////////////////////////////////////
 
@@ -97,18 +103,26 @@ void	ft_put_square(t_data *img, t_global *g)
 
 
 /*typedef struct  s_data {*/
-	/*void        *img;*/
-	/*void 		*win;*/
-	/*char        *addr;*/
-	/*int         bits_per_pixel;*/
-	/*int         line_length;*/
-	/*int         endian;*/
+/*void        *img;*/
+/*void 		*win;*/
+/*char        *addr;*/
+/*int         bits_per_pixel;*/
+/*int         line_length;*/
+/*int         endian;*/
 /*}               t_data;*/
 
-int key_hook(int keycode, t_data *img)
+int key_hook(int keycode, t_global *g )
 {
-	(void)img;
 	printf("%d\n", keycode);
+	if (keycode == ESC)
+		printf("%s\n", "Escape");
+	if (keycode == UP)
+	{
+		printf("%s\n", "Escape");
+		printf("%p\n", g);
+
+		printf("%d\n", g->window->x_resolution);
+	}
 	return 1;
 }
 
@@ -129,8 +143,9 @@ void	mlx_entrypoint(t_global *g)
 
 	mlx_ptr = mlx_init(); // INIT MLX INSTANCE
 	win_ptr = mlx_new_window(mlx_ptr, g->window->x_resolution , g->window->y_resolution, "name"); // POINT TO WINDOW
-	img->img = mlx_new_image(mlx_ptr, g->window->x_resolution , g->window->y_resolution); // CREATE NEW IMAGE
 
+
+	img->img = mlx_new_image(mlx_ptr, g->window->x_resolution , g->window->y_resolution); // CREATE NEW IMAGE
 
 	img->addr = mlx_get_data_addr(img->img, &(img->bits_per_pixel), &(img->line_length), &(img->endian)); // POPULATE IMAGE
 
@@ -141,17 +156,18 @@ void	mlx_entrypoint(t_global *g)
 
 
 	// KEY HOOK
-	mlx_key_hook(win_ptr, key_hook, img);
+		printf("%p\n", g);
+	mlx_key_hook(win_ptr, key_hook, g);
 
 
 	//
-	mlx_mouse_hook(win_ptr, key_hook, img);
-	mlx_expose_hook(win_ptr, key_hook, img);
-	mlx_loop_hook(win_ptr, key_hook, img);
+	/*mlx_mouse_hook(win_ptr, key_hook, img);*/
+	/*mlx_expose_hook(win_ptr, key_hook, img);*/
+	/*mlx_loop_hook(win_ptr, key_hook, img);*/
 	//
 
 	// DESTROY WINDOW SHORTCUT
-	mlx_key_hook(win_ptr, close_window, mlx_ptr);
+	/*mlx_key_hook(win_ptr, close_window, mlx_ptr);*/
 
 
 	// WINDOW STAY OPEN
