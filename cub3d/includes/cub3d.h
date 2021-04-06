@@ -6,7 +6,7 @@
 /*   By: wszurkow <wszurkow@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/12 14:42:55 by wszurkow          #+#    #+#             */
-/*   Updated: 2021/03/30 13:12:49 by wszurkow         ###   ########.fr       */
+/*   Updated: 2021/04/06 16:23:56 by wsz              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,20 +25,12 @@
 
 typedef struct  s_data {
 	void        *img;
-	void 		*win;
 	char        *addr;
-	void		 *mlx;
 	int         bits_per_pixel;
 	int         line_length;
 	int         endian;
 }               t_data;
 
-typedef struct s_vars
-{
-	void *mlx;
-	void *win;
-
-}	t_vars;
 ///////////////////////////
 
 typedef struct s_map
@@ -71,6 +63,8 @@ typedef struct s_global
 	char **error;
 	char **map_data;
 	int valid_parameter_count;
+	void		*mlx;
+	void 		*win;
 	t_data *data;
 	t_map *map;
 	t_window *window;

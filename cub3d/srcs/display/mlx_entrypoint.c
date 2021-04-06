@@ -6,7 +6,7 @@
 /*   By: wszurkow <wszurkow@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/29 17:00:12 by wszurkow          #+#    #+#             */
-/*   Updated: 2021/03/30 15:30:38 by wszurkow         ###   ########.fr       */
+/*   Updated: 2021/04/06 18:54:27 by wszurkow         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,10 +34,12 @@ void            my_mlx_pixel_put(t_data *data, int x, int y, int color)
 
 ////////////////////////////////////////////////////////////////////////////////////////
 
-void	ft_put_square(t_data *img, t_global *g)
+void	ft_put_square(t_global *g)
 {
 	int i;
 	int j;
+	int x;
+	int y;
 
 
 	int square_size = 0;
@@ -46,11 +48,6 @@ void	ft_put_square(t_data *img, t_global *g)
 	else
 		square_size = g->window->y_resolution / g->map->number_rows;
 
-
-	printf("square %d\n", square_size);
-
-	int x;
-	int y;
 
 	x = -1;
 	y = -1;
@@ -67,7 +64,7 @@ void	ft_put_square(t_data *img, t_global *g)
 					j = 0;
 					while (++j < square_size - 1)
 					{
-						my_mlx_pixel_put(img, i + square_size * x, j + square_size * y, g->map_textures->floor_color);
+						my_mlx_pixel_put(g->data, i + square_size * x, j + square_size * y, g->map_textures->floor_color);
 					}
 				}
 			}
@@ -79,7 +76,7 @@ void	ft_put_square(t_data *img, t_global *g)
 					j = 0;
 					while (++j < square_size - 1)
 					{
-						my_mlx_pixel_put(img, i + square_size * x, j + square_size * y, g->map_textures->ceiling_color);
+						my_mlx_pixel_put(g->data, i + square_size * x, j + square_size * y, g->map_textures->ceiling_color);
 					}
 				}
 			}
@@ -91,7 +88,7 @@ void	ft_put_square(t_data *img, t_global *g)
 					j = 0;
 					while (++j < square_size - 1)
 					{
-						my_mlx_pixel_put(img, i + square_size * x, j + square_size * y, 0x00191d20);
+						my_mlx_pixel_put(g->data, i + square_size * x, j + square_size * y, 0x00191d20);
 					}
 				}
 
@@ -113,16 +110,43 @@ void	ft_put_square(t_data *img, t_global *g)
 
 int key_hook(int keycode, t_global *g )
 {
-	printf("%d\n", keycode);
-	if (keycode == ESC)
-		printf("%s\n", "Escape");
-	if (keycode == UP)
-	{
-		printf("%s\n", "Escape");
-		printf("%p\n", g);
+	/*printf("%d\n", keycode);*/
+	/*if (keycode == ESC)*/
+	/*printf("%s\n", "Escape");*/
+	/*if (keycode == UP)*/
+	/*{*/
+	/*printf("%s\n", "Escape");*/
+	/*printf("%p\n", g);*/
 
-		printf("%d\n", g->window->x_resolution);
-	}
+	/*printf("%d\n", g->window->x_resolution);*/
+	/*}*/
+(void)keycode;
+	/*if (keycode == UP)*/
+		static int i;
+	mlx_destroy_image(g->mlx, g->data->img);
+	g->data->img = mlx_new_image(\
+			g->mlx, \
+			g->window->x_resolution , \
+			g->window->y_resolution);
+
+	g->data->addr = mlx_get_data_addr(\
+			g->data->img, \
+			&(g->data->bits_per_pixel), \
+			&(g->data->line_length), \
+			&(g->data->endian));
+		my_mlx_pixel_put(g->data,  i + 100 , 200, 0x00FFFFFFFF);
+	mlx_put_image_to_window(g->mlx, g->win, g->data->img, 0, 0);
+		i++;
+
+		printf("%d\n", i);
+	return 1;
+}
+
+int	loop_hook(void *param)
+{
+	(void)param;
+
+	printf("%s\n", "hello");
 	return 1;
 }
 
@@ -135,35 +159,42 @@ int close_window(int keycode, void *mlx_ptr, void *win_ptr)
 
 void	mlx_entrypoint(t_global *g)
 {
-	void *mlx_ptr;
-	void *win_ptr;
-	t_data *img;
 
-	img = malloc(sizeof(t_data));
+	// INIT MLX //////////////////////////////
+	g->data = malloc(sizeof(t_data));
+	if (!(g->data))
+		return ;
+	g->mlx = mlx_init(); // INIT MLX INSTANCE
+	g->win = mlx_new_window(\
+			g->mlx, \
+			g->window->x_resolution, \
+			g->window->y_resolution, \
+			"name");
 
-	mlx_ptr = mlx_init(); // INIT MLX INSTANCE
-	win_ptr = mlx_new_window(mlx_ptr, g->window->x_resolution , g->window->y_resolution, "name"); // POINT TO WINDOW
+	// CREATE IMG + ADDR + POPULATE //////////
+	g->data->img = mlx_new_image(\
+			g->mlx, \
+			g->window->x_resolution , \
+			g->window->y_resolution);
+
+	g->data->addr = mlx_get_data_addr(\
+			g->data->img, \
+			&(g->data->bits_per_pixel), \
+			&(g->data->line_length), \
+			&(g->data->endian));
+
+	// DRAW SQUARES /////////////////////////
+	ft_put_square(g);
+	/*mlx_key_hook(g->win, key_hook, g);*/
+	/*mlx_key_hook(g->win, key_hook, g);*/
+	// SEND IMAGE TO WINDOW /////////////////
+	mlx_key_hook(g->win, key_hook, g);
+	mlx_put_image_to_window(g->mlx, g->win, g->data->img, 0, 0);
 
 
-	img->img = mlx_new_image(mlx_ptr, g->window->x_resolution , g->window->y_resolution); // CREATE NEW IMAGE
-
-	img->addr = mlx_get_data_addr(img->img, &(img->bits_per_pixel), &(img->line_length), &(img->endian)); // POPULATE IMAGE
-
-	ft_put_square(img, g);
-
-	// SEND IMAGE TO WINDOW
-	mlx_put_image_to_window(mlx_ptr, win_ptr, img->img, 0, 0);
-
-
-	// KEY HOOK
-		printf("%p\n", g);
-	mlx_key_hook(win_ptr, key_hook, g);
-
-
-	//
+	// KEY HOOK /////////////////////////////
 	/*mlx_mouse_hook(win_ptr, key_hook, img);*/
 	/*mlx_expose_hook(win_ptr, key_hook, img);*/
-	/*mlx_loop_hook(win_ptr, key_hook, img);*/
 	//
 
 	// DESTROY WINDOW SHORTCUT
@@ -171,14 +202,14 @@ void	mlx_entrypoint(t_global *g)
 
 
 	// WINDOW STAY OPEN
-	mlx_loop(mlx_ptr);
+	mlx_loop(g->mlx);
 	exit(0);
 
 	// MEMORY CLEANUP
-	mlx_destroy_image(mlx_ptr, img->img);
-	mlx_destroy_window(mlx_ptr, win_ptr);
-	mlx_destroy_display(mlx_ptr);
-	free(mlx_ptr);
-	free(img);
+	/*mlx_destroy_image(mlx_ptr, img->img);*/
+	/*mlx_destroy_window(mlx_ptr, win_ptr);*/
+	/*mlx_destroy_display(mlx_ptr);*/
+	/*free(mlx_ptr);*/
+	/*free(img);*/
 }
 
