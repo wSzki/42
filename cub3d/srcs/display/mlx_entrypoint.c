@@ -6,7 +6,7 @@
 /*   By: wszurkow <wszurkow@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/29 17:00:12 by wszurkow          #+#    #+#             */
-/*   Updated: 2021/04/06 18:54:27 by wszurkow         ###   ########.fr       */
+/*   Updated: 2021/04/08 20:36:55 by wszurkow         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,20 +18,44 @@
 #define RIGHT 65363
 #define DOWN 65364
 
-// MLX //////////////////////////////////////////////////////////////////////////////////
+// TRASH //////////////////////////////////////////////////////////////////////////////////
+/*
+   typedef struct  s_data {
+   void        *img;
+   void 		*win;
+   char        *addr;
+   int         bits_per_pixel;
+   int         line_length;
+   int         endian;
+   }               t_data;
 
-void            my_mlx_pixel_put(t_data *data, int x, int y, int color)
-{
-	/*char    *dst;*/
+   int	loop_hook(void *param)
+   {
+   (void)param;
+
+   printf("%s\n", "hello");
+   return 1;
+   }
+
+   int close_window(int keycode, void *mlx_ptr, void *win_ptr)
+   {
+   (void)keycode;
+   mlx_destroy_window(mlx_ptr, win_ptr);
+   return 1;
+   }
+
+   void malloc_safe(void *ptr, int type)
+   {
+   ptr = malloc(type);
+   if (!ptr)
+   {
+   ft_putstr("Insufficient Memory");
+   exit (0);
+   }
+   }
 
 
-	// dst is the adress of the pixel to colorize
-	// int offset = (y * line_length + x * (bits_per_pixel / 8));
-
-	char *dst = data->addr + (x * data->line_length + y * (data->bits_per_pixel / 8));
-	*(unsigned int*)dst = color;
-}
-
+*/
 ////////////////////////////////////////////////////////////////////////////////////////
 
 void	ft_put_square(t_global *g)
@@ -64,7 +88,7 @@ void	ft_put_square(t_global *g)
 					j = 0;
 					while (++j < square_size - 1)
 					{
-						my_mlx_pixel_put(g->data, i + square_size * x, j + square_size * y, g->map_textures->floor_color);
+						my_mlx_pixel_put(g->minimap, i + square_size * x, j + square_size * y, g->map_textures->floor_color);
 					}
 				}
 			}
@@ -76,7 +100,7 @@ void	ft_put_square(t_global *g)
 					j = 0;
 					while (++j < square_size - 1)
 					{
-						my_mlx_pixel_put(g->data, i + square_size * x, j + square_size * y, g->map_textures->ceiling_color);
+						my_mlx_pixel_put(g->minimap, i + square_size * x, j + square_size * y, 0x22191d20);
 					}
 				}
 			}
@@ -88,7 +112,7 @@ void	ft_put_square(t_global *g)
 					j = 0;
 					while (++j < square_size - 1)
 					{
-						my_mlx_pixel_put(g->data, i + square_size * x, j + square_size * y, 0x00191d20);
+						my_mlx_pixel_put(g->minimap, i + square_size * x, j + square_size * y, 0xFF191d20);
 					}
 				}
 
@@ -96,101 +120,71 @@ void	ft_put_square(t_global *g)
 		}
 	}
 }
-/////////////////////////////////////////////////////////////////////////////////
 
-
-/*typedef struct  s_data {*/
-/*void        *img;*/
-/*void 		*win;*/
-/*char        *addr;*/
-/*int         bits_per_pixel;*/
-/*int         line_length;*/
-/*int         endian;*/
-/*}               t_data;*/
-
-int key_hook(int keycode, t_global *g )
+void	display_minimap(t_global *g)
 {
-	/*printf("%d\n", keycode);*/
-	/*if (keycode == ESC)*/
-	/*printf("%s\n", "Escape");*/
-	/*if (keycode == UP)*/
-	/*{*/
-	/*printf("%s\n", "Escape");*/
-	/*printf("%p\n", g);*/
+	int square_size;
 
-	/*printf("%d\n", g->window->x_resolution);*/
-	/*}*/
-(void)keycode;
-	/*if (keycode == UP)*/
-		static int i;
-	mlx_destroy_image(g->mlx, g->data->img);
-	g->data->img = mlx_new_image(\
+	square_size = g->window->x_resolution / g->map->number_columns;
+
+	printf("%d\n", g->window->x_resolution);
+int i;
+	int j ;
+
+	i = -1;
+	while (++i < square_size)
+	{
+		j = -1;
+		while (++j < square_size - 1)
+		{
+			my_mlx_pixel_put(g->minimap, i + square_size , j + square_size, 0xFF191d20);
+		}
+	}
+
+
+}
+
+
+void	init_image_test(t_global *g, t_data *data)
+{
+	data->img = mlx_new_image(\
 			g->mlx, \
-			g->window->x_resolution , \
-			g->window->y_resolution);
+			40 , \
+			40);
 
-	g->data->addr = mlx_get_data_addr(\
-			g->data->img, \
-			&(g->data->bits_per_pixel), \
-			&(g->data->line_length), \
-			&(g->data->endian));
-		my_mlx_pixel_put(g->data,  i + 100 , 200, 0x00FFFFFFFF);
-	mlx_put_image_to_window(g->mlx, g->win, g->data->img, 0, 0);
-		i++;
+	data->addr = mlx_get_data_addr(\
+			data->img, \
+			&(data->bits_per_pixel), \
+			&(data->line_length), \
+			&(data->endian));
 
-		printf("%d\n", i);
-	return 1;
+			my_mlx_pixel_put(g->buffer, 5 , 5, 0x00FF1FF0);
+
 }
 
-int	loop_hook(void *param)
-{
-	(void)param;
-
-	printf("%s\n", "hello");
-	return 1;
-}
-
-int close_window(int keycode, void *mlx_ptr, void *win_ptr)
-{
-	(void)keycode;
-	mlx_destroy_window(mlx_ptr, win_ptr);
-	return 1;
-}
+/////////////////////////////////////////////////////////////////////////////////
 
 void	mlx_entrypoint(t_global *g)
 {
 
 	// INIT MLX //////////////////////////////
-	g->data = malloc(sizeof(t_data));
-	if (!(g->data))
-		return ;
-	g->mlx = mlx_init(); // INIT MLX INSTANCE
-	g->win = mlx_new_window(\
-			g->mlx, \
-			g->window->x_resolution, \
-			g->window->y_resolution, \
-			"name");
+	init_mlx_struct(g);
+	init_mlx(g);
+	init_image(g, g->minimap);
+	init_image_test(g, g->buffer);
+	display_minimap(g);
 
-	// CREATE IMG + ADDR + POPULATE //////////
-	g->data->img = mlx_new_image(\
-			g->mlx, \
-			g->window->x_resolution , \
-			g->window->y_resolution);
-
-	g->data->addr = mlx_get_data_addr(\
-			g->data->img, \
-			&(g->data->bits_per_pixel), \
-			&(g->data->line_length), \
-			&(g->data->endian));
 
 	// DRAW SQUARES /////////////////////////
-	ft_put_square(g);
+	/*ft_put_square(g);*/
 	/*mlx_key_hook(g->win, key_hook, g);*/
 	/*mlx_key_hook(g->win, key_hook, g);*/
 	// SEND IMAGE TO WINDOW /////////////////
-	mlx_key_hook(g->win, key_hook, g);
-	mlx_put_image_to_window(g->mlx, g->win, g->data->img, 0, 0);
+	mlx_put_image_to_window(g->mlx, g->win, g->minimap->img, 0, 0);
+	mlx_put_image_to_window(g->mlx, g->win, g->buffer->img, 0, 0);
 
+	/*draw_minimap(g);*/
+	/*mlx_key_hook(g->win, key_hook, g);*/
 
 	// KEY HOOK /////////////////////////////
 	/*mlx_mouse_hook(win_ptr, key_hook, img);*/

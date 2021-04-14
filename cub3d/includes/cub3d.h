@@ -6,7 +6,7 @@
 /*   By: wszurkow <wszurkow@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/12 14:42:55 by wszurkow          #+#    #+#             */
-/*   Updated: 2021/04/06 16:23:56 by wsz              ###   ########.fr       */
+/*   Updated: 2021/04/08 20:27:01 by wszurkow         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,13 @@ typedef struct  s_data {
 	int         endian;
 }               t_data;
 
+typedef struct s_paint
+{
+	int x_offset;
+	int y_offset;
+	int color;
+}				t_paint;
+
 ///////////////////////////
 
 typedef struct s_map
@@ -40,6 +47,14 @@ typedef struct s_map
 	int number_rows;
 	int number_columns;
 }				t_map;
+
+typedef struct s_img
+{
+	t_data *map;
+	t_data *player;
+	int x_player_pos;
+	int y_player_pos;
+}	t_img;
 
 typedef struct s_window
 {
@@ -61,13 +76,20 @@ typedef struct s_map_textures
 typedef struct s_global
 {
 	char **error;
-	char **map_data;
 	int valid_parameter_count;
+
+	char **map_data;
+	t_window *window;
+
 	void		*mlx;
 	void 		*win;
+	t_paint *paint;
 	t_data *data;
+	t_data *minimap;
+	t_data *buffer;
+	t_data *player;
+
 	t_map *map;
-	t_window *window;
 	t_map_textures *map_textures;
 }				t_global;
 
@@ -76,7 +98,11 @@ int get_next_line(char **line, int fd);
 
 //DISPLAY
 void	mlx_entrypoint(t_global *g);
-
+void 	init_mlx_struct(t_global *g);
+void	init_mlx(t_global *g);
+void	init_image(t_global *g, t_data *data);
+void	my_mlx_pixel_put(t_data *data, int x, int y, int color);
+int 	key_hook(int keycode, t_global *g);
 
 // MEMORY
 int		init_global_struct(t_global *g);

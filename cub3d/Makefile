@@ -6,7 +6,7 @@
 #    By: wszurkow <wszurkow@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/01/16 22:40:46 by wszurkow          #+#    #+#              #
-#    Updated: 2021/03/29 17:01:26 by wszurkow         ###   ########.fr        #
+#    Updated: 2021/04/08 13:57:47 by wszurkow         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,6 +14,9 @@ NAME		= cub3d.a
 SRCS		= $(addprefix ./srcs/, ${SRCS_FILES})
 SRCS_FILES	= \
 			  display/mlx_entrypoint.c \
+			  display/init_display.c \
+			  display/my_mlx_pixel_put.c \
+			  display/key_hook.c \
 			  memory/init_global_struct.c \
 			  memory/free_everything.c \
 			  parsers/parse_input.c \
