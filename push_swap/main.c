@@ -6,7 +6,7 @@
 /*   By: wszurkow <wszurkow@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/13 13:38:31 by wszurkow          #+#    #+#             */
-/*   Updated: 2021/05/13 18:50:23 by wszurkow         ###   ########.fr       */
+/*   Updated: 2021/05/13 19:02:19 by wszurkow         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,18 +54,21 @@ int ss(int *tab_a, int *tab_b)
 
 t_global *init_struct(t_global *g, int ac, char **av)
 {
-	if (ac < 2)
-		print_error_and_exit(g);
 	g = malloc(sizeof(t_global));
 	if (!g)
 		print_error_and_exit(g);
 	g->tab_a = malloc(sizeof(int) * ac - 1);
 	if (!g->tab_a)
+	{
+		free(g);
 		print_error_and_exit(g);
+	}
 	g->tab_b = NULL;
 	g->tab_a_size = ac - 1;
 	g->tab_b_size = 0;
 	g->av = &av[1];
+	if (ac < 2)
+		print_error_and_exit(g);
 	return (g);
 }
 
