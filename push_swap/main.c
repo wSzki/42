@@ -6,7 +6,7 @@
 /*   By: wszurkow <wszurkow@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/13 13:38:31 by wszurkow          #+#    #+#             */
-/*   Updated: 2021/05/13 14:56:53 by wszurkow         ###   ########.fr       */
+/*   Updated: 2021/05/13 16:00:31 by wszurkow         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,20 +15,27 @@
 #include <unistd.h>
 
 
-typedef struct s_g
+typedef struct s_global
 {
 	int *tab_a;
 	int *tab_b;
 	int tab_a_size;
 	int tab_b_size;
-}				t_g;
+}				t_global;
 
-
-typedef struct s_list
+void	free_everything(t_global *g)
 {
-	t_g *g;
-}				t_list;
+	free(g->tab_a);
+	free(g->tab_b);
+	free(g);
+}
 
+static void	print_error_and_exit(t_global *g)
+{
+	free_everything(g);
+	write(2, "Error\n", 6);
+	exit(1);
+}
 
 
 ////////////////////////////////////////////////////////////////////
@@ -48,7 +55,7 @@ static int	ft_count_numbers(int n)
 	return (i);
 }
 
-int			ft_atoi(const char *str)
+int			ft_atoi(const char *str, t_global *g)
 {
 	long int	atoi;
 	int			np;
@@ -73,20 +80,12 @@ int			ft_atoi(const char *str)
 		return (atoi * np);
 	if (np < 0)
 		return (0);
+	print_error_and_exit(g);
 	return (-1);
 }
 
 //
-//
-//
 ///////////////////////////////////////////////////////////////////
-//
-static void	print_error_and_exit()
-{
-	write(2, "Error\n", 6);
-	exit(1);
-}
-
 static int is_not_digit(char c)
 {
 	if (c < '0' || c > '9')
@@ -94,7 +93,7 @@ static int is_not_digit(char c)
 	return (0);
 }
 
-static void check_digits(int ac, char **av)
+static void check_digits(int ac, char **av, t_global *g)
 {
 	int i ;
 	int j;
@@ -106,14 +105,14 @@ static void check_digits(int ac, char **av)
 		while (av[i][j])
 		{
 			if (is_not_digit(av[i][j]))
-				print_error_and_exit();
+				print_error_and_exit(g);
 			j++;
 		}
 		i++;
 	}
 }
 
-static int *fill_tab(int *tab, int ac, char **av)
+static int *fill_tab(int *tab, int ac, char **av, t_global *g)
 {
 	int i;
 	int j;
@@ -122,12 +121,12 @@ static int *fill_tab(int *tab, int ac, char **av)
 	i = 1;
 	while (i < ac)
 	{
-		new_number = ft_atoi(av[i]);
+		new_number = ft_atoi(av[i], g);
 		j = 1;
 		while (j < i)
 		{
 			if (tab[j] == new_number)
-				print_error_and_exit();
+				print_error_and_exit(g);
 			j++;
 		}
 		tab[i] = new_number;
@@ -177,19 +176,7 @@ int ss(int *tab_a, int *tab_b)
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
 
-int *ft_int_realloc_a(t_g *g, int action)
-{
-	if (!(tmp))
-		return (0);
-
-
-
-
-
-}
-
-
-int pa(t_g *g)
+int pa(t_global *g)
 {
 	int i;
 	int j;
@@ -212,7 +199,7 @@ int pa(t_g *g)
 	free(g->tab_a);
 	g->tab_a = tmp;
 
-/////////////////////////////////////////
+	/////////////////////////////////////////
 
 	free(tmp);
 	tmp = malloc(sizeof(int *) * g->tab_b_size - 1);
@@ -234,43 +221,52 @@ int pa(t_g *g)
 	return (1);
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
 
+t_global *init_struct(t_global *g)
+{
+	g = malloc(sizeof(t_global));
+	if (!g)
+		print_error_and_exit(g);
+	g->tab_a = NULL;
+	g->tab_b = NULL;
+	g->tab_a_size = 0;
+	g->tab_b_size = 0;
+	return (g);
+}
 
+
+void xx(t_global *g)
+{
+	int i = 0;
+	while (i < g->tab_a_size)
+	{
+		printf("%d\n", g->tab_a[i++]);
+	}
+
+	printf("%s\n", "===========================\n");
+}
 
 int		main(int ac, char **av)
 {
-	t_g *g;
+	t_global *g;
+	g = NULL;
 
-	g = malloc(sizeof(t_g));
-	if (!g)
-		return (0);
+	g = init_struct(g);
 	g->tab_a_size = ac;
-	g->tab_a = NULL;
-	g->tab_b = NULL;
 	if (ac < 2)
-		print_error_and_exit();
-	check_digits(ac, av);
+		print_error_and_exit(g);
 	// TODO  Check overflow
-
 	g->tab_a = malloc(sizeof(int) * ac - 1);
-	if (!g->tab_a || !g->tab_b)
+	if (!g->tab_a)
 		return (-1);
-	g->tab_a = fill_tab(g->tab_a, ac, av);
+	g->tab_a = fill_tab(g->tab_a, ac, av, g);
+
+	xx(g);
+	pa(g);
+	sa(g->tab_a);
+	xx(g);
+	free_everything(g);
+
 }
