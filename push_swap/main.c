@@ -6,7 +6,7 @@
 /*   By: wszurkow <wszurkow@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/13 13:38:31 by wszurkow          #+#    #+#             */
-/*   Updated: 2021/05/13 16:00:31 by wszurkow         ###   ########.fr       */
+/*   Updated: 2021/05/13 16:13:49 by wszurkow         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -224,14 +224,19 @@ int pa(t_global *g)
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
 
-t_global *init_struct(t_global *g)
+t_global *init_struct(t_global *g, int ac)
 {
+	if (ac < 2)
+		print_error_and_exit(g);
+	g = NULL;
 	g = malloc(sizeof(t_global));
 	if (!g)
 		print_error_and_exit(g);
-	g->tab_a = NULL;
+	g->tab_a = malloc(sizeof(int) * ac);
+	if (!g->tab_a)
+		print_error_and_exit(g);
 	g->tab_b = NULL;
-	g->tab_a_size = 0;
+	g->tab_a_size = ac;
 	g->tab_b_size = 0;
 	return (g);
 }
@@ -251,22 +256,15 @@ void xx(t_global *g)
 int		main(int ac, char **av)
 {
 	t_global *g;
-	g = NULL;
 
-	g = init_struct(g);
-	g->tab_a_size = ac;
-	if (ac < 2)
-		print_error_and_exit(g);
-	// TODO  Check overflow
-	g->tab_a = malloc(sizeof(int) * ac - 1);
-	if (!g->tab_a)
-		return (-1);
+	g = init_struct(g, ac);
+	xx(g);
 	g->tab_a = fill_tab(g->tab_a, ac, av, g);
 
 	xx(g);
-	pa(g);
-	sa(g->tab_a);
-	xx(g);
+	/*pa(g);*/
+	/*sa(g->tab_a);*/
+	/*xx(g);*/
 	free_everything(g);
 
 }
