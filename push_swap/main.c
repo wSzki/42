@@ -6,7 +6,7 @@
 /*   By: wszurkow <wszurkow@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/13 13:38:31 by wszurkow          #+#    #+#             */
-/*   Updated: 2021/05/13 19:02:19 by wszurkow         ###   ########.fr       */
+/*   Updated: 2021/05/13 21:16:33 by wszurkow         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,10 +49,88 @@ int ss(int *tab_a, int *tab_b)
 	return (1);
 }
 
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+
+void	ps_prepend(t_global *g, char tab_id, int value)
+{
+	int i;
+	int j;
+	int size;
+	int *tmp;
+
+	i = 1;
+	j = 0;
+	if (tab_id == 'a')
+	{
+		g->tab_a_size++;
+		size = g->tab_a_size;
+		tmp = malloc(sizeof(int) * size);
+		tmp[0] = value;
+		while (j < g->tab_a_size - 1)
+			tmp[i++] = g->tab_a[j++];
+		free(g->tab_a);
+		g->tab_a = tmp;
+	}
+
+}
+/*
+void	ps_append(int *tab, int value)
+{
+
+
+}
+
+void	delete_first(int *tab)
+{
+
+
+}
+*/
+
+
+int pa(t_global *g)
+{
+	int i;
+	int j;
+	int *tmp;
+
+	i = 0;
+	j = 1;
+	tmp = NULL;
+	if (!(g->tab_b))
+		return (1);
+	tmp = malloc(sizeof(int) * g->tab_a_size + 1);
+	tmp[0] = g->tab_b[0];
+	while (i < g->tab_a_size)
+	{
+		tmp[j] = g->tab_a[i];
+		i++;
+		j++;
+	}
+	free(g->tab_a);
+	g->tab_a = tmp;
+
+	return (1);
+}
+
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
 
-t_global *init_struct(t_global *g, int ac, char **av)
+/*void fill_structure(t_global *g, int ac, char **av)*/
+/*{*/
+
+	/*int i;*/
+
+	/*i = 0;*/
+
+
+
+
+/*}*/
+
+
+void init_struct(t_global *g, int ac, char **av)
 {
 	g = malloc(sizeof(t_global));
 	if (!g)
@@ -69,7 +147,6 @@ t_global *init_struct(t_global *g, int ac, char **av)
 	g->av = &av[1];
 	if (ac < 2)
 		print_error_and_exit(g);
-	return (g);
 }
 
 int		main(int ac, char **av)
@@ -77,9 +154,7 @@ int		main(int ac, char **av)
 	t_global *g;
 
 	g = NULL;
-	g = init_struct(g, ac, av);
-
-
-
+	init_struct(g, ac, av);
+	/*fill_structure(g, ac, av);*/
 	free_everything(g);
 }
