@@ -6,7 +6,7 @@
 /*   By: wszurkow <wszurkow@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/13 18:14:13 by wszurkow          #+#    #+#             */
-/*   Updated: 2021/05/14 20:57:24 by wszurkow         ###   ########.fr       */
+/*   Updated: 2021/05/15 01:25:21 by wszurkow         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@
 typedef struct s_tab
 {
 	int *data;
-	int size;
+	int *size;
 }			t_tab;
 
 typedef struct s_global

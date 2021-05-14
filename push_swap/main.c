@@ -6,7 +6,7 @@
 /*   By: wszurkow <wszurkow@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/13 13:38:31 by wszurkow          #+#    #+#             */
-/*   Updated: 2021/05/14 21:27:16 by wszurkow         ###   ########.fr       */
+/*   Updated: 2021/05/15 01:38:37 by wszurkow         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,12 +60,12 @@ void	ps_prepend(t_global *g, t_tab *tab, int value)
 
 	i = 1;
 	j = 0;
-	tab->size++;
-	res = malloc (sizeof(int) * tab->size);
+	*tab->size += 1;
+	res = malloc (sizeof(int) * *tab->size);
 	if (!res)
 		free_everything_and_exit(g);
 	res[0] = value;
-	while (j < tab->size - 1)
+	while (j < *tab->size - 1)
 		res[i++] = tab->data[j++];
 	free(tab->data);
 	tab->data = res;
@@ -78,11 +78,11 @@ void	ps_append(t_global *g, t_tab *tab, int value)
 	int *res;
 
 	i = 0;
-	tab->size++;
-	res = malloc (sizeof(int) * tab->size);
+	*tab->size += 1;
+	res = malloc (sizeof(int) * *tab->size);
 	if (!res)
 		free_everything_and_exit(g);
-	while (i < tab->size - 1)
+	while (i < *tab->size - 1)
 	{
 		res[i] = tab->data[i];
 		i++;
@@ -99,11 +99,11 @@ void	ps_delete_first(t_global *g, t_tab *tab)
 	int *res;
 
 	i = 1;
-	tab->size--;
-	res = malloc (sizeof(int) * tab->size);
+	*tab->size -= 1;
+	res = malloc (sizeof(int) * *tab->size);
 	if (!res)
 		free_everything_and_exit(g);
-	while (i < tab->size)
+	while (i < *tab->size)
 	{
 		res[i] = tab->data[i];
 		i++;
@@ -141,17 +141,17 @@ int pa(t_global *g)
 ////////////////////////////////////////////////////////////////////////////////
 
 
-static void init_g(t_global *g)
+static t_global *init_g(t_global *g)
 {
 	g = malloc(sizeof(t_global));
 	if (!g)
 		print_error_and_exit();
 	g->a = NULL;
 	g->b = NULL;
-	return ;
+	return (g);
 }
 
-static void init_tab_a_and_b(t_global *g)
+static t_global *init_tab_a_and_b(t_global *g)
 {
 	g->a = malloc(sizeof(t_tab));
 	if (!g->a)
@@ -162,44 +162,65 @@ static void init_tab_a_and_b(t_global *g)
 	g->b = malloc(sizeof(t_tab));
 	if (!g->b)
 	{
-		free(g);
 		free(g->a);
+		free(g);
 		print_error_and_exit();
 	}
 	g->a->data = NULL;
 	g->b->data = NULL;
-	g->a->size = 0;
-	g->b->size = 0;
-	return ;
+	g->a->size = NULL;
+	g->b->size = NULL;
+	return (g);
 }
 
-static void init_tab_a_data(t_global *g, int ac)
+static t_global *init_tab_a_data(t_global *g, int ac)
 {
 	g->a->data = malloc(sizeof(int) * ac - 1);
 	if (!g->a->data)
 		free_everything_and_exit(g);
-	g->a->size = ac -1;
-	return ;
+	g->a->size = malloc(sizeof(int));
+	if (!g->a->size)
+		free_everything_and_exit(g);
+	*g->a->size = ac - 1;
+	return (g);
 }
 
 
-static void init_struct(t_global *g, int ac)
+static t_global *init_struct(t_global *g, int ac)
 {
-	init_g(g);
-	init_tab_a_and_b(g);
-	init_tab_a_data(g, ac);
+	g = init_g(g);
+	g = init_tab_a_and_b(g);
+	g = init_tab_a_data(g, ac);
+	return (g);
 }
 
 int		main(int ac, char **av)
 {
 	t_global *g;
 
-	if (!av)
-		write(1, "hello", 5);
 	g = NULL;
 	if (ac < 2)
 		print_error_and_exit();
-	init_struct(g, ac);
+	g = init_struct(g, ac);
+	// =============================== //
+	// TODO
+	// Parse input arguments with atoi
+	//
+	// sa swap a
+	// sb swap b
+	// ss sa + sb
+	//
+	// pa push b[0] to a[0]
+	// pb
+	//
+	// ra rotate a
+	// rb
+	// rr ra + rb
+	//
+	// rra reverse
+	// rrb
+	// rrr
+	// =============================== //
 	free_everything(g);
 	return (0);
 }
