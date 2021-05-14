@@ -6,7 +6,7 @@
 /*   By: wszurkow <wszurkow@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/13 18:22:55 by wszurkow          #+#    #+#             */
-/*   Updated: 2021/05/13 18:24:35 by wszurkow         ###   ########.fr       */
+/*   Updated: 2021/05/14 21:19:20 by wszurkow         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ int			ps_atoi(const char *str, t_global *g)
 		return (atoi * np);
 	if (np < 0)
 		return (0);
-	print_error_and_exit(g);
+	free_everything_and_exit(g);
 	return (-1);
 }
 
