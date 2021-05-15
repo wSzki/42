@@ -6,7 +6,7 @@
 /*   By: wszurkow <wszurkow@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/13 18:22:55 by wszurkow          #+#    #+#             */
-/*   Updated: 2021/05/15 18:08:56 by wszurkow         ###   ########.fr       */
+/*   Updated: 2021/05/15 19:47:01 by wszurkow         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,8 +49,12 @@ int			ps_atoi(const char *str, t_global *g)
 		free_everything_and_exit(g);
 	i = ft_count_numbers(atoi);
 	if (i == j)
-		if (atoi > -1 || atoi == -2147483648)
+	{
+		if (atoi > -1)
 			return (atoi * sign);
+		if (atoi == -2147483648 && sign == -1)
+			return (atoi);
+	}
 	free_everything_and_exit(g);
 	return (0);
 }
