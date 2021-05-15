@@ -6,7 +6,7 @@
 /*   By: wszurkow <wszurkow@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/13 13:38:31 by wszurkow          #+#    #+#             */
-/*   Updated: 2021/05/15 19:42:21 by wszurkow         ###   ########.fr       */
+/*   Updated: 2021/05/16 00:28:51 by wszurkow         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,42 +59,6 @@ void	print_all(t_global *g)
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
-void sub_s(t_tab *tab)
-{
-	int tmp;
-
-	if (tab)
-		if (tab->size)
-			if (*tab->size > 1)
-			{
-				tmp = 0;
-				tmp = tab->data[0];
-				tab->data[0] = tab->data[1];
-				tab->data[1] = tmp;
-			}
-	return ;
-}
-
-void sa(t_global *g)
-{
-	sub_s(g->a);
-	write(1, "sa\n", 3);
-}
-void sb(t_global *g)
-{
-	sub_s(g->b);
-	write(1, "sb\n", 3);
-}
-
-void ss(t_global *g)
-{
-	sub_s(g->a);
-	sub_s(g->b);
-	write(1, "ss\n", 3);
-	return ;
-}
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
 
 void pa(t_global *g)
 {
@@ -105,6 +69,7 @@ void pa(t_global *g)
 				ps_prepend(g, g->a, g->b->data[0]);
 				ps_delete_first(g, g->b);
 			}
+	write(1, "pa\n", 3);
 	return ;
 }
 
@@ -117,6 +82,7 @@ void pb(t_global *g)
 				ps_prepend(g, g->b, g->a->data[0]);
 				ps_delete_first(g, g->a);
 			}
+	write(1, "pb\n", 3);
 	return ;
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -193,16 +159,8 @@ int		main(int ac, char **av)
 	fill_tab_a(g, ac, av);
 	print_all(g);
 	/*sa(g);*/
-	pb(g);
-	pb(g);
-	pb(g);
-	pb(g);
-	pb(g);
-	pa(g);
-	pa(g);
-	pa(g);
-	pa(g);
-	pa(g);
+	rra(g);
+	rrb(g);
 	// =============================== //
 	// TODO
 	// Parse input arguments with atoi

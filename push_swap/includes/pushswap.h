@@ -6,7 +6,7 @@
 /*   By: wszurkow <wszurkow@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/13 18:14:13 by wszurkow          #+#    #+#             */
-/*   Updated: 2021/05/15 18:35:41 by wszurkow         ###   ########.fr       */
+/*   Updated: 2021/05/15 20:03:04 by wszurkow         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,5 +47,16 @@ void	ps_prepend(t_global *g, t_tab *tab, int value);
 void	ps_append(t_global *g, t_tab *tab, int value);
 void	ps_delete_first(t_global *g, t_tab *tab);
 void	fill_tab_a(t_global *g, int ac, char **av);
+void ss(t_global *g);
+void sb(t_global *g);
+void sa(t_global *g);
+void pb(t_global *g);
+void pa(t_global *g);
+void ra(t_global *g);
+void rb(t_global *g);
+void rr(t_global *g);
+void rra(t_global *g);
+void rrb(t_global *g);
+void rrr(t_global *g);
 
 #endif
