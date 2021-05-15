@@ -6,7 +6,7 @@
 /*   By: wszurkow <wszurkow@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/13 18:14:13 by wszurkow          #+#    #+#             */
-/*   Updated: 2021/05/15 01:25:21 by wszurkow         ###   ########.fr       */
+/*   Updated: 2021/05/15 16:46:43 by wszurkow         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,9 @@ int			ps_atoi(const char *str, t_global *g);
 void		print_error_and_exit(void);
 void		free_everything_and_exit(t_global *g);
 void		free_everything(t_global *g);
-
-
+void	ps_prepend(t_global *g, t_tab *tab, int value);
+void	ps_append(t_global *g, t_tab *tab, int value);
+void	ps_delete_first(t_global *g, t_tab *tab);
+void	fill_tab_a(t_global *g, int ac, char **av);
 
 #endif

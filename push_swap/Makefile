@@ -6,7 +6,7 @@
 #    By: wszurkow <wszurkow@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/01/16 22:40:46 by wszurkow          #+#    #+#              #
-#    Updated: 2021/05/14 21:20:24 by wszurkow         ###   ########.fr        #
+#    Updated: 2021/05/15 16:47:11 by wszurkow         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,6 +16,7 @@ SRCS_FILES	= \
 			  utils/free_everything.c \
 			  utils/print_error_and_exit.c \
 			  ps_atoi.c \
+			  ps_fill_tab_a.c \
 
 
 OBJS		= ${SRCS:.c=.o}

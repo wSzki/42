@@ -6,7 +6,7 @@
 /*   By: wszurkow <wszurkow@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/13 13:38:31 by wszurkow          #+#    #+#             */
-/*   Updated: 2021/05/15 01:38:37 by wszurkow         ###   ########.fr       */
+/*   Updated: 2021/05/15 16:59:18 by wszurkow         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,67 +51,6 @@ int ss(int *tab_a, int *tab_b)
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-
-void	ps_prepend(t_global *g, t_tab *tab, int value)
-{
-	int i;
-	int j;
-	int *res;
-
-	i = 1;
-	j = 0;
-	*tab->size += 1;
-	res = malloc (sizeof(int) * *tab->size);
-	if (!res)
-		free_everything_and_exit(g);
-	res[0] = value;
-	while (j < *tab->size - 1)
-		res[i++] = tab->data[j++];
-	free(tab->data);
-	tab->data = res;
-	return ;
-}
-
-void	ps_append(t_global *g, t_tab *tab, int value)
-   {
-	int i;
-	int *res;
-
-	i = 0;
-	*tab->size += 1;
-	res = malloc (sizeof(int) * *tab->size);
-	if (!res)
-		free_everything_and_exit(g);
-	while (i < *tab->size - 1)
-	{
-		res[i] = tab->data[i];
-		i++;
-	}
-	res[i] = value;
-	free(tab->data);
-	tab->data = res;
-	return ;
-   }
-
-void	ps_delete_first(t_global *g, t_tab *tab)
-{
-	int i;
-	int *res;
-
-	i = 1;
-	*tab->size -= 1;
-	res = malloc (sizeof(int) * *tab->size);
-	if (!res)
-		free_everything_and_exit(g);
-	while (i < *tab->size)
-	{
-		res[i] = tab->data[i];
-		i++;
-	}
-	free(tab->data);
-	tab->data = res;
-	return ;
-}
 
 int pa(t_global *g)
 {
@@ -220,6 +159,12 @@ int		main(int ac, char **av)
 	// rra reverse
 	// rrb
 	// rrr
+	// =============================== //
+	fill_tab_a(g, ac, av);
+
+	printf("%d\n", g->a->data[0]);
+	printf("%d\n", g->a->data[1]);
+
 	// =============================== //
 	free_everything(g);
 	return (0);
