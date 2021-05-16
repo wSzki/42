@@ -6,7 +6,7 @@
 /*   By: wszurkow <wszurkow@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/16 15:07:47 by wszurkow          #+#    #+#             */
-/*   Updated: 2021/05/16 15:08:35 by wszurkow         ###   ########.fr       */
+/*   Updated: 2021/05/16 20:28:44 by wszurkow         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,14 +36,14 @@ static void	sub_rr(t_tab *tab)
 void		rra(t_global *g)
 {
 	sub_rr(g->a);
-	write(2, "ra\n", 3);
+	write(2, "rra\n", 4);
 	return ;
 }
 
 void		rrb(t_global *g)
 {
 	sub_rr(g->b);
-	write(2, "rb\n", 3);
+	write(2, "rrb\n", 4);
 	return ;
 }
 
@@ -51,6 +51,6 @@ void		rrr(t_global *g)
 {
 	sub_rr(g->a);
 	sub_rr(g->b);
-	write(2, "rr\n", 3);
+	write(2, "rrr\n", 4);
 	return ;
 }

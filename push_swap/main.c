@@ -6,7 +6,7 @@
 /*   By: wszurkow <wszurkow@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/13 13:38:31 by wszurkow          #+#    #+#             */
-/*   Updated: 2021/05/16 15:09:05 by wszurkow         ###   ########.fr       */
+/*   Updated: 2021/05/17 00:25:14 by wszurkow         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,6 +119,47 @@ static t_global *init_struct(t_global *g, int ac)
 	return (g);
 }
 
+static void sort_three(t_global *g, int *tab)
+{
+	tab = g->a->data;
+
+	// 213
+	if (tab[0] > tab[1] && tab[1] < tab[2])
+		sa(g);
+	// 321
+	if (tab[0] > tab[1] && tab[1] > tab[2])
+	{
+		sa(g);
+		rra(g);
+	}
+	// 312
+	if (tab[0] > tab[1] && tab[1] < tab[2])
+		ra(g);
+	// 132
+	if (tab[1] > tab[0] && tab[1] > tab[2] && tab[2] > tab[0])
+	{
+		sa(g);
+		ra(g);
+	}
+	// 231
+	if (tab[1] > tab[0] && tab[1] > tab[2] && tab[2] < tab[0])
+		rra(g);
+}
+
+static int	find_smallest_number(t_tab* tab)
+{
+	int smallest_number = tab->data[0];
+	int i = 1;
+	while (i < *tab->size)
+	{
+		if (tab->data[i] < smallest_number)
+			smallest_number = tab->data[i];
+		i++;
+	}
+	return smallest_number;
+}
+
+
 int		main(int ac, char **av)
 {
 	t_global *g;
@@ -131,32 +172,37 @@ int		main(int ac, char **av)
 	// =============================== //
 	print_all(g);
 
-	pb(g);
-	pb(g);
-	sa(g);
-	ra(g);
-	pa(g);
-	ra(g);
-	pa(g);
+	if (*g->a->size == 3)
+		sort_three(g, g->a->data);
 
-	// *********************************** //
-	// TODO
-	// Parse input arguments with atoi
-	//
-	// sa swap a
-	// sb swap b
-	// ss sa + sb
-	//
-	// pa push b[0] to a[0]
-	// pb
-	//
-	// ra rotate a
-	// rb
-	// rr ra + rb
-	//
-	// rra reverse
-	// rrb
-	// rrr
+	int i = 0;
+	int smallest_number;
+
+	smallest_number = find_smallest_number(g->a);
+	while (i < *g->a->size)
+	{
+
+		smallest_number = find_smallest_number(g->a);
+		if (*g->a->size == 3)
+		{
+			sort_three(g, g->a->data);
+			break ;
+		}
+		if (g->a->data[i] == smallest_number)
+		{
+			pb(g);
+			i = 0;
+		}
+		else
+			i++;
+	}
+
+	while (*g->b->size > 0)
+	{
+		pa(g);
+	}
+
+
 	// =============================== //
 	print_all(g);
 

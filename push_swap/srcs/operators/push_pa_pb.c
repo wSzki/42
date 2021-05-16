@@ -6,7 +6,7 @@
 /*   By: wszurkow <wszurkow@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/15 20:00:47 by wszurkow          #+#    #+#             */
-/*   Updated: 2021/05/16 14:25:02 by wszurkow         ###   ########.fr       */
+/*   Updated: 2021/05/16 21:30:58 by wszurkow         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void	pa(t_global *g)
 {
 	if (g->b)
 		if (g->b->size)
-			if (*g->b->size > 0)
+			/*if (*g->b->size > 0)*/
 			{
 				ps_prepend(g, g->a, g->b->data[0]);
 				ps_delete_first(g, g->b);
@@ -29,7 +29,7 @@ void	pb(t_global *g)
 {
 	if (g->a)
 		if (g->a->size)
-			if (*g->a->size > 0)
+			/*if (*g->a->size > 0)*/
 			{
 				ps_prepend(g, g->b, g->a->data[0]);
 				ps_delete_first(g, g->a);
