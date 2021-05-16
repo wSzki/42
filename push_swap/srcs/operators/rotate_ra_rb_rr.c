@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: wszurkow <wszurkow@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/05/15 20:03:54 by wszurkow          #+#    #+#             */
-/*   Updated: 2021/05/16 14:28:55 by wszurkow         ###   ########.fr       */
+/*   Created: 2021/05/16 15:07:26 by wszurkow          #+#    #+#             */
+/*   Updated: 2021/05/16 15:08:07 by wszurkow         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,21 +14,23 @@
 
 static void	sub_r(t_tab *tab)
 {
+	int i;
 	int size;
 	int tmp;
 
+	i = 0;
 	if (tab)
 		if (tab->size)
 			if (*tab->size > 1)
 			{
 				size = *tab->size;
-				tmp = tab->data[size - 1];
-				while (size > 0)
+				tmp = tab->data[0];
+				while (i < size)
 				{
-					tab->data[size] = tab->data[size - 1];
-					size--;
+					tab->data[i] = tab->data[i + 1];
+					i++;
 				}
-				tab->data[0] = tmp;
+				tab->data[size - 1] = tmp;
 			}
 	return ;
 }
@@ -36,14 +38,14 @@ static void	sub_r(t_tab *tab)
 void		ra(t_global *g)
 {
 	sub_r(g->a);
-	write(2, "ra\n", 3);
+	write(2, "rra\n", 4);
 	return ;
 }
 
 void		rb(t_global *g)
 {
 	sub_r(g->b);
-	write(2, "rb\n", 3);
+	write(2, "rrb\n", 4);
 	return ;
 }
 
@@ -51,6 +53,6 @@ void		rr(t_global *g)
 {
 	sub_r(g->a);
 	sub_r(g->b);
-	write(2, "rr\n", 3);
+	write(2, "rrr\n", 4);
 	return ;
 }

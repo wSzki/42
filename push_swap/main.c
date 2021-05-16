@@ -6,7 +6,7 @@
 /*   By: wszurkow <wszurkow@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/13 13:38:31 by wszurkow          #+#    #+#             */
-/*   Updated: 2021/05/16 14:54:13 by wszurkow         ###   ########.fr       */
+/*   Updated: 2021/05/16 15:09:05 by wszurkow         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -128,11 +128,18 @@ int		main(int ac, char **av)
 		print_error_and_exit();
 	g = init_struct(g, ac);
 	fill_tab_a(g, ac, av);
-	print_all(g);
-	/*sa(g);*/
-	/*rra(g);*/
-	/*rrb(g);*/
 	// =============================== //
+	print_all(g);
+
+	pb(g);
+	pb(g);
+	sa(g);
+	ra(g);
+	pa(g);
+	ra(g);
+	pa(g);
+
+	// *********************************** //
 	// TODO
 	// Parse input arguments with atoi
 	//
