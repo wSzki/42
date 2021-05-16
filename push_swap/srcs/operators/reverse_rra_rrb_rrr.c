@@ -6,14 +6,13 @@
 /*   By: wszurkow <wszurkow@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/16 00:25:27 by wszurkow          #+#    #+#             */
-/*   Updated: 2021/05/16 00:33:22 by wszurkow         ###   ########.fr       */
+/*   Updated: 2021/05/16 14:28:17 by wszurkow         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/pushswap.h"
 
-
-static void sub_rr(t_tab *tab)
+static void	sub_rr(t_tab *tab)
 {
 	int i;
 	int size;
@@ -36,21 +35,21 @@ static void sub_rr(t_tab *tab)
 	return ;
 }
 
-void	rra(t_global *g)
+void		rra(t_global *g)
 {
 	sub_rr(g->a);
 	write(2, "rra\n", 4);
 	return ;
 }
 
-void	rrb(t_global *g)
+void		rrb(t_global *g)
 {
 	sub_rr(g->b);
 	write(2, "rrb\n", 4);
 	return ;
 }
 
-void	rrr(t_global *g)
+void		rrr(t_global *g)
 {
 	sub_rr(g->a);
 	sub_rr(g->b);

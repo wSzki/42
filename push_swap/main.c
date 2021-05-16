@@ -6,7 +6,7 @@
 /*   By: wszurkow <wszurkow@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/13 13:38:31 by wszurkow          #+#    #+#             */
-/*   Updated: 2021/05/16 00:28:51 by wszurkow         ###   ########.fr       */
+/*   Updated: 2021/05/16 14:54:13 by wszurkow         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,35 +58,6 @@ void	print_all(t_global *g)
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-
-
-void pa(t_global *g)
-{
-	if (g->b)
-		if (g->b->size)
-			if (*g->b->size > 0)
-			{
-				ps_prepend(g, g->a, g->b->data[0]);
-				ps_delete_first(g, g->b);
-			}
-	write(1, "pa\n", 3);
-	return ;
-}
-
-void pb(t_global *g)
-{
-	if (g->a)
-		if (g->a->size)
-			if (*g->a->size > 0)
-			{
-				ps_prepend(g, g->b, g->a->data[0]);
-				ps_delete_first(g, g->a);
-			}
-	write(1, "pb\n", 3);
-	return ;
-}
-///////////////////////////////////////////////////////////////////////////////////////////////////
-
 
 static t_global *init_g(t_global *g)
 {
@@ -159,8 +130,8 @@ int		main(int ac, char **av)
 	fill_tab_a(g, ac, av);
 	print_all(g);
 	/*sa(g);*/
-	rra(g);
-	rrb(g);
+	/*rra(g);*/
+	/*rrb(g);*/
 	// =============================== //
 	// TODO
 	// Parse input arguments with atoi

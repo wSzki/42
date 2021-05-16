@@ -6,13 +6,13 @@
 /*   By: wszurkow <wszurkow@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/15 20:00:47 by wszurkow          #+#    #+#             */
-/*   Updated: 2021/05/15 20:01:04 by wszurkow         ###   ########.fr       */
+/*   Updated: 2021/05/16 14:25:02 by wszurkow         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/pushswap.h"
 
-void pa(t_global *g)
+void	pa(t_global *g)
 {
 	if (g->b)
 		if (g->b->size)
@@ -25,7 +25,7 @@ void pa(t_global *g)
 	return ;
 }
 
-void pb(t_global *g)
+void	pb(t_global *g)
 {
 	if (g->a)
 		if (g->a->size)
@@ -37,4 +37,3 @@ void pb(t_global *g)
 	write(1, "pb\n", 3);
 	return ;
 }
-
