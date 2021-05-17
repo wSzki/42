@@ -6,7 +6,7 @@
 #    By: wszurkow <wszurkow@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/01/16 22:40:46 by wszurkow          #+#    #+#              #
-#    Updated: 2021/05/16 00:24:58 by wszurkow         ###   ########.fr        #
+#    Updated: 2021/05/17 16:31:34 by wszurkow         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -34,7 +34,7 @@ all:		${NAME}
 
 ${NAME}:	${OBJS}
 	ar -rcs ${NAME} ${OBJS}
-	@gcc -fsanitize=address -Wall -Werror -Wextra main.c pushswap.a -I ./includes
+	@gcc -o push_swap -fsanitize=address -Wall -Werror -Wextra main.c pushswap.a -I ./includes
 
 exec:		pushswap.a
 	@gcc -fsanitize=address -Wall -Werror -Wextra main.c pushswap.a -I ./includes
@@ -42,7 +42,7 @@ exec:		pushswap.a
 
 clean:
 	rm -f ${OBJS}
-	rm -f a.out
+	rm -f push_swap
 
 fclean:		clean
 	rm -f ./${NAME}

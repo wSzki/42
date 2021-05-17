@@ -6,7 +6,7 @@
 /*   By: wszurkow <wszurkow@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/13 13:38:31 by wszurkow          #+#    #+#             */
-/*   Updated: 2021/05/17 13:48:27 by wszurkow         ###   ########.fr       */
+/*   Updated: 2021/05/17 16:54:11 by wszurkow         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -159,6 +159,25 @@ static int	find_smallest_number(t_tab* tab)
 	return smallest_number;
 }
 
+static int ra_or_rra(t_global *g, int smallest_number)
+{
+	int i;
+	int j;
+	int last_number_index = *g->a->size;
+
+	i = 0;
+	j = 0;
+	while (g->a->data[i] != smallest_number && i < *g->a->size)
+		i++;
+	while (g->a->data[last_number_index - 1] != smallest_number && smallest_number >= 0)
+	{
+		last_number_index--;
+		j++;
+	}
+	if (i < j)
+		return 0;
+	return 1;
+}
 
 int		main(int ac, char **av)
 {
@@ -170,10 +189,33 @@ int		main(int ac, char **av)
 	g = init_struct(g, ac);
 	fill_tab_a(g, ac, av);
 	// =============================== //
-	print_all(g);
+	/*print_all(g);*/
 
+	if (*g->a->size == 2)
+	{
+		if (g->a->data[0] > g->a->data[1])
+			sa(g);
+		free_everything(g);
+		return (0);
+	}
+	int k = 1;
+	while (k < *g->a->size)
+	{
+		if (g->a->data[k] < g->a->data[k - 1])
+			break;
+		k++;
+	}
+	if (k == *g->a->size)
+	{
+		free_everything(g);
+		return (0);
+	}
 	if (*g->a->size == 3)
+	{
 		sort_three(g, g->a->data);
+		free_everything(g);
+		return (0);
+	}
 
 	int i = 0;
 	int smallest_number;
@@ -189,8 +231,14 @@ int		main(int ac, char **av)
 			sort_three(g, g->a->data);
 			break ;
 		}
+		// better ra or rra
 		while (g->a->data[0] != smallest_number)
-			ra(g);
+		{
+			if (ra_or_rra(g, smallest_number) == 0)
+				ra(g);
+			else
+				rra(g);
+		}
 		if (g->a->data[0] == smallest_number)
 		{
 			pb(g);
@@ -200,15 +248,15 @@ int		main(int ac, char **av)
 			i++;
 	}
 
-	print_all(g);
 	while (*g->b->size > 0)
 	{
 		pa(g);
 	}
 
+	/*print_all(g);*/
 
 	// =============================== //
-	print_all(g);
+	/*print_all(g);*/
 
 	// =============================== //
 	free_everything(g);
