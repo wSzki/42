@@ -6,7 +6,7 @@
 /*   By: wszurkow <wszurkow@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/13 13:38:31 by wszurkow          #+#    #+#             */
-/*   Updated: 2021/05/17 00:25:14 by wszurkow         ###   ########.fr       */
+/*   Updated: 2021/05/17 13:48:27 by wszurkow         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -179,6 +179,7 @@ int		main(int ac, char **av)
 	int smallest_number;
 
 	smallest_number = find_smallest_number(g->a);
+
 	while (i < *g->a->size)
 	{
 
@@ -188,7 +189,9 @@ int		main(int ac, char **av)
 			sort_three(g, g->a->data);
 			break ;
 		}
-		if (g->a->data[i] == smallest_number)
+		while (g->a->data[0] != smallest_number)
+			ra(g);
+		if (g->a->data[0] == smallest_number)
 		{
 			pb(g);
 			i = 0;
@@ -197,6 +200,7 @@ int		main(int ac, char **av)
 			i++;
 	}
 
+	print_all(g);
 	while (*g->b->size > 0)
 	{
 		pa(g);
