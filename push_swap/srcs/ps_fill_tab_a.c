@@ -6,12 +6,11 @@
 /*   By: wszurkow <wszurkow@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/15 16:43:19 by wszurkow          #+#    #+#             */
-/*   Updated: 2021/05/16 14:57:26 by wszurkow         ###   ########.fr       */
+/*   Updated: 2021/05/17 19:52:38 by wszurkow         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/pushswap.h"
-
 
 static void	check_duplicates(t_global *g)
 {
@@ -32,9 +31,7 @@ static void	check_duplicates(t_global *g)
 	}
 }
 
-
-
-void	fill_tab_a(t_global *g, int ac, char **av)
+void		fill_tab_a(t_global *g, int ac, char **av)
 {
 	int i;
 	int j;

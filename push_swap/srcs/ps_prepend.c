@@ -6,7 +6,7 @@
 /*   By: wszurkow <wszurkow@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/15 16:38:42 by wszurkow          #+#    #+#             */
-/*   Updated: 2021/05/15 19:32:54 by wszurkow         ###   ########.fr       */
+/*   Updated: 2021/05/17 19:52:48 by wszurkow         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	ps_prepend(t_global *g, t_tab *tab, int value)
 	i = 1;
 	j = 0;
 	*tab->size += 1;
-	res = malloc (sizeof(int) * *tab->size);
+	res = malloc(sizeof(int) * *tab->size);
 	if (!res)
 		free_everything_and_exit(g);
 	res[0] = value;

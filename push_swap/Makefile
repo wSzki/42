@@ -6,7 +6,7 @@
 #    By: wszurkow <wszurkow@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/01/16 22:40:46 by wszurkow          #+#    #+#              #
-#    Updated: 2021/05/17 16:31:34 by wszurkow         ###   ########.fr        #
+#    Updated: 2021/05/17 19:59:33 by wszurkow         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,8 +19,11 @@ SRCS_FILES	= \
 			  operators/push_pa_pb.c \
 			  operators/rotate_ra_rb_rr.c \
 			  operators/reverse_rra_rrb_rrr.c \
+			  sorters/sort_main.c \
+			  sorters/sort_two.c \
+			  sorters/sort_three.c \
+			  sorters/is_a_sorted.c \
 			  ps_delete_first.c \
-			  ps_append.c \
 			  ps_prepend.c \
 			  ps_atoi.c \
 			  ps_fill_tab_a.c \

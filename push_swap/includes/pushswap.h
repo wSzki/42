@@ -6,7 +6,7 @@
 /*   By: wszurkow <wszurkow@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/13 18:14:13 by wszurkow          #+#    #+#             */
-/*   Updated: 2021/05/15 20:03:04 by wszurkow         ###   ########.fr       */
+/*   Updated: 2021/05/17 19:44:36 by wszurkow         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,4 +59,8 @@ void rra(t_global *g);
 void rrb(t_global *g);
 void rrr(t_global *g);
 
+void sort_main(t_global *g);
+void sort_two(t_global *g);
+void sort_three(t_global *g);
+void is_a_sorted(t_global *g);
 #endif

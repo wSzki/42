@@ -1,42 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ps_delete_first.c                                  :+:      :+:    :+:   */
+/*   is_a_sorted.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: wszurkow <wszurkow@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/05/15 16:40:00 by wszurkow          #+#    #+#             */
-/*   Updated: 2021/05/17 19:52:07 by wszurkow         ###   ########.fr       */
+/*   Created: 2021/05/17 19:44:50 by wszurkow          #+#    #+#             */
+/*   Updated: 2021/05/17 19:54:38 by wszurkow         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/pushswap.h"
+#include "../../includes/pushswap.h"
 
-void	ps_delete_first(t_global *g, t_tab *tab)
+void	is_a_sorted(t_global *g)
 {
 	int i;
-	int j;
-	int *res;
 
-	i = 1;
-	j = 0;
-	if (!tab)
-		return ;
-	if (!tab->size)
-		return ;
-	*tab->size -= 1;
-	if (*tab->size == 0)
-		return ;
-	res = malloc(sizeof(int) * *tab->size);
-	if (!res)
-		free_everything_and_exit(g);
-	while (i < *tab->size + 1)
+	i = 0;
+	while (i < *g->a->size)
 	{
-		res[j] = tab->data[i];
+		if (g->a->data[i] < g->a->data[i - 1])
+			break ;
 		i++;
-		j++;
 	}
-	free(tab->data);
-	tab->data = res;
-	return ;
+	if (i == *g->a->size)
+	{
+		free_everything(g);
+		exit(0);
+	}
 }

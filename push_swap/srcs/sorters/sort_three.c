@@ -1,26 +1,42 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   print_error_and_exit.c                             :+:      :+:    :+:   */
+/*   sort_three.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: wszurkow <wszurkow@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/05/13 18:25:01 by wszurkow          #+#    #+#             */
-/*   Updated: 2021/05/17 19:53:16 by wszurkow         ###   ########.fr       */
+/*   Created: 2021/05/17 19:01:04 by wszurkow          #+#    #+#             */
+/*   Updated: 2021/05/17 19:48:37 by wszurkow         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/pushswap.h"
 
-void	print_error_and_exit(void)
+void sort_three(t_global *g)
 {
-	write(2, "Error\n", 6);
-	exit(1);
+	int *tab;
+
+	tab = g->a->data;
+	// 213
+	if (tab[0] > tab[1] && tab[1] < tab[2])
+		sa(g);
+	// 321
+	if (tab[0] > tab[1] && tab[1] > tab[2])
+	{
+		sa(g);
+		rra(g);
+	}
+	// 312
+	if (tab[0] > tab[1] && tab[1] < tab[2])
+		ra(g);
+	// 132
+	if (tab[1] > tab[0] && tab[1] > tab[2] && tab[2] > tab[0])
+	{
+		sa(g);
+		ra(g);
+	}
+	// 231
+	if (tab[1] > tab[0] && tab[1] > tab[2] && tab[2] < tab[0])
+		rra(g);
 }
 
-void	free_everything_and_exit(t_global *g)
-{
-	free_everything(g);
-	write(2, "Error\n", 6);
-	exit(1);
-}
