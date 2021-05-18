@@ -6,18 +6,23 @@
 /*   By: wszurkow <wszurkow@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/17 19:02:50 by wszurkow          #+#    #+#             */
-/*   Updated: 2021/05/17 19:59:04 by wszurkow         ###   ########.fr       */
+/*   Updated: 2021/05/18 00:26:23 by wszurkow         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/pushswap.h"
 
+void	print_all(t_global *g);
 static int	find_smallest_number(t_tab *tab)
 {
 	int smallest_number;
 	int i;
 
 	i = 1;
+	if (*tab->size == 0)
+		return (0);
+	if (*tab->size == 1)
+		return (0);
 	smallest_number = tab->data[0];
 	while (i < *tab->size)
 	{
@@ -28,49 +33,100 @@ static int	find_smallest_number(t_tab *tab)
 	return (smallest_number);
 }
 
-static int	choose_ra_or_rra(t_global *g, int smallest_number)
+static int	find_largest_number(t_tab *tab)
+{
+	int largest;
+	int i;
+
+	i = 1;
+	if (*tab->size == 0)
+		return (0);
+	if (*tab->size == 1)
+		return (0);
+	largest = tab->data[0];
+	while (i < *tab->size)
+	{
+		if (tab->data[i] > largest)
+			largest = tab->data[i];
+		i++;
+	}
+	return (largest);
+}
+/*
+   static void	place_smallest_number_first(t_global *g, int smallest_number)
+   {
+   int i;
+   int direction;
+
+   i = 0;
+   direction = 1;
+   while (i < *g->a->size / 2 + 1)
+   {
+   if (g->a->data[i] == smallest_number)
+   direction = 0;
+   i++;
+   }
+   while (g->a->data[0] != smallest_number)
+   {
+   if (direction == 0)
+   ra(g);
+   if (direction == 1)
+   rra(g);
+   }
+   return ;
+   }
+
+   void		sort_main(t_global *g)
+   {
+   int i;
+   int smallest_number;
+
+   i = 0;
+   is_a_sorted(g);
+   sort_two(g);
+   if (*g->a->size == 3)
+   {
+   sort_three(g);
+   return ;
+   }
+   smallest_number = find_smallest_number(g->a);
+   while (i < *g->a->size)
+   {
+   if (*g->a->size == 3)
+   {
+   sort_three(g);
+   break ;
+   }
+   smallest_number = find_smallest_number(g->a);
+   place_smallest_number_first(g, smallest_number);
+   pb(g);
+   }
+   while (*g->b->size > 0)
+   pa(g);
+   }
+   */
+int	is_sorted(t_global *g)
 {
 	int i;
-	int j;
-	int last_number_index;
 
-	i = 0;
-	j = 0;
-	last_number_index = *g->a->size;
-	while (g->a->data[i] != smallest_number && i < *g->a->size)
+	i = 1;
+	while (i < *g->a->size)
+	{
+		if (g->a->data[i] < g->a->data[i - 1])
+			break ;
 		i++;
-	while (g->a->data[last_number_index - 1] != smallest_number &&\
-			smallest_number >= 0)
-	{
-		last_number_index--;
-		j++;
 	}
-	if (i < j)
-		return (0);
-	return (1);
-}
-
-static void	place_smallest_number_first(t_global *g, int smallest_number)
-{
-	int direction;
-
-	direction = choose_ra_or_rra(g, smallest_number);
-	while (g->a->data[0] != smallest_number)
+	if (i == *g->a->size)
 	{
-		if (direction == 0)
-			ra(g);
-		if (direction == 1)
-			rra(g);
+		return 1;
 	}
-	return ;
+	return 0;
 }
-
 void		sort_main(t_global *g)
 {
-	int i;
-	int smallest_number;
 
-	i = 0;
+
+	print_all(g);
 	is_a_sorted(g);
 	sort_two(g);
 	if (*g->a->size == 3)
@@ -78,18 +134,28 @@ void		sort_main(t_global *g)
 		sort_three(g);
 		return ;
 	}
-	smallest_number = find_smallest_number(g->a);
-	while (i < *g->a->size)
+	int i = 0;
+	int small = find_smallest_number(g->a);
+	int large = find_largest_number(g->a);
+	while (i < 200)
 	{
-		if (*g->a->size == 3)
+		if (is_sorted(g))
+			break;
+		else if (g->a->data[0] > small && g->a->data[0] < large)
 		{
-			sort_three(g);
-			break ;
+			large = g->a->data[0];
+			pb(g);
 		}
-		smallest_number = find_smallest_number(g->a);
-		place_smallest_number_first(g, smallest_number);
-		pb(g);
+		else if (g->a->data[0] > large)
+		{
+			pb(g);
+			rb(g);
+		}
+		print_all(g);
+		ra(g);
+		i++;
 	}
-	while (*g->b->size > 0)
-		pa(g);
+
 }
+
+
