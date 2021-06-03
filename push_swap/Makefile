@@ -1,4 +1,4 @@
-# **************************************************************************** #
+#**************************************************************************** #
 #                                                                              #
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
@@ -6,7 +6,7 @@
 #    By: wszurkow <wszurkow@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/01/16 22:40:46 by wszurkow          #+#    #+#              #
-#    Updated: 2021/05/27 13:18:07 by wszurkow         ###   ########.fr        #
+#    Updated: 2021/06/03 17:27:04 by wszurkow         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,8 +20,11 @@ SRCS_FILES	= \
 			  operators/rotate_ra_rb_rr.c \
 			  operators/reverse_rra_rrb_rrr.c \
 			  sorters/sort_main.c \
+			  sorters/sort.c \
 			  sorters/sort_three.c \
 			  sorters/check_simple_cases.c \
+			  sorters/find_smallest.c \
+			  sorters/find_largest.c \
 			  ps_delete_first.c \
 			  ps_prepend.c \
 			  ps_atoi.c \

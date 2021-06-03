@@ -6,7 +6,7 @@
 /*   By: wszurkow <wszurkow@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/13 18:14:13 by wszurkow          #+#    #+#             */
-/*   Updated: 2021/05/29 15:55:36 by wszurkow         ###   ########.fr       */
+/*   Updated: 2021/06/03 17:27:23 by wszurkow         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,8 +75,11 @@ void rra(t_global *g);
 void rrb(t_global *g);
 void rrr(t_global *g);
 
+int	find_smallest(t_tab *tab);
+int	find_largest(t_tab *tab);
 void check_simple_cases(t_global *g);
 void sort_main(t_global *g);
+void sort(t_global *g);
 //void if_two_sort_exit(t_global *g);
 void sort_three(t_global *g, int *tab);
 //void if_three_sort_exit(t_global *g);
