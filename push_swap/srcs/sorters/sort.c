@@ -6,7 +6,7 @@
 /*   By: wszurkow <wszurkow@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/03 16:48:51 by wszurkow          #+#    #+#             */
-/*   Updated: 2021/06/03 20:58:26 by wszurkow         ###   ########.fr       */
+/*   Updated: 2021/06/03 21:10:29 by wszurkow         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,7 +110,6 @@ void	sort(t_global *g)
 
 	check_simple_cases(g);
 	find_median(g, &median);
-
 	while (A_SIZE > 0)
 	{
 		if (A_DATA[0] < median)
@@ -124,9 +123,8 @@ void	sort(t_global *g)
 		}
 	}
 	while (B_SIZE > 0)
-	{
 		push_smallest_or_largest(g);
-	}
 	while (A_DATA[0] != find_smallest(A))
 		rx(g, A_ID);
+	print_all(g);
 }

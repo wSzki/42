@@ -6,7 +6,7 @@
 /*   By: wszurkow <wszurkow@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/03 20:57:27 by wszurkow          #+#    #+#             */
-/*   Updated: 2021/06/03 20:57:48 by wszurkow         ###   ########.fr       */
+/*   Updated: 2021/06/03 21:07:23 by wszurkow         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,10 +37,10 @@ void scroll_to(t_global *g, t_tab *tab, int target_value)
 		steps_to_target = count_steps_to(tab, target_value);
 		while (tab->data[0] != target_value)
 		{
-			if (steps_to_target >= 0)
-				rx(g, B_ID);
+			if (steps_to_target > 0)
+				rx(g, tab->id);
 			if (steps_to_target < 0)
-				rrx(g, B_ID);
+				rrx(g, tab->id);
 		}
 	}
 }
