@@ -6,7 +6,7 @@
 /*   By: wszurkow <wszurkow@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/16 15:07:26 by wszurkow          #+#    #+#             */
-/*   Updated: 2021/05/29 16:07:46 by wszurkow         ###   ########.fr       */
+/*   Updated: 2021/05/27 16:59:14 by wszurkow         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,11 @@ static void	sub_r(t_tab *tab)
 
 	i = 0;
 	if (tab)
+		/*if (tab->size)*/
 		if (tab->size > 1)
 		{
 			tmp = tab->data[0];
-			while (i < tab->size - 1)
+			while (i < tab->size)
 			{
 				tab->data[i] = tab->data[i + 1];
 				i++;
@@ -53,20 +54,20 @@ void		rb(t_global *g)
 }
 
 
-/*void		rotate(t_global *g, int id)*/
-/*{*/
-	/*if (id == A && A_SIZE > 1)*/
-	/*{*/
-		/*sub_r(g->a);*/
-		/*write(1, "ra\n", 3);*/
-	/*}*/
-	/*if (id == B && B_SIZE > 1)*/
-	/*{*/
-		/*sub_r(g->b);*/
-		/*write(1, "rb\n", 3);*/
-	/*}*/
+void		rotate(t_global *g, int id)
+{
+	if (id == A && A_SIZE > 1)
+	{
+			sub_r(g->a);
+			write(1, "ra\n", 3);
+	}
+	if (id == B && B_SIZE > 1)
+	{
+			sub_r(g->b);
+			write(1, "rb\n", 3);
+	}
 
-/*}*/
+}
 
 void		rr(t_global *g)
 {

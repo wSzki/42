@@ -1,33 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ps_prepend.c                                       :+:      :+:    :+:   */
+/*   print_error_and_exit.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: wszurkow <wszurkow@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/05/15 16:38:42 by wszurkow          #+#    #+#             */
-/*   Updated: 2021/05/26 13:32:02 by wszurkow         ###   ########.fr       */
+/*   Created: 2021/05/13 18:25:01 by wszurkow          #+#    #+#             */
+/*   Updated: 2021/05/17 19:53:16 by wszurkow         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/pushswap.h"
+#include "../../includes/pushswap.h"
 
-void	ps_prepend(t_global *g, t_tab *tab, int value)
+void	print_error_and_exit(void)
 {
-	int i;
-	int j;
-	int *res;
+	write(2, "Error\n", 6);
+	exit(1);
+}
 
-	i = 1;
-	j = 0;
-	tab->size += 1;
-	res = malloc(sizeof(int) * tab->size);
-	if (!res)
-		free_everything_and_exit(g);
-	res[0] = value;
-	while (j < tab->size - 1)
-		res[i++] = tab->data[j++];
-	free(tab->data);
-	tab->data = res;
-	return ;
+void	free_everything_and_exit(t_global *g)
+{
+	free_everything(g);
+	write(2, "Error\n", 6);
+	exit(1);
 }

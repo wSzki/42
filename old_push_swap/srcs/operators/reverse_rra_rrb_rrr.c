@@ -6,7 +6,7 @@
 /*   By: wszurkow <wszurkow@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/16 15:07:47 by wszurkow          #+#    #+#             */
-/*   Updated: 2021/05/29 16:08:06 by wszurkow         ###   ########.fr       */
+/*   Updated: 2021/05/27 16:59:57 by wszurkow         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,19 +54,19 @@ void		rrb(t_global *g)
 }
 
 
-/*void		reverse(t_global *g, int id)*/
-/*{*/
-	/*if (id == A && A_SIZE > 1)*/
-	/*{*/
-			/*sub_rr(g->a);*/
-			/*write(1, "rra\n", 4);*/
-	/*}*/
-	/*if (id == B && B_SIZE > 1)*/
-	/*{*/
-			/*sub_rr(g->b);*/
-			/*write(1, "rrb\n", 4);*/
-	/*}*/
-/*}*/
+void		reverse(t_global *g, int id)
+{
+	if (id == A && A_SIZE > 1)
+	{
+			sub_rr(g->a);
+			write(1, "rra\n", 4);
+	}
+	if (id == B && B_SIZE > 1)
+	{
+			sub_rr(g->b);
+			write(1, "rrb\n", 4);
+	}
+}
 
 void		rrr(t_global *g)
 {

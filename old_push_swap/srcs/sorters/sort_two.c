@@ -1,33 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ps_prepend.c                                       :+:      :+:    :+:   */
+/*   sort_two.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: wszurkow <wszurkow@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/05/15 16:38:42 by wszurkow          #+#    #+#             */
-/*   Updated: 2021/05/26 13:32:02 by wszurkow         ###   ########.fr       */
+/*   Created: 2021/05/17 19:43:28 by wszurkow          #+#    #+#             */
+/*   Updated: 2021/05/26 12:45:22 by wszurkow         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/pushswap.h"
+#include "../../includes/pushswap.h"
 
-void	ps_prepend(t_global *g, t_tab *tab, int value)
+void	if_two_sort_exit(t_global *g)
 {
-	int i;
-	int j;
-	int *res;
-
-	i = 1;
-	j = 0;
-	tab->size += 1;
-	res = malloc(sizeof(int) * tab->size);
-	if (!res)
-		free_everything_and_exit(g);
-	res[0] = value;
-	while (j < tab->size - 1)
-		res[i++] = tab->data[j++];
-	free(tab->data);
-	tab->data = res;
-	return ;
+	if (*g->a->size == 2)
+	{
+		if (g->a->data[0] > g->a->data[1])
+			sa(g);
+		free_everything(g);
+		exit(0);
+	}
 }

@@ -1,37 +1,55 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_pa_pb.c                                       :+:      :+:    :+:   */
+/*   swap_sa_sb_ss.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: wszurkow <wszurkow@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/05/15 20:00:47 by wszurkow          #+#    #+#             */
-/*   Updated: 2021/05/27 22:07:25 by wszurkow         ###   ########.fr       */
+/*   Created: 2021/05/15 19:56:58 by wszurkow          #+#    #+#             */
+/*   Updated: 2021/05/26 13:32:32 by wszurkow         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/pushswap.h"
 
-void	pa(t_global *g)
+static void	sub_s(t_tab *tab)
 {
-	if (g->b)
-		if (g->b->size > 0)
-		{
-			ps_prepend(g, g->a, g->b->data[0]);
-			ps_delete_first(g, g->b);
-			write(1, "pa\n", 3);
-		}
+	int tmp;
+
+	if (tab)
+		/*if (tab->size)*/
+			if (tab->size > 1)
+			{
+				tmp = 0;
+				tmp = tab->data[0];
+				tab->data[0] = tab->data[1];
+				tab->data[1] = tmp;
+			}
 	return ;
 }
 
-void	pb(t_global *g)
+void		sa(t_global *g)
 {
-	if (g->a)
-		if (g->a->size > 0)
-		{
-			ps_prepend(g, g->b, g->a->data[0]);
-			ps_delete_first(g, g->a);
-			write(1, "pb\n", 3);
-		}
+	if (g->a->size > 1)
+	{
+		sub_s(g->a);
+		write(1, "sa\n", 3);
+	}
+}
+
+void		sb(t_global *g)
+{
+	if (g->b->size > 1)
+	{
+		sub_s(g->b);
+		write(1, "sb\n", 3);
+	}
+}
+
+void		ss(t_global *g)
+{
+	sub_s(g->a);
+	sub_s(g->b);
+	write(1, "ss\n", 3);
 	return ;
 }

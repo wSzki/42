@@ -6,7 +6,7 @@
 /*   By: wszurkow <wszurkow@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/13 18:14:13 by wszurkow          #+#    #+#             */
-/*   Updated: 2021/05/29 15:55:36 by wszurkow         ###   ########.fr       */
+/*   Updated: 2021/05/27 19:58:41 by wszurkow         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,20 +19,25 @@
 
 #define R 0
 #define RR 1
-#define A g->a
-#define B g->b
-#define A_ID g->a->id
-#define B_ID g->b->id
+#define A 0
+#define B 1
 #define A_DATA g->a->data
 #define B_DATA g->b->data
 #define A_SIZE g->a->size
 #define B_SIZE g->b->size
-#define ABS(x)  ( ( (x) < 0) ? -(x) : (x) )
+#define A_LARGE g->a->largest
+#define B_LARGE g->b->largest
+#define A_SMALL g->b->largest
+#define B_SMALL g->b->largest
+
 typedef struct s_tab
 {
 	int id;
 	int *data;
 	int size;
+	int largest;
+	int smallest;
+
 }			t_tab;
 
 typedef struct s_global

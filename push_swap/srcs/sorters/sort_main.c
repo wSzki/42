@@ -5,157 +5,176 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: wszurkow <wszurkow@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/05/17 19:02:50 by wszurkow          #+#    #+#             */
-/*   Updated: 2021/05/18 00:26:23 by wszurkow         ###   ########.fr       */
+/*   Created: 2021/05/26 13:06:05 by wszurkow          #+#    #+#             */
+/*   Updated: 2021/06/03 13:26:52 by wszurkow         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/pushswap.h"
 
 void	print_all(t_global *g);
-static int	find_smallest_number(t_tab *tab)
-{
-	int smallest_number;
-	int i;
 
-	i = 1;
-	if (*tab->size == 0)
+int	find_smallest(t_tab *tab)
+{
+	int i;
+	int smallest;
+
+	if (tab->size == 0)
 		return (0);
-	if (*tab->size == 1)
-		return (0);
-	smallest_number = tab->data[0];
-	while (i < *tab->size)
-	{
-		if (tab->data[i] < smallest_number)
-			smallest_number = tab->data[i];
-		i++;
-	}
-	return (smallest_number);
+	smallest = tab->data[0];
+	i = 0;
+	while (++i < tab->size)
+		if (tab->data[i] < smallest)
+			smallest = tab->data[i];
+	return (smallest);
 }
 
-static int	find_largest_number(t_tab *tab)
+int	find_largest(t_tab *tab)
 {
-	int largest;
 	int i;
+	int largest;
 
-	i = 1;
-	if (*tab->size == 0)
-		return (0);
-	if (*tab->size == 1)
+	if (tab->size == 0)
 		return (0);
 	largest = tab->data[0];
-	while (i < *tab->size)
-	{
+	i = 0;
+	while (++i < tab->size)
 		if (tab->data[i] > largest)
 			largest = tab->data[i];
-		i++;
-	}
 	return (largest);
 }
-/*
-   static void	place_smallest_number_first(t_global *g, int smallest_number)
-   {
-   int i;
-   int direction;
 
-   i = 0;
-   direction = 1;
-   while (i < *g->a->size / 2 + 1)
-   {
-   if (g->a->data[i] == smallest_number)
-   direction = 0;
-   i++;
-   }
-   while (g->a->data[0] != smallest_number)
-   {
-   if (direction == 0)
-   ra(g);
-   if (direction == 1)
-   rra(g);
-   }
-   return ;
-   }
-
-   void		sort_main(t_global *g)
-   {
-   int i;
-   int smallest_number;
-
-   i = 0;
-   is_a_sorted(g);
-   sort_two(g);
-   if (*g->a->size == 3)
-   {
-   sort_three(g);
-   return ;
-   }
-   smallest_number = find_smallest_number(g->a);
-   while (i < *g->a->size)
-   {
-   if (*g->a->size == 3)
-   {
-   sort_three(g);
-   break ;
-   }
-   smallest_number = find_smallest_number(g->a);
-   place_smallest_number_first(g, smallest_number);
-   pb(g);
-   }
-   while (*g->b->size > 0)
-   pa(g);
-   }
-   */
-int	is_sorted(t_global *g)
+int	count_steps_to(t_tab *tab, int target)
 {
 	int i;
 
-	i = 1;
-	while (i < *g->a->size)
+	i = 0;
+	while (i < tab->size)
 	{
-		if (g->a->data[i] < g->a->data[i - 1])
+		if (tab->data[i] == target)
 			break ;
 		i++;
 	}
-	if (i == *g->a->size)
-	{
-		return 1;
-	}
-	return 0;
+	if (i < tab->size / 2)
+		return (i);
+	return ((tab->size - i) * -1);
 }
-void		sort_main(t_global *g)
+
+void scroll_to(t_global *g, t_tab *tab, int target_value)
 {
+	int steps_to_target;
 
-
-	print_all(g);
-	is_a_sorted(g);
-	sort_two(g);
-	if (*g->a->size == 3)
+	/*if (B_SIZE > 1)*/
+	/*{*/
+	steps_to_target = count_steps_to(tab, target_value);
+	while (tab->data[0] != target_value)
 	{
-		sort_three(g);
-		return ;
+		if (steps_to_target > 0)
+			ra(g);
+		if (steps_to_target < 0)
+			rra(g);
 	}
-	int i = 0;
-	int small = find_smallest_number(g->a);
-	int large = find_largest_number(g->a);
-	while (i < 200)
+	/*}*/
+}
+
+int	find_closest(t_global *g)
+{
+	int i;
+	int smallest;
+	int largest;
+	int smallest_index;
+	int largest_index;
+
+	i = 0;
+	largest = find_largest(A);
+	smallest = find_smallest(A);
+	while (i < A_SIZE)
 	{
-		if (is_sorted(g))
-			break;
-		else if (g->a->data[0] > small && g->a->data[0] < large)
-		{
-			large = g->a->data[0];
-			pb(g);
-		}
-		else if (g->a->data[0] > large)
-		{
-			pb(g);
-			rb(g);
-		}
-		print_all(g);
-		ra(g);
+		if (A_DATA[i] == smallest)
+			smallest_index = i;
+		if (A_DATA[i] == largest)
+			largest_index = i;
 		i++;
 	}
+	if (smallest_index > A_SIZE / 2)
+		smallest_index = A_SIZE - smallest_index;
+	if (largest_index > A_SIZE / 2)
+		largest_index = A_SIZE - largest_index;
+	if (smallest_index < largest_index)
+		return (0);
+	return (1);
+}
+
+void push_smallest_or_largest(t_global *g)
+{
+	int closest;
+	closest = find_closest(g);
+	if (closest == 0)
+	{
+		scroll_to(g, A, find_smallest(A));
+		pb(g);
+	}
+	else
+	{
+		scroll_to(g, A, find_largest(A));
+		pb(g);
+		rb(g);
+	}
+}
+
+int is_sorted(t_global *g)
+{
+	int i;
+
+	i = 1;
+	while (i < A_SIZE)
+	{
+		if (A_DATA[i - 1] > A_DATA[i])
+			return (0);
+	}
+	return (1);
+
+}
+// todo
+// compare moves
+//
+// scroll to position between x >= 0 && y <= 0
+// push
+//
+//
+//
+void	inject(t_global *g)
+{
+	if (A_DATA[0] < find_smallest(B))
+	{
+		pb(g);
+		rrb(g);
+	}
+	if (A_DATA[0] > find_largest(B))
+	{
+		pb(g);
+	}
+
 
 }
 
 
+
+void		sort_main(t_global *g)
+{
+	check_simple_cases(g);
+
+	while (A_SIZE > 3)
+	{
+		/*push_smallest_or_largest(g);*/
+		inject(g);
+	}
+	// Sort remaining 3 values in A
+	sort_three(g, g->a->data);
+	// Refill A from B
+	while (B_SIZE > 0)
+		pa(g);
+	// Rotate to make sure list starts at smallest value
+	scroll_to(g, A, find_smallest(A));
+	print_all(g);
+}

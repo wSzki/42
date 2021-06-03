@@ -1,32 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ps_prepend.c                                       :+:      :+:    :+:   */
+/*   ps_append.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: wszurkow <wszurkow@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/05/15 16:38:42 by wszurkow          #+#    #+#             */
-/*   Updated: 2021/05/26 13:32:02 by wszurkow         ###   ########.fr       */
+/*   Created: 2021/05/15 16:39:18 by wszurkow          #+#    #+#             */
+/*   Updated: 2021/05/15 16:39:43 by wszurkow         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/pushswap.h"
 
-void	ps_prepend(t_global *g, t_tab *tab, int value)
+void	ps_append(t_global *g, t_tab *tab, int value)
 {
 	int i;
-	int j;
 	int *res;
 
-	i = 1;
-	j = 0;
-	tab->size += 1;
-	res = malloc(sizeof(int) * tab->size);
+	i = 0;
+	*tab->size += 1;
+	res = malloc (sizeof(int) * *tab->size);
 	if (!res)
 		free_everything_and_exit(g);
-	res[0] = value;
-	while (j < tab->size - 1)
-		res[i++] = tab->data[j++];
+	while (i < *tab->size - 1)
+	{
+		res[i] = tab->data[i];
+		i++;
+	}
+	res[i] = value;
 	free(tab->data);
 	tab->data = res;
 	return ;

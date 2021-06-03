@@ -6,7 +6,7 @@
 /*   By: wszurkow <wszurkow@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/13 13:38:31 by wszurkow          #+#    #+#             */
-/*   Updated: 2021/05/29 16:08:45 by wszurkow         ###   ########.fr       */
+/*   Updated: 2021/05/27 13:48:29 by wszurkow         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,8 +86,16 @@ static t_global *init_tab_a_and_b(t_global *g)
 	}
 	g->a->data = NULL;
 	g->b->data = NULL;
-	g->a->id = 0;
-	g->b->id = 1;
+	/*g->a->size = NULL;*/
+	/*g->b->size = NULL;*/
+	g->a->id = A;
+	g->b->id = B;
+	g->a->size = 0;
+	g->b->size = 0;
+	g->a->smallest = 0;
+	g->b->smallest = 0;
+	g->a->largest = 0;
+	g->b->largest = 0;
 	return (g);
 }
 
@@ -96,10 +104,18 @@ static t_global *init_tab_data(t_global *g, int ac)
 	g->a->data = malloc(sizeof(int) * ac - 1);
 	if (!g->a->data)
 		free_everything_and_exit(g);
+	/*g->a->size = malloc(sizeof(int));*/
+	/*if (!g->a->size)*/
+		/*free_everything_and_exit(g);*/
+	/**g->a->size = ac - 1;*/
+	g->a->size = ac - 1;
 	g->b->data = malloc(sizeof(int));
 	if (!g->b->data)
 		free_everything_and_exit(g);
-	g->a->size = ac - 1;
+	/*g->b->size = malloc(sizeof(int));*/
+	/*if (!g->b->size)*/
+		/*free_everything_and_exit(g);*/
+	/**g->b->size = 0;*/
 	g->b->size = 0;
 	return (g);
 }
@@ -124,6 +140,7 @@ int		main(int ac, char **av)
 	g = init_struct(g, ac);
 	fill_tab_a(g, ac, av);
 	sort_main(g);
+	/*print_all(g);*/
 	free_everything(g);
 	return (0);
 }
