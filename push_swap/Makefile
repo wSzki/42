@@ -6,7 +6,7 @@
 #    By: wszurkow <wszurkow@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/01/16 22:40:46 by wszurkow          #+#    #+#              #
-#    Updated: 2021/06/03 17:27:04 by wszurkow         ###   ########.fr        #
+#    Updated: 2021/06/03 20:40:49 by wszurkow         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,11 +15,10 @@ SRCS		= $(addprefix ./srcs/, ${SRCS_FILES})
 SRCS_FILES	= \
 			  utils/free_everything.c \
 			  utils/print_error_and_exit.c \
-			  operators/swap_sa_sb_ss.c \
-			  operators/push_pa_pb.c \
-			  operators/rotate_ra_rb_rr.c \
-			  operators/reverse_rra_rrb_rrr.c \
-			  sorters/sort_main.c \
+			  operators/sx.c \
+			  operators/px.c \
+			  operators/rx.c \
+			  operators/rrx.c \
 			  sorters/sort.c \
 			  sorters/sort_three.c \
 			  sorters/check_simple_cases.c \

@@ -6,7 +6,7 @@
 /*   By: wszurkow <wszurkow@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/13 18:14:13 by wszurkow          #+#    #+#             */
-/*   Updated: 2021/06/03 17:27:23 by wszurkow         ###   ########.fr       */
+/*   Updated: 2021/06/03 20:35:29 by wszurkow         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,9 @@
 #define RR 1
 #define A g->a
 #define B g->b
-#define A_ID g->a->id
-#define B_ID g->b->id
+#define A_ID 0
+#define B_ID 1
+#define R_ID 2
 #define A_DATA g->a->data
 #define B_DATA g->b->data
 #define A_SIZE g->a->size
@@ -64,8 +65,6 @@ void	fill_tab_a(t_global *g, int ac, char **av);
 void ss(t_global *g);
 void sb(t_global *g);
 void sa(t_global *g);
-void pb(t_global *g);
-void pa(t_global *g);
 void rotate(t_global *g, int id);
 void reverse(t_global *g, int id);
 void ra(t_global *g);
@@ -84,4 +83,23 @@ void sort(t_global *g);
 void sort_three(t_global *g, int *tab);
 //void if_three_sort_exit(t_global *g);
 //void if_a_sorted_exit(t_global *g);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+void	sx(t_global *g, int id);
+void	px(t_global *g, int id);
+void	rx(t_global *g, int id);
+void	rrx(t_global *g, int id);
+
 #endif

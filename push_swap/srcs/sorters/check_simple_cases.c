@@ -6,7 +6,7 @@
 /*   By: wszurkow <wszurkow@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/26 13:03:15 by wszurkow          #+#    #+#             */
-/*   Updated: 2021/05/27 22:06:43 by wszurkow         ###   ########.fr       */
+/*   Updated: 2021/06/03 20:41:11 by wszurkow         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,21 +20,21 @@ static void	if_three_sort_exit(t_global *g)
 	if (g->a->size == 3)
 	{
 		if (tab[0] > tab[1] && tab[1] < tab[2])
-			sa(g);
+			sx(g, A_ID);
 		if (tab[0] > tab[1] && tab[1] > tab[2])
 		{
-			sa(g);
-			rra(g);
+			sx(g, A_ID);
+			rrx(g, A_ID);
 		}
 		if (tab[0] > tab[1] && tab[1] < tab[2])
-			ra(g);
+			rx(g, A_ID);
 		if (tab[1] > tab[0] && tab[1] > tab[2] && tab[2] > tab[0])
 		{
-			sa(g);
-			ra(g);
+			sx(g, A_ID);
+			rx(g, A_ID);
 		}
 		if (tab[1] > tab[0] && tab[1] > tab[2] && tab[2] < tab[0])
-			rra(g);
+			rrx(g, A_ID);
 		free_everything(g);
 		exit(0);
 	}
@@ -45,7 +45,7 @@ static void	if_two_sort_exit(t_global *g)
 	if (g->a->size == 2)
 	{
 		if (g->a->data[0] > g->a->data[1])
-			sa(g);
+			sx(g, A_ID);
 		free_everything(g);
 		exit(0);
 	}

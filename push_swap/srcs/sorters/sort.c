@@ -6,7 +6,7 @@
 /*   By: wszurkow <wszurkow@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/03 16:48:51 by wszurkow          #+#    #+#             */
-/*   Updated: 2021/06/03 20:16:00 by wszurkow         ###   ########.fr       */
+/*   Updated: 2021/06/03 20:40:22 by wszurkow         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,9 +113,9 @@ void scroll_to(t_global *g, t_tab *tab, int target_value)
 	while (tab->data[0] != target_value)
 	{
 		if (steps_to_target > 0)
-			rb(g);
+			rx(g, B_ID);
 		if (steps_to_target < 0)
-			rrb(g);
+			rrx(g, B_ID);
 	}
 }
 
@@ -126,13 +126,13 @@ void push_smallest_or_largest(t_global *g)
 	if (closest == 0)
 	{
 		scroll_to(g, B, find_smallest(B));
-		pa(g);
-		ra(g);
+		px(g, A_ID);
+		rx(g, A_ID);
 	}
 	else
 	{
 		scroll_to(g, B, find_largest(B));
-		pa(g);
+		px(g, A_ID);
 	}
 }
 
@@ -147,12 +147,12 @@ void	sort(t_global *g)
 	{
 		if (A_DATA[0] < median)
 		{
-			pb(g);
+			px(g, B_ID);
 		}
 		else
 		{
-			pb(g);
-			rb(g);
+			px(g, B_ID);
+			rx(g, B_ID);
 		}
 	}
 	while (B_SIZE > 0)
@@ -160,5 +160,5 @@ void	sort(t_global *g)
 		push_smallest_or_largest(g);
 	}
 	while (A_DATA[0] != find_smallest(A))
-		ra(g);
+		rx(g, A_ID);
 }
