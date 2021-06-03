@@ -6,7 +6,7 @@
 #    By: wszurkow <wszurkow@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/01/16 22:40:46 by wszurkow          #+#    #+#              #
-#    Updated: 2021/06/03 20:40:49 by wszurkow         ###   ########.fr        #
+#    Updated: 2021/06/03 20:58:22 by wszurkow         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,6 +20,7 @@ SRCS_FILES	= \
 			  operators/rx.c \
 			  operators/rrx.c \
 			  sorters/sort.c \
+			  sorters/scroll_to.c \
 			  sorters/sort_three.c \
 			  sorters/check_simple_cases.c \
 			  sorters/find_smallest.c \

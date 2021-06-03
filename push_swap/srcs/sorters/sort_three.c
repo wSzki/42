@@ -6,7 +6,7 @@
 /*   By: wszurkow <wszurkow@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/17 19:01:04 by wszurkow          #+#    #+#             */
-/*   Updated: 2021/05/27 22:05:25 by wszurkow         ###   ########.fr       */
+/*   Updated: 2021/06/03 20:59:29 by wszurkow         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,19 +15,19 @@
 void sort_three(t_global*g, int *tab)
 {
 	if (tab[0] > tab[1] && tab[1] < tab[2])
-		sa(g);
+		sx(g, A_ID);
 	if (tab[0] > tab[1] && tab[1] > tab[2])
 	{
-		sa(g);
-		rra(g);
+		sx(g, A_ID);
+		rrx(g, A_ID);
 	}
 	if (tab[0] > tab[1] && tab[1] < tab[2])
-		ra(g);
+		rx(g, A_ID);
 	if (tab[1] > tab[0] && tab[1] > tab[2] && tab[2] > tab[0])
 	{
-		sa(g);
-		ra(g);
+		sx(g, A_ID);
+		rx(g, A_ID);
 	}
 	if (tab[1] > tab[0] && tab[1] > tab[2] && tab[2] < tab[0])
-		rra(g);
+		rrx(g, A_ID);
 }

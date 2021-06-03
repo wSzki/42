@@ -6,7 +6,7 @@
 /*   By: wszurkow <wszurkow@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/13 18:14:13 by wszurkow          #+#    #+#             */
-/*   Updated: 2021/06/03 20:35:29 by wszurkow         ###   ########.fr       */
+/*   Updated: 2021/06/03 20:58:03 by wszurkow         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,51 +51,23 @@ typedef struct s_global
 }				t_global;
 
 
-int			ps_atoi(const char *str, t_global *g);
 void		print_error_and_exit(void);
 void		free_everything_and_exit(t_global *g);
 void		free_everything(t_global *g);
 
+int			ps_atoi(const char *str, t_global *g);
 void	ps_prepend(t_global *g, t_tab *tab, int value);
 void	ps_append(t_global *g, t_tab *tab, int value);
 void	ps_delete_first(t_global *g, t_tab *tab);
 
 void	fill_tab_a(t_global *g, int ac, char **av);
-
-void ss(t_global *g);
-void sb(t_global *g);
-void sa(t_global *g);
-void rotate(t_global *g, int id);
-void reverse(t_global *g, int id);
-void ra(t_global *g);
-void rb(t_global *g);
-void rr(t_global *g);
-void rra(t_global *g);
-void rrb(t_global *g);
-void rrr(t_global *g);
+void scroll_to(t_global *g, t_tab *tab, int target_value);
 
 int	find_smallest(t_tab *tab);
 int	find_largest(t_tab *tab);
 void check_simple_cases(t_global *g);
-void sort_main(t_global *g);
 void sort(t_global *g);
-//void if_two_sort_exit(t_global *g);
 void sort_three(t_global *g, int *tab);
-//void if_three_sort_exit(t_global *g);
-//void if_a_sorted_exit(t_global *g);
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 //
 void	sx(t_global *g, int id);
 void	px(t_global *g, int id);

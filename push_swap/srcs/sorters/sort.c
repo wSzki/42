@@ -6,7 +6,7 @@
 /*   By: wszurkow <wszurkow@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/03 16:48:51 by wszurkow          #+#    #+#             */
-/*   Updated: 2021/06/03 20:40:22 by wszurkow         ###   ########.fr       */
+/*   Updated: 2021/06/03 20:58:26 by wszurkow         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,38 +86,6 @@ int	find_closest(t_global *g)
 	return (1);
 }
 
-int	count_steps_to(t_tab *tab, int target)
-{
-	int i;
-
-	i = 0;
-	while (i < tab->size)
-	{
-		if (tab->data[i] == target)
-			break ;
-		i++;
-	}
-	if (i < tab->size / 2)
-		return (i);
-	return ((tab->size - i) * -1);
-}
-
-
-void scroll_to(t_global *g, t_tab *tab, int target_value)
-{
-	int steps_to_target;
-
-	/*if (B_SIZE > 1)*/
-	/*{*/
-	steps_to_target = count_steps_to(tab, target_value);
-	while (tab->data[0] != target_value)
-	{
-		if (steps_to_target > 0)
-			rx(g, B_ID);
-		if (steps_to_target < 0)
-			rrx(g, B_ID);
-	}
-}
 
 void push_smallest_or_largest(t_global *g)
 {
