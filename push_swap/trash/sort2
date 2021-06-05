@@ -1,0 +1,221 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   sort.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: wszurkow <wszurkow@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/06/03 16:48:51 by wszurkow          #+#    #+#             */
+/*   Updated: 2021/06/04 20:57:11 by wszurkow         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "../../includes/pushswap.h"
+
+void	print_all(t_global *g);
+
+static int approximatively_equal(int less, int more)
+{
+	if (less == more - 1)
+		return (1);
+	if (less == more + 1)
+		return (1);
+	if (less - 1 == more)
+		return (1);
+	if (less + 1 == more)
+		return (1);
+	if (less == more)
+		return (1);
+	return (0);
+
+}
+
+void find_median(t_global *g, int *median)
+{
+	int i;
+	int j;
+	int less;
+	int more;
+	int target;
+
+	i = -1;
+	while (++i < A_SIZE)
+	{
+		j = -1;
+		less = 0;
+		more = 0;
+		target = A_DATA[i];
+		while (++j < A_SIZE)
+		{
+			if (A_DATA[j] < target)
+				less++;
+			if (A_DATA[j] > target)
+				more++;
+		}
+		if (approximatively_equal(less, more))
+			*median = A_DATA[i];
+	}
+}
+
+
+int	find_closest(t_global *g)
+{
+	int i;
+	int smallest;
+	int largest;
+	int smallest_index;
+	int largest_index;
+
+	i = 0;
+	largest = find_largest(B);
+	smallest = find_smallest(B);
+	while (i < B_SIZE)
+	{
+		if (B_DATA[i] == smallest)
+			smallest_index = i;
+		if (B_DATA[i] == largest)
+			largest_index = i;
+		i++;
+	}
+	if (smallest_index > B_SIZE / 2)
+		smallest_index = B_SIZE - smallest_index;
+	if (largest_index > B_SIZE / 2)
+		largest_index = B_SIZE - largest_index;
+	if (smallest_index < largest_index)
+		return (0);
+	return (1);
+}
+
+
+void push_smallest_or_largest(t_global *g)
+{
+	int closest;
+	closest = find_closest(g);
+	if (closest == 0)
+	{
+		scroll_to(g, B, find_smallest(B));
+		px(g, A_ID);
+		rx(g, A_ID);
+	}
+	else
+	{
+		scroll_to(g, B, find_largest(B));
+		px(g, A_ID);
+	}
+}
+
+
+int	is_larger_than_n_smaller_than_rest(t_tab *tab, int a_data, int previous)
+{
+	int i;
+	int flag;
+
+	i = -1;
+	flag = 0;
+	while (++i < tab->size)
+	{
+		if (previous > a_data )
+			if (previous < tab->data[i])
+			{
+				flag++;
+				break;
+			}
+		i++;
+	}
+	if (flag)
+		return (0);
+	return (1);
+}
+
+int	is_smaller_than_n_larger_than_rest(t_tab *tab, int a_data, int next)
+{
+	int i;
+	int flag;
+
+	flag = 0;
+	i = 0;
+	while (i < tab->size)
+	{
+
+		if (next < a_data)
+			if (next > tab->data[i])
+			{
+				flag++;
+				break;
+			}
+		i++;
+	}
+	if (flag)
+		return (0);
+	return (1);
+}
+
+
+
+int temp(t_global *g)
+{
+	if ((A_DATA[0] < B_DATA[B_SIZE - 1] && A_DATA[0] > B_DATA[0]))
+		if (is_larger_than_n_smaller_than_rest(B, A_DATA[0], B_DATA[0]))
+			if (is_smaller_than_n_larger_than_rest(B, A_DATA[0], B_DATA[B_SIZE - 1]))
+				return (1);
+	return (0);
+}
+
+void	scroll_to_slot(t_global *g)
+{
+	while (temp(g) == 0)
+	{
+		rx(g, B_ID);
+	}
+}
+
+void inject(t_global *g)
+{
+	if (A_DATA[0] < find_smallest(B))
+	{
+		scroll_to(g, B, find_largest(B));
+		px(g, B_ID);
+		rx(g, B_ID);
+	}
+	else if (A_DATA[0] > find_largest(B))
+	{
+		scroll_to(g, B, find_largest(B));
+		px(g, B_ID);
+	}
+	else
+	{
+		scroll_to_slot(g);
+		px(g, B_ID);
+	}
+}
+
+void	sort(t_global *g)
+{
+	check_simple_cases(g);
+	int median;
+	find_median(g, &median);
+	while (A_SIZE > 0)
+	{
+		if (A_DATA[0] < median)
+		{
+			px(g, B_ID);
+		}
+		else
+		{
+			px(g, B_ID);
+			rx(g, B_ID);
+		}
+	}
+	while (B_SIZE > 3)
+		px(g, A_ID);
+	sort_three(g, B_DATA);
+
+	while (A_SIZE > 0)
+	{
+		inject(g);
+	}
+	scroll_to(g, B, find_largest(B));
+	while (B_SIZE > 0)
+		px(g, A_ID);
+	print_all(g);
+}

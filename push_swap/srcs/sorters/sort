@@ -6,7 +6,7 @@
 /*   By: wszurkow <wszurkow@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/03 16:48:51 by wszurkow          #+#    #+#             */
-/*   Updated: 2021/06/05 02:29:00 by wszurkow         ###   ########.fr       */
+/*   Updated: 2021/06/04 23:42:24 by wszurkow         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,12 +21,10 @@ static void find_median(t_tab *tab, int *median)
 	int count;
 	int target;
 
-	count = 0;
 	i = -1;
 	while (++i < tab->size)
 	{
 		j = -1;
-		count = 0;
 		target = tab->data[i];
 		while (++j < tab->size)
 		{
@@ -35,11 +33,8 @@ static void find_median(t_tab *tab, int *median)
 			if (tab->data[j] > target)
 				count++;
 		}
-		if (count == 0 || count == 1 || count == -1)
-		{
+		if (count == 0 || count == 1)
 			*median = tab->data[i];
-			return;
-		}
 	}
 }
 
@@ -91,28 +86,21 @@ void push_smallest_or_largest(t_global *g)
 
 void	sort(t_global *g)
 {
-	int i;
 	int median;
 
 	check_simple_cases(g);
 	find_median(A, &median);
-
-	i = A_SIZE;
-	while (A_SIZE > i / 2)
+	while (A_SIZE > 0)
 	{
-		if (A_DATA[0] <= median)
+		if (A_DATA[0] < median)
+		{
 			px(g, B_ID);
+		}
 		else
-			rx(g, A_ID);
-	}
-	while (B_SIZE > 0)
-		push_smallest_or_largest(g);
-	while (A_SIZE > i / 2)
-	{
-		if (A_DATA[0] > median)
+		{
 			px(g, B_ID);
-		else
-			rx(g, A_ID);
+			rx(g, B_ID);
+		}
 	}
 	while (B_SIZE > 0)
 		push_smallest_or_largest(g);
