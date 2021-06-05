@@ -6,7 +6,7 @@
 /*   By: wszurkow <wszurkow@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/26 13:03:15 by wszurkow          #+#    #+#             */
-/*   Updated: 2021/06/03 20:41:11 by wszurkow         ###   ########.fr       */
+/*   Updated: 2021/06/05 22:00:11 by wszurkow         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,9 +69,26 @@ static void	if_a_sorted_exit(t_global *g)
 	}
 }
 
+static void if_five_sort_exit(t_global *g)
+{
+	if (A_SIZE == 5)
+	{
+		scroll_to(g, A, find_smallest(A));
+		px(g, B_ID);
+		scroll_to(g, A, find_smallest(A));
+		px(g, B_ID);
+		sort_three(g, A_DATA);
+		px(g, A_ID);
+		px(g, A_ID);
+		free_everything(g);
+		exit(0);
+	}
+}
+
 void		check_simple_cases(t_global *g)
 {
 	if_a_sorted_exit(g);
 	if_two_sort_exit(g);
 	if_three_sort_exit(g);
+	if_five_sort_exit(g);
 }
