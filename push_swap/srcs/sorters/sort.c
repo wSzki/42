@@ -6,7 +6,7 @@
 /*   By: wszurkow <wszurkow@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/03 16:48:51 by wszurkow          #+#    #+#             */
-/*   Updated: 2021/06/05 14:14:50 by wszurkow         ###   ########.fr       */
+/*   Updated: 2021/06/05 22:22:41 by wszurkow         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,7 +103,8 @@ void	sort(t_global *g)
 
 	i = A_SIZE;
 
-	while (A_SIZE > i / 4 * 3)
+
+	while (A_SIZE > (i * 3) / 4 + 1)
 	{
 		if (A_DATA[0] > median_c)
 			px(g, B_ID);
@@ -113,8 +114,7 @@ void	sort(t_global *g)
 	while (B_SIZE > 0)
 		push_smallest_or_largest(g);
 
-
-	while (A_SIZE > i / 4 * 3)
+	while (A_SIZE > (i * 3) / 4 + 2)
 	{
 		if (A_DATA[0] > median_a && A_DATA[0] <= median_c)
 			px(g, B_ID);
@@ -124,9 +124,9 @@ void	sort(t_global *g)
 	while (B_SIZE > 0)
 		push_smallest_or_largest(g);
 
-	while (A_SIZE > i / 4 * 3)
+	while (A_SIZE > (i * 3) / 4 + 1)
 	{
-		if (A_DATA[0] <= median_a && A_DATA[0] > median_b)
+		if (A_DATA[0] < median_a && A_DATA[0] >= median_b)
 			px(g, B_ID);
 		else
 			rx(g, A_ID);
@@ -134,9 +134,9 @@ void	sort(t_global *g)
 	while (B_SIZE > 0)
 		push_smallest_or_largest(g);
 
-	while (A_SIZE > i / 4 * 3)
+	while (A_SIZE > (i * 3) / 4 + 1)
 	{
-		if (A_DATA[0] <= median_b)
+		if (A_DATA[0] < median_b)
 			px(g, B_ID);
 		else
 			rx(g, A_ID);
@@ -149,13 +149,13 @@ void	sort(t_global *g)
 
 	/*while (A_SIZE > i / 2)*/
 	/*{*/
-		/*if (A_DATA[0] > median_a)*/
-			/*px(g, B_ID);*/
-		/*else*/
-			/*rx(g, A_ID);*/
+	/*if (A_DATA[0] > median_a)*/
+	/*px(g, B_ID);*/
+	/*else*/
+	/*rx(g, A_ID);*/
 	/*}*/
 	/*while (B_SIZE > 0)*/
-		/*push_smallest_or_largest(g);*/
+	/*push_smallest_or_largest(g);*/
 	scroll_to(g, A, find_smallest(A));
 	print_all(g);
 }
