@@ -6,7 +6,7 @@
 /*   By: wszurkow <wszurkow@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/03 16:48:51 by wszurkow          #+#    #+#             */
-/*   Updated: 2021/06/05 22:40:24 by wszurkow         ###   ########.fr       */
+/*   Updated: 2021/06/06 02:50:08 by wszurkow         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ static void find_median(t_tab *tab, int *median, int min_value, int max_value)
 			if (tab->data[j] > target && tab->data[j] < max_value)
 				count++;
 		}
-		if (count == 0 || count == 1 || count == -1)
+		if (count == 0 || count == 1 )
 		{
 			*median = tab->data[i];
 			return;
@@ -114,7 +114,7 @@ void	sort(t_global *g)
 	while (B_SIZE > 0)
 		push_smallest_or_largest(g);
 
-	while (A_SIZE > (i * 3) / 4 + 2)
+	while (A_SIZE > ((i * 3) / 4) - 1)
 	{
 		if (A_DATA[0] >= median_a && A_DATA[0] <= median_c)
 			px(g, B_ID);
@@ -124,13 +124,14 @@ void	sort(t_global *g)
 	while (B_SIZE > 0)
 		push_smallest_or_largest(g);
 
-	while (A_SIZE > (i * 3) / 4 + 1)
+	while (A_SIZE > (i * 3) / 4)
 	{
 		if (A_DATA[0] < median_a && A_DATA[0] >= median_b)
 			px(g, B_ID);
 		else
 			rx(g, A_ID);
 	}
+	/*print_all(g);*/
 	while (B_SIZE > 0)
 		push_smallest_or_largest(g);
 
@@ -157,5 +158,5 @@ void	sort(t_global *g)
 	/*while (B_SIZE > 0)*/
 	/*push_smallest_or_largest(g);*/
 	scroll_to(g, A, find_smallest(A));
-	print_all(g);
+	/*print_all(g);*/
 }
