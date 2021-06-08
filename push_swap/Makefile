@@ -6,7 +6,7 @@
 #    By: wszurkow <wszurkow@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/01/16 22:40:46 by wszurkow          #+#    #+#              #
-#    Updated: 2021/06/03 20:58:22 by wszurkow         ###   ########.fr        #
+#    Updated: 2021/06/08 17:30:38 by wszurkow         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,6 +25,9 @@ SRCS_FILES	= \
 			  sorters/check_simple_cases.c \
 			  sorters/find_smallest.c \
 			  sorters/find_largest.c \
+			  sorters/find_median.c \
+			  sorters/push_smallest_or_largest.c \
+			  sorters/quarter_sort.c \
 			  ps_delete_first.c \
 			  ps_prepend.c \
 			  ps_atoi.c \
