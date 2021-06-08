@@ -6,7 +6,7 @@
 /*   By: wszurkow <wszurkow@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/13 18:22:55 by wszurkow          #+#    #+#             */
-/*   Updated: 2021/05/16 14:57:21 by wszurkow         ###   ########.fr       */
+/*   Updated: 2021/06/08 19:46:19 by wszurkow         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 static int	ft_count_numbers(int n)
 {
-	size_t i;
+	size_t	i;
 
 	i = 0;
 	while (n)
@@ -49,7 +49,7 @@ static void	convert(const char *str, int *atoi, int *i, int *number_count)
 	}
 }
 
-int			ps_atoi(const char *str, t_global *g)
+int	ps_atoi(const char *str, t_global *g)
 {
 	int	atoi;
 	int	sign;

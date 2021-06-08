@@ -6,7 +6,7 @@
 /*   By: wszurkow <wszurkow@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/15 16:43:19 by wszurkow          #+#    #+#             */
-/*   Updated: 2021/05/26 13:34:10 by wszurkow         ###   ########.fr       */
+/*   Updated: 2021/06/08 19:46:44 by wszurkow         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 static void	check_duplicates(t_global *g)
 {
-	int i;
-	int j;
+	int	i;
+	int	j;
 
 	i = 0;
 	while (i < g->a->size)
@@ -31,10 +31,10 @@ static void	check_duplicates(t_global *g)
 	}
 }
 
-void		fill_tab_a(t_global *g, int ac, char **av)
+void	fill_tab_a(t_global *g, int ac, char **av)
 {
-	int i;
-	int j;
+	int	i;
+	int	j;
 
 	i = 1;
 	j = 0;

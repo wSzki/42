@@ -6,7 +6,7 @@
 /*   By: wszurkow <wszurkow@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/15 16:38:42 by wszurkow          #+#    #+#             */
-/*   Updated: 2021/05/26 13:32:02 by wszurkow         ###   ########.fr       */
+/*   Updated: 2021/06/08 19:46:32 by wszurkow         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 
 void	ps_prepend(t_global *g, t_tab *tab, int value)
 {
-	int i;
-	int j;
-	int *res;
+	int	i;
+	int	j;
+	int	*res;
 
 	i = 1;
 	j = 0;

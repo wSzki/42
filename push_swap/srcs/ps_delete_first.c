@@ -6,7 +6,7 @@
 /*   By: wszurkow <wszurkow@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/15 16:40:00 by wszurkow          #+#    #+#             */
-/*   Updated: 2021/05/26 13:31:46 by wszurkow         ###   ########.fr       */
+/*   Updated: 2021/06/08 19:45:58 by wszurkow         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 
 void	ps_delete_first(t_global *g, t_tab *tab)
 {
-	int i;
-	int j;
-	int *res;
+	int	i;
+	int	j;
+	int	*res;
 
 	i = 1;
 	j = 0;
