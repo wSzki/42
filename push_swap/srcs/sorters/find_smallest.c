@@ -6,7 +6,7 @@
 /*   By: wszurkow <wszurkow@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/03 17:26:01 by wszurkow          #+#    #+#             */
-/*   Updated: 2021/06/03 17:26:20 by wszurkow         ###   ########.fr       */
+/*   Updated: 2021/06/08 19:39:51 by wszurkow         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 int	find_smallest(t_tab *tab)
 {
-	int i;
-	int smallest;
+	int	i;
+	int	smallest;
 
 	if (tab->size == 0)
 		return (0);

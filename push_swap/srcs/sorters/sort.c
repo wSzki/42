@@ -6,7 +6,7 @@
 /*   By: wszurkow <wszurkow@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/03 16:48:51 by wszurkow          #+#    #+#             */
-/*   Updated: 2021/06/08 18:01:41 by wszurkow         ###   ########.fr       */
+/*   Updated: 2021/06/08 19:40:16 by wszurkow         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,11 +26,11 @@ static void	normalise_list(t_global *g, int *offset)
 
 void	sort(t_global *g)
 {
-	int offset;
-	int median_a;
-	int median_b;
-	int median_c;
-	long minimum;
+	int		offset;
+	int		median_a;
+	int		median_b;
+	int		median_c;
+	long	minimum;
 
 	check_simple_cases(g);
 	offset = 0;

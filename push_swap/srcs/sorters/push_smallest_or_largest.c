@@ -6,7 +6,7 @@
 /*   By: wszurkow <wszurkow@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/08 17:27:46 by wszurkow          #+#    #+#             */
-/*   Updated: 2021/06/08 17:27:59 by wszurkow         ###   ########.fr       */
+/*   Updated: 2021/06/08 19:40:56 by wszurkow         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,11 @@
 
 static int	find_closest(t_global *g)
 {
-	int i;
-	int smallest;
-	int largest;
-	int smallest_index;
-	int largest_index;
+	int	i;
+	int	smallest;
+	int	largest;
+	int	smallest_index;
+	int	largest_index;
 
 	i = 0;
 	largest = find_largest(B);
@@ -40,10 +40,10 @@ static int	find_closest(t_global *g)
 	return (1);
 }
 
-
-void push_smallest_or_largest(t_global *g)
+void	push_smallest_or_largest(t_global *g)
 {
-	int closest;
+	int	closest;
+
 	closest = find_closest(g);
 	if (closest == 0)
 	{

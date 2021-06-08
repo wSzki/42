@@ -6,7 +6,7 @@
 /*   By: wszurkow <wszurkow@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/03 17:26:25 by wszurkow          #+#    #+#             */
-/*   Updated: 2021/06/03 17:26:37 by wszurkow         ###   ########.fr       */
+/*   Updated: 2021/06/08 19:41:26 by wszurkow         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 int	find_largest(t_tab *tab)
 {
-	int i;
-	int largest;
+	int	i;
+	int	largest;
 
 	if (tab->size == 0)
 		return (0);

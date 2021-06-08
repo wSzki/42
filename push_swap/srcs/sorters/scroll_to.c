@@ -6,7 +6,7 @@
 /*   By: wszurkow <wszurkow@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/03 20:57:27 by wszurkow          #+#    #+#             */
-/*   Updated: 2021/06/03 21:07:23 by wszurkow         ###   ########.fr       */
+/*   Updated: 2021/06/08 19:42:48 by wszurkow         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 static int	count_steps_to(t_tab *tab, int target)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (i < tab->size)
@@ -25,12 +25,12 @@ static int	count_steps_to(t_tab *tab, int target)
 	}
 	if (i < tab->size / 2)
 		return (i);
-	return ((tab->size - i) * - 1);
+	return ((tab->size - i) * -1);
 }
 
-void scroll_to(t_global *g, t_tab *tab, int target_value)
+void	scroll_to(t_global *g, t_tab *tab, int target_value)
 {
-	int steps_to_target;
+	int	steps_to_target;
 
 	if (tab->size > 1)
 	{

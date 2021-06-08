@@ -6,7 +6,7 @@
 /*   By: wszurkow <wszurkow@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/26 13:03:15 by wszurkow          #+#    #+#             */
-/*   Updated: 2021/06/05 22:00:11 by wszurkow         ###   ########.fr       */
+/*   Updated: 2021/06/08 19:45:27 by wszurkow         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 static void	if_three_sort_exit(t_global *g)
 {
-	int *tab;
+	int	*tab;
 
 	tab = g->a->data;
 	if (g->a->size == 3)
@@ -53,7 +53,7 @@ static void	if_two_sort_exit(t_global *g)
 
 static void	if_a_sorted_exit(t_global *g)
 {
-	int i;
+	int	i;
 
 	i = 1;
 	while (i < g->a->size)
@@ -69,7 +69,7 @@ static void	if_a_sorted_exit(t_global *g)
 	}
 }
 
-static void if_five_sort_exit(t_global *g)
+static void	if_five_sort_exit(t_global *g)
 {
 	if (A_SIZE == 5)
 	{
@@ -85,7 +85,7 @@ static void if_five_sort_exit(t_global *g)
 	}
 }
 
-void		check_simple_cases(t_global *g)
+void	check_simple_cases(t_global *g)
 {
 	if_a_sorted_exit(g);
 	if_two_sort_exit(g);
