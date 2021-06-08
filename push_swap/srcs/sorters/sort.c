@@ -6,7 +6,7 @@
 /*   By: wszurkow <wszurkow@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/03 16:48:51 by wszurkow          #+#    #+#             */
-/*   Updated: 2021/06/06 02:50:08 by wszurkow         ###   ########.fr       */
+/*   Updated: 2021/06/08 16:07:46 by wszurkow         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,22 +89,62 @@ void push_smallest_or_largest(t_global *g)
 	}
 }
 
+
+void	ttt(t_global *g, int first_median, int second_median)
+{
+	int i;
+
+
+	i = A_SIZE;
+	while (A_SIZE > (i * 3) / 4)
+	{
+		if (A_DATA[0] <= first_median && A_DATA[0] > second_median)
+			px(g, B_ID);
+		else
+			rx(g, A_ID);
+	}
+	while (B_SIZE > 0)
+		push_smallest_or_largest(g);
+}
+
+
 void	sort(t_global *g)
 {
 	int i;
 	int median_a;
 	int median_b;
 	int median_c;
-
+	int tmp;
+	int j;
 	check_simple_cases(g);
+
+
+
+	j = 0;
+	while (A_SIZE % 4 != 0)
+	{
+		scroll_to(g, A, find_smallest(A));
+		px(g, B_ID);
+		j++;
+	}
 	find_median(A, &median_a, find_smallest(A), find_largest(A));
 	find_median(A, &median_b, find_smallest(A), median_a);
 	find_median(A, &median_c, median_a, find_largest(A));
 
 	i = A_SIZE;
-
+	tmp = find_largest(B);
 
 	while (A_SIZE > (i * 3) / 4)
+	{
+		if (A_DATA[0] <= median_b && A_DATA[0] > tmp)
+			px(g, B_ID);
+		else
+			rx(g, A_ID);
+	}
+	while (B_SIZE > 0)
+		push_smallest_or_largest(g);
+
+	while (A_SIZE - j > (i * 3) / 4)
 	{
 		if (A_DATA[0] > median_c)
 			px(g, B_ID);
@@ -114,9 +154,9 @@ void	sort(t_global *g)
 	while (B_SIZE > 0)
 		push_smallest_or_largest(g);
 
-	while (A_SIZE > ((i * 3) / 4) - 1)
+	while (A_SIZE - j > (i * 3) / 4)
 	{
-		if (A_DATA[0] >= median_a && A_DATA[0] <= median_c)
+		if (A_DATA[0] > median_a && A_DATA[0] <= median_c)
 			px(g, B_ID);
 		else
 			rx(g, A_ID);
@@ -124,9 +164,9 @@ void	sort(t_global *g)
 	while (B_SIZE > 0)
 		push_smallest_or_largest(g);
 
-	while (A_SIZE > (i * 3) / 4)
+	while (A_SIZE - j > (i * 3) / 4)
 	{
-		if (A_DATA[0] < median_a && A_DATA[0] >= median_b)
+		if (A_DATA[0] <= median_a && A_DATA[0] > median_b)
 			px(g, B_ID);
 		else
 			rx(g, A_ID);
@@ -135,15 +175,6 @@ void	sort(t_global *g)
 	while (B_SIZE > 0)
 		push_smallest_or_largest(g);
 
-	while (A_SIZE > (i * 3) / 4 + 1)
-	{
-		if (A_DATA[0] < median_b)
-			px(g, B_ID);
-		else
-			rx(g, A_ID);
-	}
-	while (B_SIZE > 0)
-		push_smallest_or_largest(g);
 
 
 
