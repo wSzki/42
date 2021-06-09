@@ -6,7 +6,7 @@
 /*   By: wszurkow <wszurkow@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/13 18:14:13 by wszurkow          #+#    #+#             */
-/*   Updated: 2021/06/09 15:38:46 by wszurkow         ###   ########.fr       */
+/*   Updated: 2021/06/09 15:55:41 by wszurkow         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,9 +67,9 @@ void scroll_to(t_global *g, t_tab *tab, int target_value);
 int	find_smallest(t_tab *tab);
 int	find_largest(t_tab *tab);
 void find_median(t_tab *tab, int *median, int min_value, int max_value);
-int	quarter_sort(t_global *g, long first_median, long second_median, int offset, long input);
+int	quarter_sort(t_global *g, long first_median, long second_median, long input);
 void check_simple_cases(t_global *g);
-void sort(t_global *g);
+void sort(t_global *g, int lowest_sorted);
 void sort_three(t_global *g, int *tab);
 void push_smallest_or_largest(t_global *g);
 //

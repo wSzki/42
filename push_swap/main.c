@@ -6,7 +6,7 @@
 /*   By: wszurkow <wszurkow@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/13 13:38:31 by wszurkow          #+#    #+#             */
-/*   Updated: 2021/06/08 17:23:39 by wszurkow         ###   ########.fr       */
+/*   Updated: 2021/06/09 15:49:18 by wszurkow         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,7 +123,7 @@ int		main(int ac, char **av)
 		return (0);
 	g = init_struct(g, ac);
 	fill_tab_a(g, ac, av);
-	sort(g);
+	sort(g, 0);
 	free_everything(g);
 	return (0);
 }
