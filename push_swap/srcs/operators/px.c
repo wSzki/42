@@ -16,24 +16,24 @@ void	px(t_global *g, int id)
 {
 	if (id == A_ID)
 	{
-		if (B)
+		if (g->b)
 		{
-			if (B_SIZE > 0)
+			if (g->b->size > 0)
 			{
-				ps_prepend(g, A, B_DATA[0]);
-				ps_delete_first(g, B);
+				ps_prepend(g, g->a, g->b->data[0]);
+				ps_delete_first(g, g->b);
 				write(1, "pa\n", 3);
 			}
 		}
 	}
 	if (id == B_ID)
 	{
-		if (A)
+		if (g->a)
 		{
-			if (A_SIZE > 0)
+			if (g->a->size > 0)
 			{
-				ps_prepend(g, B, A_DATA[0]);
-				ps_delete_first(g, A);
+				ps_prepend(g, g->b, g->a->data[0]);
+				ps_delete_first(g, g->a);
 				write(1, "pb\n", 3);
 			}
 		}

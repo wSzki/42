@@ -6,60 +6,13 @@
 /*   By: wszurkow <wszurkow@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/13 13:38:31 by wszurkow          #+#    #+#             */
-/*   Updated: 2021/06/09 15:49:18 by wszurkow         ###   ########.fr       */
+/*   Updated: 2021/06/09 16:39:13 by wszurkow         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./includes/pushswap.h"
 
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-
-void	print_all(t_global *g)
-{
-	int i;
-
-	i = 0;
-	printf("%s\n", "=====================");
-	printf("%s\n", "[ TABLE A ]");
-	printf("%s\n", "---------------------");
-	if (g->a->size)
-	{
-
-		printf("Size : %d\n", g->a->size);
-		printf("%s\n", "---------------------");
-		while (i < g->a->size)
-		{
-			printf("%d\n", g->a->data[i]);
-			i++;
-		}
-	}
-	else
-		printf("%s\n", "TABLE A EMPTY");
-	printf("%s\n", "=====================");
-
-	i = 0;
-	printf("%s\n", "=====================");
-	printf("%s\n", "[ TABLE B ]");
-	printf("%s\n", "---------------------");
-	if (g->b->size)
-	{
-		printf("Size : %d\n", g->b->size);
-		printf("%s\n", "---------------------");
-		while (i < g->b->size)
-		{
-			printf("%d\n", g->b->data[i]);
-			i++;
-		}
-	}
-	else
-		printf("%s\n", "TABLE B EMPTY");
-	printf("%s\n", "=====================");
-}
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-
-static t_global *init_g(t_global *g)
+static t_global	*init_g(t_global *g)
 {
 	g = malloc(sizeof(t_global));
 	if (!g)
@@ -69,7 +22,7 @@ static t_global *init_g(t_global *g)
 	return (g);
 }
 
-static t_global *init_tab_a_and_b(t_global *g)
+static t_global	*init_tab_a_and_b(t_global *g)
 {
 	g->a = malloc(sizeof(t_tab));
 	if (!g->a)
@@ -91,7 +44,7 @@ static t_global *init_tab_a_and_b(t_global *g)
 	return (g);
 }
 
-static t_global *init_tab_data(t_global *g, int ac)
+static t_global	*init_tab_data(t_global *g, int ac)
 {
 	g->a->data = malloc(sizeof(int) * ac - 1);
 	if (!g->a->data)
@@ -104,7 +57,7 @@ static t_global *init_tab_data(t_global *g, int ac)
 	return (g);
 }
 
-static t_global *init_struct(t_global *g, int ac)
+static t_global	*init_struct(t_global *g, int ac)
 {
 	g = init_g(g);
 	g = init_tab_a_and_b(g);
@@ -112,11 +65,13 @@ static t_global *init_struct(t_global *g, int ac)
 	return (g);
 }
 
-int		main(int ac, char **av)
+int	main(int ac, char **av)
 {
-	t_global *g;
+	t_global	*g;
 
 	g = NULL;
+	if (ac == 1)
+		return (0);
 	if (ac < 2)
 		print_error_and_exit();
 	if (ac == 2)

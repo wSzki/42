@@ -33,24 +33,24 @@ void	sx(t_global *g, int id)
 {
 	if (id == A_ID)
 	{
-		if (A_SIZE > 1)
+		if (g->a->size > 1)
 		{
-			sub_s(A);
+			sub_s(g->a);
 			write(1, "sa\n", 3);
 		}
 	}
 	if (id == B_ID)
 	{
-		if (B_SIZE > 1)
+		if (g->b->size > 1)
 		{
-			sub_s(B);
+			sub_s(g->b);
 			write(1, "sb\n", 3);
 		}
 	}
 	if (id == R_ID)
 	{
-		sub_s(A);
-		sub_s(B);
+		sub_s(g->a);
+		sub_s(g->b);
 		write(1, "ss\n", 3);
 	}
 }

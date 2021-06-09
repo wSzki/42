@@ -38,24 +38,24 @@ void	rx(t_global *g, int id)
 {
 	if (id == A_ID)
 	{
-		if (A_SIZE > 1)
+		if (g->a->size > 1)
 		{
-			sub_r(A);
+			sub_r(g->a);
 			write(1, "ra\n", 3);
 		}
 	}
 	if (id == B_ID)
 	{
-		if (B_SIZE > 1)
+		if (g->b->size > 1)
 		{
-			sub_r(B);
+			sub_r(g->b);
 			write(1, "rb\n", 3);
 		}
 	}
 	if (id == R_ID)
 	{
-		sub_r(A);
-		sub_r(B);
+		sub_r(g->a);
+		sub_r(g->b);
 		write(1, "rr\n", 3);
 	}
 }

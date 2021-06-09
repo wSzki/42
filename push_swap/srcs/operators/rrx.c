@@ -38,17 +38,17 @@ void	rrx(t_global *g, int id)
 {
 	if (id == A_ID)
 	{
-		if (A_SIZE > 1)
+		if (g->a->size > 1)
 		{
-			sub_rr(A);
+			sub_rr(g->a);
 			write(1, "rra\n", 4);
 		}
 	}
 	if (id == B_ID)
 	{
-		if (B_SIZE > 1)
+		if (g->b->size > 1)
 		{
-			sub_rr(B);
+			sub_rr(g->b);
 			write(1, "rrb\n", 4);
 		}
 	}

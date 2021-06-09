@@ -6,7 +6,7 @@
 /*   By: wszurkow <wszurkow@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/08 17:29:00 by wszurkow          #+#    #+#             */
-/*   Updated: 2021/06/09 16:05:54 by wszurkow         ###   ########.fr       */
+/*   Updated: 2021/06/09 16:57:51 by wszurkow         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,9 @@ static int	find_closest_chunk(t_global *g, long smallest, long largest)
 	int	i;
 
 	i = 0;
-	while (i < A_SIZE / 2)
+	while (i < g->a->size / 2)
 	{
-		if (A_DATA[i] > smallest && A_DATA[i] <= largest)
+		if (g->a->data[i] > smallest && g->a->data[i] <= largest)
 			return (0);
 		i++;
 	}
@@ -32,15 +32,15 @@ int	quarter_sort(t_global *g, long smallest, long largest, long input)
 	int	direction;
 	int	offset;
 
-	i = A_SIZE + 1;
+	i = g->a->size + 1;
 	offset = 0;
 	while ((--i % 4) != 0)
 		offset++;
-	i = A_SIZE - offset;
-	while (A_SIZE - offset > (i * 3) / 4)
+	i = g->a->size - offset;
+	while (g->a->size - offset > (i * 3) / 4)
 	{
 		direction = find_closest_chunk(g, smallest, largest);
-		if (A_DATA[0] > smallest && A_DATA[0] <= largest)
+		if (g->a->data[0] > smallest && g->a->data[0] <= largest)
 			px(g, B_ID);
 		else if (direction == 0)
 			rx(g, A_ID);
@@ -48,9 +48,9 @@ int	quarter_sort(t_global *g, long smallest, long largest, long input)
 			rrx(g, A_ID);
 	}
 	if (input != NO_VALUE)
-		scroll_to(g, A, input);
-	i = find_smallest(B);
-	while (B_SIZE > 0)
+		scroll_to(g, g->a, input);
+	i = find_smallest(g->b);
+	while (g->b->size > 0)
 		push_smallest_or_largest(g);
 	return (i);
 }
