@@ -6,7 +6,7 @@
 /*   By: wszurkow <wszurkow@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/26 13:03:15 by wszurkow          #+#    #+#             */
-/*   Updated: 2021/06/08 19:45:27 by wszurkow         ###   ########.fr       */
+/*   Updated: 2021/06/09 15:42:43 by wszurkow         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,15 +71,16 @@ static void	if_a_sorted_exit(t_global *g)
 
 static void	if_five_sort_exit(t_global *g)
 {
-	if (A_SIZE == 5)
+	if (A_SIZE <= 10)
 	{
-		scroll_to(g, A, find_smallest(A));
-		px(g, B_ID);
-		scroll_to(g, A, find_smallest(A));
-		px(g, B_ID);
+		while (A_SIZE > 3)
+		{
+			scroll_to(g, A, find_smallest(A));
+			px(g, B_ID);
+		}
 		sort_three(g, A_DATA);
-		px(g, A_ID);
-		px(g, A_ID);
+		while (B_SIZE > 0)
+			push_smallest_or_largest(g);
 		free_everything(g);
 		exit(0);
 	}

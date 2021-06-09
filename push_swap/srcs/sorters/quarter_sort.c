@@ -6,7 +6,7 @@
 /*   By: wszurkow <wszurkow@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/08 17:29:00 by wszurkow          #+#    #+#             */
-/*   Updated: 2021/06/08 20:30:48 by wszurkow         ###   ########.fr       */
+/*   Updated: 2021/06/09 15:39:00 by wszurkow         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,10 +26,11 @@ static int	find_closest_chunk(t_global *g, long smallest, long largest)
 	return (1);
 }
 
-void	quarter_sort(t_global *g, long smallest, long largest, int offset)
+int		quarter_sort(t_global *g, long smallest, long largest, int offset, long input)
 {
 	int	i;
 	int	direction;
+	int ret;
 
 	i = A_SIZE - offset;
 	while (A_SIZE - offset > (i * 3) / 4)
@@ -42,6 +43,10 @@ void	quarter_sort(t_global *g, long smallest, long largest, int offset)
 		else if (direction == 1)
 			rrx(g, A_ID);
 	}
+	if (input != NO_VALUE)
+		scroll_to(g, A, input);
+	ret = find_smallest(B);
 	while (B_SIZE > 0)
 		push_smallest_or_largest(g);
+	return (ret);
 }
