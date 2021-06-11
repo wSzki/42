@@ -6,7 +6,7 @@
 /*   By: wszurkow <wszurkow@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/19 15:51:41 by wszurkow          #+#    #+#             */
-/*   Updated: 2021/06/11 20:12:43 by wszurkow         ###   ########.fr       */
+/*   Updated: 2021/01/25 19:35:22 by wszurkow         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,9 +24,9 @@ static const char	*ft_catch_s_null(const char *s, t_flags *flags)
 	return (s);
 }
 
-static int	ft_process_precision(const char *s, t_flags *flags)
+static int			ft_process_precision(const char *s, t_flags *flags)
 {
-	int	len;
+	int len;
 
 	len = ft_strlen(s);
 	if ((flags->width || flags->left) && flags->precision == -1)
@@ -36,11 +36,11 @@ static int	ft_process_precision(const char *s, t_flags *flags)
 	return (len);
 }
 
-void	ft_printf_string(const char *s, t_flags *flags)
+void				ft_printf_string(const char *s, t_flags *flags)
 {
-	int	i;
-	int	fill;
-	int	len;
+	int i;
+	int fill;
+	int len;
 
 	i = 0;
 	fill = 0;

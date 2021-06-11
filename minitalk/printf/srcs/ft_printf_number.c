@@ -6,7 +6,7 @@
 /*   By: wszurkow <wszurkow@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/15 22:40:33 by wszurkow          #+#    #+#             */
-/*   Updated: 2021/06/11 20:12:06 by wszurkow         ###   ########.fr       */
+/*   Updated: 2021/01/25 22:18:25 by wszurkow         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,8 @@ static void	ft_print_sign(long n, t_flags *flags)
 
 static int	ft_process_flags(long n, int nb_chars, t_flags *flags)
 {
-	int	fill;
-	int	two_spaces_if_p;
+	int fill;
+	int two_spaces_if_p;
 
 	fill = 0;
 	two_spaces_if_p = 0;
@@ -82,9 +82,9 @@ static void	print_processed_flags(long n, int fill, t_flags *flags)
 	}
 }
 
-void	ft_printf_number(long n, t_flags *flags)
+void		ft_printf_number(long n, t_flags *flags)
 {
-	int	fill;
+	int fill;
 
 	if (((flags->zero) && ((flags->precision > 0) || (flags->precision == -1))))
 	{

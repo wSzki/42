@@ -6,16 +6,16 @@
 /*   By: wszurkow <wszurkow@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/16 15:52:38 by wszurkow          #+#    #+#             */
-/*   Updated: 2021/06/11 20:10:51 by wszurkow         ###   ########.fr       */
+/*   Updated: 2021/01/23 00:49:20 by wszurkow         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/ft_printf.h"
 
-int	ft_count_digits(long n, t_flags *flags)
+int		ft_count_digits(long n, t_flags *flags)
 {
 	int	i;
-	int	base_type;
+	int base_type;
 
 	if (flags->id == 'd' || flags->id == 'i' || flags->id == 'u')
 		base_type = 10;
@@ -45,7 +45,7 @@ void	ft_putchar_inc(int c, t_flags *flags)
 	flags->written += 1;
 }
 
-int	is_in_charset(char c, char *charset)
+int		is_in_charset(char c, char *charset)
 {
 	while (*charset)
 	{
@@ -67,7 +67,7 @@ void	ft_fill_zero_space(int flag, int c, t_flags *flags)
 
 size_t	ft_strlen(const char *str)
 {
-	size_t	i;
+	size_t i;
 
 	i = 0;
 	while (str[i])

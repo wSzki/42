@@ -6,13 +6,13 @@
 /*   By: wszurkow <wszurkow@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/14 01:15:40 by wszurkow          #+#    #+#             */
-/*   Updated: 2021/06/11 20:10:19 by wszurkow         ###   ########.fr       */
+/*   Updated: 2021/01/27 14:22:51 by wszurkow         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/ft_printf.h"
 
-void	ft_init_flags(t_flags *flags)
+void		ft_init_flags(t_flags *flags)
 {
 	flags->zero = 0;
 	flags->width = 0;
@@ -23,11 +23,11 @@ void	ft_init_flags(t_flags *flags)
 
 static void	print_argument(t_flags *flags, va_list ap)
 {
-	int	id;
+	int id;
 
 	id = flags->id;
 	if (id == 's')
-		ft_printf_string(va_arg(ap, char *), flags);
+		ft_printf_string(va_arg(ap, char*), flags);
 	if (id == 'c')
 		ft_printf_char(va_arg(ap, int), flags);
 	if (id == '%')
@@ -68,7 +68,7 @@ static void	ft_sub_printf(const char *fmt, t_flags *flags, va_list ap)
 	return ;
 }
 
-int	ft_printf(const char *fmt, ...)
+int			ft_printf(const char *fmt, ...)
 {
 	int		i;
 	va_list	ap;

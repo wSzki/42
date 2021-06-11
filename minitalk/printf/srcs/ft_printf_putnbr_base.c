@@ -6,15 +6,15 @@
 /*   By: wszurkow <wszurkow@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/16 20:02:32 by wszurkow          #+#    #+#             */
-/*   Updated: 2021/06/11 20:11:39 by wszurkow         ###   ########.fr       */
+/*   Updated: 2021/01/27 14:25:24 by wszurkow         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/ft_printf.h"
 
-void	ft_putnbr_base_inc(long nbr, t_flags *flags)
+void		ft_putnbr_base_inc(long nbr, t_flags *flags)
 {
-	char	*base;
+	char *base;
 
 	if (nbr < 0)
 		nbr = -nbr;

@@ -6,7 +6,7 @@
 /*   By: wszurkow <wszurkow@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/15 19:32:34 by wszurkow          #+#    #+#             */
-/*   Updated: 2021/06/11 20:11:28 by wszurkow         ###   ########.fr       */
+/*   Updated: 2021/01/27 15:35:14 by wszurkow         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 static int	parse_wildcard(const char *fmt, t_flags *flags, va_list ap)
 {
-	int	i;
+	int i;
 
 	i = 0;
 	if (fmt[i] == '*')
@@ -67,7 +67,7 @@ static int	parse_flags(const char *fmt, t_flags *flags, va_list ap, size_t i)
 
 static int	parse_precision(const char *fmt, t_flags *flags, va_list ap)
 {
-	size_t	i;
+	size_t i;
 
 	i = 0;
 	if (fmt[i] == '.')
@@ -104,7 +104,7 @@ static void	process_flags(t_flags *flags)
 	}
 }
 
-int	is_valid_flag(const char *fmt, t_flags *flags, va_list ap)
+int			is_valid_flag(const char *fmt, t_flags *flags, va_list ap)
 {
 	size_t	i;
 
