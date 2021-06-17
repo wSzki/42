@@ -1,33 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fdf.h                                              :+:      :+:    :+:   */
+/*   ft_strlen.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: wszurkow <wszurkow@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/06/17 14:20:43 by wszurkow          #+#    #+#             */
-/*   Updated: 2021/06/17 17:10:38 by wszurkow         ###   ########.fr       */
+/*   Created: 2020/09/25 13:56:34 by wszurkow          #+#    #+#             */
+/*   Updated: 2021/03/12 14:47:13 by wszurkow         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FDF_H
-# define FDF_H
+#include "libft.h"
 
-# include <math.h>
-# include <stdlib.h>
-# include <unistd.h>
-# include <fcntl.h>
-# include <stdio.h>
-
-# include "../externals/ft_minilibx/mlx.h"
-# include "../externals/ft_libft/libft.h"
-# include "../externals/ft_gnl/get_next_line.h"
-# include "../externals/ft_printf/includes/ft_printf.h"
-
-typedef struct s_global
+size_t		ft_strlen(const char *str)
 {
+	int i;
 
-
-}				t_global;
-
-#endif
+	i = 0;
+	if (!str)
+		return (0);
+	while (str[i])
+		i++;
+	return (i);
+}

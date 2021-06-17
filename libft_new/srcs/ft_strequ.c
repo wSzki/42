@@ -1,33 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fdf.h                                              :+:      :+:    :+:   */
+/*   ft_strequ.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: wszurkow <wszurkow@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/06/17 14:20:43 by wszurkow          #+#    #+#             */
-/*   Updated: 2021/06/17 17:10:38 by wszurkow         ###   ########.fr       */
+/*   Created: 2020/09/30 19:13:49 by wszurkow          #+#    #+#             */
+/*   Updated: 2020/12/04 15:54:32 by wszurkow         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FDF_H
-# define FDF_H
+#include "libft.h"
 
-# include <math.h>
-# include <stdlib.h>
-# include <unistd.h>
-# include <fcntl.h>
-# include <stdio.h>
-
-# include "../externals/ft_minilibx/mlx.h"
-# include "../externals/ft_libft/libft.h"
-# include "../externals/ft_gnl/get_next_line.h"
-# include "../externals/ft_printf/includes/ft_printf.h"
-
-typedef struct s_global
+int		ft_strequ(char const *s1, char const *s2)
 {
-
-
-}				t_global;
-
-#endif
+	if (s1 && s2)
+	{
+		while (*s1 && *s2 && *s1 == *s2)
+		{
+			s1++;
+			s2++;
+		}
+		if (*s1 == *s2)
+			return (1);
+	}
+	return (0);
+}

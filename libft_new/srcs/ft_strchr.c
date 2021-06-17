@@ -1,33 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fdf.h                                              :+:      :+:    :+:   */
+/*   ft_strchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: wszurkow <wszurkow@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/06/17 14:20:43 by wszurkow          #+#    #+#             */
-/*   Updated: 2021/06/17 17:10:38 by wszurkow         ###   ########.fr       */
+/*   Created: 2020/09/24 23:07:55 by wszurkow          #+#    #+#             */
+/*   Updated: 2020/09/24 23:17:55 by wszurkow         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FDF_H
-# define FDF_H
+#include "libft.h"
 
-# include <math.h>
-# include <stdlib.h>
-# include <unistd.h>
-# include <fcntl.h>
-# include <stdio.h>
-
-# include "../externals/ft_minilibx/mlx.h"
-# include "../externals/ft_libft/libft.h"
-# include "../externals/ft_gnl/get_next_line.h"
-# include "../externals/ft_printf/includes/ft_printf.h"
-
-typedef struct s_global
+char	*ft_strchr(const char *str, int ch)
 {
-
-
-}				t_global;
-
-#endif
+	while (*str)
+	{
+		if (*str == (char)ch)
+			return ((char *)str);
+		str++;
+	}
+	if (*str == 0 && (char)ch == 0)
+		return ((char *)str);
+	return (0);
+}

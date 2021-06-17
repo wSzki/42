@@ -1,33 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fdf.h                                              :+:      :+:    :+:   */
+/*   ft_memchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: wszurkow <wszurkow@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/06/17 14:20:43 by wszurkow          #+#    #+#             */
-/*   Updated: 2021/06/17 17:10:38 by wszurkow         ###   ########.fr       */
+/*   Created: 2020/09/25 10:31:25 by wszurkow          #+#    #+#             */
+/*   Updated: 2020/11/25 13:43:26 by wszurkow         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FDF_H
-# define FDF_H
+#include "libft.h"
 
-# include <math.h>
-# include <stdlib.h>
-# include <unistd.h>
-# include <fcntl.h>
-# include <stdio.h>
-
-# include "../externals/ft_minilibx/mlx.h"
-# include "../externals/ft_libft/libft.h"
-# include "../externals/ft_gnl/get_next_line.h"
-# include "../externals/ft_printf/includes/ft_printf.h"
-
-typedef struct s_global
+void	*ft_memchr(const void *ptr, int ch, size_t count)
 {
+	unsigned char *tmp;
 
-
-}				t_global;
-
-#endif
+	tmp = (unsigned char*)ptr;
+	while (count > 0)
+	{
+		if (*tmp != (unsigned char)ch)
+			tmp++;
+		else
+			return (tmp);
+		count--;
+	}
+	return (NULL);
+}

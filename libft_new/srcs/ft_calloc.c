@@ -1,33 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fdf.h                                              :+:      :+:    :+:   */
+/*   ft_calloc.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: wszurkow <wszurkow@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/06/17 14:20:43 by wszurkow          #+#    #+#             */
-/*   Updated: 2021/06/17 17:10:38 by wszurkow         ###   ########.fr       */
+/*   Created: 2020/10/06 14:14:22 by wszurkow          #+#    #+#             */
+/*   Updated: 2020/12/07 16:04:32 by wszurkow         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FDF_H
-# define FDF_H
+#include "libft.h"
 
-# include <math.h>
-# include <stdlib.h>
-# include <unistd.h>
-# include <fcntl.h>
-# include <stdio.h>
-
-# include "../externals/ft_minilibx/mlx.h"
-# include "../externals/ft_libft/libft.h"
-# include "../externals/ft_gnl/get_next_line.h"
-# include "../externals/ft_printf/includes/ft_printf.h"
-
-typedef struct s_global
+void	*ft_calloc(size_t nmemb, size_t size)
 {
+	void	*res;
 
-
-}				t_global;
-
-#endif
+	if (!(res = (void *)malloc(nmemb * size)))
+		return (0);
+	ft_bzero(res, nmemb * size);
+	return (res);
+}

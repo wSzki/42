@@ -1,33 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fdf.h                                              :+:      :+:    :+:   */
+/*   ft_strdup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: wszurkow <wszurkow@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/06/17 14:20:43 by wszurkow          #+#    #+#             */
-/*   Updated: 2021/06/17 17:10:38 by wszurkow         ###   ########.fr       */
+/*   Created: 2020/09/25 13:57:38 by wszurkow          #+#    #+#             */
+/*   Updated: 2020/12/07 16:01:34 by wszurkow         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FDF_H
-# define FDF_H
+#include "libft.h"
 
-# include <math.h>
-# include <stdlib.h>
-# include <unistd.h>
-# include <fcntl.h>
-# include <stdio.h>
-
-# include "../externals/ft_minilibx/mlx.h"
-# include "../externals/ft_libft/libft.h"
-# include "../externals/ft_gnl/get_next_line.h"
-# include "../externals/ft_printf/includes/ft_printf.h"
-
-typedef struct s_global
+char	*ft_strdup(const char *src)
 {
+	int		i;
+	char	*ptr;
 
-
-}				t_global;
-
-#endif
+	i = 0;
+	while (src[i])
+		i++;
+	ptr = (char *)malloc(sizeof(char) * i + 1);
+	if (!ptr)
+		return (NULL);
+	i = 0;
+	while (src[i])
+	{
+		ptr[i] = src[i];
+		i++;
+	}
+	ptr[i] = '\0';
+	return (ptr);
+}

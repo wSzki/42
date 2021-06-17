@@ -1,33 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fdf.h                                              :+:      :+:    :+:   */
+/*   ft_memcmp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: wszurkow <wszurkow@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/06/17 14:20:43 by wszurkow          #+#    #+#             */
-/*   Updated: 2021/06/17 17:10:38 by wszurkow         ###   ########.fr       */
+/*   Created: 2020/09/15 17:47:14 by wszurkow          #+#    #+#             */
+/*   Updated: 2020/12/11 16:29:00 by wszurkow         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FDF_H
-# define FDF_H
+#include "libft.h"
 
-# include <math.h>
-# include <stdlib.h>
-# include <unistd.h>
-# include <fcntl.h>
-# include <stdio.h>
-
-# include "../externals/ft_minilibx/mlx.h"
-# include "../externals/ft_libft/libft.h"
-# include "../externals/ft_gnl/get_next_line.h"
-# include "../externals/ft_printf/includes/ft_printf.h"
-
-typedef struct s_global
+int	ft_memcmp(const void *s1, const void *s2, size_t size)
 {
+	size_t	i;
 
-
-}				t_global;
-
-#endif
+	i = 0;
+	if (s1 == s2 || size == 0)
+		return (0);
+	while (size--)
+	{
+		if (*(unsigned char *)(s1 + i) != *(unsigned char *)(s2 + i))
+			return (*(unsigned char *)(s1 + i) - *(unsigned char *)(s2 + i));
+		i++;
+	}
+	return (0);
+}

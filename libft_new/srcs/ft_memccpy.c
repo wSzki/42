@@ -1,33 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fdf.h                                              :+:      :+:    :+:   */
+/*   ft_memccpy.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: wszurkow <wszurkow@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/06/17 14:20:43 by wszurkow          #+#    #+#             */
-/*   Updated: 2021/06/17 17:10:38 by wszurkow         ###   ########.fr       */
+/*   Created: 2020/09/25 10:31:56 by wszurkow          #+#    #+#             */
+/*   Updated: 2020/12/04 17:48:12 by wszurkow         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FDF_H
-# define FDF_H
+#include "libft.h"
 
-# include <math.h>
-# include <stdlib.h>
-# include <unistd.h>
-# include <fcntl.h>
-# include <stdio.h>
-
-# include "../externals/ft_minilibx/mlx.h"
-# include "../externals/ft_libft/libft.h"
-# include "../externals/ft_gnl/get_next_line.h"
-# include "../externals/ft_printf/includes/ft_printf.h"
-
-typedef struct s_global
+void	*ft_memccpy(void *dest, const void *src, int c, size_t n)
 {
+	size_t	i;
 
-
-}				t_global;
-
-#endif
+	i = 0;
+	while (i < n)
+	{
+		if (*(unsigned char *)(src + i) == (unsigned char)c)
+		{
+			*(unsigned char *)(dest + i) = *(unsigned char *)(src + i);
+			i++;
+			return ((unsigned char *)dest + i);
+		}
+		*(unsigned char *)(dest + i) = *(unsigned char *)(src + i);
+		i++;
+	}
+	return (NULL);
+}

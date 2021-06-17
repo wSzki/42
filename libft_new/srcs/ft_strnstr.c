@@ -1,33 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fdf.h                                              :+:      :+:    :+:   */
+/*   ft_strnstr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: wszurkow <wszurkow@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/06/17 14:20:43 by wszurkow          #+#    #+#             */
-/*   Updated: 2021/06/17 17:10:38 by wszurkow         ###   ########.fr       */
+/*   Created: 2020/09/24 20:39:02 by wszurkow          #+#    #+#             */
+/*   Updated: 2020/12/04 17:55:36 by wszurkow         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FDF_H
-# define FDF_H
+#include "libft.h"
 
-# include <math.h>
-# include <stdlib.h>
-# include <unistd.h>
-# include <fcntl.h>
-# include <stdio.h>
-
-# include "../externals/ft_minilibx/mlx.h"
-# include "../externals/ft_libft/libft.h"
-# include "../externals/ft_gnl/get_next_line.h"
-# include "../externals/ft_printf/includes/ft_printf.h"
-
-typedef struct s_global
+char	*ft_strnstr(const char *big, const char *little, size_t len)
 {
+	size_t i;
+	size_t j;
 
-
-}				t_global;
-
-#endif
+	if (*little == 0)
+		return ((char *)big);
+	if (little == 0)
+		return (NULL);
+	i = 0;
+	while (big[i] && i < len)
+	{
+		j = 0;
+		while (big[i + j] == little[j] && i + j < len)
+		{
+			if (little[j + 1] == 0)
+				return ((char *)&big[i]);
+			j++;
+		}
+		i++;
+	}
+	return (0);
+}

@@ -1,33 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fdf.h                                              :+:      :+:    :+:   */
+/*   ft_count_words.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: wszurkow <wszurkow@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/06/17 14:20:43 by wszurkow          #+#    #+#             */
-/*   Updated: 2021/06/17 17:10:38 by wszurkow         ###   ########.fr       */
+/*   Created: 2020/12/07 15:04:46 by wszurkow          #+#    #+#             */
+/*   Updated: 2020/12/07 15:57:11 by wszurkow         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FDF_H
-# define FDF_H
+#include "libft.h"
 
-# include <math.h>
-# include <stdlib.h>
-# include <unistd.h>
-# include <fcntl.h>
-# include <stdio.h>
-
-# include "../externals/ft_minilibx/mlx.h"
-# include "../externals/ft_libft/libft.h"
-# include "../externals/ft_gnl/get_next_line.h"
-# include "../externals/ft_printf/includes/ft_printf.h"
-
-typedef struct s_global
+size_t	ft_count_words(const char *str, char c)
 {
+	size_t	i;
+	size_t	words;
 
-
-}				t_global;
-
-#endif
+	if (!str)
+		return (0);
+	i = 0;
+	words = 0;
+	while (str[i] == c)
+		i++;
+	while (str[i])
+	{
+		while (str[i] && str[i] != c)
+			i++;
+		words++;
+		while (str[i] && str[i] == c)
+			i++;
+	}
+	return (words);
+}

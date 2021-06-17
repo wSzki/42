@@ -1,33 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fdf.h                                              :+:      :+:    :+:   */
+/*   ft_strmap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: wszurkow <wszurkow@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/06/17 14:20:43 by wszurkow          #+#    #+#             */
-/*   Updated: 2021/06/17 17:10:38 by wszurkow         ###   ########.fr       */
+/*   Created: 2020/12/07 16:53:31 by wszurkow          #+#    #+#             */
+/*   Updated: 2020/12/07 16:53:40 by wszurkow         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FDF_H
-# define FDF_H
+#include "libft.h"
 
-# include <math.h>
-# include <stdlib.h>
-# include <unistd.h>
-# include <fcntl.h>
-# include <stdio.h>
-
-# include "../externals/ft_minilibx/mlx.h"
-# include "../externals/ft_libft/libft.h"
-# include "../externals/ft_gnl/get_next_line.h"
-# include "../externals/ft_printf/includes/ft_printf.h"
-
-typedef struct s_global
+char	*ft_strmap(const char *s, char (*f)(char))
 {
+	size_t	i;
+	char	*str;
 
-
-}				t_global;
-
-#endif
+	i = 0;
+	if (!s)
+		return (NULL);
+	if (!(str = malloc(sizeof(char) * ft_strlen(s) + 1)))
+		return (NULL);
+	while (s[i])
+	{
+		str[i] = f(s[i]);
+		i++;
+	}
+	str[i] = '\0';
+	return (str);
+}

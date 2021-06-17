@@ -1,33 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fdf.h                                              :+:      :+:    :+:   */
+/*   ft_strlcpy.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: wszurkow <wszurkow@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/06/17 14:20:43 by wszurkow          #+#    #+#             */
-/*   Updated: 2021/06/17 17:10:38 by wszurkow         ###   ########.fr       */
+/*   Created: 2020/09/25 13:56:53 by wszurkow          #+#    #+#             */
+/*   Updated: 2020/12/04 16:03:18 by wszurkow         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FDF_H
-# define FDF_H
+#include "libft.h"
 
-# include <math.h>
-# include <stdlib.h>
-# include <unistd.h>
-# include <fcntl.h>
-# include <stdio.h>
-
-# include "../externals/ft_minilibx/mlx.h"
-# include "../externals/ft_libft/libft.h"
-# include "../externals/ft_gnl/get_next_line.h"
-# include "../externals/ft_printf/includes/ft_printf.h"
-
-typedef struct s_global
+size_t		ft_strlcpy(char *dest, const char *src, size_t size)
 {
+	size_t j;
+	size_t i;
 
-
-}				t_global;
-
-#endif
+	i = 0;
+	j = 0;
+	if (dest || src)
+	{
+		while ((src[i]) && (i + 1 < size))
+		{
+			dest[i] = src[i];
+			i++;
+		}
+		if (size > 0)
+			dest[i] = '\0';
+		while (src[j])
+			j++;
+	}
+	return (j);
+}

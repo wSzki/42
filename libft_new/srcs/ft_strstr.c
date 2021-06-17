@@ -1,33 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fdf.h                                              :+:      :+:    :+:   */
+/*   ft_strstr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: wszurkow <wszurkow@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/06/17 14:20:43 by wszurkow          #+#    #+#             */
-/*   Updated: 2021/06/17 17:10:38 by wszurkow         ###   ########.fr       */
+/*   Created: 2020/09/25 13:55:42 by wszurkow          #+#    #+#             */
+/*   Updated: 2020/10/14 16:55:06 by wszurkow         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FDF_H
-# define FDF_H
+#include "libft.h"
 
-# include <math.h>
-# include <stdlib.h>
-# include <unistd.h>
-# include <fcntl.h>
-# include <stdio.h>
-
-# include "../externals/ft_minilibx/mlx.h"
-# include "../externals/ft_libft/libft.h"
-# include "../externals/ft_gnl/get_next_line.h"
-# include "../externals/ft_printf/includes/ft_printf.h"
-
-typedef struct s_global
+char	*ft_strstr(const char *str, const char *to_find)
 {
+	int i;
+	int j;
 
-
-}				t_global;
-
-#endif
+	if (*to_find == '\0' || to_find == NULL)
+		return ((char *)str);
+	i = 0;
+	while (str[i])
+	{
+		j = 0;
+		while (to_find[j] == str[i + j])
+		{
+			if (to_find[j + 1] == '\0')
+				return ((char *)&str[i]);
+			j++;
+		}
+		i++;
+	}
+	return (0);
+}
