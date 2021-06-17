@@ -5,38 +5,35 @@
 #                                                     +:+ +:+         +:+      #
 #    By: wszurkow <wszurkow@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2021/01/16 22:40:46 by wszurkow          #+#    #+#              #
-#    Updated: 2021/01/24 23:22:10 by wszurkow         ###   ########.fr        #
+#    Created: 2021/06/17 15:58:23 by wszurkow          #+#    #+#              #
+#    Updated: 2021/06/17 16:20:02 by wszurkow         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME		= libftprintf.a
-SRCS		= $(addprefix ./srcs/, ${SRCS_FILES})
-SRCS_FILES	= \
-				ft_printf.c \
-				ft_printf_character.c \
-				ft_printf_string.c \
-				ft_printf_number.c \
-				ft_printf_utils.c \
-				ft_printf_putnbr_base.c \
-				ft_printf_atoi.c \
-				ft_printf_parsers.c \
+NAME			= ft_gnl.a
+COMPILER		= gcc
+FLAGS			= -Wall -Werror -Wextra -fsanitize=address
+SRCS			= $(addprefix ./, ${SRCS_FILES})
+SRCS_FILES		= \
+				get_next_line_bonus.c \
+				get_next_line_utils_bonus.c \
 
-OBJS		= ${SRCS:.c=.o}
+OBJS			= ${SRCS:.c=.o}
 %.o: %.c
-				clang -Wall -Werror -Wextra -I ./includes -o $@ -c $<
+	${COMPILER} ${FLAGS} -I ./ -o $@ -c $<
 
 all:		${NAME}
 
 ${NAME}:	${OBJS}
-				ar -rcs libftprintf.a ${OBJS}
+	ar -rcs ft_gnl.a ${OBJS}
 
 clean:
-				rm -f ${OBJS}
+	rm -f ${OBJS}
 
-fclean:		clean
-				rm -f ./libftprintf.a
+fclean: clean
+	rm -f ft_gnl.a
 
-re:			fclean all
+re: fclean all
 
-.PHONY: 		all fclean clean re
+.PHONY:	all clean fclean re
+

@@ -6,7 +6,7 @@
 /*   By: wszurkow <wszurkow@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/20 20:26:39 by wszurkow          #+#    #+#             */
-/*   Updated: 2020/12/12 21:54:43 by wszurkow         ###   ########.fr       */
+/*   Updated: 2021/06/17 14:51:07 by wszurkow         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,8 +100,8 @@ int				ft_lstsize(t_list *lst);
 t_list			*ft_lstnew(void *content);
 t_list			*ft_lstlast(t_list *lst);
 void			ft_lstiter(t_list *lst, void (*f)(void *));
-void			ft_lstadd_front(t_list **first, t_list *new);
-void			ft_lstadd_back(t_list **first, t_list *new);
+void			ft_lstadd_front(t_list **first, t_list *list);
+void			ft_lstadd_back(t_list **first, t_list *list);
 void			ft_lstdelone(t_list *lst, void (*del)(void *));
 void			ft_lstclear(t_list **list, void (*del)(void *));
 t_list			*ft_lstmap

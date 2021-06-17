@@ -6,12 +6,12 @@
 #    By: wszurkow <wszurkow@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/09/15 17:32:31 by wszurkow          #+#    #+#              #
-#    Updated: 2020/12/07 16:55:04 by wszurkow         ###   ########.fr        #
+#    Updated: 2021/06/17 14:09:56 by wszurkow         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 
-NAME	=	libft.a
+NAME	=	ft_libft.a
 
 CC		=	gcc
 
