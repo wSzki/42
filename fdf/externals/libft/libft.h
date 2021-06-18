@@ -6,7 +6,7 @@
 /*   By: wszurkow <wszurkow@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/20 20:26:39 by wszurkow          #+#    #+#             */
-/*   Updated: 2021/06/17 19:56:52 by wszurkow         ###   ########.fr       */
+/*   Updated: 2021/06/18 14:53:25 by wszurkow         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,9 +23,12 @@ typedef struct	s_list
 }				t_list;
 
 
+size_t	count_lines(void **tab);
+void p_exit(char *str);
 int get_next_line(int fd, char **line);
 
 int				ft_atoi(const char *str);
+int				ft_atoi_overflow(const char *str, void *g, void (*free_and_exit)(void *));
 char			*ft_itoa(int n);
 
 int				ft_isalnum(int c);
@@ -37,6 +40,7 @@ int				ft_isupper(int c);
 int				ft_islower(int c);
 
 size_t			ft_count_words(const char *str, char c);
+int				ft_count_numbers(int n);
 int				ft_is_c(const char c1, const char c2);
 
 void			ft_bzero(void *s, size_t nb);

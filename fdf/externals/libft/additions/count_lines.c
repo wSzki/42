@@ -1,31 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fdf.h                                              :+:      :+:    :+:   */
+/*   count_lines.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: wszurkow <wszurkow@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/06/17 14:20:43 by wszurkow          #+#    #+#             */
-/*   Updated: 2021/06/18 13:38:21 by wszurkow         ###   ########.fr       */
+/*   Created: 2021/06/18 14:54:01 by wszurkow          #+#    #+#             */
+/*   Updated: 2021/06/18 14:54:15 by wszurkow         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FDF_H
-# define FDF_H
+#include "../libft.h"
 
-# include <math.h>
-# include <stdlib.h>
-# include <unistd.h>
-# include <fcntl.h>
-# include <stdio.h>
-
-# include "../externals/ft_minilibx/mlx.h"
-# include "../externals/libft/libft.h"
-# include "../externals/ft_printf/includes/ft_printf.h"
-
-typedef struct s_global
+size_t	count_lines(void **tab)
 {
-	char **map;
-}				t_global;
+	int	i;
 
-#endif
+	if (!tab)
+		return (0);
+	if (!(*tab))
+		return (0);
+	i = 0;
+	while (tab[i])
+		i++;
+	return (i);
+}
+

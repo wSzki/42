@@ -1,31 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fdf.h                                              :+:      :+:    :+:   */
+/*   ft_count_numbers.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: wszurkow <wszurkow@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/06/17 14:20:43 by wszurkow          #+#    #+#             */
-/*   Updated: 2021/06/18 13:38:21 by wszurkow         ###   ########.fr       */
+/*   Created: 2021/06/18 14:41:58 by wszurkow          #+#    #+#             */
+/*   Updated: 2021/06/18 14:47:23 by wszurkow         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FDF_H
-# define FDF_H
+#include "../libft.h"
 
-# include <math.h>
-# include <stdlib.h>
-# include <unistd.h>
-# include <fcntl.h>
-# include <stdio.h>
-
-# include "../externals/ft_minilibx/mlx.h"
-# include "../externals/libft/libft.h"
-# include "../externals/ft_printf/includes/ft_printf.h"
-
-typedef struct s_global
+int	ft_count_numbers(int n)
 {
-	char **map;
-}				t_global;
+	size_t	i;
 
-#endif
+	i = 0;
+	while (n)
+	{
+		n = n / 10;
+		i++;
+	}
+	return (i);
+}

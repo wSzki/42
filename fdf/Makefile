@@ -6,7 +6,7 @@
 #    By: wszurkow <wszurkow@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/06/17 13:47:41 by wszurkow          #+#    #+#              #
-#    Updated: 2021/06/18 12:28:24 by wszurkow         ###   ########.fr        #
+#    Updated: 2021/06/18 12:47:49 by wszurkow         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,12 +27,14 @@ ${NAME}:	${OBJS} libft ft_printf
 		./externals/libft/libft.a \
 		./externals/ft_printf/ft_printf.a \
 		-I ./includes
+	./fdf ./test_maps/basictest.fdf
 
 noflags: fclean ${OBJS} libft ft_printf
 	${CC} -o ${NAME} ./main.c \
 		./externals/libft/libft.a \
 		./externals/ft_printf/ft_printf.a \
 		-I ./includes
+	./fdf ./test_maps/basictest.fdf
 
 libft:
 	make -C ./externals/libft/
