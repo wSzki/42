@@ -6,7 +6,7 @@
 /*   By: wszurkow <wszurkow@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/20 20:26:39 by wszurkow          #+#    #+#             */
-/*   Updated: 2021/06/17 14:51:07 by wszurkow         ###   ########.fr       */
+/*   Updated: 2021/06/17 19:56:52 by wszurkow         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,9 @@ typedef struct	s_list
 	void			*content;
 	struct s_list	*next;
 }				t_list;
+
+
+int get_next_line(int fd, char **line);
 
 int				ft_atoi(const char *str);
 char			*ft_itoa(int n);

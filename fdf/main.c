@@ -1,5 +1,4 @@
 #include "./includes/fdf.h"
-#include "externals/ft_gnl/get_next_line.h"
 
 
 

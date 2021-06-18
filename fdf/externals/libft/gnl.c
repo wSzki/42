@@ -6,7 +6,7 @@
 /*   By: wszurkow <wszurkow@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/17 13:42:02 by wszurkow          #+#    #+#             */
-/*   Updated: 2021/03/17 13:43:11 by wszurkow         ###   ########.fr       */
+/*   Updated: 2021/06/17 19:56:09 by wszurkow         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ char *ft_realloc(char *line, int *i)
     return(str);
 }
 
-int get_next_line(char **line)
+int get_next_line(int fd, char **line)
 {
     int r = 1;
     int i = -1;
@@ -47,7 +47,7 @@ int get_next_line(char **line)
     *line = NULL;
     if (!(*line = ft_realloc(*line, &malloc_size)))
         return (-1);
-    while ((r = read(0, &(*line)[++i], 1)))
+    while ((r = read(fd, &(*line)[++i], 1)))
     {
         if ((*line)[i] == 10)
             break ;
