@@ -9,6 +9,18 @@ void fdf_print_map(t_global *g)
 	while (g->tmp_map[i])
 		printf("%s\n", g->tmp_map[i++]);
 
+	i = 0;
+	int j;
+	while (g->map[i])
+	{
+		j = 0;
+		while (g->map[i][j])
+		{
+			printf("%d\n", g->map[i][j]);
+			j++;
+		}
+		i++;
+	}
 
 	printf("%s\n", "|---------------------|");
 	printf("  X - HORIZONTAL : %d\n", g->x);
@@ -30,14 +42,7 @@ t_global *fdf_init(void)
 		p_exit("ERROR: g->tmp_map malloc failed");
 	}
 	g->tmp_map[0] = NULL;
-	g->map = malloc (sizeof(int **));
-	if (!g->map)
-	{
-		free(g);
-		free(g->tmp_map);
-		p_exit("ERROR: g->map malloc failed");
-	}
-	g->map[0] = NULL;
+	g->map = NULL;
 	return (g);
 }
 
@@ -46,8 +51,11 @@ void	fdf_free_all(t_global *g)
 	int i;
 
 	i = 0;
-	while (g->map[i])
-		free(g->map[i++]);
+	if (g->map)
+	{
+		while (i < g->y)
+			free(g->map[i++]);
+	}
 	free(g->map);
 	i = 0;
 	while (g->tmp_map[i])
@@ -58,27 +66,54 @@ void	fdf_free_all(t_global *g)
 // ===========================================================
 
 
-void fdf_convert_map(t_global *g)
+void fdf_init_int_map(t_global *g)
 {
-	free(g->map);
-	g->map = NULL;
-	g->map = malloc(sizeof(int **) * (g->y));
+	g->map = malloc(sizeof(int **) * (g->y + 1));
 	if (!g->map)
 	{
 		fdf_free_all(g);
 		p_exit("ERROR: g->map malloc failed");
 	}
-	*(g->map) = NULL;
-	int i = -1;
-	while (++i < g->y)
+	g->map[g->y] = 0;
+	int i = 0;
+	while (i < g->y)
 	{
-		free(g->map[i]);
-		g->map[i] = malloc(sizeof(int *) * (g->x));
+		g->map[i] = NULL;
+		g->map[i] = malloc(sizeof(int *) * (g->x + 1));
 		if (!(g->map[i]))
 		{
 			fdf_free_all(g);
 			p_exit("ERROR: g->map[i] malloc failed");
 		}
+		g->map[i][g->x] = 0;
+		i++;
+	}
+}
+
+void fdf_split_and_convert(t_global *g)
+{
+	int i;
+	int j;
+	char **split;
+
+	i = 0;
+	while (g->tmp_map[i])
+	{
+		j = 0;
+		split = ft_split(g->tmp_map[i], ' ');
+		while (split[j])
+		{
+			g->map[i][j] = ft_atoi(split[j]);
+			j++;
+		}
+		j = 0;
+		while (split[j])
+		{
+			free(split[j]);
+			j++;
+		}
+		free(split);
+		i++;
 	}
 }
 
@@ -89,8 +124,8 @@ int main(int ac, char **av)
 	g = fdf_init();
 	fdf_open(g, ac, av[1]);
 	fdf_map_checks(g);
-	fdf_convert_map(g);
-
+	fdf_init_int_map(g);
+	fdf_split_and_convert(g);
 
 
 
