@@ -6,7 +6,7 @@
 #    By: wszurkow <wszurkow@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/06/17 13:47:41 by wszurkow          #+#    #+#              #
-#    Updated: 2021/06/18 12:47:49 by wszurkow         ###   ########.fr        #
+#    Updated: 2021/06/19 14:44:43 by wszurkow         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,6 +15,9 @@ CC				= gcc
 FLAGS			= -Wall -Werror -Wextra -fsanitize=address
 SRCS			= $(addprefix ./srcs/, ${SRCS_FILES})
 SRCS_FILES		= \
+				  fdf_open.c \
+				  fdf_dual_realloc.c \
+				  fdf_map_checks.c
 
 OBJS			= ${SRCS:.c=.o}
 %.o: %.c
@@ -23,14 +26,14 @@ OBJS			= ${SRCS:.c=.o}
 all:		${NAME}
 
 ${NAME}:	${OBJS} libft ft_printf
-	${CC} -o ${NAME} ${FLAGS} ./main.c \
+	${CC} -o ${NAME} ${FLAGS} ./main.c ${OBJS} \
 		./externals/libft/libft.a \
 		./externals/ft_printf/ft_printf.a \
 		-I ./includes
 	./fdf ./test_maps/basictest.fdf
 
 noflags: fclean ${OBJS} libft ft_printf
-	${CC} -o ${NAME} ./main.c \
+	${CC} -o ${NAME} ./main.c  ${OBJS}\
 		./externals/libft/libft.a \
 		./externals/ft_printf/ft_printf.a \
 		-I ./includes
