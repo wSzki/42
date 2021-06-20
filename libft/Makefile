@@ -6,12 +6,11 @@
 #    By: wszurkow <wszurkow@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/09/15 17:32:31 by wszurkow          #+#    #+#              #
-#    Updated: 2021/06/17 14:09:56 by wszurkow         ###   ########.fr        #
+#    Updated: 2021/06/18 14:53:56 by wszurkow         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-
-NAME	=	ft_libft.a
+NAME	=	libft.a
 
 CC		=	gcc
 
@@ -36,7 +35,12 @@ SRCS	=	ft_strlen.c ft_isalnum.c ft_putnbr.c ft_putnbr_fd.c \
 			ft_strdup.c ft_strndup.c ft_strmapi.c ft_strmap.c\
 			ft_substr.c ft_memcpy.c ft_memmove.c ft_memccpy.c \
 			ft_calloc.c ft_memcmp.c ft_memset.c ft_memchr.c \
-			ft_memdel.c ft_memalloc.c
+			ft_memdel.c ft_memalloc.c \
+			./additions/gnl.c \
+			./additions/ft_atoi_overflow.c \
+			./additions/ft_count_numbers.c \
+			./additions/p_exit.c \
+			./additions/count_lines.c
 
 
 BONUS			=	ft_lstsize.c ft_lstadd_front.c ft_lstadd_back.c \

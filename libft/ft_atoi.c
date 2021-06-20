@@ -6,24 +6,11 @@
 /*   By: wszurkow <wszurkow@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/15 20:21:01 by wszurkow          #+#    #+#             */
-/*   Updated: 2020/12/05 18:06:30 by wszurkow         ###   ########.fr       */
+/*   Updated: 2021/06/18 14:55:50 by wszurkow         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-
-static int	ft_count_numbers(int n)
-{
-	size_t i;
-
-	i = 0;
-	while (n)
-	{
-		n = n / 10;
-		i++;
-	}
-	return (i);
-}
 
 int			ft_atoi(const char *str)
 {
