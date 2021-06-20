@@ -24,6 +24,12 @@ static void	convert(const char *str, int *atoi, int *i, int *number_count)
 	}
 }
 
+static void	fdf_atoi_free_all_exit(t_global *g)
+{
+	fdf_free_all(g);
+	p_exit("ERROR: atoi int overflow");
+}
+
 int	fdf_atoi_overflow(t_global *g, const char *str)
 {
 	int	atoi;
@@ -38,10 +44,7 @@ int	fdf_atoi_overflow(t_global *g, const char *str)
 	process_pre_data(str, &i, &sign);
 	convert(str, &atoi, &i, &number_count);
 	if (str[i] != 0)
-	{
-		fdf_free_all(g);
-		p_exit("ERROR: map takes digits only");
-	}
+		fdf_atoi_free_all_exit(g);
 	i = ft_count_numbers(atoi);
 	if (i == number_count)
 	{
@@ -50,9 +53,6 @@ int	fdf_atoi_overflow(t_global *g, const char *str)
 		if (atoi == -2147483648 && sign == -1)
 			return (atoi);
 	}
-	fdf_free_all(g);
-	p_exit("ERROR: atoi int overflow");
+	fdf_atoi_free_all_exit(g);
 	return (0);
 }
-
-

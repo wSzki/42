@@ -1,17 +1,15 @@
 #include "../includes/fdf.h"
 
-
-static void f_p_exit(t_global *g, char *str)
+static void	f_p_exit(t_global *g, char *str)
 {
 	fdf_free_all(g);
 	p_exit(str);
-
 }
 
 void	fdf_check_digits_only(t_global *g)
 {
-	int x;
-	int y;
+	int	x;
+	int	y;
 
 	x = -1;
 	while (g->tmp_map[++x])
@@ -25,8 +23,8 @@ void	fdf_check_digits_only(t_global *g)
 
 void	fdf_check_line_length(t_global *g)
 {
-	int i;
-	size_t count;
+	int		i;
+	size_t	count;
 
 	i = 0;
 	count = ft_count_words(g->tmp_map[0], ' ');
@@ -43,7 +41,6 @@ void	fdf_check_line_length(t_global *g)
 	g->y = i;
 	if (g->x < 2 || g->y < 2)
 		f_p_exit(g, "ERROR: Grid must be have at least 2x2 cells");
-
 }
 
 void	fdf_map_checks(t_global *g)

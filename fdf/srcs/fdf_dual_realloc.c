@@ -9,7 +9,7 @@ char	**fdf_dual_realloc(char **double_ptr, char *line)
 
 	i = 0;
 	j = 0;
-	line_count = count_lines((void**)double_ptr);
+	line_count = count_lines((void **)double_ptr);
 	res = malloc(sizeof(char *) * (line_count + 2));
 	if (!res)
 		return (NULL);
