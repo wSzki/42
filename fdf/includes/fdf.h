@@ -6,7 +6,7 @@
 /*   By: wszurkow <wszurkow@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/17 14:20:43 by wszurkow          #+#    #+#             */
-/*   Updated: 2021/06/19 19:02:21 by wszurkow         ###   ########.fr       */
+/*   Updated: 2021/06/20 14:02:29 by wszurkow         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,11 +31,13 @@ typedef struct s_global
 	int y;
 }				t_global;
 
-void fdf_print_map(t_global *g);
-void fdf_open(t_global *g, int ac, const char *path);
-char	**fdf_dual_realloc(char **double_ptr, char *line);
+t_global	*fdf_init(void);
+void	fdf_init_map(t_global *g);
+void	fdf_print_map(t_global *g);
+void	fdf_open(t_global *g, int ac, const char *path);
 void	fdf_map_checks(t_global *g);
-t_global *fdf_init(void);
 void	fdf_free_all(t_global *g);
+int	fdf_atoi_overflow(t_global *g, const char *str);
+char	**fdf_dual_realloc(char **double_ptr, char *line);
 
 #endif

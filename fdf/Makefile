@@ -6,7 +6,7 @@
 #    By: wszurkow <wszurkow@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/06/17 13:47:41 by wszurkow          #+#    #+#              #
-#    Updated: 2021/06/19 14:44:43 by wszurkow         ###   ########.fr        #
+#    Updated: 2021/06/20 14:01:39 by wszurkow         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,7 +17,9 @@ SRCS			= $(addprefix ./srcs/, ${SRCS_FILES})
 SRCS_FILES		= \
 				  fdf_open.c \
 				  fdf_dual_realloc.c \
-				  fdf_map_checks.c
+				  fdf_map_checks.c \
+				  fdf_init_map.c \
+				  fdf_atoi_overflow.c
 
 OBJS			= ${SRCS:.c=.o}
 %.o: %.c
