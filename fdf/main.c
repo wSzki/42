@@ -6,33 +6,31 @@
 // ===========================================================
 void fdf_print_map(t_global *g)
 {
-	int i = 0;
-	while (g->tmp_map[i])
-		printf("%s\n", g->tmp_map[i++]);
+	int i;
+	int j;
+	int tmp;
 
 	i = 0;
-	int j;
-	int tmp = 0;
+	while (g->tmp_map[i])
+		ft_printf("%s\n", g->tmp_map[i++]);
+	i = 0;
 	while (g->map[i])
 	{
 		j = 0;
-
 		tmp = 0;
 		while (tmp < g->x)
 		{
-			printf("%5d", g->map[i][j]);
+			ft_printf("%5d|", g->map[i][j]);
 			j++;
 			tmp++;
 		}
-		printf("\n");
+		ft_printf("\n");
 		i++;
 	}
-
-	printf("%s\n", "|---------------------|");
-	printf("  X - HORIZONTAL : %d\n", g->x);
-	printf("  Y - VERTICAL   : %d\n", g->y);
-	printf("%s\n", "|---------------------|");
-
+	ft_printf("%s\n", "|---------------------|");
+	ft_printf("  X - HORIZONTAL : %d\n", g->x);
+	ft_printf("  Y - VERTICAL   : %d\n", g->y);
+	ft_printf("%s\n", "|---------------------|");
 }
 // ===========================================================
 t_global *fdf_init(void)

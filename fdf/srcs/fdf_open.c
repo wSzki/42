@@ -9,6 +9,7 @@ static void	fdf_skip_prepending_newlines(t_global *g, int fd)
 	if (*buffer == 0)
 	{
 		free(buffer);
+		fdf_free_all(g);
 		p_exit("ERROR: Empty file");
 	}
 	g->tmp_map = fdf_dual_realloc(g->tmp_map, buffer);
@@ -38,6 +39,7 @@ static void	fdf_check_if_rest_is_newlines(t_global *g, int fd)
 		if (*buffer != '\0')
 		{
 			free(buffer);
+			fdf_free_all(g);
 			p_exit("ERROR: Map must be a solid block");
 		}
 		free(buffer);
@@ -48,7 +50,6 @@ static void	fdf_check_if_rest_is_newlines(t_global *g, int fd)
 void	fdf_open(t_global *g, int ac, const char *path)
 {
 	int		fd;
-	char	*buffer;
 
 	if (ac != 2)
 		p_exit("ERROR: One argument allowed : map path");
