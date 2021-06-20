@@ -6,7 +6,7 @@
 /*   By: wszurkow <wszurkow@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/20 13:56:00 by wszurkow          #+#    #+#             */
-/*   Updated: 2021/06/20 17:44:15 by wszurkow         ###   ########.fr       */
+/*   Updated: 2021/06/20 17:45:24 by wszurkow         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,7 @@ static void	fdf_split_and_convert(t_global *g)
 
 void	fdf_init_map(t_global *g)
 {
+	fdf_map_checks(g);
 	fdf_init_int_map(g);
 	fdf_split_and_convert(g);
 }

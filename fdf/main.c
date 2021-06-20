@@ -79,8 +79,11 @@ int main(int ac, char **av)
 
 	g = fdf_init();
 	fdf_open(g, ac, av[1]);
-	fdf_map_checks(g);
 	fdf_init_map(g);
+	////////////////
+
+
+
 
 	/////////////////
 	fdf_print_map(g);
