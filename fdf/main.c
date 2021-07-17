@@ -1,6 +1,6 @@
 #include "./includes/fdf.h"
+#include "externals/ft_minilibx/mlx.h"
 #include "externals/libft/libft.h"
-#include <stdio.h>
 
 
 // ===========================================================
@@ -47,6 +47,10 @@ t_global *fdf_init(void)
 	}
 	g->tmp_map[0] = NULL;
 	g->map = NULL;
+	g->start_x = 0;
+	g->start_y = 0;
+	g->end_x = 0;
+	g->end_y = 0;
 	return (g);
 }
 
@@ -78,13 +82,7 @@ int main(int ac, char **av)
 	g = fdf_init();
 	fdf_open(g, ac, av[1]);
 	fdf_init_map(g);
-	////////////////
-
-
-
-
-	/////////////////
+	fdf_mlx_start(g);
 	fdf_print_map(g);
 	fdf_free_all(g);
-	/////////////////
 }

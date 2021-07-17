@@ -6,7 +6,7 @@
 #    By: wszurkow <wszurkow@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/09/15 17:32:31 by wszurkow          #+#    #+#              #
-#    Updated: 2021/06/18 14:53:56 by wszurkow         ###   ########.fr        #
+#    Updated: 2021/06/22 20:13:36 by wszurkow         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -41,7 +41,6 @@ SRCS	=	ft_strlen.c ft_isalnum.c ft_putnbr.c ft_putnbr_fd.c \
 			./additions/ft_count_numbers.c \
 			./additions/p_exit.c \
 			./additions/count_lines.c
-
 
 BONUS			=	ft_lstsize.c ft_lstadd_front.c ft_lstadd_back.c \
 					ft_lstdelone.c ft_lstclear.c ft_lstiter.c ft_lstlast.c \

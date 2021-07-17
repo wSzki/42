@@ -6,7 +6,7 @@
 /*   By: wszurkow <wszurkow@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/17 14:20:43 by wszurkow          #+#    #+#             */
-/*   Updated: 2021/06/20 14:02:29 by wszurkow         ###   ########.fr       */
+/*   Updated: 2021/07/17 02:46:55 by wszurkow         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,9 +29,22 @@ typedef struct s_global
 	int **map;
 	int x;
 	int y;
+	int start_x;
+	int start_y;
+	int end_x;
+	int end_y;
 }				t_global;
 
+typedef struct s_line
+{
+	int x_start;
+	int y_start;
+	int x_end;
+	int y_end;
+}				t_line;
+
 t_global	*fdf_init(void);
+void	fdf_mlx_start(t_global *g);
 void	fdf_init_map(t_global *g);
 void	fdf_print_map(t_global *g);
 void	fdf_open(t_global *g, int ac, const char *path);
