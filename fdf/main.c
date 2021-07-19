@@ -33,12 +33,10 @@ void fdf_print_map(t_global *g)
 	ft_printf("%s\n", "|---------------------|");
 }
 // ===========================================================
-t_global *fdf_init(void)
+
+
+t_global *fdf_init_parser_memory(t_global *g)
 {
-	t_global *g;
-	g = malloc(sizeof(*g));
-	if (!g)
-		p_exit("ERROR: t_global *g malloc failed");
 	g->tmp_map = malloc(sizeof(char *));
 	if (!g->tmp_map)
 	{
@@ -47,12 +45,28 @@ t_global *fdf_init(void)
 	}
 	g->tmp_map[0] = NULL;
 	g->map = NULL;
-	g->start_x = 0;
-	g->start_y = 0;
-	g->end_x = 0;
-	g->end_y = 0;
 	return (g);
 }
+
+t_global *fdf_init_display_memory(t_global *g)
+{
+	g->mlx = NULL;
+	g->win = NULL;
+	g->img = NULL;
+	return (g);
+}
+
+t_global *fdf_init(void)
+{
+	t_global *g;
+	g = malloc(sizeof(*g));
+	if (!g)
+		p_exit("ERROR: t_global *g malloc failed");
+	g = fdf_init_parser_memory(g);
+	g = fdf_init_display_memory(g);
+	return (g);
+}
+
 
 void	fdf_free_all(t_global *g)
 {
@@ -69,6 +83,9 @@ void	fdf_free_all(t_global *g)
 	while (g->tmp_map[i])
 		free(g->tmp_map[i++]);
 	free(g->tmp_map);
+	free(g->mlx);
+	free(g->win);
+	free(g->img);
 	free(g);
 }
 // ===========================================================

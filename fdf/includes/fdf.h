@@ -6,7 +6,7 @@
 /*   By: wszurkow <wszurkow@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/17 14:20:43 by wszurkow          #+#    #+#             */
-/*   Updated: 2021/07/17 02:46:55 by wszurkow         ###   ########.fr       */
+/*   Updated: 2021/07/17 19:00:18 by wszurkow         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,10 +29,11 @@ typedef struct s_global
 	int **map;
 	int x;
 	int y;
-	int start_x;
-	int start_y;
-	int end_x;
-	int end_y;
+
+	void *mlx;
+	void *win;
+	void *img;
+
 }				t_global;
 
 typedef struct s_line

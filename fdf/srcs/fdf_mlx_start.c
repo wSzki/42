@@ -6,122 +6,144 @@
 /*   By: wszurkow <wszurkow@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/12 19:30:54 by wszurkow          #+#    #+#             */
-/*   Updated: 2021/07/17 03:03:14 by wszurkow         ###   ########.fr       */
+/*   Updated: 2021/07/19 15:25:20 by wszurkow         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/fdf.h"
 
-void	fdf_draw_line(t_global *g, void *mlx, void *win)
+void	fdf_vertical_line(t_global *g, int x0, int y0, int x1, int y1)
 {
+	int tmp;
 
-	printf("%d\n", g->start_x);
-	printf("%d\n", g->start_y);
-	printf("%d\n", g->end_x);
-	printf("%d\n", g->end_y);
-	mlx_pixel_put(mlx, win, g->start_x, g->start_y, 0x00FFFFFF);
-	mlx_pixel_put(mlx, win, g->end_x, g->end_y, 0x00FFFFFF);
-
-
-
-	printf("Line is %d pixels long \n", g->end_x - g->start_x);
-	printf("Line must be cut to fit %d pixels \n", g->end_y - g->start_y);
-	printf("%d\n", (g->end_x - g->start_x) / (g->end_y - g->start_y));
-
-	printf("%d\n", 35/13);
-	printf("%d\n", 35%13);
-
-	int i = g->start_x;
-
-	while (i < g->end_x)
+	(void)x1;
+	if (y0 > y1)
 	{
-		mlx_pixel_put(mlx, win, i, g->start_y, 0x00FABD2F);
-		i++;
+		tmp = y0;
+		y0 = y1;
+		y1 = tmp;
+	}
+	while (y0 < y1)
+	{
+		mlx_pixel_put(g->mlx, g->win, x0, y0, 0x00FFFFFF);
+		y0++;
 	}
 }
 
+void	fdf_horizontal_line(t_global *g, int x0, int y0, int x1, int y1)
+{
+	int tmp;
+
+	(void)y1;
+	if (x0 > x1)
+	{
+		tmp = x0;
+		x0 = x1;
+		x1 = tmp;
+	}
+	while (x0 < x1)
+	{
+		mlx_pixel_put(g->mlx, g->win, x0, y0, 0x00FFFFFF);
+		x0++;
+	}
+}
+void fdf_bresenham_line(t_global *g, int x0, int y0, int x1, int y1)
+{
+	int x;
+	int y;
+	int p;
+
+	x = abs(x1 - x0);
+	y = abs(y1 - y0);
+	p = 2 * x - y;
+	while (x0 < x1)
+	{
+		mlx_pixel_put(g->mlx, g->win, x0, y0, 0x00FFFFFF);
+		if (p >= 0)
+		{
+			p += (2 * y) - (2 * x);
+			y0++;
+		}
+		else
+			p += 2 * y;
+		x0++;
+	}
+}
+
+void fdf_reverse_bresenham_line(t_global *g, int x0, int y0, int x1, int y1)
+{
+	int x;
+	int y;
+	int p;
+
+	x = abs(x1 - x0);
+	y = abs(y1 - y0);
+	p = 2 * x - y;
+	while (x0 < x1)
+	{
+		mlx_pixel_put(g->mlx, g->win, x0, y0, 0x00FABD2F);
+		if (p >= 0)
+		{
+			y0--;
+			p += (2 * y) - (2 * x);
+		}
+		else
+			p += 2 * y;
+		x0++;
+	}
+}
+
+void	fdf_draw_line(t_global *g, int x0, int y0, int x1, int y1)
+{
+	int tmp;
+
+	if (x0 > x1)
+	{
+		tmp = x0;
+		x0 = x1;
+		x1 = tmp;
+		tmp = y0;
+		y0 = y1;
+		y1 = tmp;
+	}
+	if ((x0 - x1) == 0 && (y0 - y1) == 0)
+		mlx_pixel_put(g->mlx, g->win, x0, y0, 0x00FABD2F);
+	/*else if ((x0 - x1) == 0)*/
+		/*fdf_vertical_line(g, x0, y0, x1, y1);*/
+	else if ((y0 - y1) == 0)
+		fdf_horizontal_line(g, x0, y0, x1, y1);
+	else if (y0 < y1)
+		fdf_bresenham_line(g, x0, y0, x1, y1);
+	else if (y0 > y1)
+		fdf_reverse_bresenham_line(g, x0, y0, x1, y1);
+
+}
 
 
 void	fdf_mlx_start(t_global *g)
 {
 
-	// INIT ------------------------------
-	void *mlx;
-	void *win;
-	void *img;
-
-
-
-
-
-
-
-
-
-
-
-
-
-	/*char *data;*/
-	/*int bits_per_pixel;*/
-	/*int size_line;*/
-	/*int endian;*/
-
-	mlx = mlx_init();
-	win = mlx_new_window(mlx, 500, 500, "window");
-	img = mlx_new_image(mlx, 500, 500);
+	g->mlx = mlx_init();
+	g->win = mlx_new_window(g->mlx, 500, 500, "window");
+	g->img = mlx_new_image(g->mlx, 500, 500);
 	/*data = mlx_get_data_addr(img, &bits_per_pixel, &size_line, &endian);*/
 
+	/*fdf_draw_line(g, 10, 10, 100, 100);*/
+	/*fdf_draw_line(g, 3, 27, 46, 7);*/
+	fdf_draw_line(g, 46,7,63,30);
+	fdf_draw_line(g, 3, 27, 63,27);
+	/*fdf_draw_line(g, 10, 100, 100, 10);*/
 
-	//////////////////////////////////////////////
-	t_line *line;
-	line = malloc(sizeof(*line));
-
-	line->x_start = 32;
-	line->y_start = 56;
-	line->x_end = 400;
-	line->y_end = 172;
-
-	mlx_pixel_put(mlx, win, line->x_start, line->y_start, 0x00FFFFFF);
-	mlx_pixel_put(mlx, win, line->x_end, line->y_end, 0x00FFFFFF);
-
-	while (line->x_start < line->x_end)
-	{
-		mlx_pixel_put(mlx, win, line->x_start, line->y_start, 0x00FABD2F);
-		line->x_start++;
-		if (line->x_start % (line->x_end / line->y_end ) == 0)
-			line->y_start += 1;
-	}
-
-	//////////////////////////////////////////////
-
-
-	g->start_x = 10;
-	g->start_y = 10;
-
-	g->end_x = 45;
-	g->end_y = 23;
-	/*fdf_draw_line(g, mlx, win);*/
-
-	/*int i = 0;*/
-	/*int j = 1;*/
-
-	/*while (i < 100)*/
-	/*{*/
-	/*mlx_pixel_put(mlx, win, i, j, 0x00FFFFFF);*/
-	/*if (i % 2 == 0)*/
-	/*{*/
-	/*j = j * 4 / 3;*/
-	/*}*/
-	/*i++;*/
-	/*}*/
-	/*mlx_string_put(mlx, win, 25, 25, 11160, "Hello");*/
-	mlx_put_image_to_window(mlx, win, img, 500, 500);
-	mlx_loop(mlx);
+	/*fdf_vertical_line(g, 10, 10, 10, 100);*/
+	/*fdf_vertical_line(g, 100, 10, 100, 100);*/
+	/*fdf_horizontal_line(g, 10, 10, 100, 10);*/
+	/*fdf_horizontal_line(g, 10, 100, 100, 100);*/
+	mlx_put_image_to_window(g->mlx, g->win, g->img, 500, 500);
+	mlx_loop(g->mlx);
 	// FREE -------------------------------
-	mlx_destroy_image(mlx, img);
-	mlx_destroy_window(mlx, win);
-	free(mlx);
+	mlx_destroy_image(g->mlx, g->img);
+	mlx_destroy_window(g->mlx, g->win);
+	free(g->mlx);
 	fdf_print_map(g);
 	return ;
 }
