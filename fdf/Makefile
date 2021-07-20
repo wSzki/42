@@ -6,7 +6,7 @@
 #    By: wszurkow <wszurkow@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/06/17 13:47:41 by wszurkow          #+#    #+#              #
-#    Updated: 2021/06/22 22:07:20 by wszurkow         ###   ########.fr        #
+#    Updated: 2021/07/20 01:31:34 by wszurkow         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,21 +20,22 @@ SRCS_FILES		= \
 				  fdf_map_checks.c \
 				  fdf_init_map.c \
 				  fdf_atoi_overflow.c \
-				  fdf_mlx_start.c
+				  fdf_mlx_start.c \
+				  fdf_draw_line.c
 
 OBJS			= ${SRCS:.c=.o}
 %.o: %.c
-	${CC} ${FLAGS} -I ./includes -o $@ -c $<
+	${CC} ${FLAGS} -lm -I ./includes -o $@ -c $<
 
 all:		${NAME}
 
 ${NAME}:	${OBJS} libft ft_printf
-	${CC} -o ${NAME} ${FLAGS} ./main.c ${OBJS} \
+	${CC} -o  ${NAME} ${FLAGS} ./main.c ${OBJS} \
 		./externals/libft/libft.a \
 		./externals/ft_printf/ft_printf.a \
 		-I ./includes \
 		-L ./externals/ft_minilibx/ \
-		-lmlx -lXext -lX11
+		-lmlx -lXext -lX11 -lm
 	./fdf ./test_maps/basictest.fdf
 
 noflags: fclean ${OBJS} libft ft_printf

@@ -6,7 +6,7 @@
 /*   By: wszurkow <wszurkow@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/17 14:20:43 by wszurkow          #+#    #+#             */
-/*   Updated: 2021/07/17 19:00:18 by wszurkow         ###   ########.fr       */
+/*   Updated: 2021/07/20 17:49:49 by wszurkow         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,14 @@ typedef struct s_global
 	void *win;
 	void *img;
 
+	int x0;
+	int y0;
+	int x1;
+	int y1;
+	int degrees;
+	float magnitude;
+	float radian;
+
 }				t_global;
 
 typedef struct s_line
@@ -53,5 +61,6 @@ void	fdf_map_checks(t_global *g);
 void	fdf_free_all(t_global *g);
 int	fdf_atoi_overflow(t_global *g, const char *str);
 char	**fdf_dual_realloc(char **double_ptr, char *line);
+void	fdf_draw_line(t_global *g, int x0, int y0, int x1, int y1);
 
 #endif
