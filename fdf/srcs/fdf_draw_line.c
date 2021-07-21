@@ -74,6 +74,7 @@ static void fdf_wide_angle_bresenham_line(t_global *g, int x0, int y0, int x1, i
 	x = abs(x1 - x0);
 	y = abs(y1 - y0);
 	p = 2 * y - x;
+
 	while (y0 < y1)
 	{
 		mlx_pixel_put(g->mlx, g->win, x0, y0, 0x00FABd2f);
