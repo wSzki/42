@@ -26,18 +26,7 @@ void fdf_sharp_angle_bresenham_line(t_global *g, int x0, int y0, int x1, int y1,
 	int p;
 	int i = 0;
 	int max;
-	/*int tmp;*/
 
-	/*if (abs(x1 - x0) < abs(y1 - y0))*/
-	/*{*/
-		/*tmp = x0;*/
-		/*x0 = y0;*/
-		/*y0 = tmp;*/
-		/*tmp = x1;*/
-		/*x1 = y1;*/
-		/*y1 = tmp;*/
-	/*}*/
-	/*i = 0;*/
 	max = abs(x0 - x1);
 	x = abs(x1 - x0);
 	y = abs(y1 - y0);
@@ -99,40 +88,22 @@ void fdf_wide_angle_bresenham_line(t_global *g, int x0, int y0, int x1, int y1, 
 
 ////////////////////////////////////////////////////////////////////////////////////////
 //
-void fdf_draw_line3(t_global *g, int x0, int y0, int size, float angle)
+void fdf_vector_draw(t_global *g)
 {
-	int x1;
-	int y1;
-	/*int tmp;*/
-	float magnitude;
-	float radian;
 
-	magnitude = sqrt(size * size);
-	radian = angle * (M_PI / 180);
-	x1 = round(magnitude * cosf(radian) + x0);
-	y1 = round(magnitude * sinf(radian) + y0);
-	if ((x0 - x1) == 0)
-	{
-		fdf_vertical_line(g, x0, y0, x1, y1);
-		return ;
-	}
-	if (abs(x1 - x0) < abs(y1 - y0))
-	{
-			fdf_wide_angle_bresenham_line(g, x0, y0, x1, y1, angle);
-	}
+	if ((g->x0 - g->x1) == 0)
+		fdf_vertical_line(g, g->x0, g->y0, g->x1, g->y1);
+	else if (abs(g->x1 - g->x0) < abs(g->y1 - g->y0))
+		fdf_wide_angle_bresenham_line(g, g->x0, g->y0, g->x1, g->y1, g->degrees);
 	else
-	{
-			fdf_sharp_angle_bresenham_line(g, x0, y0, x1, y1, angle);
-	}
-
-	printf("%s\n", "-----------");
+		fdf_sharp_angle_bresenham_line(g, g->x0, g->y0, g->x1, g->y1, g->degrees);
 }
 
 //
 /////////////////////////////////////////////////////////////////////////////////////////
 
 
-static void	fdf_reset_vector(t_global *g)
+static void	fdf_vector_reset(t_global *g)
 {
 	g->x0 = 0;
 	g->y0 = 0;
@@ -143,6 +114,40 @@ static void	fdf_reset_vector(t_global *g)
 	g->degrees = 0;
 }
 
+static void fdf_vector_generate(t_global *g, int x0, int y0, int size)
+{
+	g->magnitude =  sqrt(size * size);
+	g->x0 = x0;
+	g->y0 = y0;
+	g->x1 = round(g->magnitude * cosf(0) + x0);
+	g->y1 = round(g->magnitude * sinf(0) + y0);
+}
+
+void fdf_vector_rotate(t_global *g, int angle)
+{
+	g->degrees = angle;
+	g->radian = angle * (M_PI / 180);
+	g->x1 = round(g->magnitude * cosf(g->radian) + g->x0);
+	g->y1 = round(g->magnitude * sinf(g->radian) + g->y0);
+}
+
+void fdf_vector_color(t_global *g, int color)
+{
+	g->color = color;
+}
+
+void fdf_vector_print_data(t_global *g)
+{
+
+	printf("x0 %d\n", g->x0);
+	printf("y0 %d\n", g->y0);
+	printf("x1 %d\n", g->x1);
+	printf("y1 %d\n", g->y1);
+	printf("magnitude %f\n", g->magnitude);
+	printf("radian %f\n",g->radian);
+	printf("degrees %d\n", g->degrees);
+	printf("color %d\n", g->color);
+}
 void	fdf_mlx_start(t_global *g)
 {
 
@@ -151,19 +156,26 @@ void	fdf_mlx_start(t_global *g)
 	g->win = mlx_new_window(g->mlx, 500, 500, "window");
 	g->img = mlx_new_image(g->mlx, 500, 500);
 	/*data = mlx_get_data_addr(img, &bits_per_pixel, &size_line, &endian);*/
-	fdf_reset_vector(g);
 	///////////////////////////////////////////
-	fdf_draw_line3(g, 250, 250, 205, 0);
-	fdf_draw_line3(g, 250, 250, 205, 45);
-	fdf_draw_line3(g, 250, 250, 205, 90);
-	fdf_draw_line3(g, 250, 250, 205, 135);
-	fdf_draw_line3(g, 250, 250, 205, 180);
-	fdf_draw_line3(g, 250, 250, 205, 225);
-	fdf_draw_line3(g, 250, 250, 205, 270);
-	fdf_draw_line3(g, 250, 250, 205, 315);
-	///////////////////////////////////////////
-
 	int i = 0;
+	//
+	while (i < 360)
+	{
+		fdf_vector_reset(g);
+		fdf_vector_generate(g, 250, 250, 205);
+		fdf_vector_rotate(g, i++);
+		fdf_vector_draw(g);
+	}
+
+	/*fdf_draw_line3(g, 250, 250, 205, 90);*/
+	/*fdf_draw_line3(g, 250, 250, 205, 135);*/
+	/*fdf_draw_line3(g, 250, 250, 205, 180);*/
+	/*fdf_draw_line3(g, 250, 250, 205, 225);*/
+	/*fdf_draw_line3(g, 250, 250, 205, 270);*/
+	/*fdf_draw_line3(g, 250, 250, 205, 315);*/
+	/*///////////////////////////////////////////*/
+
+	/*int i = 0;*/
 	/*while (i < 135)*/
 	/*{*/
 	/*fdf_draw_line3(g, 250, 250, 155, i);*/
@@ -177,13 +189,13 @@ void	fdf_mlx_start(t_global *g)
 	/*i++;*/
 	/*usleep(1000);*/
 	/*}*/
-	i = 0;
-	while (i < 360)
-	{
-		fdf_draw_line3(g, 250, 250, 155, i);
-		i++;
-		usleep(10000);
-	}
+	/*i = 0;*/
+	/*while (i < 360)*/
+	/*{*/
+	/*fdf_draw_line3(g, 250, 250, 155, i);*/
+	/*i++;*/
+	/*usleep(10000);*/
+	/*}*/
 
 	///////////////////////////////////////////
 	mlx_put_image_to_window(g->mlx, g->win, g->img, 500, 500);

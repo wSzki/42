@@ -6,7 +6,7 @@
 /*   By: wszurkow <wszurkow@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/17 14:20:43 by wszurkow          #+#    #+#             */
-/*   Updated: 2021/07/20 17:49:49 by wszurkow         ###   ########.fr       */
+/*   Updated: 2021/07/22 12:38:24 by wszurkow         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ typedef struct s_global
 	int degrees;
 	float magnitude;
 	float radian;
-
+	int color;
 }				t_global;
 
 typedef struct s_line
