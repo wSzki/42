@@ -94,8 +94,6 @@ void fdf_vector_draw(t_global *g)
 		fdf_wide_angle_bresenham_line(g, g->x0, g->y0, g->x1, g->y1, g->degrees);
 	else
 		fdf_sharp_angle_bresenham_line(g, g->x0, g->y0, g->x1, g->y1, g->degrees);
-	g->x0 = g->x1;
-	g->y0 = g->y1;
 }
 
 /*void fdf_vector_draw(t_global *g,int  x_offset, int y_offset)*/

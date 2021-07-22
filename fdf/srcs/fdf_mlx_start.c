@@ -66,7 +66,15 @@ void fdf_fill_background(t_global *g, unsigned int color)
 
 //****************************************//
 ////////////////////////////////////////////
+void fdf_h_1(t_global *g, int cell_length)
+{
 
+
+	fdf_vector_generate(g, g->x0, g->y0, cell_length / 2);
+	fdf_vector_rotate(g, 17);
+	fdf_vector_color(g, 0x00fabd2f);
+	fdf_vector_draw(g);
+}
 void	fdf_mlx_start(t_global *g)
 {
 
@@ -93,6 +101,8 @@ void	fdf_mlx_start(t_global *g)
 	printf("cell length %d\n", cell_length);
 
 	int i;
+	/*int xa;*/
+	/*int ya;*/
 
 	i = 0;
 
@@ -101,14 +111,53 @@ void	fdf_mlx_start(t_global *g)
 	g->y0 = 50;
 	while (i < g->x)
 	{
-		fdf_vector_generate(g, g->x0, g->y0, cell_length);
-		fdf_vector_rotate(g, 17);
-		if (g->map[0][i] == 0)
+
+		if (g->map[0][i] == 1)
+		{
+			fdf_vector_generate(g, g->x0, g->y0, cell_length / 2);
+			fdf_vector_rotate(g, 17);
+			fdf_vector_color(g, 0x00fabd2f);
+			fdf_vector_generate(g, g->x1, g->y1, cell_length);
+			fdf_vector_rotate(g, 270);
+			fdf_vector_color(g, 0x00fabd2f);
 			fdf_vector_draw(g);
-		g->x0 = g->x1;
-		g->y0 = g->y1;
+
+
+			fdf_vector_generate(g, g->x0, g->y0, cell_length);
+			fdf_vector_color(g, 0x00ffffff);
+			fdf_vector_rotate(g, 17);
+			g->x0 = g->x1;
+			g->y0 = g->y1;
+		}
+		/*fdf_vector_generate(g, g->x0, g->y0, cell_length / 2);*/
+		/*fdf_vector_rotate(g, 17);*/
+		/*fdf_vector_color(g, 0x0fabd2f);*/
+		/*fdf_vector_draw(g);*/
+		/*[>xa = g->x1;<]*/
+		/*[>ya = g->y1;<]*/
+		/*[>fdf_vector_generate(g, xa, ya, cell_length);<]*/
+		/*[>[>fdf_vector_rotate(g, 235);<]<]*/
+		/*[>fdf_vector_draw(g);<]*/
+
+		/*[>[>fdf_vector_generate(g, g->x0, g->y0, cell_length / 2);<]<]*/
+		/*[>[>g->x0 = g->x1;<]<]*/
+		/*[>[>g->y0 = g->y1;<]<]*/
+
+
+		/*}*/
+
+		// if 0 draw line
+		if (g->map[0][i] == 0)
+		{
+			fdf_vector_generate(g, g->x0, g->y0, cell_length);
+			fdf_vector_rotate(g, 17);
+			fdf_vector_draw(g);
+			fdf_vector_color(g, 0x00ffffff);
+			g->x0 = g->x1;
+			g->y0 = g->y1;
+		}
 		i++;
-	}
+}
 
 
 
@@ -119,15 +168,15 @@ void	fdf_mlx_start(t_global *g)
 
 
 
-	///////////////////////////////////////////
-	mlx_put_image_to_window(g->mlx, g->win, g->img, g->x_res, g->y_res);
-	mlx_loop(g->mlx);
-	///////////////////////////////////////////
-	// FREE -------------------------------
-	mlx_destroy_image(g->mlx, g->img);
-	mlx_destroy_window(g->mlx, g->win);
-	free(g->mlx);
-	fdf_print_map(g);
-	return ;
-	///////////////////////////////////////////
+///////////////////////////////////////////
+mlx_put_image_to_window(g->mlx, g->win, g->img, g->x_res, g->y_res);
+mlx_loop(g->mlx);
+///////////////////////////////////////////
+// FREE -------------------------------
+mlx_destroy_image(g->mlx, g->img);
+mlx_destroy_window(g->mlx, g->win);
+free(g->mlx);
+fdf_print_map(g);
+return ;
+///////////////////////////////////////////
 }
