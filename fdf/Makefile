@@ -6,7 +6,7 @@
 #    By: wszurkow <wszurkow@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/06/17 13:47:41 by wszurkow          #+#    #+#              #
-#    Updated: 2021/07/20 01:31:34 by wszurkow         ###   ########.fr        #
+#    Updated: 2021/07/22 13:00:42 by wszurkow         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,7 +21,9 @@ SRCS_FILES		= \
 				  fdf_init_map.c \
 				  fdf_atoi_overflow.c \
 				  fdf_mlx_start.c \
-				  fdf_draw_line.c
+				  fdf_draw_line.c \
+				  fdf_vector_edit.c \
+				  fdf_vector_draw.c
 
 OBJS			= ${SRCS:.c=.o}
 %.o: %.c

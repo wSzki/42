@@ -6,7 +6,7 @@
 /*   By: wszurkow <wszurkow@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/17 14:20:43 by wszurkow          #+#    #+#             */
-/*   Updated: 2021/07/22 12:38:24 by wszurkow         ###   ########.fr       */
+/*   Updated: 2021/07/22 14:31:27 by wszurkow         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,8 @@ typedef struct s_global
 	void *mlx;
 	void *win;
 	void *img;
+	int x_res;
+	int y_res;
 
 	int x0;
 	int y0;
@@ -41,7 +43,7 @@ typedef struct s_global
 	int degrees;
 	float magnitude;
 	float radian;
-	int color;
+	unsigned int color;
 }				t_global;
 
 typedef struct s_line
@@ -62,5 +64,12 @@ void	fdf_free_all(t_global *g);
 int	fdf_atoi_overflow(t_global *g, const char *str);
 char	**fdf_dual_realloc(char **double_ptr, char *line);
 void	fdf_draw_line(t_global *g, int x0, int y0, int x1, int y1);
+
+
+void fdf_vector_reset(t_global *g);
+void fdf_vector_generate(t_global *g, int x0, int y0, int size);
+void fdf_vector_rotate(t_global *g, int angle);
+void fdf_vector_color(t_global *g, unsigned int color);
+void fdf_vector_draw(t_global *g);
 
 #endif

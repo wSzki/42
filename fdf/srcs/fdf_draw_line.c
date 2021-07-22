@@ -13,7 +13,7 @@ static void	fdf_vertical_line(t_global *g, int x0, int y0, int x1, int y1)
 	}
 	while (y0 < y1)
 	{
-		mlx_pixel_put(g->mlx, g->win, x0, y0, 0x00FFFFFF);
+		mlx_pixel_put(g->mlx, g->win, x0, y0, g->color);
 		y0++;
 	}
 }
@@ -31,7 +31,7 @@ static void	fdf_horizontal_line(t_global *g, int x0, int y0, int x1, int y1)
 	}
 	while (x0 < x1)
 	{
-		mlx_pixel_put(g->mlx, g->win, x0, y0, 0x00FFFFFF);
+		mlx_pixel_put(g->mlx, g->win, x0, y0, g->color);
 		x0++;
 	}
 }
@@ -48,7 +48,7 @@ static void fdf_sharp_angle_bresenham_line(t_global *g, int x0, int y0, int x1, 
 	p = 2 * x - y;
 	while (x0 < x1)
 	{
-		mlx_pixel_put(g->mlx, g->win, x0, y0, 0x00FFFFFF);
+		mlx_pixel_put(g->mlx, g->win, x0, y0, g->color);
 		if (p >= 0)
 		{
 			p += (2 * y) - (2 * x);
@@ -77,7 +77,7 @@ static void fdf_wide_angle_bresenham_line(t_global *g, int x0, int y0, int x1, i
 
 	while (y0 < y1)
 	{
-		mlx_pixel_put(g->mlx, g->win, x0, y0, 0x00FABd2f);
+		mlx_pixel_put(g->mlx, g->win, x0, y0, g->color);
 		if (p >= 0)
 		{
 			p += (2 * x) - (2 * y);
@@ -107,7 +107,7 @@ void	fdf_draw_line(t_global *g, int x0, int y0, int x1, int y1)
 		y1 = tmp;
 	}
 	if ((x0 - x1) == 0 && (y0 - y1) == 0)
-		mlx_pixel_put(g->mlx, g->win, x0, y0, 0x00FABD2F);
+		mlx_pixel_put(g->mlx, g->win, x0, y0, g->color);
 	else if ((x0 - x1) == 0)
 		fdf_vertical_line(g, x0, y0, x1, y1);
 	else if ((y0 - y1) == 0)
