@@ -19,15 +19,25 @@ static void	fdf_vertical_line(t_global *g, int x0, int y0, int x1, int y1)
 		y0++;
 	}
 }
-void fdf_sharp_angle_bresenham_line(t_global *g, int x0, int y0, int x1, int y1)
+void fdf_sharp_angle_bresenham_line(t_global *g, int x0, int y0, int x1, int y1, int angle)
 {
 	int x;
 	int y;
 	int p;
 	int i = 0;
 	int max;
+	/*int tmp;*/
 
-	i = 0;
+	/*if (abs(x1 - x0) < abs(y1 - y0))*/
+	/*{*/
+		/*tmp = x0;*/
+		/*x0 = y0;*/
+		/*y0 = tmp;*/
+		/*tmp = x1;*/
+		/*x1 = y1;*/
+		/*y1 = tmp;*/
+	/*}*/
+	/*i = 0;*/
 	max = abs(x0 - x1);
 	x = abs(x1 - x0);
 	y = abs(y1 - y0);
@@ -45,43 +55,15 @@ void fdf_sharp_angle_bresenham_line(t_global *g, int x0, int y0, int x1, int y1)
 		}
 		else
 			p += 2 * y;
-		x0++;
-		i++;
-	}
-}
-
-void fdf_sharp_angle_bresenham_line2(t_global *g, int x0, int y0, int x1, int y1)
-{
-	int x;
-	int y;
-	int p;
-	int i = 0;
-	int max;
-
-	i = 0;
-	max = abs(x0 - x1);
-	x = abs(x1 - x0);
-	y = abs(y1 - y0);
-	p = 2 * x - y;
-	while (i < max)
-	{
-		mlx_pixel_put(g->mlx, g->win, x0, y0, 0x00FFFFFF);
-		if (p >= 0)
-		{
-			p += (2 * y) - (2 * x);
-			if (y0 < y1)
-				y0++;
-			if (y0 > y1)
-				y0--;
-		}
+		if (angle >= 135 && angle < 315)
+			x0--;
 		else
-			p += 2 * y;
-		x0--;
+			x0++;
 		i++;
 	}
 }
 
-void fdf_wide_angle_bresenham_line(t_global *g, int x0, int y0, int x1, int y1)
+void fdf_wide_angle_bresenham_line(t_global *g, int x0, int y0, int x1, int y1, int angle)
 {
 	int x;
 	int y;
@@ -107,41 +89,14 @@ void fdf_wide_angle_bresenham_line(t_global *g, int x0, int y0, int x1, int y1)
 		}
 		else
 			p += 2 * x;
-		y0++;
-		i++;
-	}
-}
-
-void fdf_wide_angle_bresenham_line2(t_global *g, int x0, int y0, int x1, int y1)
-{
-	int x;
-	int y;
-	int p;
-	int i;
-	int max;
-
-	i = 0;
-	max = abs(y0 - y1);
-	x = abs(x1 - x0);
-	y = abs(y1 - y0);
-	p = 2 * y - x;
-	while (i < max)
-	{
-		mlx_pixel_put(g->mlx, g->win, x0, y0, 0x00FABd2f);
-		if (p >= 0)
-		{
-			p += (2 * x) - (2 * y);
-			if (x0 < x1)
-				x0++;
-			if (x0 > x1)
-				x0--;
-		}
+		if (angle >= 135 && angle < 315)
+			y0--;
 		else
-			p += 2 * x;
-		y0--;
+			y0++;
 		i++;
 	}
 }
+
 ////////////////////////////////////////////////////////////////////////////////////////
 //
 void fdf_draw_line3(t_global *g, int x0, int y0, int size, float angle)
@@ -163,18 +118,11 @@ void fdf_draw_line3(t_global *g, int x0, int y0, int size, float angle)
 	}
 	if (abs(x1 - x0) < abs(y1 - y0))
 	{
-		if (angle > 134 && angle < 315)
-			fdf_wide_angle_bresenham_line2(g, x0, y0, x1, y1);
-		else
-			fdf_wide_angle_bresenham_line(g, x0, y0, x1, y1);
+			fdf_wide_angle_bresenham_line(g, x0, y0, x1, y1, angle);
 	}
 	else
 	{
-		if (angle > 134 && angle < 315)
-			fdf_sharp_angle_bresenham_line2(g, x0, y0, x1, y1);
-		else
-			fdf_sharp_angle_bresenham_line(g, x0, y0, x1, y1);
-		/*printf("%s\n", "----- PING -----2");*/
+			fdf_sharp_angle_bresenham_line(g, x0, y0, x1, y1, angle);
 	}
 
 	printf("%s\n", "-----------");
