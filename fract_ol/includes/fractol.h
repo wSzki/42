@@ -6,17 +6,17 @@
 /*   By: wszurkow <wszurkow@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/17 14:20:43 by wszurkow          #+#    #+#             */
-/*   Updated: 2021/08/06 23:51:26 by wszurkow         ###   ########.fr       */
+/*   Updated: 2021/08/07 00:09:43 by wszurkow         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FRACTOL_H
 # define FRACTOL_H
-# define HEIGHT 500
-# define WIDTH 500
+# define HEIGHT 333
+# define WIDTH 888
 # define X_BORDER -1.5
 # define Y_BORDER 1.5
-# define RELATIVE_SIZE 3
+# define RELATIVE_SIZE 3.0
 
 # include <math.h>
 # include <stdlib.h>
