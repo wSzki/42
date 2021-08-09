@@ -14,32 +14,61 @@
  *
  * |Z| = sqrt(a ^2 + b ^2);
  * if Z < 2, within mandelbrot
-*/
+ * il faut savoir que l'ensemble de Mandelbrot est toujours compris entre
+ * -2.1 et 0.6 sur l'axe des abscisse et entre
+ * -1.2 et 1.2 sur l'axe des ordonnées.
+ */
 
 
 static int fractol_mandelbrot(t_global *g, float x, float y, int n_max)
 {
-	int n;
+	int i;
 	float tmp;
 	float a;
 	float b;
 
+	i = 0;
 	a = 0;
 	b = 0;
-	n = 0;
-	x = X_BORDER + x * RELATIVE_SIZE / WIDTH;
-	y = Y_BORDER - y * RELATIVE_SIZE / HEIGHT;
-	while (sqrtf(powf(a, 2) + powf(b, 2)) < 2 && n < 1096)
+	x = g->origin + x * g->x_max / WIDTH;
+	y = g->end - y * g->y_max / HEIGHT;
+
+	while (sqrtf(powf(a, 2) + powf(b, 2)) < 2 && i < 1096)
 	{
 		tmp = a;
 		a = powf(a, 2) - powf (b, 2) + x;
 		b = (2 * b * tmp) + y;
-		n++;
+		i++;
 	}
-	if (n == n_max)
+	if (i == n_max)
 		return (0x000000);
-	return (g->color[n % 32]);
+	return (g->color[i % 32]);
 }
+
+static int fractol_julia(t_global *g, float x, float y, int n_max)
+{
+	int i;
+	float tmp;
+	float a;
+	float b;
+
+	i = 0;
+	a = -0.4;
+	b = 0.6;
+	x = g->origin + x * g->x_max / WIDTH;
+	y = g->end - y * g->y_max / HEIGHT;
+	while (sqrtf(powf(x, 2) + powf(y, 2)) < 2 && i < 1096)
+	{
+		tmp = x;
+		x = powf(x, 2) - powf (y, 2) + a;
+		y = (2 * y * tmp) + b;
+		i++;
+	}
+	if (i == n_max)
+		return (0x000000);
+	return (g->color[i % 32]);
+}
+
 
 void	fractol_run(t_global *g)
 {
@@ -54,8 +83,12 @@ void	fractol_run(t_global *g)
 		y = -1;
 		while (++y < HEIGHT)
 		{
-			color = fractol_mandelbrot(g, x, y, 1096);
+			if (g->fractal_type == 'm')
+				color = fractol_mandelbrot(g, x, y, 1096);
+			if (g->fractal_type == 'j')
+				color = fractol_julia(g, x, y, 1096);
 			mlx_pixel_put(g->mlx, g->win, (int)x, (int)y, color);
+			printf("%d\n", color);
 		}
 	}
 }

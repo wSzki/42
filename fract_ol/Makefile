@@ -6,7 +6,7 @@
 #    By: wszurkow <wszurkow@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/06/17 13:47:41 by wszurkow          #+#    #+#              #
-#    Updated: 2021/08/07 00:00:23 by wszurkow         ###   ########.fr        #
+#    Updated: 2021/08/09 02:50:51 by wszurkow         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,7 +17,7 @@ SRCS			= $(addprefix ./srcs/, ${SRCS_FILES})
 SRCS_FILES		= \
 				  fractol_utils.c \
 				  fractol_run.c \
-				  fractol_init.c \
+				fractol_hooks.c \
 
 
 OBJS			= ${SRCS:.c=.o}

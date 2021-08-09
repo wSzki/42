@@ -6,17 +6,21 @@
 /*   By: wszurkow <wszurkow@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/17 14:20:43 by wszurkow          #+#    #+#             */
-/*   Updated: 2021/08/07 00:09:43 by wszurkow         ###   ########.fr       */
+/*   Updated: 2021/08/09 03:12:57 by wszurkow         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FRACTOL_H
 # define FRACTOL_H
-# define HEIGHT 333
-# define WIDTH 888
-# define X_BORDER -1.5
-# define Y_BORDER 1.5
+# define HEIGHT 500.0
+# define WIDTH 500.0
+# define X_BORDER -2.05
+# define Y_BORDER 1.55
 # define RELATIVE_SIZE 3.0
+
+# define ECHAP 65307
+# define WHEEL_UP 5
+# define WHEEL_DOWN 4
 
 # include <math.h>
 # include <stdlib.h>
@@ -33,15 +37,19 @@ typedef struct s_global
 	void *img;
 	int *color;
 	char fractal_type;
+	float origin;
+	float end;
+	float x_max;
+	float y_max;
 
 }				t_global;
 
 int		fractol_strcmp(char *s1, char *s2);
-void	fractol_putstr(const char *s);
 
 void fractol_input_check(int ac, char **av);
-t_global *fractol_init(t_global *g, char *type);
 void	fractol_run(t_global *g);
+void	free_all_and_exit(t_global *g);
+void	fractol_set_hooks(t_global *g);
 
 
 #endif
