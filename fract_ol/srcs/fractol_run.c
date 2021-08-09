@@ -19,20 +19,18 @@
  * -1.2 et 1.2 sur l'axe des ordonnées.
  */
 
-
-static int fractol_mandelbrot(t_global *g, float x, float y, int n_max)
+static int	fractol_mandelbrot(t_global *g, float x, float y, int n_max)
 {
-	int i;
-	float tmp;
-	float a;
-	float b;
+	int		i;
+	float	tmp;
+	float	a;
+	float	b;
 
 	i = 0;
 	a = 0;
 	b = 0;
 	x = g->x_origin + x * g->x_total / WIDTH;
 	y = g->y_origin - y * g->y_total / HEIGHT;
-
 	while ((powf(a, 2) + powf(b, 2)) < 4 && i < 1096)
 	{
 		tmp = a;
@@ -45,12 +43,12 @@ static int fractol_mandelbrot(t_global *g, float x, float y, int n_max)
 	return (g->color[i % 32]);
 }
 
-static int fractol_julia(t_global *g, float x, float y, int n_max)
+static int	fractol_julia(t_global *g, float x, float y, int n_max)
 {
-	int i;
-	float tmp;
-	float a;
-	float b;
+	int		i;
+	float	tmp;
+	float	a;
+	float	b;
 
 	i = 0;
 	a = -0.4;
@@ -69,12 +67,11 @@ static int fractol_julia(t_global *g, float x, float y, int n_max)
 	return (g->color[i % 32]);
 }
 
-
 void	fractol_run(t_global *g)
 {
-	float x;
-	float y;
-	int color;
+	float	x;
+	float	y;
+	int		color;
 
 	color = 0x000000;
 	x = -1;
