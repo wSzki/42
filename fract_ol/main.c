@@ -70,6 +70,7 @@ static t_global	*fractol_init( char *str)
 	g->mlx = NULL;
 	g->win = NULL;
 	g->img = NULL;
+	g->addr = NULL;
 	g->color = NULL;
 	fractol_set_color(g);
 	g->fractal_type = str[0];
@@ -79,11 +80,15 @@ static t_global	*fractol_init( char *str)
 	fractol_catch_null(g, g->win);
 	g->img = mlx_new_image(g->mlx, WIDTH, HEIGHT);
 	fractol_catch_null(g, g->img);
+	g->addr = mlx_get_data_addr(g->img, &g->bits_per_pixel,
+			&g->line_length, &g->endian);
+	fractol_catch_null(g, g->addr);
 	return (g);
 }
 
 void	free_all_and_exit(t_global *g)
 {
+	/*free(g->addr);*/
 	mlx_destroy_image(g->mlx, g->img);
 	mlx_destroy_window(g->mlx, g->win);
 	mlx_destroy_display(g->mlx);
@@ -96,17 +101,17 @@ static void	fractol_data_init(t_global *g)
 {
 	if (g->fractal_type == 'm')
 	{
-		g->origin = -2.1;
-		g->end = 1.2;
-		g->x_max = 2.8;
-		g->y_max = 2.4;
+		g->origin = -2.05;
+		g->end = 1.5;
+		g->x_total = 3.0;
+		g->y_total = 3.0;
 	}
 	if (g->fractal_type == 'j')
 	{
 		g->origin = -1.5;
 		g->end = 1.5;
-		g->x_max = 3.0;
-		g->y_max = 3.0;
+		g->x_total = 3.0;
+		g->y_total = 3.0;
 	}
 
 }
@@ -118,6 +123,7 @@ int	main (int ac, char **av)
 	g = fractol_init(av[1]);
 	fractol_data_init(g);
 	fractol_run(g);
+	mlx_put_image_to_window(g->mlx, g->win, g->img, 0, 0);
 	fractol_set_hooks(g);
 	mlx_loop(g->mlx);
 	free_all_and_exit(g);
