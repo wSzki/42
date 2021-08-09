@@ -6,11 +6,11 @@
 #    By: wszurkow <wszurkow@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/06/17 13:47:41 by wszurkow          #+#    #+#              #
-#    Updated: 2021/08/09 02:50:51 by wszurkow         ###   ########.fr        #
+#    Updated: 2021/08/09 19:40:44 by wszurkow         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME			= fract_ol
+NAME			= fractol
 CC				= gcc
 FLAGS			= -Wall -Werror -Wextra -fsanitize=address
 SRCS			= $(addprefix ./srcs/, ${SRCS_FILES})

@@ -101,20 +101,20 @@ static void	fractol_data_init(t_global *g)
 {
 	if (g->fractal_type == 'm')
 	{
-		g->origin = -2.05;
-		g->end = 1.5;
+		g->x_origin = -2.05;
+		g->y_origin = 1.5;
 		g->x_total = 3.0;
 		g->y_total = 3.0;
 	}
 	if (g->fractal_type == 'j')
 	{
-		g->origin = -1.5;
-		g->end = 1.5;
+		g->x_origin = -1.5;
+		g->y_origin = 1.5;
 		g->x_total = 3.0;
 		g->y_total = 3.0;
 	}
-
 }
+
 int	main (int ac, char **av)
 {
 	t_global	*g;

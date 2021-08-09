@@ -6,7 +6,7 @@
 /*   By: wszurkow <wszurkow@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/17 14:20:43 by wszurkow          #+#    #+#             */
-/*   Updated: 2021/08/09 19:09:26 by wszurkow         ###   ########.fr       */
+/*   Updated: 2021/08/09 21:09:50 by wszurkow         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,8 +40,8 @@ typedef struct s_global
 	int		line_length;
 	int		endian;
 	char fractal_type;
-	float origin;
-	float end;
+	float x_origin;
+	float y_origin;
 	float x_total;
 	float y_total;
 }				t_global;

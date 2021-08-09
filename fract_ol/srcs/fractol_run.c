@@ -30,8 +30,8 @@ static int fractol_mandelbrot(t_global *g, float x, float y, int n_max)
 	i = 0;
 	a = 0;
 	b = 0;
-	x = g->origin + x * g->x_total / WIDTH;
-	y = g->end - y * g->y_total / HEIGHT;
+	x = g->x_origin + x * g->x_total / WIDTH;
+	y = g->y_origin - y * g->y_total / HEIGHT;
 
 	while ((powf(a, 2) + powf(b, 2)) < 4 && i < 1096)
 	{
@@ -55,8 +55,8 @@ static int fractol_julia(t_global *g, float x, float y, int n_max)
 	i = 0;
 	a = -0.4;
 	b = 0.6;
-	x = g->origin + x * g->x_total / WIDTH;
-	y = g->end - y * g->y_total / HEIGHT;
+	x = g->x_origin + x * g->x_total / WIDTH;
+	y = g->y_origin - y * g->y_total / HEIGHT;
 	while ((powf(x, 2) + powf(y, 2)) < 4 && i < 1096)
 	{
 		tmp = x;
