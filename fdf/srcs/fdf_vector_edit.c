@@ -14,6 +14,7 @@ void	fdf_vector_reset(t_global *g)
 
 void	fdf_vector_generate(t_global *g, int x0, int y0, int size)
 {
+	fdf_vector_reset(g);
 	g->magnitude = sqrt(size * size);
 	g->x0 = x0;
 	g->y0 = y0;

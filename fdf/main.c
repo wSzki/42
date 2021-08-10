@@ -84,8 +84,8 @@ void	fdf_free_all(t_global *g)
 		free(g->tmp_map[i++]);
 	free(g->tmp_map);
 	free(g->mlx);
-	free(g->win);
-	free(g->img);
+	/*free(g->win);*/
+	/*free(g->img);*/
 	free(g);
 }
 // ===========================================================
@@ -100,6 +100,6 @@ int main(int ac, char **av)
 	fdf_open(g, ac, av[1]);
 	fdf_init_map(g);
 	fdf_mlx_start(g);
-	fdf_print_map(g);
+	/*fdf_print_map(g);*/
 	fdf_free_all(g);
 }

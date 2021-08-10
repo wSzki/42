@@ -88,6 +88,10 @@ static void fdf_wide_angle_bresenham_line(t_global *g, int x0, int y0, int x1, i
 
 void fdf_vector_draw(t_global *g)
 {
+	g->x0 += g->x_res / 2;
+	g->x1 += g->x_res / 2;
+	g->y0 += g->y_res / 2;
+	g->y1 += g->y_res / 2;
 	if ((g->x0 - g->x1) == 0)
 		fdf_vertical_line(g, g->x0, g->y0, g->x1, g->y1);
 	else if (abs(g->x1 - g->x0) < abs(g->y1 - g->y0))
