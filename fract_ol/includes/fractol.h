@@ -6,7 +6,7 @@
 /*   By: wszurkow <wszurkow@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/17 14:20:43 by wszurkow          #+#    #+#             */
-/*   Updated: 2021/08/09 21:09:50 by wszurkow         ###   ########.fr       */
+/*   Updated: 2021/08/10 16:59:19 by wszurkow         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,9 @@
 # define ECHAP 65307
 # define WHEEL_UP 5
 # define WHEEL_DOWN 4
+# define SPACE 32
+# define PLUS 61
+# define MINUS 45
 
 # include <math.h>
 # include <stdlib.h>
