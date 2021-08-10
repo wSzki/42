@@ -19,7 +19,7 @@ static void	fractol_zoom(t_global *g, char direction)
 	}
 	if (g->fractal_type == 'm')
 		x_offset = -0.55;
-	g->x_origin = -x_offset - (g->x_total * 0.5);
+	g->x_origin = x_offset - (g->x_total * 0.5);
 	g->y_origin = y_offset + (g->y_total * 0.5);
 	fractol_run(g);
 	mlx_put_image_to_window(g->mlx, g->win, g->img, 0, 0);

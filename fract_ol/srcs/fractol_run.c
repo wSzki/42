@@ -47,19 +47,15 @@ static int	fractol_julia(t_global *g, float x, float y, int n_max)
 {
 	int		i;
 	float	tmp;
-	float	a;
-	float	b;
 
 	i = 0;
-	a = -0.4;
-	b = 0.6;
 	x = g->x_origin + x * g->x_total / WIDTH;
 	y = g->y_origin - y * g->y_total / HEIGHT;
 	while ((powf(x, 2) + powf(y, 2)) < 4 && i < 1096)
 	{
 		tmp = x;
-		x = powf(x, 2) - powf (y, 2) + a;
-		y = (2 * y * tmp) + b;
+		x = powf(x, 2) - powf (y, 2) + g->a;
+		y = (2 * y * tmp) + g->b;
 		i++;
 	}
 	if (i == n_max)

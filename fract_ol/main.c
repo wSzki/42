@@ -88,7 +88,6 @@ static t_global	*fractol_init( char *str)
 
 void	free_all_and_exit(t_global *g)
 {
-	/*free(g->addr);*/
 	mlx_destroy_image(g->mlx, g->img);
 	mlx_destroy_window(g->mlx, g->win);
 	mlx_destroy_display(g->mlx);
@@ -97,7 +96,7 @@ void	free_all_and_exit(t_global *g)
 	exit(0);
 }
 
-static void	fractol_data_init(t_global *g)
+static void	fractol_data_init(t_global *g, int ac, char **av)
 {
 	if (g->fractal_type == 'm')
 	{
@@ -112,6 +111,17 @@ static void	fractol_data_init(t_global *g)
 		g->y_origin = 1.5;
 		g->x_total = 3.0;
 		g->y_total = 3.0;
+		if (ac == 4)
+		{
+			g->a = atof(av[2]);
+			g->b = atof(av[3]);
+		}
+		else
+		{
+			g->a = -0.4;
+			g->b = 0.6;
+		}
+
 	}
 }
 
@@ -121,7 +131,7 @@ int	main (int ac, char **av)
 
 	fractol_input_check(ac, av);
 	g = fractol_init(av[1]);
-	fractol_data_init(g);
+	fractol_data_init(g, ac, av);
 	fractol_run(g);
 	mlx_put_image_to_window(g->mlx, g->win, g->img, 0, 0);
 	fractol_set_hooks(g);
