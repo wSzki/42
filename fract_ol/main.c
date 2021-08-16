@@ -1,63 +1,27 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: wszurkow <wszurkow@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/08/16 15:14:44 by wszurkow          #+#    #+#             */
+/*   Updated: 2021/08/16 15:14:45 by wszurkow         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "./includes/fractol.h"
-
-static void	fractol_set_additional_colors(t_global *g)
-{
-	g->color[16] = 0x473c29;
-	g->color[17] = 0x32302f;
-	g->color[18] = 0xd4be98;
-	g->color[19] = 0xddc7a1;
-	g->color[20] = 0xea6962;
-	g->color[21] = 0xd8a657;
-	g->color[22] = 0xA3BE8C;
-	g->color[23] = 0xD08770;
-	g->color[24] = 0x7C9C90;
-	g->color[25] = 0xe78a4e;
-	g->color[26] = 0xea6962;
-	g->color[27] = 0xa9b665;
-	g->color[28] = 0xd8a657;
-	g->color[29] = 0x7c6f64;
-	g->color[30] = 0x928374;
-	g->color[31] = 0xa89984;
-}
-
-static void	fractol_set_color(t_global *g)
-{
-	g->color = malloc(sizeof(g->color) * 64);
-	if (!g)
-	{
-		printf("Error\n%s", "*g malloc failed");
-		free(g);
-	}
-	g->color[0] = 0x191d20;
-	g->color[1] = 0x262727;
-	g->color[2] = 0x191d20;
-	g->color[3] = 0x3c3836;
-	g->color[4] = 0x3c3836;
-	g->color[5] = 0x504945;
-	g->color[6] = 0x1f2428;
-	g->color[7] = 0x32302f;
-	g->color[8] = 0x504945;
-	g->color[9] = 0x32361a;
-	g->color[10] = 0xEBCB8B;
-	g->color[11] = 0x333e34;
-	g->color[12] = 0x3c1f1e;
-	g->color[13] = 0x442e2d;
-	g->color[14] = 0x0d3138;
-	g->color[15] = 0x2e3b3b;
-	fractol_set_additional_colors(g);
-}
 
 static void	fractol_catch_null(t_global *g, void *ptr)
 {
 	if (!ptr)
 	{
-		printf("Error\n\
-				malloc failed at address %p", ptr);
+		printf("Error\n malloc failed at address %p", ptr);
 		free_all_and_exit(g);
 	}
 }
 
-static t_global	*fractol_init( char *str)
+static t_global	*fractol_init(char *str)
 {
 	t_global	*g;
 
@@ -121,11 +85,10 @@ static void	fractol_data_init(t_global *g, int ac, char **av)
 			g->a = -0.4;
 			g->b = 0.6;
 		}
-
 	}
 }
 
-int	main (int ac, char **av)
+int	main(int ac, char **av)
 {
 	t_global	*g;
 

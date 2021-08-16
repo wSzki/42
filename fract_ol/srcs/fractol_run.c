@@ -1,4 +1,14 @@
-#include "../includes/fractol.h"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   fractol_run.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: wszurkow <wszurkow@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/08/16 15:15:15 by wszurkow          #+#    #+#             */
+/*   Updated: 2021/08/16 15:15:27 by wszurkow         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 /*
  * Z * (n + 1) = (Z * n) ^ 2 + c;
@@ -18,6 +28,8 @@
  * -2.1 et 0.6 sur l'axe des abscisse et entre
  * -1.2 et 1.2 sur l'axe des ordonnées.
  */
+
+#include "../includes/fractol.h"
 
 static int	fractol_mandelbrot(t_global *g, float x, float y, int n_max)
 {
