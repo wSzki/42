@@ -6,7 +6,7 @@
 /*   By: wszurkow <wszurkow@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/16 15:14:44 by wszurkow          #+#    #+#             */
-/*   Updated: 2021/08/16 15:14:45 by wszurkow         ###   ########.fr       */
+/*   Updated: 2021/08/16 17:34:17 by wszurkow         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,33 +60,6 @@ void	free_all_and_exit(t_global *g)
 	exit(0);
 }
 
-static void	fractol_data_init(t_global *g, int ac, char **av)
-{
-	if (g->fractal_type == 'm')
-	{
-		g->x_origin = -2.05;
-		g->y_origin = 1.5;
-		g->x_total = 3.0;
-		g->y_total = 3.0;
-	}
-	if (g->fractal_type == 'j')
-	{
-		g->x_origin = -1.5;
-		g->y_origin = 1.5;
-		g->x_total = 3.0;
-		g->y_total = 3.0;
-		if (ac == 4)
-		{
-			g->a = atof(av[2]);
-			g->b = atof(av[3]);
-		}
-		else
-		{
-			g->a = -0.4;
-			g->b = 0.6;
-		}
-	}
-}
 
 int	main(int ac, char **av)
 {

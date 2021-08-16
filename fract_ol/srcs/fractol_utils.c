@@ -6,7 +6,7 @@
 /*   By: wszurkow <wszurkow@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/16 15:15:47 by wszurkow          #+#    #+#             */
-/*   Updated: 2021/08/16 15:15:48 by wszurkow         ###   ########.fr       */
+/*   Updated: 2021/08/16 17:13:33 by wszurkow         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,9 +48,9 @@ void	fractol_input_check(int ac, char **av)
 	}
 	else if (fractol_strcmp(av[1], "julia") == 0)
 	{
-		if (ac != 2 && ac != 4)
+		if (ac != 2 && ac != 3)
 			fractol_print_and_exit(\
-					"'julia' takes 0 or 2 parameters");
+					"'julia' takes 0 or 1 parameter (1, 2, 3 or 4)");
 	}
 	else
 		fractol_print_and_exit("Invalid fractal name");

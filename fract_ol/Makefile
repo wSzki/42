@@ -6,7 +6,7 @@
 #    By: wszurkow <wszurkow@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/06/17 13:47:41 by wszurkow          #+#    #+#              #
-#    Updated: 2021/08/16 16:05:49 by wszurkow         ###   ########.fr        #
+#    Updated: 2021/08/16 17:39:43 by wszurkow         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,8 +18,8 @@ SRCS_FILES		= \
 				  fractol_utils.c \
 				  fractol_run.c \
 				  fractol_hooks.c \
-				  fractol_atof.c \
 				  fractol_colors.c \
+				  fractol_data_init.c
 
 
 OBJS			= ${SRCS:.c=.o}
