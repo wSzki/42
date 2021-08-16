@@ -6,7 +6,7 @@
 /*   By: wszurkow <wszurkow@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/16 15:14:44 by wszurkow          #+#    #+#             */
-/*   Updated: 2021/08/16 17:34:17 by wszurkow         ###   ########.fr       */
+/*   Updated: 2021/08/16 17:43:10 by wszurkow         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,6 @@ void	free_all_and_exit(t_global *g)
 	free(g);
 	exit(0);
 }
-
 
 int	main(int ac, char **av)
 {
