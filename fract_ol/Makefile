@@ -6,7 +6,7 @@
 #    By: wszurkow <wszurkow@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/06/17 13:47:41 by wszurkow          #+#    #+#              #
-#    Updated: 2021/08/16 17:39:43 by wszurkow         ###   ########.fr        #
+#    Updated: 2021/08/16 17:55:15 by wszurkow         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -41,12 +41,18 @@ leaks:		${OBJS}
 		-I ./includes \
 		-L ./ext/minilibx-linux/ \
 		-lmlx -lXext -lX11 -lm
+	valgrind ./${NAME} julia \
+
+norme:	fclean
+	norminette ./main.c
+	norminette ./srcs/*
+	norminette ./includes/fractol.h
 
 clean:
 	make clean -C ./ext/minilibx-linux/
 	rm -f ${OBJS}
 
-fclean: clean
+fclean:	clean
 	rm -f ./${NAME}
 
 re: fclean all
