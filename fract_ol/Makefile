@@ -6,7 +6,7 @@
 #    By: wszurkow <wszurkow@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/06/17 13:47:41 by wszurkow          #+#    #+#              #
-#    Updated: 2021/08/11 00:19:16 by wszurkow         ###   ########.fr        #
+#    Updated: 2021/08/16 16:05:49 by wszurkow         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,12 +29,21 @@ OBJS			= ${SRCS:.c=.o}
 all:		${NAME}
 
 ${NAME}:	${OBJS}
+	make -C ./ext/minilibx-linux/
 	${CC} -o  ${NAME} ${FLAGS} ./main.c ${OBJS} \
 		-I ./includes \
 		-L ./ext/minilibx-linux/ \
 		-lmlx -lXext -lX11 -lm
 
+leaks:		${OBJS}
+	make -C ./ext/minilibx-linux/
+	${CC} -o  ${NAME} ${FLAGS} -fsanitize=address -g ./main.c ${OBJS} \
+		-I ./includes \
+		-L ./ext/minilibx-linux/ \
+		-lmlx -lXext -lX11 -lm
+
 clean:
+	make clean -C ./ext/minilibx-linux/
 	rm -f ${OBJS}
 
 fclean: clean
