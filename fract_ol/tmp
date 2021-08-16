@@ -1,0 +1,6 @@
+#!bin/sh
+
+EXEC=fractol
+ARGS=mandelbrot
+valgrind --tool=memcheck --leak-check=full --leak-resolution=high --show-reachable=yes --log-file=valgrind.log ./$EXEC $ARGS
+grep -A1 "valgrind" valgrind.log | grep $EXEC
