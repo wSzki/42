@@ -6,7 +6,7 @@
 #    By: wszurkow <wszurkow@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/06/17 13:47:41 by wszurkow          #+#    #+#              #
-#    Updated: 2021/08/16 17:55:15 by wszurkow         ###   ########.fr        #
+#    Updated: 2021/08/16 18:11:52 by wszurkow         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -37,7 +37,7 @@ ${NAME}:	${OBJS}
 
 leaks:		${OBJS}
 	make -C ./ext/minilibx-linux/
-	${CC} -o  ${NAME} ${FLAGS} -fsanitize=address -g ./main.c ${OBJS} \
+	${CC} -g -o  ${NAME} ${FLAGS} ./main.c ${OBJS} \
 		-I ./includes \
 		-L ./ext/minilibx-linux/ \
 		-lmlx -lXext -lX11 -lm
@@ -49,7 +49,7 @@ norme:	fclean
 	norminette ./includes/fractol.h
 
 clean:
-	make clean -C ./ext/minilibx-linux/
+	@make clean -C ./ext/minilibx-linux/
 	rm -f ${OBJS}
 
 fclean:	clean

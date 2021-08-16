@@ -6,7 +6,7 @@
 /*   By: wszurkow <wszurkow@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/16 15:14:44 by wszurkow          #+#    #+#             */
-/*   Updated: 2021/08/16 17:43:10 by wszurkow         ###   ########.fr       */
+/*   Updated: 2021/08/16 18:16:09 by wszurkow         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ static void	fractol_catch_null(t_global *g, void *ptr)
 {
 	if (!ptr)
 	{
-		printf("Error\n malloc failed at address %p", ptr);
+		printf("Error\nmalloc failed at address %p", ptr);
 		free_all_and_exit(g);
 	}
 }
@@ -52,9 +52,12 @@ static t_global	*fractol_init(char *str)
 
 void	free_all_and_exit(t_global *g)
 {
-	mlx_destroy_image(g->mlx, g->img);
-	mlx_destroy_window(g->mlx, g->win);
-	mlx_destroy_display(g->mlx);
+	if (g->mlx && g->img)
+	{
+		mlx_destroy_image(g->mlx, g->img);
+		mlx_destroy_window(g->mlx, g->win);
+		mlx_destroy_display(g->mlx);
+	}
 	free(g->color);
 	free(g);
 	exit(0);
