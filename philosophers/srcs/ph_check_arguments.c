@@ -6,7 +6,7 @@
 /*   By: wszurkow <wszurkow@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/19 20:34:56 by wszurkow          #+#    #+#             */
-/*   Updated: 2021/08/23 18:20:15 by wszurkow         ###   ########.fr       */
+/*   Updated: 2021/08/23 18:22:16 by wszurkow         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ void	ph_check_arguments(int ac, char **av)
 
 	(void)av;
 	i = 0;
-	if (!(ac == 4 || ac == 5))
+	if (!(ac == 5 || ac == 6))
 		ph_print_usage_exit();
 	while (++i < ac)
 	{
