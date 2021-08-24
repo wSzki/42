@@ -6,7 +6,7 @@
 #    By: wszurkow <wszurkow@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/01/16 22:40:46 by wszurkow          #+#    #+#              #
-#    Updated: 2021/08/23 18:18:49 by wszurkow         ###   ########.fr        #
+#    Updated: 2021/08/24 16:32:02 by wsz              ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,6 +22,8 @@ SRCS_FILES	= \
 			  ph_check_arguments.c \
 			  ph_malloc.c \
 			  ph_atoi_overflow.c \
+			  ph_free_everything.c \
+			  ph_init_struct.c \
 
 OBJS		= ${SRCS:.c=.o}
 

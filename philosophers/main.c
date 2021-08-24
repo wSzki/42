@@ -6,13 +6,38 @@
 /*   By: wszurkow <wszurkow@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/19 19:30:47 by wszurkow          #+#    #+#             */
-/*   Updated: 2021/08/23 18:18:24 by wszurkow         ###   ########.fr       */
+/*   Updated: 2021/08/24 17:47:44 by wszurkow         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./includes/philo.h"
 
-t_global *ph_init_g(void)
+///////////////////////////////////////////////////////////////////
+void	print_struct(t_global *g)
+{
+
+	printf("number philo		%d\n",    g->n_philo );
+	printf("time to die		%d\n",      g->t_die );
+	printf("time to eat		%d\n",      g->t_eat );
+	printf("time to sleep		%d\n",    g->t_sleep );
+	printf("number meals		%d\n",    g->n_meals_to_eat);
+	printf("number deaths		%d\n",   g->n_deaths );
+	printf("number satiated		%d\n", g->n_satiated );
+}
+
+void	ph_print_philo_data(t_global *g, int id)
+{
+	id--;
+	printf("id %d\n", g->p[id].id);
+	printf("t last %ld\n", g->p[id].t_last_meal);
+	printf("l fork%d\n", g->p[id].left_fork_id);
+	printf("r fork%d\n", g->p[id].right_fork_id);
+	printf("meals eatin%d\n", g->p[id].meals_eaten);
+}
+
+///////////////////////////////////////////////////////////////////
+
+t_global *ph_malloc_g(void)
 {
 	t_global *g;
 
@@ -21,42 +46,24 @@ t_global *ph_init_g(void)
 	if (!g)
 	{
 		ph_putstr(2, "Error\n");
-		ph_putstr(2, "malloc failed");
+		ph_putstr(2, "malloc failed on *g");
 		ph_putstr(2, "\n");
 		exit(ERROR);
 	}
 	return (g);
 }
 
-void	ph_init_struct(t_global *g, char **av)
-{
-	g->n_philo = ph_atoi_overflow(g, av[1]);
-	g->t_die = ph_atoi_overflow(g, av[2]);
-	g->t_eat = ph_atoi_overflow(g, av[3]);
-	g->t_sleep = ph_atoi_overflow(g, av[4]);
 
-}
-
-void	ph_free_everything_exit(void *g, int errno)
-{
-	free(g);
-	exit(errno);
-}
 
 int main(int ac, char **av)
 {
 	t_global *g;
 
 	ph_check_arguments(ac, av);
-	g = ph_init_g();
+	g = ph_malloc_g();
+	ph_init_struct(g, ac, av);
 	//////////////////////////////
-
-	ph_init_struct(g, av);
-
-
-
-
-
+	print_struct(g);
 
 
 
