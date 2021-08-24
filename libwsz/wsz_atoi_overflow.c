@@ -6,7 +6,7 @@
 /*   By: wszurkow <wszurkow@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/18 14:40:21 by wszurkow          #+#    #+#             */
-/*   Updated: 2021/08/17 02:50:39 by wszurkow         ###   ########.fr       */
+/*   Updated: 2021/08/23 18:05:06 by wszurkow         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ int	wsz_atoi_overflow(const char *str, void *g, void (*free_and_exit)(void *))
 		if (atoi == -2147483648 && sign == -1)
 			return (atoi);
 	}
-	ft_putstr("ERROR: atoi overflow\n");
+	wsz_putstr("ERROR: atoi overflow\n");
 	free_and_exit(g);
 	return (0);
 }
