@@ -6,15 +6,19 @@
 #    By: wszurkow <wszurkow@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/01/16 22:40:46 by wszurkow          #+#    #+#              #
-#    Updated: 2021/08/24 16:32:02 by wsz              ###   ########.fr        #
+#    Updated: 2021/08/25 20:19:59 by wszurkow         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME		= philo
-CC			= gcc
-HEADER		= ./includes
-FLAGS		= -Wall -Wextra -Werror -pthread -fsanitize=address
-RM			= /bin/rm -f
+NAME			= philo
+CC				= gcc
+HEADER			= ./includes
+FLAGS			= -Wall -Wextra -Werror -pthread
+THREAD_CHECK	= -fsanitize=thread
+LEAK_CHECK		= -fsanitize=address -fsanitize=leak
+VALGRINDERS		= -ggdb3
+OPTIMIZERS		= -O3
+RM				= /bin/rm -f
 
 SRCS		= $(addprefix ./srcs/, ${SRCS_FILES})
 SRCS_FILES	= \
@@ -43,6 +47,21 @@ fclean:		clean
 
 re:			fclean all
 
-.PHONY: 		all fclean clean re
+leak_sanitized:	${OBJS}
+	clang ${FLAGS} ${LEAK_CHECK} ./main.c ${OBJS} -o ${NAME}
 
+thread_sanitized:	${OBJS}
+	clang ${FLAGS} ${THREAD_CHECK} ./main.c ${OBJS} -o ${NAME}
 
+valgrinded:	${OBJS}
+	clang ${FLAGS} ${VALGRINDERS} ./main.c ${OBJS} -o ${NAME}
+
+optimized:	${OBJS}
+	${CC} ${FLAGS} ${OPTIMIZERS} ./main.c ${OBJS} -o ${NAME}
+
+.PHONY:\
+	all fclean clean re \
+	leak_sanitized \
+	thread_sanitized \
+	valgrinded \
+	optimized

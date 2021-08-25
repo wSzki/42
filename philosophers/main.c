@@ -6,7 +6,7 @@
 /*   By: wszurkow <wszurkow@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/19 19:30:47 by wszurkow          #+#    #+#             */
-/*   Updated: 2021/08/24 17:47:44 by wszurkow         ###   ########.fr       */
+/*   Updated: 2021/08/25 19:59:21 by wszurkow         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 ///////////////////////////////////////////////////////////////////
 void	print_struct(t_global *g)
 {
-
 	printf("number philo		%d\n",    g->n_philo );
 	printf("time to die		%d\n",      g->t_die );
 	printf("time to eat		%d\n",      g->t_eat );
@@ -65,6 +64,7 @@ int main(int ac, char **av)
 	//////////////////////////////
 	print_struct(g);
 
+/*printf("%d\n", g->p[0].id);*/
 
 
 

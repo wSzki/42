@@ -6,11 +6,12 @@
 /*   By: wszurkow <wszurkow@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/24 16:22:06 by wszurkow          #+#    #+#             */
-/*   Updated: 2021/08/24 17:50:27 by wszurkow         ###   ########.fr       */
+/*   Updated: 2021/08/25 19:59:30 by wszurkow         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/philo.h"
+#include <pthread.h>
 
 static long	ph_timestamp(void)
 {
@@ -50,8 +51,25 @@ static void	ph_create_philosophers(t_global *g)
 	}
 }
 
+/*static void	ph_mutex_init(t_global *g)*/
+/*{*/
+	/*int	i;*/
+
+	/*i = 0;*/
+	/*g->forks = ph_malloc(g, sizeof(pthread_mutex_t *) * g->n_philo);*/
+	/*pthread_mutex_init(&g->lock, NULL);*/
+	/*while (i < g->n_philo)*/
+	/*{*/
+		/*pthread_mutex_init(&g->forks[i], NULL);*/
+		/*i++;*/
+	/*}*/
+/*}*/
+
 void	ph_init_struct(t_global *g, int ac, char **av)
 {
+	g->p = NULL;
+	g->forks = NULL;
 	ph_process_arguments(g, ac, av);
 	ph_create_philosophers(g);
+	/*ph_mutex_init(g);*/
 }

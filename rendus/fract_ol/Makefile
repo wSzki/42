@@ -6,13 +6,13 @@
 #    By: wszurkow <wszurkow@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/06/17 13:47:41 by wszurkow          #+#    #+#              #
-#    Updated: 2021/08/18 14:44:46 by wszurkow         ###   ########.fr        #
+#    Updated: 2021/08/25 19:41:11 by wszurkow         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME			= fractol
 CC				= gcc
-FLAGS			= -Wall -Werror -Wextra
+FLAGS			= -Wall -Werror -Wextra -O3
 SRCS			= $(addprefix ./srcs/, ${SRCS_FILES})
 SRCS_FILES		= \
 				  fractol_utils.c \

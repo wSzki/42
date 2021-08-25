@@ -6,7 +6,7 @@
 /*   By: wszurkow <wszurkow@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/19 19:31:02 by wszurkow          #+#    #+#             */
-/*   Updated: 2021/08/24 17:51:48 by wszurkow         ###   ########.fr       */
+/*   Updated: 2021/08/24 18:27:57 by wsz              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,8 @@ typedef struct s_global {
 	int				n_meals_to_eat;
 	int				n_deaths;
 	int				n_satiated;
-	int				lock;
+	pthread_mutex_t				lock;
+	pthread_mutex_t				*forks;
 	t_philosopher	*p;
 }	t_global;
 
