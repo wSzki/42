@@ -6,7 +6,7 @@
 #    By: wszurkow <wszurkow@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/01/16 22:40:46 by wszurkow          #+#    #+#              #
-#    Updated: 2021/08/25 20:19:59 by wszurkow         ###   ########.fr        #
+#    Updated: 2021/08/29 23:00:27 by wszurkow         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,12 +22,13 @@ RM				= /bin/rm -f
 
 SRCS		= $(addprefix ./srcs/, ${SRCS_FILES})
 SRCS_FILES	= \
-			  ph_utils.c \
 			  ph_check_arguments.c \
-			  ph_malloc.c \
-			  ph_atoi_overflow.c \
-			  ph_free_everything.c \
 			  ph_init_struct.c \
+			  ph_start.c \
+			  utils/ph_putstr.c \
+			  utils/ph_malloc.c \
+			  utils/ph_timestamp.c \
+			  utils/ph_atoi_overflow.c \
 
 OBJS		= ${SRCS:.c=.o}
 
@@ -47,16 +48,16 @@ fclean:		clean
 
 re:			fclean all
 
-leak_sanitized:	${OBJS}
-	clang ${FLAGS} ${LEAK_CHECK} ./main.c ${OBJS} -o ${NAME}
+leak_sanitized:	fclean ${OBJS}
+	${CC} ${FLAGS} ${LEAK_CHECK} ./main.c ${OBJS} -o ${NAME}
 
-thread_sanitized:	${OBJS}
-	clang ${FLAGS} ${THREAD_CHECK} ./main.c ${OBJS} -o ${NAME}
+thread_sanitized:	fclean ${OBJS}
+	${CC} ${FLAGS} ${THREAD_CHECK} ./main.c ${OBJS} -o ${NAME}
 
-valgrinded:	${OBJS}
-	clang ${FLAGS} ${VALGRINDERS} ./main.c ${OBJS} -o ${NAME}
+valgrinded:	fclean ${OBJS}
+	${CC} ${FLAGS} ${VALGRINDERS} ./main.c ${OBJS} -o ${NAME}
 
-optimized:	${OBJS}
+optimized:	fclean ${OBJS}
 	${CC} ${FLAGS} ${OPTIMIZERS} ./main.c ${OBJS} -o ${NAME}
 
 .PHONY:\

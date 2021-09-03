@@ -6,7 +6,7 @@
 #    By: wszurkow <wszurkow@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/08/11 18:57:18 by wszurkow          #+#    #+#              #
-#    Updated: 2021/08/18 06:16:50 by wszurkow         ###   ########.fr        #
+#    Updated: 2021/08/25 20:23:31 by wszurkow         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,15 +30,15 @@ SERVER_FILES = \
 			   mt_utils.c \
 
 %.o: %.c
-	${CC} ${FLAGS} -I ./includes -o $@ -c $<
+	${CC} -O3 ${FLAGS} -I ./includes -o $@ -c $<
 
 all: ${CLIENT_NAME} ${SERVER_NAME}
 
 $(CLIENT_NAME): ${CLIENT_OBJS}
-	${CC} ${FLAGS} ${CLIENT_OBJS} -o ${CLIENT_NAME}
+	${CC} -O3 ${FLAGS} ${CLIENT_OBJS} -o ${CLIENT_NAME}
 
 $(SERVER_NAME): ${SERVER_OBJS}
-	${CC} ${FLAGS} ${SERVER_OBJS} -o ${SERVER_NAME}
+	${CC} -O3 ${FLAGS} ${SERVER_OBJS} -o ${SERVER_NAME}
 
 clean :
 	${RM} ./${CLIENT_OBJS}

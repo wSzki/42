@@ -1,28 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ph_malloc.c                                        :+:      :+:    :+:   */
+/*   ph_timestamp.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: wszurkow <wszurkow@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/08/23 15:01:05 by wszurkow          #+#    #+#             */
-/*   Updated: 2021/08/23 18:21:10 by wszurkow         ###   ########.fr       */
+/*   Created: 2021/08/29 22:55:29 by wszurkow          #+#    #+#             */
+/*   Updated: 2021/08/29 22:55:48 by wszurkow         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/philo.h"
+#include "../../includes/philo.h"
 
-void	*ph_malloc(t_global *g, size_t size)
+long	ph_timestamp(void)
 {
-	void	*ptr;
+	struct timeval	timestamp;
 
-	ptr = malloc(size);
-	if (!ptr)
-	{
-		ph_putstr(2, "Error\n");
-		ph_putstr(2, "malloc failed");
-		ph_putstr(2, "\n");
-		ph_free_everything_exit(g, ERROR);
-	}
-	return (ptr);
+	gettimeofday(&timestamp, NULL);
+	return (timestamp.tv_sec * 1000000 + timestamp.tv_usec);
 }

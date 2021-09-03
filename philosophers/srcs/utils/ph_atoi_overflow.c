@@ -6,11 +6,11 @@
 /*   By: wszurkow <wszurkow@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/18 14:40:21 by wszurkow          #+#    #+#             */
-/*   Updated: 2021/08/23 18:20:36 by wszurkow         ###   ########.fr       */
+/*   Updated: 2021/08/29 22:56:28 by wszurkow         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/philo.h"
+#include "../../includes/philo.h"
 
 static void	ph_print_exit(char *str)
 {

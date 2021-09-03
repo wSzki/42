@@ -6,7 +6,7 @@
 /*   By: wszurkow <wszurkow@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/19 19:31:02 by wszurkow          #+#    #+#             */
-/*   Updated: 2021/08/24 18:27:57 by wsz              ###   ########.fr       */
+/*   Updated: 2021/08/29 22:59:48 by wszurkow         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ typedef struct s_philosopher
 }	t_philosopher;
 
 typedef struct s_global {
+	int i;
 	int				n_philo;
 	int				t_die;
 	int				t_eat;
@@ -50,4 +51,6 @@ void	ph_check_arguments(int ac, char **av);
 void	ph_free_everything_exit(t_global *g, int errno);
 int		ph_atoi_overflow(t_global *g, const char *str);
 void	ph_init_struct(t_global *g, int ac, char **av);
+int		ph_start(t_global *g);
+long	ph_timestamp(void);
 #endif

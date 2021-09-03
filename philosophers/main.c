@@ -6,13 +6,15 @@
 /*   By: wszurkow <wszurkow@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/19 19:30:47 by wszurkow          #+#    #+#             */
-/*   Updated: 2021/08/25 19:59:21 by wszurkow         ###   ########.fr       */
+/*   Updated: 2021/08/29 08:12:21 by wszurkow         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
 #include "./includes/philo.h"
 
-///////////////////////////////////////////////////////////////////
 void	print_struct(t_global *g)
 {
 	printf("number philo		%d\n",    g->n_philo );
@@ -34,7 +36,9 @@ void	ph_print_philo_data(t_global *g, int id)
 	printf("meals eatin%d\n", g->p[id].meals_eaten);
 }
 
-///////////////////////////////////////////////////////////////////
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
 
 t_global *ph_malloc_g(void)
 {
@@ -53,7 +57,6 @@ t_global *ph_malloc_g(void)
 }
 
 
-
 int main(int ac, char **av)
 {
 	t_global *g;
@@ -63,10 +66,8 @@ int main(int ac, char **av)
 	ph_init_struct(g, ac, av);
 	//////////////////////////////
 	print_struct(g);
-
-/*printf("%d\n", g->p[0].id);*/
-
-
+	ph_print_philo_data(g, 1);
+	ph_start(g);
 
 	//////////////////////////////
 	ph_free_everything_exit(g, OK);

@@ -6,11 +6,11 @@
 /*   By: wszurkow <wszurkow@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/19 20:33:47 by wszurkow          #+#    #+#             */
-/*   Updated: 2021/08/23 18:20:56 by wszurkow         ###   ########.fr       */
+/*   Updated: 2021/08/29 22:56:47 by wszurkow         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/philo.h"
+#include "../../includes/philo.h"
 
 void	ph_putstr(int fd, char *str)
 {
