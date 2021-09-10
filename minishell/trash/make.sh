@@ -1,0 +1,6 @@
+
+
+
+
+
+make re && ./minishell

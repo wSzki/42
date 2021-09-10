@@ -6,7 +6,7 @@
 /*   By: wszurkow <wszurkow@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/19 19:31:02 by wszurkow          #+#    #+#             */
-/*   Updated: 2021/08/29 22:59:48 by wszurkow         ###   ########.fr       */
+/*   Updated: 2021/09/03 13:34:36 by wszurkow         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ typedef struct s_philosopher
 }	t_philosopher;
 
 typedef struct s_global {
-	int i;
+	int				 i;
 	int				n_philo;
 	int				t_die;
 	int				t_eat;
