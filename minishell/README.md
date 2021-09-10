@@ -4,8 +4,8 @@
 # MINISHELL
 
 ## Authorized functions
-
-
+```
+| ---         | ---              | ---            | ---             | ---          |
 | readline    | rl_clear_history | rl_on_new_line | rl_replace_line | rl_redisplay |
 | add_history | printf           |                |                 |              |
 | malloc      | free             |                |                 |              |
@@ -18,7 +18,7 @@
 | opendir     | readdir          | closedir       | strerror        | perror       |
 | tcsetattr   | tcgetattr        | tgetent        | tgetflag        | tgetnum      |
 | tgetstr     | tgoto            | tputs          |                 |              |
-
+```
 ## Builtins
 
 > With opitons
@@ -62,7 +62,7 @@ exit
 
 ```
 ## Reserved words
-
+```
 +-------+----------+------+
 | while | until    | time |
 +-------+----------+------+
@@ -78,3 +78,4 @@ exit
 +-------+----------+------+
 |       | !        |      |
 +-------+----------+------+
+```
