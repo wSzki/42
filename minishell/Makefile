@@ -6,14 +6,14 @@
 #    By: wszurkow <wszurkow@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/01/16 22:40:46 by wszurkow          #+#    #+#              #
-#    Updated: 2021/09/10 14:58:18 by wszurkow         ###   ########.fr        #
+#    Updated: 2021/09/14 18:56:35 by wszurkow         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME			= minishell
 CC				= gcc
 HEADER			= ./includes
-FLAGS			= -Wall -Wextra -Werror -lreadline -fsanitize=address
+FLAGS			= -Wall -Wextra -Werror -fsanitize=address
 THREAD_CHECK	= -fsanitize=thread
 LEAK_CHECK		= -fsanitize=address -fsanitize=leak
 VALGRINDERS		= -ggdb3
@@ -22,18 +22,27 @@ RM				= /bin/rm -f
 
 SRCS		= $(addprefix ./srcs/, ${SRCS_FILES})
 SRCS_FILES	= \
-			  utils/ft_split.c \
-			  utils/ft_strlen.c \
-			  utils/ft_strncmp.c \
-			  utils/ft_strjoin.c \
+			  libft/ft_split.c \
+			  libft/ft_strlen.c \
+			  libft/ft_putstr.c \
+			  libft/ft_strncmp.c \
+			  libft/ft_strcmp.c \
+			  libft/ft_strjoin.c \
 			  \
-			  utils/ms_exec.c \
+			  utils/execute.c \
+			  utils/find_absolute_path.c \
+			  utils/extract_string.c \
 			  \
 			  pipex/call_child.c \
 			  pipex/call_parent.c \
-			  pipex/find_absolute_path.c \
 			  pipex/pipex.c \
 			  \
+			  builtins/pwd.c \
+			  builtins/echo.c \
+			  builtins/cd.c \
+			  builtins/exit.c \
+			  \
+			  parsing/split_at_operators.c \
 
 OBJS		= ${SRCS:.c=.o}
 
@@ -44,7 +53,7 @@ all:		${NAME}
 
 ${NAME}:	${OBJS}
 	@echo -e '\033[1;37m[COMPILING]\033[m'
-	@${CC} ${FLAGS} ./main.c ${OBJS} -o ${NAME}
+	@${CC} ${FLAGS} ./main.c -lreadline ${OBJS} -o ${NAME}
 	@echo -e '\033[1;32m[DONE]\033[m'
 
 clean:

@@ -3,6 +3,21 @@
 
 # MINISHELL
 
+
+
+### TODO
+
+_[HIGH PRIORITY]_
+- split commands if multiple commands found
+- we must take care of redirections of FD now
+- we could store the result of each function in a char *
+- before terminating the child pid, send char * to  user defined FD
+
+- parse `"; | < << > >>"`
+- builtins
+-reserved words
+
+
 ## Authorized functions
 ```
 | ---         | ---              | ---            | ---             | ---          |
@@ -28,7 +43,7 @@ cd with only relative or absolute path
 > Without options
 pwd
 export
-nuset
+unset
 env
 exit
 
