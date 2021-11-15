@@ -6,11 +6,10 @@
 /*   By: wszurkow <wszurkow@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/14 03:31:44 by wszurkow          #+#    #+#             */
-/*   Updated: 2021/11/14 04:09:55 by wszurkow         ###   ########.fr       */
+/*   Updated: 2021/11/14 22:18:20 by wszurkow         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <cctype>
 #include <iostream>
 
 static void feedback(void)
