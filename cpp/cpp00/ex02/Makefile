@@ -6,75 +6,40 @@
 #    By: wszurkow <wszurkow@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/01/16 22:40:46 by wszurkow          #+#    #+#              #
-#    Updated: 2021/11/13 19:05:12 by wszurkow         ###   ########.fr        #
+#    Updated: 2021/11/14 22:11:32 by wszurkow         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME			= philo
-CC				= gcc
-HEADER			= ./includes
-FLAGS			= -Wall -Wextra -Werror -pthread
-#FLAGS			= -Wall -Wextra -Werror -pthread -fsanitize=address
-THREAD_CHECK	= -fsanitize=thread
-LEAK_CHECK		= -fsanitize=address -fsanitize=leak
-VALGRINDERS		= -ggdb3
-OPTIMIZERS		= -O3
+NAME			= phonebook
+CC				= clang++
+HEADER			= ./
+FLAGS			= -Wall -Wextra -Werror
 RM				= /bin/rm -f
 
-SRCS		= $(addprefix ./srcs/, ${SRCS_FILES})
+SRCS		= $(addprefix ./, ${SRCS_FILES})
 SRCS_FILES	= \
-			  ft_atoi.c \
-			  ft_strlen.c \
-			  initialize.c \
-			  routine.c \
-			  threads.c \
-			  all_full.c \
-			  monitor_death.c \
-			  putmsg.c \
-			  timestamp.c \
 
 OBJS		= ${SRCS:.c=.o}
 
 %.o: %.c
 	@${CC} ${FLAGS} -I ${HEADER} -o $@ -c $<
 
+
 all:		${NAME}
 
-${NAME}:	${OBJS}
-	@echo -e "${YELLOW}[COMPILING]${R}"
-	@${CC} ${FLAGS} ./main.c -lreadline ${OBJS} -o ${NAME}
-	@echo -e "${GREEN}[DONE]${R}"
+${NAME}: ${OBJS}
+	${CC} ${FLAGS} ./main.cpp ${OBJS} -o ${NAME}
 
 clean:
-	@echo -e "${RED}[CLEANING]${R}"
-	@${RM} ${OBJS}
+	@${RM}
 
 fclean:		clean
-	@echo -e "${RED}[REMOVING BINARY]${R}"
 	@${RM} ${NAME}
 
 re:			fclean all
 
-##################################################################
-
-leak_sanitized:	fclean ${OBJS}
-	${CC} ${FLAGS} ${LEAK_CHECK} ./main.c ${OBJS} -o ${NAME}
-
-thread_sanitized:	fclean ${OBJS}
-	${CC} ${FLAGS} ${THREAD_CHECK} ./main.c ${OBJS} -o ${NAME}
-
-valgrinded:	fclean ${OBJS}
-	${CC} ${FLAGS} ${VALGRINDERS} ./main.c ${OBJS} -o ${NAME}
-
-optimized:	fclean ${OBJS}
-	${CC} ${FLAGS} ${OPTIMIZERS} ./main.c ${OBJS} -o ${NAME}
-
 .PHONY:\
 	all fclean clean re \
-	leak_sanitized \
-	thread_sanitized \
-	valgrinded \
-	optimized
 
 BLACK			=	\033[0;30m
 RED				=	\033[0;31m
@@ -99,4 +64,3 @@ R			=\e[0m
 #Auto update
 #@printf "\033[2K\r$(BLUE)$(NAME)$(RESET)$(BLUE): $(GREEN)Compiled [√]$(RESET)\n"
 
-# $(RESET)
