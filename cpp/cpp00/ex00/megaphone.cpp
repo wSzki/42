@@ -6,10 +6,11 @@
 /*   By: wszurkow <wszurkow@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/14 03:31:44 by wszurkow          #+#    #+#             */
-/*   Updated: 2021/11/14 22:18:20 by wszurkow         ###   ########.fr       */
+/*   Updated: 2021/11/16 16:05:01 by wszurkow         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <cctype>
 #include <iostream>
 
 static void feedback(void)
@@ -22,16 +23,11 @@ static void capslock(char **av)
 	int i;
 	char *str;
 
-	i = 0;
+	i = -1;
 	str = av[1];
-	while (str[i])
-	{
-		if (str[i] >= 'a' && str[i] <= 'z')
-			str[i] -= 'a' - 'A';
-		std::cout << str[i];
-		i++;
-	}
-	std::cout << '\n';
+	while (str[++i])
+		str[i] = std::toupper(str[i]);
+	std::cout << str << '\n';
 }
 
 static void error(void)

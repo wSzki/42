@@ -6,12 +6,11 @@
 /*   By: wszurkow <wszurkow@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/15 02:57:35 by wszurkow          #+#    #+#             */
-/*   Updated: 2021/11/15 17:36:00 by wszurkow         ###   ########.fr       */
+/*   Updated: 2021/11/16 15:57:52 by wszurkow         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./Account.hpp"
-
 
 int	Account::getNbAccounts(void)
 {
@@ -38,16 +37,28 @@ void Account::displayAccountsInfos( void )
 }
 
 
-void	makeDeposit( int deposit )
-{
+////////////////////////////////////////////////////////////////
 
+void	Account::makeDeposit( int deposit )
+{
+	this->_amount += deposit;
+	this->_nbDeposits += 1;
 }
+
 bool	Account::makeWithdrawal( int withdrawal )
 {
-	this->_amount = 0;
-
-
+	this->_amount -= withdrawal;
+	this->_nbDeposits += 1;
+	return (1);
 }
-int		Account::checkAmount( void );
-void	Account::displayStatus( void );
 
+int		Account::checkAmount( void ) const
+{
+	return (this->_amount);
+}
+
+//void	displayStatus( void );
+//{
+
+
+//}

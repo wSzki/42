@@ -6,29 +6,30 @@
 #    By: wszurkow <wszurkow@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/01/16 22:40:46 by wszurkow          #+#    #+#              #
-#    Updated: 2021/11/14 22:11:32 by wszurkow         ###   ########.fr        #
+#    Updated: 2021/11/16 15:58:13 by wszurkow         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME			= phonebook
-CC				= clang++
-HEADER			= ./
+NAME			= gbu
+CC				= g++
+HEADER			= -I ./
 FLAGS			= -Wall -Wextra -Werror
 RM				= /bin/rm -f
 
-SRCS		= $(addprefix ./, ${SRCS_FILES})
-SRCS_FILES	= \
+#SRCS		= $(addprefix ./, ${SRCS_FILES})
+#SRCS_FILES	= \
 
-OBJS		= ${SRCS:.c=.o}
+#OBJS		= ${SRCS:.c=.o}
 
-%.o: %.c
-	@${CC} ${FLAGS} -I ${HEADER} -o $@ -c $<
+#%.o: %.c
+	#@${CC} ${FLAGS} -I ${HEADER} -o $@ -c $<
 
 
 all:		${NAME}
 
-${NAME}: ${OBJS}
-	${CC} ${FLAGS} ./main.cpp ${OBJS} -o ${NAME}
+${NAME}:
+	${CC} ${HEADER} ${FLAGS} ./Account.cpp ./tests.cpp  -o ${NAME}
+
 
 clean:
 	@${RM}
