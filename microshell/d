@@ -1,0 +1,127 @@
+
+
+
+
+
+
+#include <unistd.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <math.h>
+#include <pthread.h>
+#include <stdarg.h>
+#include <fcntl.h>
+#include <errno.h>
+#include <sys/wait.h>
+#include <string.h>
+
+#define ERROR -1
+#define ERR_SYS 1
+#define ERR_EXEC 2
+#define ERR_CD 3
+#define ERR_CHDIR 4
+
+
+
+
+void error(char **cmd, int err_code)
+{
+	free(cmd);
+	exit(1);
+}
+
+char **cue(int ac, char **av, int *i)
+{
+	int j = *i;
+	char **cmd;
+
+	while (j < ac && strcmp(av[j], ";") != 0)
+		j++;
+	cmd = malloc(sizeof(char *) * j + 1);
+	if (cmd == NULL)
+		error(cmd, ERR_SYS);
+	cmd[j] = NULL;
+	j = 0;
+	while (*i < ac && strcmp(av[*i], ";") != 0)
+	{
+		cmd[j] = av[*i];
+		j++;
+		*i += 1;
+	}
+	*i += 1;
+	return (cmd);
+}
+
+
+char **find_next_pipe(char **cmd)
+{
+	int i = 0;
+
+	while (cmd[i] && strcmp(cmd[i], "|") != 0)
+	{
+		if (strcmp(cmd[i], "|") == 0)
+			return (&cmd[i + 1]);
+		i++;
+	}
+	return (NULL);
+}
+
+void cd(char **cmd)
+{
+	int j = 0;
+
+	while (cmd[j])
+		j++;
+	if (j != 2)
+		error(cmd, ERR_CD);
+	if (chdir(cmd[1]) == ERROR)
+		error(cmd, ERR_CHDIR);
+}
+
+void execute_single_command(char **cmd, char **env)
+{
+	pid_t pid;
+
+	pid = fork();
+	if (pid == 0)
+		if (execve(cmd[0], cmd, env) == ERROR)
+			error(cmd, ERR_EXEC);
+	waitpid(0, 0, 0);
+}
+
+
+void pipeline(char **cmd, char **env)
+{
+
+
+}
+
+void execute(char **cmd, char **env)
+{
+	int j = 0;
+	if (strcmp("cd", cmd[0]) == 0)
+		cd(cmd);
+	else if (!(find_next_pipe(cmd)))
+		execute_single_command(cmd, env);
+	else
+		pipeline(cmd, env);
+}
+
+
+int main(int ac, char **av, char **env)
+{
+	int i = 1;
+	char **cmd;
+
+	cmd = NULL;
+	while (i < ac)
+	{
+		cmd = cue(ac, av, &i);
+		execute(cmd, env);
+		free(cmd);
+		cmd = NULL;
+	}
+
+
+	return (0);
+}
