@@ -6,7 +6,7 @@
 /*   By: wszurkow <wszurkow@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/14 16:39:50 by wszurkow          #+#    #+#             */
-/*   Updated: 2021/12/14 20:03:00 by wszurkow         ###   ########.fr       */
+/*   Updated: 2021/12/14 20:00:49 by wszurkow         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,21 @@ int        main(void)
 	delete robert;
 	delete billy;
 
+	// Horde generation
+	std::cout << std::endl << "Generating horde...\n";
+	Zombie *horde;
+
+	// *horde points to the first zombie
+	horde = Zombie::zombieHorde(10, "bomzie_");
+
+	std::cout << std::endl << "Destroying horde...\n";
+	Zombie *tmp;
+	for (int i = 0; i < 10; i++)
+	{
+		tmp = horde->next;
+		delete horde;
+		horde = tmp;
+	}
 	std::cout << std::endl << "Destroying heap zombies...\n";
 	return (0);
 }

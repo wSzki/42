@@ -6,7 +6,7 @@
 #    By: wszurkow <wszurkow@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/01/16 22:40:46 by wszurkow          #+#    #+#              #
-#    Updated: 2021/12/14 20:03:11 by wszurkow         ###   ########.fr        #
+#    Updated: 2021/12/14 19:17:48 by wszurkow         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,6 +23,7 @@ ${NAME}:
 		main.cpp \
 		Zombie.cpp \
 		newZombie.cpp \
+		zombieHorde.cpp \
 		randomChump.cpp \
 	-o ${NAME}
 
