@@ -1,38 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   phonebook.hpp                                      :+:      :+:    :+:   */
+/*   destructors.cpp                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: wszurkow <wszurkow@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/15 02:38:01 by wszurkow          #+#    #+#             */
-/*   Updated: 2021/11/15 02:40:00 by wszurkow         ###   ########.fr       */
+/*   Created: 2021/12/16 20:11:15 by wszurkow          #+#    #+#             */
+/*   Updated: 2021/12/16 20:11:35 by wszurkow         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PHONEBOOK_H
-# define PHONEBOOK_H
-
-#include <cctype>
+#include "./Account.hpp"
 #include <iostream>
-#include <iomanip>
-#include <string>
 
-#define ARG_NUM 1
-#define INVALID_CMD 2
-
-class Contact{
-	public:
-		std::string first_name;
-		std::string last_name;
-		std::string nickname;
-		std::string phone_number;
-		std::string darkest_secret;
-};
-
-class Phonebook{
-	public:
-		Contact contact_list[8];
-};
-
-#endif
+Account::~Account(void)
+{
+	_displayTimestamp();
+	std::cout     << "index:"  << this->_accountIndex << ";";
+	std::cout     << "amount:" << this->_amount       << ";";
+	std::cout     << "closed"  << "\n";
+	this->_amount =  0;
+}

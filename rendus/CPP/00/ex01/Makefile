@@ -6,20 +6,35 @@
 #    By: wszurkow <wszurkow@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/01/16 22:40:46 by wszurkow          #+#    #+#              #
-#    Updated: 2021/12/14 16:04:11 by wszurkow         ###   ########.fr        #
+#    Updated: 2021/12/17 00:28:56 by wszurkow         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME			= gbu
+NAME			= phonebook
 CC				= clang++
-HEADER			= -I ./
-FLAGS			= -Wall -Wextra -Werror
+HEADER			= ./
+FLAGS			= -Wall -Wextra -Werror -fsanitize=address
 RM				= /bin/rm -f
+
+SRCS		= $(addprefix ./, ${SRCS_FILES})
+SRCS_FILES	= \
+
+OBJS		= ${SRCS:.c=.o}
+
+%.o: %.c
+	@${CC} ${FLAGS} -I ${HEADER} -o $@ -c $<
+
 
 all:		${NAME}
 
-${NAME}:
-	${CC} ${HEADER} ${FLAGS} ./Account.cpp ./tests.cpp  -o ${NAME}
+${NAME}: ${OBJS}
+	${CC} ${FLAGS} \
+		./main.cpp \
+		./add.cpp \
+		./search.cpp \
+		./getters.cpp \
+		./setters.cpp \
+		${OBJS} -o ${NAME}
 
 clean:
 	@${RM}
@@ -54,3 +69,4 @@ R			=\e[0m
 
 #Auto update
 #@printf "\033[2K\r$(BLUE)$(NAME)$(RESET)$(BLUE): $(GREEN)Compiled [√]$(RESET)\n"
+
