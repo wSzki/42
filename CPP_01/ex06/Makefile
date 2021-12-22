@@ -6,7 +6,7 @@
 #    By: wszurkow <wszurkow@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/01/16 22:40:46 by wszurkow          #+#    #+#              #
-#    Updated: 2021/12/21 14:16:10 by wszurkow         ###   ########.fr        #
+#    Updated: 2021/12/22 01:10:19 by wszurkow         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,6 +23,7 @@ OBJS			= ${SRCS_FILES:.${EXTENSION}=.o}
 SRCS_FILES	    = \
 				  ./main.cpp        \
 				  ./Karen.cpp        \
+all:		${NAME}
 
 objs_msg:
 	@${ECHO} "${Y}[ COMPILING OBJS]${_R}"
@@ -35,7 +36,6 @@ ${NAME}: ${OBJS}
 	@${CC} ${SANITIZER} -I ${DIR_HEADER} ${FLAGS} ${OBJS} -o ${NAME}
 	@${ECHO} "${G}[ DONE]${_R}"
 
-all:		${NAME}
 
 clean:
 	@${ECHO} "${R}[ CLEAN]${_R}"
