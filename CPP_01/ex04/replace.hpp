@@ -1,27 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.cpp                                           :+:      :+:    :+:   */
+/*   replace.hpp                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: wszurkow <wszurkow@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/12/15 14:09:17 by wszurkow          #+#    #+#             */
-/*   Updated: 2021/12/21 14:49:45 by wszurkow         ###   ########.fr       */
+/*   Created: 2021/12/20 18:03:59 by wszurkow          #+#    #+#             */
+/*   Updated: 2021/12/20 22:58:35 by wszurkow         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <iostream>
-#include <cctype>
+#ifndef __REPLACE_H__
+# define __REPLACE_H__
 
+# include <iostream>
+# include <fstream>
 
-int main()
-{
-	std::string str = "HI THIS IS BRAIN";
-	std::string *stringPTR = &str;
-	std::string &stringREF = str;
+# define ERR_ARG 1
 
-	std::cout << "stringPTR address: " << stringPTR << std::endl;
-	std::cout << "stringREF address: " << &stringREF << std::endl;
-	std::cout << "stringPTR: " << *stringPTR << std::endl;
-	std::cout << "stringREF: " << stringREF << std::endl;
-}
+// COLORS
+# define RED     "\033[0;31m"
+# define RESET   "\e[0m"
+
+#endif

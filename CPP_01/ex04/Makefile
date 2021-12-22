@@ -6,10 +6,11 @@
 #    By: wszurkow <wszurkow@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/01/16 22:40:46 by wszurkow          #+#    #+#              #
-#    Updated: 2021/12/20 17:31:18 by wszurkow         ###   ########.fr        #
+#    Updated: 2021/12/20 18:44:11 by wszurkow         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
-NAME			= brain
+#
+NAME			= replace
 EXTENSION		= cpp
 CC				= clang++
 DIR_HEADER		= ./
@@ -17,27 +18,28 @@ DIR_SRCS 		= ./
 FLAGS			= -Wall -Wextra -Werror
 RM				= /bin/rm -f
 ECHO			= echo -e
-SANITIZER		= -fsanitize=address
+SANITIZER		= -fsanitize=address -fsanitize=leak
 OBJS			= ${SRCS_FILES:.${EXTENSION}=.o}
 SRCS_FILES	    = \
 				  ./main.cpp        \
 
 %.o: %.${EXTENSION}
+	@${ECHO} "${Y}[ COMPILING OBJS]${_R}"
 	@${CC} ${FLAGS} -I ${DIR_HEADER} -o $@ -c $<
 
 ${NAME}: ${OBJS}
-	@${ECHO} "${Y}[COMPILING]${_R}"
+	@${ECHO} "${Y}[ COMPILING BIN]${_R}"
 	@${CC} ${SANITIZER} -I ${DIR_HEADER} ${FLAGS} ${OBJS} -o ${NAME}
-	@${ECHO} "${G}[DONE]${_R}"
+	@${ECHO} "${G}[ DONE]${_R}"
 
 all:		${NAME}
 
 clean:
-	@${ECHO} "${R}[CLEAN]${_R}"
+	@${ECHO} "${R}[ CLEAN]${_R}"
 	@${RM} ${OBJS}
 
 fclean:		clean
-	@${ECHO} "${R}[FCLEAN]${_R}"
+	@${ECHO} "${R}[ FCLEAN]${_R}"
 	@${RM} ${NAME}
 
 re:			fclean all

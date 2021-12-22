@@ -5,23 +5,22 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: wszurkow <wszurkow@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/12/15 14:09:17 by wszurkow          #+#    #+#             */
-/*   Updated: 2021/12/21 14:49:45 by wszurkow         ###   ########.fr       */
+/*   Created: 2021/12/20 23:17:03 by wszurkow          #+#    #+#             */
+/*   Updated: 2021/12/21 03:55:33 by wszurkow         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <iostream>
-#include <cctype>
+#include "Karen.hpp"
+#include <cstdint>
 
-
-int main()
+int main(int ac, char **av, char **env)
 {
-	std::string str = "HI THIS IS BRAIN";
-	std::string *stringPTR = &str;
-	std::string &stringREF = str;
+	(void)env;
 
-	std::cout << "stringPTR address: " << stringPTR << std::endl;
-	std::cout << "stringREF address: " << &stringREF << std::endl;
-	std::cout << "stringPTR: " << *stringPTR << std::endl;
-	std::cout << "stringREF: " << stringREF << std::endl;
+	Karen Karen;
+	if (ac == 2)
+		Karen.complain(av[1]);
+	else
+		std::cerr << RED << "Error\n" << _R << "Invalid number of arguments\n";
+	return (0);
 }

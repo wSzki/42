@@ -6,27 +6,38 @@
 #    By: wszurkow <wszurkow@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/01/16 22:40:46 by wszurkow          #+#    #+#              #
-#    Updated: 2021/12/15 14:18:31 by wszurkow         ###   ########.fr        #
+#    Updated: 2021/12/20 17:32:23 by wszurkow         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
-
 NAME			= violence
+EXTENSION		= cpp
 CC				= clang++
-HEADER			= -I ./
+DIR_HEADER		= ./
+DIR_SRCS 		= ./
 FLAGS			= -Wall -Wextra -Werror
 RM				= /bin/rm -f
+ECHO			= echo -e
+SANITIZER		= -fsanitize=address
+OBJS			= ${SRCS_FILES:.${EXTENSION}=.o}
+SRCS_FILES	    = \
+				  ./main.cpp        \
+
+%.o: %.${EXTENSION}
+	@${CC} ${FLAGS} -I ${DIR_HEADER} -o $@ -c $<
+
+${NAME}: ${OBJS}
+	@${ECHO} "${Y}[COMPILING]${_R}"
+	@${CC} ${SANITIZER} -I ${DIR_HEADER} ${FLAGS} ${OBJS} -o ${NAME}
+	@${ECHO} "${G}[DONE]${_R}"
 
 all:		${NAME}
 
-${NAME}:
-	${CC} ${HEADER} ${FLAGS} \
-		main.cpp \
-	-o ${NAME}
-
 clean:
-	@${RM}
+	@${ECHO} "${R}[CLEAN]${_R}"
+	@${RM} ${OBJS}
 
 fclean:		clean
+	@${ECHO} "${R}[FCLEAN]${_R}"
 	@${RM} ${NAME}
 
 re:			fclean all
@@ -35,8 +46,8 @@ re:			fclean all
 	all fclean clean re \
 
 BLACK			=	\033[0;30m
-RED				=	\033[0;31m
-GREEN			=	\033[0;32m
+R				=	\033[0;31m
+G				=	\033[0;32m
 ORANGE			=	\033[0;33m
 BLUE			=	\033[0;34m
 PURPLE			=	\033[0;35m
@@ -45,14 +56,14 @@ LIGHT_GRAY		=	\033[0;37m
 DARK_GRAY		=	\033[1;30m
 LIGHT_RED		=	\033[1;31m
 LIGHT_GREEN		=	\033[1;32m
-YELLOW			=	\033[1;33m
+Y				=	\033[1;33m
 LIGHT_BLUE		=	\033[1;34m
 LIGHT_PURPLE	=	\033[1;35m
 LIGHT_CYAN		=	\033[1;36m
 WHITE			=	\033[1;37m
 NO_COLOR		=	\033[0m
-BOLD		=\e[1m
-R			=\e[0m
+BOLD			=	\e[1m
+_R				=	\e[0m
 
 #Auto update
 #@printf "\033[2K\r$(BLUE)$(NAME)$(RESET)$(BLUE): $(GREEN)Compiled [√]$(RESET)\n"
