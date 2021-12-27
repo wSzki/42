@@ -6,7 +6,7 @@
 /*   By: wszurkow <wszurkow@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/22 12:59:01 by wszurkow          #+#    #+#             */
-/*   Updated: 2021/12/27 14:50:44 by wsz              ###   ########.fr       */
+/*   Updated: 2021/12/27 18:48:07 by wszurkow         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,13 +19,23 @@
 class          Fixed
 {
 	public:
+
 		Fixed  (void);
+		~Fixed (void);
 		Fixed  (int   const n);
 		Fixed  (float const n);
 		Fixed  (Fixed const &src);
-		~Fixed (void);
 
-		Fixed &operator=(Fixed const &objectToCopy);
+		Fixed &operator =  (Fixed const );
+		Fixed &operator >  (Fixed const );
+		Fixed &operator <  (Fixed const );
+		Fixed &operator >= (Fixed const );
+		Fixed &operator <= (Fixed const );
+		Fixed &operator == (Fixed const );
+		Fixed &operator != (Fixed const );
+
+
+		Fixed &operator +(Fixed const &objectToCopy);
 
 		int   getRawBits        (void) const;
 		void  setRawBits        (int   const raw);
