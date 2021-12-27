@@ -6,7 +6,7 @@
 /*   By: wszurkow <wszurkow@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/22 12:59:01 by wszurkow          #+#    #+#             */
-/*   Updated: 2021/12/23 17:38:44 by wsz              ###   ########.fr       */
+/*   Updated: 2021/12/27 13:56:34 by wszurkow         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ class Fixed
 
 	private:
 		int rawBits;
-		static int const fractionalBits = 8;
+		static int const fractionalBits = 0;
 
 };
 
