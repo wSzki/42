@@ -1,39 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Cat.cpp                                            :+:      :+:    :+:   */
+/*   WrongCat.cpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: wszurkow <wszurkow@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/01 23:52:01 by wszurkow          #+#    #+#             */
-/*   Updated: 2022/01/03 19:15:22 by wszurkow         ###   ########.fr       */
+/*   Updated: 2022/01/03 19:23:29 by wszurkow         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Cat.hpp"
+#include "WrongCat.hpp"
 
-Cat::Cat  (void) : Animal()
+WrongCat::WrongCat  (void) : WrongAnimal()
 {
-	std::cout << "[Cat] Default constructor called\n";
-	Animal::type = "Cat";
+	std::cout << "[WrongCat] Default constructor called\n";
+	WrongAnimal::type = "WrongCat";
 }
 
-Cat::Cat(Cat const &obj) : Animal()
+WrongCat::WrongCat(WrongCat const &obj) : WrongAnimal()
 {
-	std::cout << "[Cat] Copy constructor called\n";
+	std::cout << "[WrongCat] Copy constructor called\n";
 	this->type = obj.type;
 }
 
-Cat &Cat::operator = (Cat const &obj)
+WrongCat &WrongCat::operator = (WrongCat const &obj)
 {
-	std::cout << "[Cat] Assignation operator called" << std::endl;
+	std::cout << "[WrongCat] Assignation operator called" << std::endl;
 	this->type = obj.type;
 	return (*this);
 }
 
-void Cat::makeSound(void) const
+void WrongCat::makeSound(void) const
 {
-	std::cout << "Meow\n";
+	std::cout << "Wrong cat noises\n";
 }
 
-Cat::~Cat (void) { std::cout << "[Cat] Destructor Called\n"; }
+WrongCat::~WrongCat (void) { std::cout << "[WrongCat] Destructor Called\n"; }

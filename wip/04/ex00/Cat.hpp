@@ -6,7 +6,7 @@
 /*   By: wszurkow <wszurkow@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/30 12:55:38 by wszurkow          #+#    #+#             */
-/*   Updated: 2022/01/03 15:36:58 by wszurkow         ###   ########.fr       */
+/*   Upd"ated: 2022/01/03 16:00:15 by wsz              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,10 @@ class Cat : virtual public Animal
 
 	Cat(void);
 	~Cat(void);
-	Cat (Cat const &);
+	Cat (Cat const &obj);
 
-	Cat &operator = (const Cat &);
+	Cat &operator = (Cat const &obj);
+	void makeSound(void) const;
 
 	private:
 

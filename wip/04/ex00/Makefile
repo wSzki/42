@@ -6,7 +6,7 @@
 #    By: wszurkow <wszurkow@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/12/22 12:57:20 by wszurkow          #+#    #+#              #
-#    Updated: 2022/01/02 20:34:07 by wsz              ###   ########.fr        #
+#    Updated: 2022/01/03 19:26:58 by wszurkow         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,6 +26,8 @@ SRCS_FILES	    = \
 				  ./Animal.cpp \
 				  ./Cat.cpp \
 				  ./Dog.cpp \
+				  ./WrongCat.cpp \
+				  ./WrongAnimal.cpp \
 
 # RULES #################
 all:		${NAME}
