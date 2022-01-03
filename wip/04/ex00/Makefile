@@ -6,7 +6,7 @@
 #    By: wszurkow <wszurkow@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/12/22 12:57:20 by wszurkow          #+#    #+#              #
-#    Updated: 2021/12/30 12:42:56 by wszurkow         ###   ########.fr        #
+#    Updated: 2022/01/02 20:34:07 by wsz              ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,6 +23,9 @@ SANITIZER		= -fsanitize=address
 OBJS			= ${SRCS_FILES:.${EXTENSION}=.o}
 SRCS_FILES	    = \
 				  ./main.cpp \
+				  ./Animal.cpp \
+				  ./Cat.cpp \
+				  ./Dog.cpp \
 
 # RULES #################
 all:		${NAME}

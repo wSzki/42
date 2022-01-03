@@ -1,48 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Animal.hpp                                         :+:      :+:    :+:   */
+/*   Cat.cpp                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: wszurkow <wszurkow@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/12/30 12:45:21 by wszurkow          #+#    #+#             */
-/*   Updated: 2022/01/02 20:49:52 by wsz              ###   ########.fr       */
+/*   Created: 2022/01/01 23:52:01 by wszurkow          #+#    #+#             */
+/*   Updated: 2022/01/03 15:26:40 by wszurkow         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef __ANIMAL_H__
-#define __ANIMAL_H__
-#include <iostream>
-#include <cctype>
+#include "Cat.hpp"
 
-
-class Animal
+Cat::Cat  (void)
 {
-	public:
+	std::cout << "[Cat] Default constructor called\n";
+	Animal::type = "Cat";
+}
 
-	Animal(void);
-	~Animal(void);
-	Animal (Animal const &);
+Cat::~Cat (void) { std::cout << "[Cat] Destructor Called\n"; }
 
-	Animal &operator = (Animal const &);
-	std::string getType(void) const;
-	void setType (std::string type);
-	void makeSound(void) const;
+Cat::Cat(Cat const &obj)
+{
+	std::cout << "[Cat] Copy constructor called\n";
+	*this = obj;
+}
 
-	private:
+Cat &Cat::operator = (Cat const &obj)
+{
+	std::cout << "[Cat] Assignation operator called" << std::endl;
+	*this = obj;
+	return (*this);
+}
 
-	protected:
-
-	std::string type;
-
-};
-
-
-
-
-
-
-
-
-
-#endif

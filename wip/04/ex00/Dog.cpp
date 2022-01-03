@@ -1,48 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Animal.hpp                                         :+:      :+:    :+:   */
+/*   Dog.cpp                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: wszurkow <wszurkow@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/12/30 12:45:21 by wszurkow          #+#    #+#             */
-/*   Updated: 2022/01/02 20:49:52 by wsz              ###   ########.fr       */
+/*   Created: 2022/01/01 23:50:39 by wszurkow          #+#    #+#             */
+/*   Updated: 2022/01/02 20:14:51 by wsz              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef __ANIMAL_H__
-#define __ANIMAL_H__
-#include <iostream>
-#include <cctype>
+#include "Dog.hpp"
 
-
-class Animal
+Dog::Dog  (void) { std::cout << "[Dog] Default constructor called\n"; }
+Dog::~Dog (void) { std::cout << "[Dog] Destructor Called\n"; }
+Dog::Dog(Dog const &obj)
 {
-	public:
+	std::cout << "[Dog] Copy constructor called\n";
+	*this = obj;
+}
 
-	Animal(void);
-	~Animal(void);
-	Animal (Animal const &);
+Dog &Dog::operator = (Dog const &obj)
+{
+	std::cout << "[Dog] Assignation operator called" << std::endl;
+	this->type = obj.type; // TODO [...]
+	return (*this);
+}
 
-	Animal &operator = (Animal const &);
-	std::string getType(void) const;
-	void setType (std::string type);
-	void makeSound(void) const;
-
-	private:
-
-	protected:
-
-	std::string type;
-
-};
-
-
-
-
-
-
-
-
-
-#endif

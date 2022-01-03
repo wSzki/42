@@ -6,7 +6,7 @@
 /*   By: wszurkow <wszurkow@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/30 12:55:04 by wszurkow          #+#    #+#             */
-/*   Updated: 2021/12/30 12:57:32 by wsz              ###   ########.fr       */
+/*   Updated: 2022/01/02 20:32:00 by wszurkow         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,16 +14,21 @@
 #define __DOG_H__
 
 #include "Animal.hpp"
-#include <iostream>
-#include <cctype>
 
-class Dog : public Animal
+class Dog : virtual public Animal
 {
 	public:
-		Dog(void);
-		~Dog(void);
+
+	Dog(void);
+	~Dog(void);
+	Dog (Dog const &obj);
+
+	Dog &operator = (Dog const &obj);
+
 	private:
+
 	protected:
+
 };
 
 #endif
