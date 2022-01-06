@@ -6,12 +6,12 @@
 #    By: wszurkow <wszurkow@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/12/22 12:57:20 by wszurkow          #+#    #+#              #
-#    Updated: 2022/01/03 19:26:58 by wszurkow         ###   ########.fr        #
+#    Updated: 2022/01/06 15:39:46 by wszurkow         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 # VARIABLES ############
-NAME			= polymoprh
+NAME			= animals
 EXTENSION		= cpp
 CC				= c++
 ECHO 			= printf

@@ -6,7 +6,7 @@
 /*   By: wszurkow <wszurkow@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/30 12:43:02 by wszurkow          #+#    #+#             */
-/*   Updated: 2022/01/06 15:10:19 by wszurkow         ###   ########.fr       */
+/*   Updated: 2022/01/06 15:38:40 by wszurkow         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,32 +40,38 @@ int main()
 
 	std::cout << _R << "\n# ARRAY TESTS ###########################################################################\n";
 	size_t i = 0;
-	const Animal* zoo[10];
+	const Animal* animal[10];
 
+	// Creating dogs
 	std::cout << GREEN << std::endl;
 	while (i < 5)
-		zoo[i++] = new Dog();
+		animal[i++] = new Dog();
+
+	// Creating cats
 	std::cout << CYAN << std::endl;
 	while (i < 10)
-		zoo[i++] = new Cat();
+		animal[i++] = new Cat();
 
 	std::cout <<std::endl << _R ;
+
+
 	i = 0;
 	while (i < 10)
 	{
-		std::cout << zoo[i]->getType() << " wants to "<< zoo[i]->getIdea() << std::endl;
+		std::cout << animal[i]->getType() << " says " ;
+		animal[i]->makeSound();
 		i++;
 	}
 
 	std::cout << RED << std::endl;
 	i = 0;
 	while (i < 5)
-		delete zoo[i++];
+		delete animal[i++];
 	std::cout << std::endl;
 	while (i < 10)
-		delete zoo[i++];
+		delete animal[i++];
 
-	std::cout << _R << "\n# DEEP COPY TESTS ########################################################################\n";
+	std::cout << _R << "\n# OTHER DEEP COPY TESTS ########################################################################\n";
 
 	std::cout << YELLOW << "\nCREATING ORIGINAL CAT AND DOG\n################################\n";
 	Cat newCat;
@@ -84,6 +90,13 @@ int main()
 	std::cout << LIGHT_RED << "\nCREATING COPIES OF CAT AND DOG\n################################\n";
 	Cat copyCat = newCat;
 	Dog copyDog = newDog;
+
+	std::cout << "\n########################################################\n";
+	std::cout << "Address of cat's brain : " << &(newCat.getBrain()) << "\n";
+	std::cout << "Address of cat's brain copy : " << &(copyCat.getBrain()) << "\n";
+	std::cout << "Address of dogs's brain : " << &(newDog.getBrain()) << "\n";
+	std::cout << "Address of dogs's brain copy : " << &(copyDog.getBrain()) << "\n";
+	std::cout << "########################################################\n";
 
 	std::cout << "\n";
 	std::cout << copyCat.getType()<< " wants to :\n" ;

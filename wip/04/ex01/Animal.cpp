@@ -6,7 +6,7 @@
 /*   By: wszurkow <wszurkow@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/01 23:52:50 by wszurkow          #+#    #+#             */
-/*   Updated: 2022/01/04 02:25:16 by wsz              ###   ########.fr       */
+/*   Updated: 2022/01/06 15:21:39 by wsz              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,9 +41,4 @@ void 		Animal::setType (std::string type)	{ this->type = type; }
 Animal::~Animal (void)
 {
 	std::cout << "[Animal] Destructor Called\n";
-}
-
-std::string Animal::getIdea() const
-{
-	return ("none");
 }

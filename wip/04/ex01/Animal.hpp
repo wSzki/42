@@ -6,7 +6,7 @@
 /*   By: wszurkow <wszurkow@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/30 12:45:21 by wszurkow          #+#    #+#             */
-/*   Updated: 2022/01/04 02:24:50 by wszurkow         ###   ########.fr       */
+/*   Updated: 2022/01/06 15:30:39 by wszurkow         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,6 @@ class Animal
 
 	virtual void makeSound(void) const;
 	virtual ~Animal(void);
-	virtual std::string getIdea() const;
 
 	protected:
 	std::string type;
