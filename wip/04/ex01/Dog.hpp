@@ -6,7 +6,7 @@
 /*   By: wszurkow <wszurkow@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/30 12:55:04 by wszurkow          #+#    #+#             */
-/*   Updated: 2022/01/04 02:27:52 by wsz              ###   ########.fr       */
+/*   Updated: 2022/01/06 12:55:47 by wszurkow         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ class Dog : virtual public Animal
 
 	Dog &operator = (Dog const &obj);
 	void makeSound(void) const;
-	std::string getIdea() const;
+	Brain &getBrain(void) const;
 
 
 	private:

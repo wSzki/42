@@ -19,16 +19,16 @@ class Cat : virtual public Animal
 {
 	public:
 
-	Cat(void);
-	~Cat(void);
-	Cat (Cat const &obj);
+		Cat(void);
+		~Cat(void);
+		Cat (Cat const &obj);
 
-	Cat &operator = (Cat const &obj);
-	void makeSound(void) const;
-	std::string getIdea() const;
+		Cat &operator = (Cat const &obj);
+		void makeSound(void) const;
+		Brain &getBrain(void) const;
 
 	private:
-	Brain *brain;
+			Brain *brain;
 
 	protected:
 

@@ -6,11 +6,12 @@
 /*   By: wszurkow <wszurkow@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/01 23:52:01 by wszurkow          #+#    #+#             */
-/*   Updated: 2022/01/04 02:30:29 by wsz              ###   ########.fr       */
+/*   Updated: 2022/01/06 14:09:23 by wszurkow         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Cat.hpp"
+#include "Brain.hpp"
 
 Cat::Cat  (void) : Animal()
 {
@@ -22,22 +23,16 @@ Cat::Cat  (void) : Animal()
 Cat::Cat(Cat const &obj) : Animal()
 {
 	std::cout << "[Cat] Copy constructor called\n";
-	brain = new Brain();
-	this->brain = obj.brain;
 	this->type = obj.type;
+	this->brain = new Brain(*obj.brain);
 }
 
 Cat &Cat::operator = (Cat const &obj)
 {
 	std::cout << "[Cat] Assignation operator called" << std::endl;
 	this->type = obj.type;
-	this->brain = obj.brain;
+	this->brain = new Brain(*obj.brain);
 	return (*this);
-}
-
-std::string Cat::getIdea() const
-{
-	return (brain->ideas[0]);
 }
 
 void Cat::makeSound(void) const
@@ -50,3 +45,9 @@ Cat::~Cat (void)
 	std::cout << "[Cat] Destructor Called\n";
 	delete brain;
 }
+
+Brain &Cat::getBrain(void) const
+{
+	return (*brain);
+}
+
