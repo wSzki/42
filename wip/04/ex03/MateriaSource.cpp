@@ -6,16 +6,17 @@
 /*   By: wszurkow <wszurkow@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/13 00:22:59 by wszurkow          #+#    #+#             */
-/*   Updated: 2022/01/13 01:36:27 by wszurkow         ###   ########.fr       */
+/*   Updated: 2022/01/13 21:45:13 by wszurkow         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "colors.hpp"
 #include "./MateriaSource.hpp"
 
 // Default
 MateriaSource::MateriaSource (void) : n_materia(0)
 {
-	std::cout << "[MateriaSource] Default constructor called\n";
+	std::cout << GREEN << "[MateriaSource] Default constructor called\n";
 	for (int i = 0; i < 4; i++)
 		saved_materia[i] = NULL;
 }
@@ -23,7 +24,7 @@ MateriaSource::MateriaSource (void) : n_materia(0)
 // Copy
 MateriaSource::MateriaSource(MateriaSource const &obj) : n_materia(0)
 {
-	std::cout << "[MateriaSource] Copy constructor called\n";
+	std::cout << GREEN << "[MateriaSource] Copy constructor called\n";
 	for (int i = 0; i < obj.n_materia; i++)
 	{
 		this->learnMateria(obj.saved_materia[i]);
@@ -34,7 +35,7 @@ MateriaSource::MateriaSource(MateriaSource const &obj) : n_materia(0)
 // OVERLOADS
 MateriaSource &MateriaSource::operator = (MateriaSource const &obj)
 {
-	std::cout << "[MateriaSource] Assignation operator called" << std::endl;
+	std::cout << GREEN << "[MateriaSource] Assignation operator called" << std::endl;
 	this->n_materia = 0;
 	for (int i = 0; i < obj.n_materia; i++)
 	{
@@ -56,6 +57,7 @@ void MateriaSource::learnMateria(AMateria *materia)
 AMateria* MateriaSource::createMateria(std::string const & type)
 {
 	(void)type;
+	// TODO
 	return NULL;
 
 }
@@ -63,7 +65,7 @@ AMateria* MateriaSource::createMateria(std::string const & type)
 // DESTRUCTOR
 MateriaSource::~MateriaSource (void)
 {
-	std::cout << "[MateriaSource] Destructor Called\n";
+	std::cout << RED << "[MateriaSource] Destructor Called\n";
 	for (int i = 0; i < this->n_materia; i++)
 		delete this->saved_materia[i];
 

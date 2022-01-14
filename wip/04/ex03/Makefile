@@ -27,6 +27,7 @@ SRCS_FILES	    = \
 				  ./Cure.cpp \
 				  ./AMateria.cpp \
 				  ./MateriaSource.cpp \
+				  ./Character.cpp \
 
 # OS SETTINGS ###########
 OS				= $(shell uname -r | grep arch)

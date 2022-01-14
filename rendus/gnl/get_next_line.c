@@ -6,11 +6,12 @@
 /*   By: wszurkow <wszurkow@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/09 16:08:41 by wszurkow          #+#    #+#             */
-/*   Updated: 2020/12/27 00:23:07 by wszurkow         ###   ########.fr       */
+/*   Updated: 2022/01/09 16:55:31 by wszurkow         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
+#include <fcntl.h>
 
 int		get_next_line(int fd, char **line)
 {
@@ -37,4 +38,24 @@ int		get_next_line(int fd, char **line)
 	free(tmp);
 	tmp = NULL;
 	return (1);
+}
+
+#include <stdio.h>
+int main()
+
+{
+	int fd = open("./test", O_RDONLY);
+	char *line;
+
+	int j;
+
+	int i = get_next_line(fd, &line);
+	printf("%s%d\n", "i : ", i);
+	while (i > 0)
+	{
+		i = get_next_line(fd, &line);
+		printf("%s%s\n", "line : ", line);
+		j++;
+	}
+	printf("%s%d\n", "i : ", i);
 }

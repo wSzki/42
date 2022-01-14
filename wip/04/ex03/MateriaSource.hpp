@@ -6,7 +6,7 @@
 /*   By: wszurkow <wszurkow@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/13 00:14:49 by wszurkow          #+#    #+#             */
-/*   Updated: 2022/01/13 01:17:00 by wsz              ###   ########.fr       */
+/*   Updated: 2022/01/13 20:49:32 by wszurkow         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,11 @@
 #define __MATERIASOUCRE_H__
 #include <iostream>
 #include <cctype>
+
 #include "IMateriaSource.hpp"
 
 class AMateria;
+class IMateriaSource;
 class MateriaSource : virtual public IMateriaSource
 {
 	public:
