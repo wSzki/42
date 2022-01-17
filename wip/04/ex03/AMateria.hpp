@@ -6,7 +6,7 @@
 /*   By: wszurkow <wszurkow@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/06 17:04:41 by wszurkow          #+#    #+#             */
-/*   Updated: 2022/01/13 20:49:38 by wszurkow         ###   ########.fr       */
+/*   Updated: 2022/01/14 16:49:10 by wsz              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,9 @@
 
 //# include "MateriaSource.hpp"
 //# include "IMateriaSource.hpp"
+//#include "ICharacter.hpp"
 
-//class ICharacter;
+class ICharacter;
 class AMateria
 {
 	public:
@@ -31,7 +32,7 @@ class AMateria
 		std::string const & getType() const; //Returns the materia type
 
 		virtual AMateria* clone() const = 0;
-		//virtual void use(ICharacter& target);
+		virtual void use(ICharacter& target) = 0;
 
 		AMateria &operator = (AMateria const &obj);
 

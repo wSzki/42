@@ -6,7 +6,7 @@
 /*   By: wszurkow <wszurkow@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/06 17:15:00 by wszurkow          #+#    #+#             */
-/*   Updated: 2022/01/13 00:53:09 by wsz              ###   ########.fr       */
+/*   Updated: 2022/01/14 16:38:56 by wszurkow         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ class Cure : public virtual AMateria
 	AMateria* clone();
 	AMateria* clone() const;
 
-	//std::string getType(void) const;
+	void use(ICharacter& target);
 
 	private:
 

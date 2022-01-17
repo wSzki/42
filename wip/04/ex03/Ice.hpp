@@ -6,7 +6,7 @@
 /*   By: wszurkow <wszurkow@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/06 17:15:00 by wszurkow          #+#    #+#             */
-/*   Updated: 2022/01/13 00:44:34 by wszurkow         ###   ########.fr       */
+/*   Updated: 2022/01/14 16:39:07 by wsz              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ class Ice : public virtual AMateria
 	AMateria* clone();
 	AMateria* clone() const;
 
-	//std::string getType(void) const;
+	void use(ICharacter& target);
 
 	private:
 

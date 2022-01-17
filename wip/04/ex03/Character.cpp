@@ -6,7 +6,7 @@
 /*   By: wszurkow <wszurkow@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/13 21:03:00 by wszurkow          #+#    #+#             */
-/*   Updated: 2022/01/13 21:36:25 by wszurkow         ###   ########.fr       */
+/*   Updated: 2022/01/17 15:32:04 by wszurkow         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,22 +61,39 @@ void Character::equip(AMateria* m)
 
 	if (m == NULL)
 		return ;
-	while(this->inventory[i] != NULL)
+	while(this->inventory[i] != NULL && i < 4)
 		i++;
-	this->inventory[i] = m;
+	if (i == 4)
+	{
+		std::cout << RED << "[ERROR] " << _R << "Inventory full\n";
+		delete m;
+	}
+	else
+		this->inventory[i] = m;
 }
 
 void Character::unequip(int idx)
 {
 	if (idx >= 0 && idx <= 3)
+	{
+		std::cout << _R <<  "Unequipped slot " << idx << std::endl;
+		// delete this->inventory[idx]; // Uncomment this to fix leak
 		this->inventory[idx] = NULL;
+	}
+	else
+		std::cout << RED << "[ERROR] " << _R << "Valid slots : [0 - 3]\n";
 }
 
 void Character::use(int idx, ICharacter& target)
 {
-	(void)idx;
-	(void)target;
-	// TODO
+	if ((idx >= 0 && idx <= 3) == false)
+		return ;
+	if (this->inventory[idx] == NULL)
+	{
+		std::cout << RED << "[ERROR] " << _R << "Nothing equipped at slot "<< idx << "\n";
+		return ;
+	}
+	this->inventory[idx]->use(target);
 }
 
 // DESTRUCTOR

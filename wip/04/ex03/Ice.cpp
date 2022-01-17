@@ -6,13 +6,14 @@
 /*   By: wszurkow <wszurkow@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/06 17:17:02 by wszurkow          #+#    #+#             */
-/*   Updated: 2022/01/13 20:54:44 by wsz              ###   ########.fr       */
+/*   Updated: 2022/01/14 16:44:25 by wszurkow         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "colors.hpp"
 #include "Ice.hpp"
 #include "AMateria.hpp"
+#include "ICharacter.hpp"
 
 Ice::Ice  (void) : AMateria("ice")
 {
@@ -36,5 +37,11 @@ AMateria* Ice::clone() const
 {
 	return (new Ice(*this));
 }
+
+void Ice::use(ICharacter& target)
+{
+	std::cout << "* shoots an ice bolt at " << target.getName() << " *" << std::endl;
+}
+
 
 Ice::~Ice (void) { std::cout << RED << "[Ice] Destructor Called\n"; }

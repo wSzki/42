@@ -6,7 +6,7 @@
 /*   By: wszurkow <wszurkow@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/13 00:11:32 by wszurkow          #+#    #+#             */
-/*   Updated: 2022/01/13 20:49:04 by wszurkow         ###   ########.fr       */
+/*   Updated: 2022/01/17 14:24:18 by wszurkow         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@
 #include <cctype>
 #include "./AMateria.hpp"
 
-class AMateria; // TODO this is causing undefined
 class IMateriaSource
 {
 	public:

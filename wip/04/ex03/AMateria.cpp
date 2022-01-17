@@ -6,7 +6,7 @@
 /*   By: wszurkow <wszurkow@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/06 17:12:07 by wszurkow          #+#    #+#             */
-/*   Updated: 2022/01/13 20:53:48 by wszurkow         ###   ########.fr       */
+/*   Updated: 2022/01/14 16:49:06 by wszurkow         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,7 @@ std::string const &AMateria::getType() const
 {
 	return (type);
 }
+
 // /////////////////////////////////////////
 
 // DESTRUCTOR
