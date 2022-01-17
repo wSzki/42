@@ -6,7 +6,7 @@
 /*   By: wszurkow <wszurkow@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/13 21:03:00 by wszurkow          #+#    #+#             */
-/*   Updated: 2022/01/17 15:32:04 by wszurkow         ###   ########.fr       */
+/*   Updated: 2022/01/17 15:34:07 by wszurkow         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ void Character::unequip(int idx)
 	if (idx >= 0 && idx <= 3)
 	{
 		std::cout << _R <<  "Unequipped slot " << idx << std::endl;
-		// delete this->inventory[idx]; // Uncomment this to fix leak
+		 delete this->inventory[idx]; // Incoherence du sujet
 		this->inventory[idx] = NULL;
 	}
 	else
