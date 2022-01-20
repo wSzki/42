@@ -6,20 +6,20 @@
 /*   By: wszurkow <wszurkow@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/01 23:50:39 by wszurkow          #+#    #+#             */
-/*   Updated: 2022/01/20 23:27:39 by wsz              ###   ########.fr       */
+/*   Updated: 2022/01/20 23:30:32 by wsz              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Dog.hpp"
 
-Dog::Dog  (void) : Animal()
+Dog::Dog  (void) : Animal(), brain(NULL)
 {
 	std::cout << "[Dog] Default constructor called\n";
 	Animal::type = "Dog";
 	brain = new Brain();
 }
 
-Dog::Dog(Dog const &obj) : Animal()
+Dog::Dog(Dog const &obj) : Animal(), brain(NULL)
 {
 	if (this == &obj)
 		return ;
