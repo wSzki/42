@@ -6,7 +6,7 @@
 /*   By: wszurkow <wszurkow@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/30 12:45:21 by wszurkow          #+#    #+#             */
-/*   Updated: 2022/01/03 19:22:40 by wszurkow         ###   ########.fr       */
+/*   Updated: 2022/01/20 23:14:51 by wszurkow         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ class WrongAnimal
 	WrongAnimal &operator = (WrongAnimal const &);
 	std::string getType(void) const;
 	void setType (std::string type);
-	virtual void makeSound(void) const;
+	void makeSound(void) const;
 
 	private:
 
