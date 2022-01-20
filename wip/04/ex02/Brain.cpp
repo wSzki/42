@@ -6,7 +6,7 @@
 /*   By: wszurkow <wszurkow@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/03 20:25:09 by wszurkow          #+#    #+#             */
-/*   Updated: 2022/01/20 23:08:01 by wsz              ###   ########.fr       */
+/*   Updated: 2022/01/20 23:42:17 by wsz              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,9 +40,9 @@ Brain::Brain(Brain const &obj)
 
 Brain &Brain::operator = (Brain const &obj)
 {
+	std::cout << "[Brain] Assignation operator called" << std::endl;
 	if (this == &obj)
 		return (*this);
-	std::cout << "[Brain] Assignation operator called" << std::endl;
 	for (int i = 0; i < 100; i++)
 		this->ideas[i] = obj.ideas[i];
 	return (*this);

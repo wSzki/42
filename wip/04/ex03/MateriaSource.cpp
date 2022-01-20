@@ -6,7 +6,7 @@
 /*   By: wszurkow <wszurkow@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/13 00:22:59 by wszurkow          #+#    #+#             */
-/*   Updated: 2022/01/17 14:54:46 by wszurkow         ###   ########.fr       */
+/*   Updated: 2022/01/20 23:39:17 by wsz              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,8 @@ MateriaSource::MateriaSource (void)
 MateriaSource::MateriaSource(MateriaSource const &obj)
 {
 	std::cout << GREEN << "[MateriaSource] Copy constructor called\n";
+	if (this == &obj)
+		return ;
 	for (int i = 0; obj.saved_materia[i] != NULL; i++)
 		this->learnMateria(obj.saved_materia[i]);
 }
@@ -33,6 +35,8 @@ MateriaSource::MateriaSource(MateriaSource const &obj)
 MateriaSource &MateriaSource::operator = (MateriaSource const &obj)
 {
 	std::cout << GREEN << "[MateriaSource] Assignation operator called" << std::endl;
+	if (this == &obj)
+		return (*this);
 	for (int i = 0; obj.saved_materia[i] != NULL; i++)
 		this->learnMateria(obj.saved_materia[i]);
 	return (*this);

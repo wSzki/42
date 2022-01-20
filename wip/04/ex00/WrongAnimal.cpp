@@ -6,7 +6,7 @@
 /*   By: wszurkow <wszurkow@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/01 23:52:50 by wszurkow          #+#    #+#             */
-/*   Updated: 2022/01/20 23:03:22 by wszurkow         ###   ########.fr       */
+/*   Updated: 2022/01/20 23:40:48 by wsz              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,17 +19,17 @@ WrongAnimal::WrongAnimal(void) : type("Unknown type")
 
 WrongAnimal::WrongAnimal(WrongAnimal const &obj)
 {
+	std::cout << "[WrongAnimal] Copy constructor called\n";
 	if (this == &obj)
 		return ;
-	std::cout << "[WrongAnimal] Copy constructor called\n";
 	*this = obj;
 }
 
 WrongAnimal &WrongAnimal::operator = (WrongAnimal const &obj)
 {
+	std::cout << "[WrongAnimal] Assignation operator called" << std::endl;
 	if (this == &obj)
 		return (*this);
-	std::cout << "[WrongAnimal] Assignation operator called" << std::endl;
 	this->type = obj.type;
 	return (*this);
 }

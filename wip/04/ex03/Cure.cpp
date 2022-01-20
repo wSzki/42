@@ -6,7 +6,7 @@
 /*   By: wszurkow <wszurkow@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/06 17:17:02 by wszurkow          #+#    #+#             */
-/*   Updated: 2022/01/14 16:45:13 by wszurkow         ###   ########.fr       */
+/*   Updated: 2022/01/20 23:38:45 by wsz              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,14 +22,17 @@ Cure::Cure  (void) : AMateria("cure")
 
 Cure::Cure(Cure const &obj) : AMateria(obj)
 {
-	(void)obj;
 	std::cout << GREEN << "[Cure] Copy constructor called\n";
+	if (this == &obj)
+		return ;
 }
 
 Cure &Cure::operator = (Cure const &obj)
 {
-	(void)obj;
 	std::cout << GREEN << "[Cure] Assignation operator called" << std::endl;
+	if (this == &obj)
+		return (*this);
+	(void)obj;
 	return (*this);
 }
 

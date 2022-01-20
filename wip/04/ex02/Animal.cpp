@@ -6,7 +6,7 @@
 /*   By: wszurkow <wszurkow@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/01 23:52:50 by wszurkow          #+#    #+#             */
-/*   Updated: 2022/01/20 23:07:57 by wszurkow         ###   ########.fr       */
+/*   Updated: 2022/01/20 23:42:50 by wszurkow         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,17 +19,17 @@ Animal::Animal(void) : type("Unknown type")
 
 Animal::Animal(Animal const &obj)
 {
+	std::cout << "[Animal] Copy constructor called\n";
 	if (this == &obj)
 		return ;
-	std::cout << "[Animal] Copy constructor called\n";
 	*this = obj;
 }
 
 Animal &Animal::operator = (Animal const &obj)
 {
+	std::cout << "[Animal] Assignation operator called" << std::endl;
 	if (this == &obj)
 		return (*this);
-	std::cout << "[Animal] Assignation operator called" << std::endl;
 	*this = obj;
 	return (*this);
 }

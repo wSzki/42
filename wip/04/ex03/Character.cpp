@@ -6,7 +6,7 @@
 /*   By: wszurkow <wszurkow@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/13 21:03:00 by wszurkow          #+#    #+#             */
-/*   Updated: 2022/01/20 18:15:59 by wszurkow         ###   ########.fr       */
+/*   Updated: 2022/01/20 23:38:56 by wsz              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,8 @@ Character::Character (std::string name) : name(name)
 Character::Character(Character const &obj)
 {
 	std::cout << GREEN "[Character] Copy constructor called\n" << _R;
+	if (this == &obj)
+		return ;
 	this->name = obj.name;
 	for (int i = 0; i < 4; i++)
 		if (obj.inventory[i] != NULL)
@@ -42,6 +44,8 @@ Character::Character(Character const &obj)
 Character &Character::operator = (Character const &obj)
 {
 	std::cout << GREEN "[Character] Assignation operator called" << _R << std::endl;
+	if (this == &obj)
+		return (*this);
 	this->name = obj.name;
 	for (int i = 0; i < 4; i++)
 		if (obj.inventory[i] != NULL)

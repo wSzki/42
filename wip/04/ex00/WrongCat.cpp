@@ -6,7 +6,7 @@
 /*   By: wszurkow <wszurkow@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/01 23:52:01 by wszurkow          #+#    #+#             */
-/*   Updated: 2022/01/03 19:23:29 by wszurkow         ###   ########.fr       */
+/*   Updated: 2022/01/20 23:40:40 by wsz              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,12 +21,16 @@ WrongCat::WrongCat  (void) : WrongAnimal()
 WrongCat::WrongCat(WrongCat const &obj) : WrongAnimal()
 {
 	std::cout << "[WrongCat] Copy constructor called\n";
+	if (this == &obj)
+		return ;
 	this->type = obj.type;
 }
 
 WrongCat &WrongCat::operator = (WrongCat const &obj)
 {
 	std::cout << "[WrongCat] Assignation operator called" << std::endl;
+	if (this == &obj)
+		return (*this);
 	this->type = obj.type;
 	return (*this);
 }

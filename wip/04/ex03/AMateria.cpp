@@ -6,7 +6,7 @@
 /*   By: wszurkow <wszurkow@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/06 17:12:07 by wszurkow          #+#    #+#             */
-/*   Updated: 2022/01/20 18:08:41 by wszurkow         ###   ########.fr       */
+/*   Updated: 2022/01/20 23:39:04 by wszurkow         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,8 @@ AMateria::AMateria (void) : type("none")
 AMateria::AMateria(AMateria const &obj)
 {
 	std::cout << GREEN << "[AMateria] Copy constructor called\n";
+	if (this == &obj)
+		return ;
 	this->type = obj.type;
 }
 
@@ -30,6 +32,8 @@ AMateria::AMateria(AMateria const &obj)
 AMateria &AMateria::operator = (AMateria const &obj)
 {
 	std::cout << GREEN << "[AMateria] Assignation operator called" << std::endl;
+	if (this == &obj)
+		return (*this);
 	this->type = obj.type;
 	return (*this);
 }
