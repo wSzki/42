@@ -6,7 +6,7 @@
 /*   By: wszurkow <wszurkow@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/06 17:12:07 by wszurkow          #+#    #+#             */
-/*   Updated: 2022/01/14 16:49:06 by wszurkow         ###   ########.fr       */
+/*   Updated: 2022/01/20 18:08:41 by wszurkow         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,11 @@ AMateria &AMateria::operator = (AMateria const &obj)
 	std::cout << GREEN << "[AMateria] Assignation operator called" << std::endl;
 	this->type = obj.type;
 	return (*this);
+}
+
+void AMateria::disable(void)
+{
+	type = "disabled";
 }
 
 // METHODS

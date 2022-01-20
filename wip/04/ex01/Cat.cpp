@@ -6,7 +6,7 @@
 /*   By: wszurkow <wszurkow@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/01 23:52:01 by wszurkow          #+#    #+#             */
-/*   Updated: 2022/01/06 14:09:23 by wszurkow         ###   ########.fr       */
+/*   Updated: 2022/01/20 23:07:03 by wsz              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,8 @@ Cat::Cat  (void) : Animal()
 
 Cat::Cat(Cat const &obj) : Animal()
 {
+	if (this == &obj)
+		return ;
 	std::cout << "[Cat] Copy constructor called\n";
 	this->type = obj.type;
 	this->brain = new Brain(*obj.brain);
@@ -29,6 +31,8 @@ Cat::Cat(Cat const &obj) : Animal()
 
 Cat &Cat::operator = (Cat const &obj)
 {
+	if (this == &obj)
+		return (*this);
 	std::cout << "[Cat] Assignation operator called" << std::endl;
 	this->type = obj.type;
 	this->brain = new Brain(*obj.brain);

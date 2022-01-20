@@ -17,7 +17,7 @@ EXTENSION		= cpp
 CC				= c++
 DIR_HEADER		= ./
 DIR_SRCS 		= ./
-FLAGS			= -Wall -Wextra -Werror
+FLAGS			= -Wall -Wextra -Werror -std=c++98
 RM				= /bin/rm -f
 SANITIZER		= -fsanitize=address -fsanitize=leak
 OBJS			= ${SRCS_FILES:.${EXTENSION}=.o}

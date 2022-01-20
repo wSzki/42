@@ -6,7 +6,7 @@
 /*   By: wszurkow <wszurkow@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/13 21:03:00 by wszurkow          #+#    #+#             */
-/*   Updated: 2022/01/17 15:34:07 by wszurkow         ###   ########.fr       */
+/*   Updated: 2022/01/20 18:15:59 by wszurkow         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ void Character::equip(AMateria* m)
 		i++;
 	if (i == 4)
 	{
-		std::cout << RED << "[ERROR] " << _R << "Inventory full\n";
+		//std::cout << RED << "[ERROR] " << _R << "Inventory full\n";
 		delete m;
 	}
 	else
@@ -77,8 +77,8 @@ void Character::unequip(int idx)
 	if (idx >= 0 && idx <= 3)
 	{
 		std::cout << _R <<  "Unequipped slot " << idx << std::endl;
-		 delete this->inventory[idx]; // Incoherence du sujet
-		this->inventory[idx] = NULL;
+		//delete this->inventory[idx]; // Incoherence du sujet
+		this->inventory[idx]->disable();
 	}
 	else
 		std::cout << RED << "[ERROR] " << _R << "Valid slots : [0 - 3]\n";
@@ -90,7 +90,12 @@ void Character::use(int idx, ICharacter& target)
 		return ;
 	if (this->inventory[idx] == NULL)
 	{
-		std::cout << RED << "[ERROR] " << _R << "Nothing equipped at slot "<< idx << "\n";
+		//std::cout << RED << "[ERROR] " << _R << "Nothing equipped at slot "<< idx << "\n";
+		return ;
+	}
+	if (this->inventory[idx]->getType() == "disabled")
+	{
+		//std::cout << RED << "[ERROR] " << _R << "Nothing equipped at slot "<< idx << "\n";
 		return ;
 	}
 	this->inventory[idx]->use(target);

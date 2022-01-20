@@ -6,7 +6,7 @@
 /*   By: wszurkow <wszurkow@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/06 17:04:41 by wszurkow          #+#    #+#             */
-/*   Updated: 2022/01/14 16:49:10 by wsz              ###   ########.fr       */
+/*   Updated: 2022/01/20 18:07:48 by wszurkow         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ class AMateria
 		virtual ~AMateria (void);
 
 		std::string const & getType() const; //Returns the materia type
+		void disable();
 
 		virtual AMateria* clone() const = 0;
 		virtual void use(ICharacter& target) = 0;
