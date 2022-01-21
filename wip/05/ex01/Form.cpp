@@ -6,7 +6,7 @@
 /*   By: wszurkow <wszurkow@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/21 19:57:04 by wszurkow          #+#    #+#             */
-/*   Updated: 2022/01/21 20:59:48 by wszurkow         ###   ########.fr       */
+/*   Updated: 2022/01/21 21:08:29 by wszurkow         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,11 @@ std::ostream & operator << (std::ostream &o, Form obj)
 	o << "Required grade to sign: " << obj.getRequiredGradeToSign() << std::endl;
 	o << "Required grade to exec: " << obj.getRequiredGradeToExec() << std::endl;
 	return o;
+}
+
+const char * Form::GradeTooLowException::what() throw()
+{
+	return ("Grade too low\n");
 }
 
 // DESTRUCTOR
