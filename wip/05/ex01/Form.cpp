@@ -6,7 +6,7 @@
 /*   By: wszurkow <wszurkow@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/21 19:57:04 by wszurkow          #+#    #+#             */
-/*   Updated: 2022/01/21 21:08:29 by wszurkow         ###   ########.fr       */
+/*   Updated: 2022/01/22 14:53:21 by wszurkow         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,18 +18,28 @@
 Form::Form (std::string name, int requiredGradeToSign, int requiredGradeToExec) :
 	name                (name),
 	signedStatus        (0),
-	requiredGradeToExec (requiredGradeToExec),
-	requiredGradeToSign (requiredGradeToSign)
+	requiredGradeToSign (requiredGradeToSign),
+	requiredGradeToExec (requiredGradeToExec)
 {
 	std::cout << GREEN "[Form] Constructor called\n" << _R;
+	if (this->requiredGradeToSign > 150)
+	{
+		throw Form::GradeTooLowException();
+	}
+	if (this->requiredGradeToSign < 1)
+		throw Form::GradeTooHighException();
+	if (this->requiredGradeToExec > 150)
+		throw Form::GradeTooLowException();
+	if (this->requiredGradeToExec < 1)
+		throw Form::GradeTooHighException();
 }
 
 // Copy
 Form::Form(Form const &obj) :
 	name                (obj.getName()),
 	signedStatus        (obj.getSignedStatus()),
-	requiredGradeToExec (obj.getRequiredGradeToExec()),
-	requiredGradeToSign (obj.getRequiredGradeToSign())
+	requiredGradeToSign (obj.getRequiredGradeToSign()),
+	requiredGradeToExec (obj.getRequiredGradeToExec())
 {
 	if (this == &obj)
 		return ;
@@ -52,7 +62,7 @@ bool        Form::getSignedStatus        (void) const { return (this->signedStat
 int         Form::getRequiredGradeToSign (void) const { return (this->requiredGradeToSign); }
 int         Form::getRequiredGradeToExec (void) const { return (this->requiredGradeToExec); }
 
-void Form::beSigned(Bureaucrat guy)
+void Form::beSigned(Bureaucrat &guy)
 {
 	if (guy.getGrade() <= this->requiredGradeToSign)
 		this->signedStatus = 1;
@@ -60,20 +70,23 @@ void Form::beSigned(Bureaucrat guy)
 		throw Form::GradeTooLowException();
 }
 
-std::ostream & operator << (std::ostream &o, Form obj)
+std::ostream & operator << (std::ostream &o, Form &obj)
 {
 
-	o << "FORM\n"                   << "#####"                      << std::endl;
-	o << "Name: "                   << obj.getName()                << std::endl;
-	o << "Is signed: "              << obj.getSignedStatus()        << std::endl;
-	o << "Required grade to sign: " << obj.getRequiredGradeToSign() << std::endl;
-	o << "Required grade to exec: " << obj.getRequiredGradeToExec() << std::endl;
+	o << _R << "Name: "                   << YELLOW << obj.getName()                << std::endl;
+	o << _R << "Is signed: "              << YELLOW << obj.getSignedStatus()        << std::endl;
+	o << _R << "Required grade to sign: " << YELLOW << obj.getRequiredGradeToSign() << std::endl;
+	o << _R << "Required grade to exec: " << YELLOW << obj.getRequiredGradeToExec() << std::endl;
 	return o;
 }
 
 const char * Form::GradeTooLowException::what() throw()
 {
 	return ("Grade too low\n");
+}
+const char * Form::GradeTooHighException::what() throw()
+{
+	return ("Grade too high\n");
 }
 
 // DESTRUCTOR

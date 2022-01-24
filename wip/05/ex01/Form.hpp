@@ -6,7 +6,7 @@
 /*   By: wszurkow <wszurkow@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/21 20:51:03 by wszurkow          #+#    #+#             */
-/*   Updated: 2022/01/21 20:59:41 by wszurkow         ###   ########.fr       */
+/*   Updated: 2022/01/22 20:16:39 by wszurkow         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,14 +15,11 @@
 #include <iostream>
 #include <cctype>
 #include <exception>
+class Form;
 #include "Bureaucrat.hpp"
 
 class Form
 {
-	class GradeTooLowException : public std::exception
-	{
-		virtual const char * what (void) throw();
-	};
 
 	public:
 	Form (void);
@@ -30,20 +27,33 @@ class Form
 	~Form (void);
 	Form(std::string name, int requiredGradeToExec, int requiredGradeToSign);
 	Form &operator = (Form const &obj);
+	class GradeTooLowException : public std::exception
+	{
+		public:
+		virtual const char * what (void) throw();
+	};
+	class GradeTooHighException : public std::exception
+	{
+		public:
+		virtual const char * what (void) throw();
+	};
 
 	std::string getName                (void) const;
 	bool        getSignedStatus        (void) const;
 	int         getRequiredGradeToSign (void) const;
 	int         getRequiredGradeToExec (void) const;
 
-	void beSigned(Bureaucrat guy);
+	void beSigned(Bureaucrat &guy);
 
 	private:
 	std::string name;
 	bool signedStatus;
-	int const requiredGradeToExec;
 	int const requiredGradeToSign;
+	int const requiredGradeToExec;
 
 };
+
+
+std::ostream & operator << (std::ostream &o, Form &obj);
 
 #endif

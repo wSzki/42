@@ -6,7 +6,7 @@
 /*   By: wszurkow <wszurkow@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/18 16:18:38 by wszurkow          #+#    #+#             */
-/*   Updated: 2022/01/21 19:02:33 by wszurkow         ###   ########.fr       */
+/*   Updated: 2022/01/22 15:01:31 by wszurkow         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@
 #include <cctype>
 #include <stdexcept>
 
+class Bureaucrat;
+#include "Form.hpp"
 class Bureaucrat
 {
 	public:
@@ -45,6 +47,7 @@ class Bureaucrat
 
 		void promote (void);
 		void demote  (void);
+		void signForm(Form &form);
 
 	private:
 		std::string const name;
