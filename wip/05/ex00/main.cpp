@@ -6,7 +6,7 @@
 /*   By: wszurkow <wszurkow@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/18 17:06:34 by wszurkow          #+#    #+#             */
-/*   Updated: 2022/01/21 19:40:00 by wszurkow         ###   ########.fr       */
+/*   Updated: 2022/01/24 23:06:47 by wszurkow         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ void test_2(void)
 	std::cout << YELLOW "Creating Rolf with Grade -1\n";
 	try
 	{
-		Bureaucrat Rolf("Bill", -1);
+		Bureaucrat Rolf("Rolf", -1);
 		std::cout << Rolf;
 	}
 	catch (Bureaucrat::GradeTooHighException &e)
@@ -49,7 +49,7 @@ void test_2b(void)
 	std::cout << YELLOW "Creating Rolf with Grade -1\n";
 	try
 	{
-		Bureaucrat Rolf("Bill", -1);
+		Bureaucrat Rolf("Rolf", -1);
 		std::cout << Rolf;
 	}
 	catch (std::exception &e)
