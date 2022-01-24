@@ -6,7 +6,7 @@
 /*   By: wszurkow <wszurkow@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/21 20:51:03 by wszurkow          #+#    #+#             */
-/*   Updated: 2022/01/22 20:16:39 by wszurkow         ###   ########.fr       */
+/*   Updated: 2022/01/24 22:59:21 by wszurkow         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,9 @@
 #include <iostream>
 #include <cctype>
 #include <exception>
+
 class Form;
 #include "Bureaucrat.hpp"
-
 class Form
 {
 
@@ -30,12 +30,12 @@ class Form
 	class GradeTooLowException : public std::exception
 	{
 		public:
-		virtual const char * what (void) throw();
+		virtual const char * what (void) const throw();
 	};
 	class GradeTooHighException : public std::exception
 	{
 		public:
-		virtual const char * what (void) throw();
+		virtual const char * what (void) const throw();
 	};
 
 	std::string getName                (void) const;

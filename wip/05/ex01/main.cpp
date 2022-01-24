@@ -6,13 +6,14 @@
 /*   By: wszurkow <wszurkow@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/18 17:06:34 by wszurkow          #+#    #+#             */
-/*   Updated: 2022/01/22 21:44:43 by wszurkow         ###   ########.fr       */
+/*   Updated: 2022/01/24 23:04:15 by wszurkow         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "colors.hpp"
 #include "Bureaucrat.hpp"
 #include "Form.hpp"
+#include <cstdio>
 #include <exception>
 #include <iostream>
 #include <string>
@@ -27,46 +28,34 @@ typedef struct s_test
 	std::string form_name;
 }	t_test;
 
-void test_1(void)
+void test(t_test *t, int i)
 {
-	std::cout << "TEST 1\n" << "#####################################" << std::endl;
-	Bureaucrat Bob("Bob", 55);
-	Form form_a("Form A", 55, 1);
-	Form form_b("Form B", 10, 1);
-	std::cout << "Created Bob: " << Bob;
-	std::cout << form_a;
-	std::cout << form_b;
+	std::cout <<  CYAN  << "###########################"    << std::endl;
+	std::cout << "Grade        : " << t[i].bureaucrat_grade << std::endl;
+	std::cout << "Grade to sign: " << t[i].grade_to_sign    << std::endl;
+	std::cout << "Grade to exec: " << t[i].grade_to_exec    << std::endl;
 	try
 	{
-		std::cout << ORANGE << "**** Bob is trying to sign form A ****" << std::endl;
-		form_a.beSigned(Bob);
-		std::cout << ORANGE << "**** Form has been signed ****" << std::endl;
+		Bureaucrat b("Bob", t[i].bureaucrat_grade);
+		Form f("Form", t[i].grade_to_sign, t[i].grade_to_exec);
+		std::cout << b ;
+		std::cout << f;
+		try
+		{
+			f.beSigned(b);
+		}
+		catch (std::exception &e)
+		{
+			std::cout << LIGHT_RED << "[ERROR] " << _R << e.what() << std::endl;
+		}
 	}
-	catch (Form::GradeTooLowException &e)
+	catch (std::exception &e)
 	{
-		std::cout << e.what();
+		std::cout << LIGHT_RED << "[ERROR] " << _R << e.what() << std::endl;
 	}
-	try
-	{
-		std::cout << ORANGE << "**** Bob is trying to sign form B ****" << std::endl;
-		form_b.beSigned(Bob);
-		std::cout << ORANGE << " **** Form has been signed ****" << std::endl;
-	}
-	catch (Form::GradeTooLowException &e)
-	{
-		std::cout << e.what();
-	}
-	std::cout << form_a;
-	std::cout << form_b;
-
-}
-
-void test_2(t_test *t, int i)
-{
-	(void)i;
-	(void)t;
-
-
+	std::cout << "\nPRESS ENTER TO CONTINUE" << std::endl;
+	getchar();
+	_CLEAR;
 
 }
 
@@ -77,17 +66,15 @@ int main(int ac, char **av, char **env)
 	(void)env;
 	t_test t[10];
 
+	_CLEAR;
 	std::srand(time(0));
 	for (int i = 0; i < 10; i++)
 	{
-		t[i].bureaucrat_grade = std::rand() % 300 - 100;
-		t[i].grade_to_sign    = std::rand() % 300 - 100;
-		t[i].grade_to_exec    = std::rand() % 300 - 100;
+		t[i].bureaucrat_grade = std::rand() % 200 - 35;
+		t[i].grade_to_sign    = std::rand() % 200 - 35;
+		t[i].grade_to_exec    = std::rand() % 200 - 35;
 	}
-
-	test_1();
 	for (int i = 0; i < 10; i++)
-		test_2(t, i);
-
+		test(t, i);
 	return (0);
 }

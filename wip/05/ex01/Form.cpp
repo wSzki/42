@@ -6,13 +6,14 @@
 /*   By: wszurkow <wszurkow@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/21 19:57:04 by wszurkow          #+#    #+#             */
-/*   Updated: 2022/01/22 14:53:21 by wszurkow         ###   ########.fr       */
+/*   Updated: 2022/01/24 22:44:46 by wszurkow         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Form.hpp"
 
 
+#include "Bureaucrat.hpp"
 #include "colors.hpp"
 
 Form::Form (std::string name, int requiredGradeToSign, int requiredGradeToExec) :
@@ -23,9 +24,7 @@ Form::Form (std::string name, int requiredGradeToSign, int requiredGradeToExec) 
 {
 	std::cout << GREEN "[Form] Constructor called\n" << _R;
 	if (this->requiredGradeToSign > 150)
-	{
 		throw Form::GradeTooLowException();
-	}
 	if (this->requiredGradeToSign < 1)
 		throw Form::GradeTooHighException();
 	if (this->requiredGradeToExec > 150)
@@ -65,28 +64,38 @@ int         Form::getRequiredGradeToExec (void) const { return (this->requiredGr
 void Form::beSigned(Bureaucrat &guy)
 {
 	if (guy.getGrade() <= this->requiredGradeToSign)
+	{
 		this->signedStatus = 1;
+		std::cout << YELLOW << "********************************" << std::endl;
+		std::cout << YELLOW << "*** FORM SIGNED SUCCESSFULLY ***" << std::endl;
+		std::cout << YELLOW << "********************************" << std::endl;
+		std::cout << *this;
+	}
 	else
-		throw Form::GradeTooLowException();
+	{
+		std::cout << guy.getName() << " cannot sign " << this->name << " because ";
+		throw Bureaucrat::GradeTooLowException();
+	}
 }
 
 std::ostream & operator << (std::ostream &o, Form &obj)
 {
 
-	o << _R << "Name: "                   << YELLOW << obj.getName()                << std::endl;
-	o << _R << "Is signed: "              << YELLOW << obj.getSignedStatus()        << std::endl;
-	o << _R << "Required grade to sign: " << YELLOW << obj.getRequiredGradeToSign() << std::endl;
-	o << _R << "Required grade to exec: " << YELLOW << obj.getRequiredGradeToExec() << std::endl;
+	o << _R << "Form name:              " << ORANGE << obj.getName()                << std::endl;
+	o << _R << "Is signed:              " << ORANGE << obj.getSignedStatus()        << std::endl;
+	o << _R << "Required grade to sign: " << ORANGE << obj.getRequiredGradeToSign() << std::endl;
+	o << _R << "Required grade to exec: " << ORANGE << obj.getRequiredGradeToExec() << std::endl;
+	o << _R;
 	return o;
 }
 
-const char * Form::GradeTooLowException::what() throw()
+const char * Form::GradeTooLowException::what() const throw()
 {
-	return ("Grade too low\n");
+	return ("Form grade too low");
 }
-const char * Form::GradeTooHighException::what() throw()
+const char * Form::GradeTooHighException::what() const throw()
 {
-	return ("Grade too high\n");
+	return ("Form grade too high");
 }
 
 // DESTRUCTOR
