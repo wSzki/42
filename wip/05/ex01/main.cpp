@@ -6,7 +6,7 @@
 /*   By: wszurkow <wszurkow@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/18 17:06:34 by wszurkow          #+#    #+#             */
-/*   Updated: 2022/01/24 23:04:15 by wszurkow         ###   ########.fr       */
+/*   Updated: 2022/01/25 01:20:10 by wszurkow         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,14 +30,17 @@ typedef struct s_test
 
 void test(t_test *t, int i)
 {
+
+	std::cout <<  CYAN  << "###########################"    << std::endl;
+	std::cout << "# TEST " << i + 1 << "/10" << std::endl;
 	std::cout <<  CYAN  << "###########################"    << std::endl;
 	std::cout << "Grade        : " << t[i].bureaucrat_grade << std::endl;
 	std::cout << "Grade to sign: " << t[i].grade_to_sign    << std::endl;
 	std::cout << "Grade to exec: " << t[i].grade_to_exec    << std::endl;
 	try
 	{
-		Bureaucrat b("Bob", t[i].bureaucrat_grade);
-		Form f("Form", t[i].grade_to_sign, t[i].grade_to_exec);
+		Bureaucrat b("Bob",  t[i].bureaucrat_grade);
+		Form       f("Form", t[i].grade_to_sign, t[i].grade_to_exec);
 		std::cout << b ;
 		std::cout << f;
 		try
