@@ -6,7 +6,7 @@
 /*   By: wszurkow <wszurkow@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/21 19:57:04 by wszurkow          #+#    #+#             */
-/*   Updated: 2022/01/25 18:02:34 by wsz              ###   ########.fr       */
+/*   Updated: 2022/01/27 15:58:55 by wszurkow         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ int         Form::getRequiredGradeToExec (void) const { return (this->requiredGr
 
 void Form::beSigned(Bureaucrat &guy)
 {
-	if (guy.getGrade() <= this->requiredGradeToSign)
+	if (guy.getGrade() < this->requiredGradeToSign)
 	{
 		this->signedStatus = 1;
 		std::cout << YELLOW << "********************************" << std::endl;
@@ -76,7 +76,6 @@ void Form::beSigned(Bureaucrat &guy)
 	else
 	{
 		std::cout << guy.getName() << " cannot sign " << this->name << " because ";
-		std::cout << "VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV" << std::endl;
 		throw Bureaucrat::GradeTooLowException();
 	}
 }

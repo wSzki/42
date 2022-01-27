@@ -6,7 +6,7 @@
 /*   By: wszurkow <wszurkow@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/18 17:06:34 by wszurkow          #+#    #+#             */
-/*   Updated: 2022/01/25 18:06:15 by wszurkow         ###   ########.fr       */
+/*   Updated: 2022/01/27 15:58:40 by wszurkow         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,8 @@ void test_1(t_test *t, int i)
 		ShrubberyCreationForm form("ascii_tree");
 		try
 		{
-			bob.signForm(form);
+			form.beSigned(bob);
+			//bob.signForm(form);
 			form.execute(bob);
 		}
 		catch (std::exception &e)
