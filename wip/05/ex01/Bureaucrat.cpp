@@ -6,7 +6,7 @@
 /*   By: wszurkow <wszurkow@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/18 16:23:56 by wszurkow          #+#    #+#             */
-/*   Updated: 2022/01/24 22:43:37 by wszurkow         ###   ########.fr       */
+/*   Updated: 2022/01/27 15:54:37 by wszurkow         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,10 +92,13 @@ void Bureaucrat::demote()
 
 void Bureaucrat::signForm(Form &form)
 {
-	if (this->grade < form.getRequiredGradeToSign())
-		std::cout << this->name << " signs " << form.getName() << std::endl;
-	else
-		std::cout << this->name << " cannot sign " << form.getName() << " because " << std::endl;
+	//if (this->grade < form.getRequiredGradeToSign())
+	//{
+	form.beSigned(*this);
+	//std::cout << this->name << " signs " << form.getName() << std::endl;
+	//}
+	//else
+	//std::cout << this->name << " cannot sign " << form.getName() << " because " << std::endl;
 }
 
 // EXCEPTIONS

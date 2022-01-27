@@ -6,7 +6,7 @@
 /*   By: wszurkow <wszurkow@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/18 17:06:34 by wszurkow          #+#    #+#             */
-/*   Updated: 2022/01/25 15:17:02 by wszurkow         ###   ########.fr       */
+/*   Updated: 2022/01/27 15:53:02 by wszurkow         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,8 @@ void test(t_test *t, int i)
 		std::cout << f;
 		try
 		{
-			f.beSigned(b);
+			b.signForm(f);
+			//f.beSigned(b);
 		}
 		catch (std::exception &e)
 		{
