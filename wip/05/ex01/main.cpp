@@ -6,7 +6,7 @@
 /*   By: wszurkow <wszurkow@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/18 17:06:34 by wszurkow          #+#    #+#             */
-/*   Updated: 2022/01/25 01:20:10 by wszurkow         ###   ########.fr       */
+/*   Updated: 2022/01/25 15:17:02 by wszurkow         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,6 @@ typedef struct s_test
 	int         bureaucrat_grade;
 	int         grade_to_sign;
 	int         grade_to_exec;
-	std::string form_name;
 }	t_test;
 
 void test(t_test *t, int i)
