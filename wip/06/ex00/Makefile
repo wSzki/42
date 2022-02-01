@@ -22,7 +22,7 @@ RM				= /bin/rm -f
 SANITIZER		= -fsanitize=address -fsanitize=leak
 OBJS			= ${SRCS_FILES:.${EXTENSION}=.o}
 SRCS_FILES	    = \
-				  ./main.cpp \
+				  main.cpp \
 
 # OS SETTINGS ###########
 OS				= $(shell uname -r | grep arch)
@@ -37,26 +37,27 @@ ECHO = printf
 # RULES #################
 all:		${NAME}
 
-msg_objs:
-		@${ECHO} "${Y}[ COMPILING OBJS] ${_R}\n"
-
-%.o: %.${EXTENSION} msg_objs
-	@${ECHO} "${Y}└─ $@\r${_R}"
-	@${CC} ${FLAGS} -I ${DIR_HEADER} -o $@ -c $<
+%.o: %.${EXTENSION}
+	@${ECHO} "${Y}[ COMPILING OBJ] ${_R}"
+	${CC} ${FLAGS} -I ${DIR_HEADER} -o $@ -c $<
 
 ${NAME}: ${OBJS}
-	@${ECHO} "${Y}[ COMPILING BIN] ${_R}\n"
-	@${CC} ${SANITIZER} -I ${DIR_HEADER} ${FLAGS} ${OBJS} -o ${NAME}
+	@${ECHO} "${BLUE}[ COMPILING BIN] ${_R}"
+	${CC} ${FLAGS} -I ${DIR_HEADER} -o ${NAME} ${OBJS} ${SANITIZER}
 	@${ECHO} "${G}[ DONE] ${_R}\n"
 	@${ECHO} "${G}└─ ./${NAME}${_R}\n"
 
 clean:
-	@${ECHO} "${R}[ CLEAN] ${_R}\n"
-	@${RM} ${OBJS}
+	@${ECHO} "${R}[ CLEAN] ${_R}        "
+	${RM} ${OBJS}
+	@${ECHO} "${R}[ CLEAN] ${_R}        "
+	${RM} ./*_shruberry
+	@${ECHO} "${R}[ CLEAN] ${_R}        "
+	${RM} ./log.txt
 
 fclean:		clean
-	@${ECHO} "${R}[ FCLEAN] ${_R}\n"
-	@${RM} ${NAME}
+	@${ECHO} "${R}[ FCLEAN] ${_R}       "
+	${RM} ${NAME}
 
 re:			fclean all
 
@@ -87,3 +88,4 @@ _R				=	\e[0m
 # MISC #################
 #Auto update
 #@printf "\033[2K\r$(BLUE)$(NAME)$(RESET)$(BLUE): $(GREEN)Compiled [√]$(RESET)\n"
+# use "\r" on printf to clear current line
