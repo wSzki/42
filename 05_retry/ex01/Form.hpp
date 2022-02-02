@@ -6,7 +6,7 @@
 /*   By: wszurkow <wszurkow@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/21 20:51:03 by wszurkow          #+#    #+#             */
-/*   Updated: 2022/02/02 02:21:25 by wszurkow         ###   ########.fr       */
+/*   Updated: 2022/02/02 16:13:13 by wszurkow         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,34 +22,35 @@ class Form
 {
 
 	public:
-	Form (void);
-	Form(Form const &obj);
-	~Form (void);
-	Form(std::string name, int requiredGradeToExec, int requiredGradeToSign);
-	Form &operator = (Form const &obj);
-	class GradeTooLowException : public std::exception
+		Form (void);
+		Form(Form const &obj);
+		~Form (void);
+		Form(std::string name, int requiredGradeToExec, int requiredGradeToSign);
+		Form &operator = (Form const &obj);
+		class GradeTooLowException : public std::exception
 	{
 		public:
-		virtual const char * what (void) const throw();
+			virtual const char * what (void) const throw();
 	};
-	class GradeTooHighException : public std::exception
+		class GradeTooHighException : public std::exception
 	{
 		public:
-		virtual const char * what (void) const throw();
+			virtual const char * what (void) const throw();
 	};
 
-	std::string getName                (void) const;
-	bool        getSignedStatus        (void) const;
-	int         getRequiredGradeToSign (void) const;
-	int         getRequiredGradeToExec (void) const;
+		std::string getName                (void) const;
+		bool        getSignedStatus        (void) const;
+		int         getRequiredGradeToSign (void) const;
+		int         getRequiredGradeToExec (void) const;
 
-	void beSigned(Bureaucrat &guy);
+		void beSigned(Bureaucrat &guy);
 
 	private:
-	std::string const name;
-	bool signedStatus;
-	int const requiredGradeToSign;
-	int const requiredGradeToExec;
+
+		std::string const name;
+		bool              signedStatus;
+		int         const requiredGradeToSign;
+		int         const requiredGradeToExec;
 
 };
 

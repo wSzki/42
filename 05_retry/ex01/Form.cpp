@@ -6,7 +6,7 @@
 /*   By: wszurkow <wszurkow@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/21 19:57:04 by wszurkow          #+#    #+#             */
-/*   Updated: 2022/01/28 15:13:38 by wszurkow         ###   ########.fr       */
+/*   Updated: 2022/02/02 16:14:49 by wszurkow         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,15 @@
 
 #include "Bureaucrat.hpp"
 #include "colors.hpp"
+
+Form::Form() :
+	name                ("NO NAME"),
+	signedStatus        (0),
+	requiredGradeToSign (150),
+	requiredGradeToExec (150)
+{
+	std::cout << GREEN "[Form] Default constructor called\n" << _R;
+}
 
 Form::Form (std::string name, int requiredGradeToSign, int requiredGradeToExec) :
 	name                (name),

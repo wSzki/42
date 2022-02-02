@@ -6,7 +6,7 @@
 /*   By: wszurkow <wszurkow@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/18 17:06:34 by wszurkow          #+#    #+#             */
-/*   Updated: 2022/01/27 15:53:02 by wszurkow         ###   ########.fr       */
+/*   Updated: 2022/02/02 02:30:00 by wszurkow         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,7 @@ int main(int ac, char **av, char **env)
 	(void)av;
 	(void)env;
 	t_test t[10];
+	Form form;
 
 	_CLEAR;
 	std::srand(time(0));

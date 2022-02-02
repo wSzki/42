@@ -6,7 +6,7 @@
 /*   By: wszurkow <wszurkow@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/18 16:23:56 by wszurkow          #+#    #+#             */
-/*   Updated: 2022/01/21 19:36:50 by wszurkow         ###   ########.fr       */
+/*   Updated: 2022/02/02 16:03:35 by wszurkow         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ Bureaucrat &Bureaucrat::operator = (Bureaucrat const &obj)
 	std::cout << GREEN "[Bureaucrat] Assignation operator called" << _R << std::endl;
 	if (this == &obj)
 		return *this ;
-	*this = obj;
+	*this = Bureaucrat(obj.name, obj.grade);
 	return (*this);
 }
 

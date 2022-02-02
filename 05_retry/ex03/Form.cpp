@@ -6,7 +6,7 @@
 /*   By: wszurkow <wszurkow@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/21 19:57:04 by wszurkow          #+#    #+#             */
-/*   Updated: 2022/01/28 15:08:48 by wszurkow         ###   ########.fr       */
+/*   Updated: 2022/02/02 02:30:34 by wszurkow         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,11 @@
 
 #include "Bureaucrat.hpp"
 #include "colors.hpp"
+
+Form::Form()
+{
+
+}
 
 Form::Form (std::string name, int requiredGradeToSign, int requiredGradeToExec) :
 	name                (name),
