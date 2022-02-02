@@ -6,7 +6,7 @@
 /*   By: wszurkow <wszurkow@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/18 17:06:34 by wszurkow          #+#    #+#             */
-/*   Updated: 2022/01/31 01:56:21 by wszurkow         ###   ########.fr       */
+/*   Updated: 2022/02/02 19:49:46 by wszurkow         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,8 +51,8 @@ int main(int ac, char **av, char **env)
 	try
 	{
 		form = intern.makeForm("robotomy request",     "Carlo");
-		form->beSigned(bob);
-		form->execute (bob);
+		bob.signForm(*form);
+		bob.executeForm(*form);
 		delete form;
 		proceed();
 

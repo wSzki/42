@@ -6,7 +6,7 @@
 /*   By: wszurkow <wszurkow@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/18 16:23:56 by wszurkow          #+#    #+#             */
-/*   Updated: 2022/02/02 16:05:36 by wszurkow         ###   ########.fr       */
+/*   Updated: 2022/02/02 19:43:00 by wszurkow         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,13 +93,11 @@ void Bureaucrat::demote()
 void Bureaucrat::signForm(Form &form)
 {
 	form.beSigned(*this);
-	//if (this->grade < form.getRequiredGradeToSign())
-		//std::cout << this->name << " signs " << form.getName() << std::endl;
-	//else
-	//{
-		//std::cout << this->name << " cannot sign " << form.getName() << " because ";
-		//throw Bureaucrat::GradeTooLowException();
-	//}
+}
+
+void Bureaucrat::executeForm(const Form &form)
+{
+	form.execute(*this);
 }
 
 // EXCEPTIONS

@@ -6,7 +6,7 @@
 /*   By: wszurkow <wszurkow@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/18 17:06:34 by wszurkow          #+#    #+#             */
-/*   Updated: 2022/01/28 15:14:58 by wszurkow         ###   ########.fr       */
+/*   Updated: 2022/02/02 19:46:46 by wszurkow         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,8 +45,8 @@ void test_shrubbery(t_test *t, int i)
 		std::cout << form;
 		try
 		{
-			form.beSigned(bob);
-			form.execute(bob);
+			bob.signForm(form);
+			bob.executeForm(form);
 			std::cout << form;
 		}
 		catch (std::exception &e)
@@ -75,8 +75,8 @@ void test_robotomy(t_test *t, int i)
 		std::cout << form;
 		try
 		{
-			form.beSigned(bob);
-			form.execute(bob);
+			bob.signForm(form);
+			bob.executeForm(form);
 			std::cout << form;
 		}
 		catch (std::exception &e)
@@ -106,8 +106,8 @@ void test_presidential(t_test *t, int i)
 		std::cout << form;
 		try
 		{
-			form.beSigned(bob);
-			form.execute(bob);
+			bob.signForm(form);
+			bob.executeForm(form);
 			std::cout << form;
 		}
 		catch (std::exception &e)

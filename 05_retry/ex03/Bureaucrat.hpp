@@ -6,7 +6,7 @@
 /*   By: wszurkow <wszurkow@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/18 16:18:38 by wszurkow          #+#    #+#             */
-/*   Updated: 2022/01/22 15:01:31 by wszurkow         ###   ########.fr       */
+/*   Updated: 2022/02/02 19:43:20 by wsz              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,9 +45,10 @@ class Bureaucrat
 				virtual const char* what() const throw();
 		};
 
-		void promote (void);
-		void demote  (void);
-		void signForm(Form &form);
+		void promote     (void);
+		void demote      (void);
+		void signForm    (Form  &form);
+		void executeForm (const Form &form);
 
 	private:
 		std::string const name;
