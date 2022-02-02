@@ -6,7 +6,7 @@
 /*   By: wszurkow <wszurkow@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/25 15:25:31 by wszurkow          #+#    #+#             */
-/*   Updated: 2022/01/28 15:03:30 by wszurkow         ###   ########.fr       */
+/*   Updated: 2022/02/02 19:32:03 by wsz              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,8 @@
 
 // Default
 SCB::SCB (void):
-	Form("ShrubberyCreationForm", 145, 137)
+	Form("ShrubberyCreationForm", 145, 137),
+	target("")
 {
 	std::cout << GREEN "[SCB] Default constructor called\n" << _R;
 }
@@ -31,8 +32,9 @@ SCB::SCB  (std::string target) :
 
 
 // Copy
-SCB::SCB(SCB const &obj):
-	Form("ShrubberyCreationForm", 145, 137)
+SCB::SCB(SCB const &obj) :
+	Form("ShrubberyCreationForm", 145, 137),
+	target(obj.target)
 {
 	std::cout << GREEN "[SCB] Copy constructor called\n" << _R;
 	if (this == &obj)
@@ -46,7 +48,7 @@ SCB &SCB::operator = (SCB const &obj)
 	std::cout << GREEN "[SCB] Assignation operator called" << _R << std::endl;
 	if (this == &obj)
 		return (*this);
-	*this = obj;
+	*this = SCB(obj);
 	return (*this);
 }
 

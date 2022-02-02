@@ -6,7 +6,7 @@
 /*   By: wszurkow <wszurkow@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/21 19:57:04 by wszurkow          #+#    #+#             */
-/*   Updated: 2022/01/28 15:08:48 by wszurkow         ###   ########.fr       */
+/*   Updated: 2022/02/02 19:36:14 by wszurkow         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,15 @@
 
 #include "Bureaucrat.hpp"
 #include "colors.hpp"
+
+Form::Form() :
+	name                ("NO NAME"),
+	signedStatus        (0),
+	requiredGradeToSign (150),
+	requiredGradeToExec (150)
+{
+	std::cout << GREEN "[Form] Default constructor called\n" << _R;
+}
 
 Form::Form (std::string name, int requiredGradeToSign, int requiredGradeToExec) :
 	name                (name),
@@ -43,7 +52,6 @@ Form::Form(Form const &obj) :
 	std::cout << GREEN "[Form] Copy constructor called\n" << _R;
 	if (this == &obj)
 		return ;
-	*this = obj;
 }
 
 // OVERLOADS
@@ -52,7 +60,6 @@ Form &Form::operator = (Form const &obj)
 	std::cout << GREEN "[Form] Assignation operator called" << _R << std::endl;
 	if (this == &obj)
 		return (*this);
-	//*this = Form(obj.name, obj.requiredGradeToSign, obj.requiredGradeToExec);
 	*this = obj;
 	return (*this);
 }
@@ -65,7 +72,7 @@ int         Form::getRequiredGradeToExec (void) const { return (this->requiredGr
 
 void Form::beSigned(Bureaucrat &guy)
 {
-	if (guy.getGrade() < this->requiredGradeToSign)
+	if (guy.getGrade() <= this->requiredGradeToSign)
 	{
 		this->signedStatus = 1;
 		std::cout << YELLOW << "**********************************************************" << std::endl;

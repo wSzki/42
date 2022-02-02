@@ -6,7 +6,7 @@
 /*   By: wszurkow <wszurkow@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/21 19:57:04 by wszurkow          #+#    #+#             */
-/*   Updated: 2022/02/02 16:14:49 by wszurkow         ###   ########.fr       */
+/*   Updated: 2022/02/02 16:28:21 by wszurkow         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ int         Form::getRequiredGradeToExec (void) const { return (this->requiredGr
 
 void Form::beSigned(Bureaucrat &guy)
 {
-	if (guy.getGrade() < this->requiredGradeToSign)
+	if (guy.getGrade() <= this->requiredGradeToSign)
 	{
 		this->signedStatus = 1;
 		std::cout << YELLOW << "**********************************************************" << std::endl;

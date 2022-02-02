@@ -6,7 +6,7 @@
 /*   By: wszurkow <wszurkow@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/25 15:25:31 by wszurkow          #+#    #+#             */
-/*   Updated: 2022/01/28 15:06:35 by wszurkow         ###   ########.fr       */
+/*   Updated: 2022/02/02 19:31:17 by wszurkow         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,8 @@
 
 // Default
 PPF::PPF (void):
-	Form("PresidentialPardonForm", 25, 5)
+	Form("PresidentialPardonForm", 25, 5),
+	target("")
 {
 	std::cout << GREEN "[PPF] Default constructor called\n" << _R;
 }
@@ -33,12 +34,12 @@ PPF::PPF  (std::string target) :
 
 // Copy
 PPF::PPF(PPF const &obj):
-	Form("PresidentialPardonForm", 25, 5)
+	Form("PresidentialPardonForm", 25, 5),
+	target(obj.target)
 {
 	std::cout << GREEN "[PPF] Copy constructor called\n" << _R;
 	if (this == &obj)
 		return ;
-	*this = obj;
 }
 
 // OVERLOADS
@@ -47,7 +48,7 @@ PPF &PPF::operator = (PPF const &obj)
 	std::cout << GREEN "[PPF] Assignation operator called" << _R << std::endl;
 	if (this == &obj)
 		return (*this);
-	*this = obj;
+	*this = PPF(obj);
 	return (*this);
 }
 

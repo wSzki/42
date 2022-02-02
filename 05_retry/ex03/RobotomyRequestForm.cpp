@@ -6,7 +6,7 @@
 /*   By: wszurkow <wszurkow@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/25 15:25:31 by wszurkow          #+#    #+#             */
-/*   Updated: 2022/01/28 08:19:13 by wszurkow         ###   ########.fr       */
+/*   Updated: 2022/02/02 19:33:04 by wsz              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,8 @@
 
 // Default
 RRF::RRF (void):
-	Form("RobotomyRequestForm", 72, 45)
+	Form("RobotomyRequestForm", 72, 45),
+	target("")
 {
 	std::cout << GREEN "[RRF] Default constructor called\n" << _R;
 }
@@ -34,7 +35,8 @@ RRF::RRF  (std::string target) :
 
 // Copy
 RRF::RRF(RRF const &obj):
-	Form("RobotomyRequestForm", 72, 45)
+	Form("RobotomyRequestForm", 72, 45),
+	target(obj.target)
 {
 	std::cout << GREEN "[RRF] Copy constructor called\n" << _R;
 	if (this == &obj)
@@ -48,7 +50,7 @@ RRF &RRF::operator = (RRF const &obj)
 	std::cout << GREEN "[RRF] Assignation operator called" << _R << std::endl;
 	if (this == &obj)
 		return (*this);
-	*this = obj;
+	*this = RRF(obj);
 	return (*this);
 }
 
