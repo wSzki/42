@@ -22,6 +22,7 @@ RM				= /bin/rm -f
 SANITIZER		= -fsanitize=address -fsanitize=leak
 OBJS			= ${SRCS_FILES:.${EXTENSION}=.o}
 SRCS_FILES	    = \
+				  ./main.cpp
 
 # OS SETTINGS ###########
 OS				= $(shell uname -r | grep arch)
