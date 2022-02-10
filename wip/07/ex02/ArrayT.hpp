@@ -6,7 +6,7 @@
 /*   By: wszurkow <wszurkow@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/09 16:41:48 by wszurkow          #+#    #+#             */
-/*   Updated: 2022/02/10 20:05:54 by wszurkow         ###   ########.fr       */
+/*   Updated: 2022/02/10 20:59:37 by wszurkow         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,9 +29,6 @@ class Array
 		Array  (Array const &obj);
 
 		unsigned int size (void) const;
-
-		T &get_array(unsigned int i) const;
-		void set_array(unsigned int i, T data);
 
 		Array & operator =  (Array    const &obj);
 		T     & operator [] (unsigned int   index);
@@ -96,22 +93,10 @@ T&	Array<T>::operator[](unsigned int index)
 }
 
 // METHODS
-template<typename T>
+	template<typename T>
 unsigned int Array<T>::size (void) const
 {
 	return (this->_size);
-}
-
-template<typename T>
-T &Array<T>::get_array(unsigned int i) const
-{
-	return (this->_array[i]);
-}
-
-template<typename T>
-void Array<T>::set_array(unsigned int i, T data)
-{
-	this->_array[i] = data;
 }
 
 // DESTRUCTOR

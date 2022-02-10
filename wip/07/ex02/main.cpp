@@ -6,7 +6,7 @@
 /*   By: wszurkow <wszurkow@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/09 17:03:04 by wszurkow          #+#    #+#             */
-/*   Updated: 2022/02/10 20:09:31 by wszurkow         ###   ########.fr       */
+/*   Updated: 2022/02/10 20:59:12 by wszurkow         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,20 @@
 #include "colors.hpp"
 #include <cstdio>
 
+static void next(void)
+{
+	std::cout << _R << "\nPRESS ENTER TO CONTINUE" << std::endl;
+	getchar();
+	_CLEAR;
+}
+
 static void example(void)
 {
 	_CLEAR;
-	std::cout << CYAN << "### EXAMPLES\n"
+	std::cout << "####################\n";
+	std::cout << "### SUBJECT TEST ###\n";
+	std::cout << "####################\n\n";
+	std::cout << CYAN <<
 		"int   * a = new int (42)\n"
 		"char  * b = new char('Z')\n\n"
 		"int   * c = new int [3] = {1, 2, 3}\n"
@@ -61,7 +71,10 @@ static void example(void)
 
 static void basic_test(void)
 {
-	int f;
+	std::cout << "####################\n";
+	std::cout << "## BASIC TEST    ###\n";
+	std::cout << "####################\n\n";
+	float f;
 	Array<int>    array_int  (5);
 	Array<char>   array_char (5);
 	Array<float>  array_float(5);
@@ -74,18 +87,22 @@ static void basic_test(void)
 	for (int i = 0; i < 5; i++)
 	{
 		f = (rand() % 93) + 33;
-		array_int   .set_array(i, f);
-		array_char  .set_array(i, f);
-		array_float .set_array(i, f + 0.5);
-		std::cout << CYAN   << "int   value:        " << array_int  .get_array(i) << std::endl;
-		std::cout << PURPLE << "float value + 0.5:  " << array_float.get_array(i) << std::endl;
-		std::cout << ORANGE << "char  value:        " << array_char .get_array(i) << std::endl;
+		array_int   [i] = f;
+		array_char  [i] = f;
+		array_float [i] = f + 0.5;
+		std::cout << CYAN   << "int   value:        " << array_int  [i] << std::endl;
+		std::cout << PURPLE << "float value + 0.5:  " << array_float[i] << std::endl;
+		std::cout << ORANGE << "char  value:        " << array_char [i] << std::endl;
 		std::cout << std::endl;
 	}
 }
 
 static void index_test(void)
 {
+	std::cout << "####################\n";
+	std::cout << "## INDEX TEST    ###\n";
+	std::cout << "####################\n\n";
+
 	int f;
 	Array<int>    array_int  (5);
 
@@ -96,7 +113,7 @@ static void index_test(void)
 		std::cout << "Wanted index value : " << f << std::endl;
 		try
 		{
-			array_int[f] = 42;
+			array_int[i] = 42;
 			std::cout << GREEN << "[OK]" << _R << " Wanted value : " << array_int[f] << _R << std::endl;
 		}
 		catch (std::exception &e)
@@ -108,23 +125,20 @@ static void index_test(void)
 	}
 }
 
-static void next(void)
-{
-	std::cout << _R << "\nPRESS ENTER TO CONTINUE" << std::endl;
-	getchar();
-}
-
-
 static void copy_test()
 {
+	std::cout << "####################\n";
+	std::cout << "## COPY TEST     ###\n";
+	std::cout << "####################\n\n";
+
+	int f;
 	Array<int>    array_int (5);
 	Array<int>    array_int_copy_assignment;
-	int f;
 
 	for (int i = 0; i < 5; i++)
 	{
 		f = (rand() % 100);
-		array_int.set_array(i, f);
+		array_int[i] = f;
 	}
 
 	Array<int>    array_int_copy(array_int);
@@ -135,46 +149,43 @@ static void copy_test()
 
 	std::cout << BLUE << "####### COPY" << std::endl;
 	for (int i = 0; i < 5; i++)
-		std::cout << array_int_copy.get_array(i) << std::endl;
+		std::cout << array_int_copy[i] << std::endl;
 
 	std::cout << LIGHT_GRAY << "####### ASSIGNMENT (=) COPY" << std::endl;
 	for (int i = 0; i < 5; i++)
-		std::cout << array_int_copy_assignment.get_array(i) << std::endl;
+		std::cout << array_int_copy_assignment[i] << std::endl;
 
 	std::cout << PURPLE << "####### ORIGINAL" << std::endl;
 	for (int i = 0; i < 5; i++)
-		std::cout << array_int.get_array(i) << std::endl;
+		std::cout << array_int[i] << std::endl;
 
 	for (int i = 0; i < 5; i++)
 	{
 		f = (rand() % 100);
-		array_int_copy.set_array(i, f);
+		array_int_copy[i] = f;
 	}
 	for (int i = 0; i < 5; i++)
 	{
 		f = (rand() % 100);
-		array_int_copy_assignment.set_array(i, f);
+		array_int_copy_assignment[i] = f;
 	}
 
 	std::cout << YELLOW << "\n******** AFTER MODIFICATION ********" << std::endl;
 
 	std::cout << BLUE << "####### COPY" << std::endl;
 	for (int i = 0; i < 5; i++)
-		std::cout << array_int_copy.get_array(i) << std::endl;
+		std::cout << array_int_copy[i] << std::endl;
 
 	std::cout << LIGHT_GRAY << "####### ASSIGNMENT (=) COPY" << std::endl;
 	for (int i = 0; i < 5; i++)
-		std::cout << array_int_copy_assignment.get_array(i) << std::endl;
+		std::cout << array_int_copy_assignment[i] << std::endl;
 
 	std::cout << PURPLE << "####### ORIGINAL" << std::endl;
 	for (int i = 0; i < 5; i++)
-		std::cout << array_int.get_array(i) << std::endl;
+		std::cout << array_int[i] << std::endl;
 
 	std::cout << std::endl;
-
-
 }
-
 
 int main (void)
 {
