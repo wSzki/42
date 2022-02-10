@@ -6,7 +6,7 @@
 /*   By: wszurkow <wszurkow@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/09 16:41:48 by wszurkow          #+#    #+#             */
-/*   Updated: 2022/02/10 20:59:37 by wszurkow         ###   ########.fr       */
+/*   Updated: 2022/02/10 21:02:21 by wszurkow         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,8 +104,7 @@ unsigned int Array<T>::size (void) const
 Array<T>::~Array (void)
 {
 	std::cout << RED << "[Array] Destructor Called\n" <<  _R;
-	delete [] this->_array; // TODO
+	delete [] this->_array;
 }
-
 
 #endif
