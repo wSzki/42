@@ -6,7 +6,7 @@
 /*   By: wszurkow <wszurkow@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/16 02:05:57 by wszurkow          #+#    #+#             */
-/*   Updated: 2022/02/16 03:05:10 by wszurkow         ###   ########.fr       */
+/*   Updated: 2022/02/16 17:34:00 by wszurkow         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,13 +58,19 @@ size_t Span::longestSpan  (void) const
 
 size_t Span::shortestSpan (void) const
 {
+	int smallest;
 	std::vector<int> vector_tmp(this->vector_int);
 
+	smallest = 0;
 	if (vector_tmp.size() <= 1)
 		throw Span::insufficientException();
 	std::sort(vector_tmp.begin(), vector_tmp.end());
 	vector_tmp.erase(std::unique(vector_tmp.begin(), vector_tmp.end()), vector_tmp.end());
-	return (vector_tmp[1] - vector_tmp[0] - 1); // subject odes not make sense
+	smallest = vector_tmp[1] - vector_tmp[0];
+	for (size_t i = 2; i < this->max_len; i++ )
+		if (smallest >= vector_tmp[i] - vector_tmp[i -1])
+			smallest = vector_tmp[i] - vector_tmp[i - 1];
+	return (smallest);
 }
 
 void Span::fill_range(std::vector<int>::iterator b, std::vector<int>::iterator e, int max)

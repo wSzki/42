@@ -6,7 +6,7 @@
 /*   By: wszurkow <wszurkow@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/15 18:08:06 by wszurkow          #+#    #+#             */
-/*   Updated: 2022/02/16 03:06:58 by wszurkow         ###   ########.fr       */
+/*   Updated: 2022/02/16 17:35:32 by wszurkow         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,8 +52,9 @@ void test_too_much()
 }
 
 
-void test_10_000(Span s)
+void test_10_000()
 {
+	Span s(5);
 	try
 	{
 		s.fill(10000 , 10);
@@ -72,9 +73,13 @@ int main(void)
 	srand(time(0));
 
 	test_subject();
+	std::cout  << std::endl;
 	test_basic();
-	//test_too_much(s);
-	//test_10_000(s);
+	std::cout  << std::endl;
+	test_too_much();
+	std::cout  << std::endl;
+	test_10_000();
+	std::cout  << std::endl;
 
 
 	//std::cout << "Sortest span : " << s.shortestSpan() << std::endl;
