@@ -58,7 +58,7 @@
 # define VIEW_RANGE        60.0
 # define VIEW_ANGLE_OFFSET 30.0
 
-# define PIXELS_PER_STEP 10
+# define PIXELS_PER_STEP 15
 # define DEGREES_PER_STEP 2
 
 # define MM_FLOOR_COLOR  0x00DDDDDD
