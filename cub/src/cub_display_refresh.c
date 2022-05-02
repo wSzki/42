@@ -17,12 +17,14 @@ void	cub_minimap_put_player(t_global *g)
 	cub_img_join(\
 			&g->x.buffer, \
 			&g->x.mm_player, \
-			g->p.x - g->mm.player_size / 2, \
-			g->p.y - g->mm.player_size / 2);
+			(g->p.x - g->mm.block_size / 2) / 4.0 + 2, \
+			(g->p.y - g->mm.block_size / 2) / 4.0 + 2);
 }
 
 void	cub_display_refresh(t_global *g)
 {
 	cub_render_walls(g);
+	cub_img_join(&g->x.buffer, &g->x.minimap, 0, 0);
+	cub_minimap_put_player(g);
 	mlx_put_image_to_window(g->x.mlx, g->x.win, g->x.buffer.img, 0, 0);
 }

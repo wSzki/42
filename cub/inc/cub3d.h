@@ -30,6 +30,8 @@
 # define TRUE 1
 # define FALSE 0
 
+# define SCALE 4
+
 # define YELLOW 0x00fabd2f
 # define GREEN  0x00a9b665
 # define RED    0x00ea6962
@@ -61,7 +63,7 @@
 
 # define MM_FLOOR_COLOR  0x00DDDDDD
 # define MM_WALL_COLOR   0x00666666
-# define MM_PLAYER_COLOR 0x00000000
+# define MM_PLAYER_COLOR 0x00ea6962
 
 # define UP    65362
 # define DOWN  65364
