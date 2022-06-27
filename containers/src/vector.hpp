@@ -63,21 +63,22 @@ namespace ft
 
 
 				//vector(const allocator_type &alloc = allocator_type()) :
-					//_array(NULL),
-					//_alloc(alloc),
-					//_size(0),
-					//_capacity(0)
-			//{
+				//_array(NULL),
+				//_alloc(alloc),
+				//_size(0),
+				//_capacity(0)
+				//{
 				//std::cout << "Constructor 1 called" << std::endl;
-			//}
+				//}
 
 
-			//	DEFAULT CONSTRUCTOR
-					vector (void):
-						_array(NULL),
-						_alloc(std::allocator<T>()),
-						_size(0),
-						_capacity(0)
+				//	DEFAULT CONSTRUCTOR
+				vector (void) :
+					//vector (void):
+					_array(NULL),
+					_alloc(std::allocator<T>()),
+					_size(0),
+					_capacity(0)
 			{
 				std::cout << "Default constructor called" << std::endl;
 			}
@@ -96,14 +97,7 @@ namespace ft
 			}
 
 				// DESTRUCTOR
-				~vector() {
-					//clear();
-					//if (_capacity != 0)
-					//_alloc.deallocate(_array, _capacity);
-					//_capacity = 0;
-
-					std::cout << "Destructor"  << std::endl;
-				}
+				~vector() {	std::cout << "Destructor"  << std::endl;}
 
 				// ITERATORS
 				iterator               begin        ()       { return iterator(_array); };

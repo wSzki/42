@@ -15,6 +15,8 @@
 
 #include "iterator_traits.hpp"
 
+
+
 namespace ft
 {
 
@@ -22,14 +24,16 @@ namespace ft
 		class random_access_iterator
 		{
 			public :
-		typedef T* pointer;
 
+				typedef random_access_iterator<int> iter;
 
-				random_access_iterator() : _ptr(NULL) {};
+				random_access_iterator   ():       _ptr(NULL) {};
+				random_access_iterator   (T* ptr): _ptr(ptr)  {};
+				~random_access_iterator  ()                   {};
 
 
 			protected:
-				pointer _ptr;
+				T* _ptr;
 
 			private :
 		};
