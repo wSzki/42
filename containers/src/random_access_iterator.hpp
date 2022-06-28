@@ -29,7 +29,12 @@ namespace ft
 
 				random_access_iterator   ():       _ptr(NULL) {};
 				random_access_iterator   (T* ptr): _ptr(ptr)  {};
+
 				~random_access_iterator  ()                   {};
+
+
+				T& operator * () {return (*_ptr);}; // TODO why return reference and not pointer
+
 
 
 			protected:

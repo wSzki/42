@@ -6,7 +6,11 @@
 
 #include <vector>
 
-using namespace ft;
+
+typedef ft::vector<int>::iterator  ft_iterator;
+typedef std::vector<int>::iterator std_iterator;
+
+
 
 
 int main(int ac, char **av, char **env)
@@ -15,15 +19,24 @@ int main(int ac, char **av, char **env)
 	(void)av;
 	(void)env;
 
-	ft::vector  <int> vec(2, 4);
-	ft::vector  <int> vec2;
-	//iterator it;
-	ft::vector<int>::iterator it2;
+	ft::vector  <int> ft_vector(5, 42);
+	std::vector <int> std_vector(5, 42);
 
-	typedef ft::vector<int>::iterator i;
+	ft_iterator  ft_it;
+	std_iterator std_it;
 
-	i iter;
-	i iter_end;
+	ft_it = ft_vector.begin();
+	std_it = std_vector.begin();
+
+
+	std::cout << *ft_it << std::endl;
+	std::cout << *std_it << std::endl;
+
+
+	//std::cout << *ft_vector.end() -1 << std::endl;
+	//std::cout << *std_vector.end() - 1 << std::endl;
+
+
 
 
 	//hector.push_back(42);
@@ -32,8 +45,7 @@ int main(int ac, char **av, char **env)
 	//std::cout << *(hector.begin()) << std::endl;
 
 
-	it2  =  vec2.begin();
-	iter  =  vec2.begin();
+
 	//iter_end = vec2.end();
 	//vec2.end();
 

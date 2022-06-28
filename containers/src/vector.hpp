@@ -101,7 +101,8 @@ namespace ft
 
 				// ITERATORS
 				iterator               begin        ()       { return iterator(_array); };
-				iterator               end          ()       { return iterator(Allocator::end(),   this); };
+				iterator               end          ()       { return iterator(_array + _size); };
+
 				reverse_iterator       rbegin       ()       { return reverse_iterator(end());            };
 				reverse_iterator       rend         ()       { return reverse_iterator(begin());          };
 				const_iterator         begin        () const { return iterator(Allocator::begin(), this); };
@@ -110,9 +111,9 @@ namespace ft
 				const_reverse_iterator rend         () const { return const_reverse_iterator(begin());    };
 
 				// CAPACITY
-				size_type              size       () const;
+				size_type              size       () const {return (_size);};
 				size_type              max_size   () const;
-				size_type              capacity   () const;
+				size_type              capacity   () const {return (_capacity);};
 				bool                   empty      () const;
 				void                   resize     (size_type n, value_type val = value_type());
 				void                   reserve    (size_type n);

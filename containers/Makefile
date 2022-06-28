@@ -19,7 +19,7 @@ NAME		:= container
 FILETYPE	:= cpp
 
 CC			:= c++
-FLAGS		:= -Wall -Wextra -Werror -std=c++98
+FLAGS		:= -fsanitize=address -fsanitize=leak -Wall -Wextra -Werror -std=c++98
 SANITIZER	:=
 
 DIR_INC		:= ./src
