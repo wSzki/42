@@ -97,7 +97,15 @@ namespace ft
 			}
 
 				// DESTRUCTOR
-				~vector() {	std::cout << "Destructor"  << std::endl;}
+				~vector()
+				{
+					if (_capacity > 0)
+						_alloc.deallocate(_array, _capacity);
+					_capacity = 0;
+				}
+
+
+
 
 				// ITERATORS
 				iterator               begin        ()       { return iterator(_array); };
@@ -112,9 +120,10 @@ namespace ft
 
 				// CAPACITY
 				size_type              size       () const {return (_size);};
-				size_type              max_size   () const;
 				size_type              capacity   () const {return (_capacity);};
-				bool                   empty      () const;
+				size_type              max_size   () const {return (_alloc.max_size());};
+				bool                   empty      () const {return (_size == 0);};
+
 				void                   resize     (size_type n, value_type val = value_type());
 				void                   reserve    (size_type n);
 

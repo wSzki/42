@@ -32,6 +32,16 @@ int main(int ac, char **av, char **env)
 	std::cout << *ft_it << std::endl;
 	std::cout << *std_it << std::endl;
 
+	if (ft_it == ft_it)
+		std::cout<<"ft ok"<<std::endl;
+	else
+		std::cout<<"ft not ok"<<std::endl;
+
+	if (std_it == std_it)
+		std::cout<<"std ok"<<std::endl;
+	else
+		std::cout<<"std not ok"<<std::endl;
+
 
 	//std::cout << *ft_vector.end() -1 << std::endl;
 	//std::cout << *std_vector.end() - 1 << std::endl;
