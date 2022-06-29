@@ -6,12 +6,8 @@
 
 #include <vector>
 
-
-typedef ft::vector<int>::iterator  ft_iterator;
-typedef std::vector<int>::iterator std_iterator;
-
-
-
+typedef ft::vector<char>::iterator  ft_iterator;
+typedef std::vector<char>::iterator std_iterator;
 
 int main(int ac, char **av, char **env)
 {
@@ -19,8 +15,8 @@ int main(int ac, char **av, char **env)
 	(void)av;
 	(void)env;
 
-	ft::vector  <int> ft_vector(5, 42);
-	std::vector <int> std_vector(5, 42);
+	ft::vector  <char> ft_vector(5, 42);
+	std::vector <char> std_vector(5, 42);
 
 	ft_iterator  ft_it;
 	std_iterator std_it;
