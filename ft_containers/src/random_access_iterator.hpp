@@ -73,22 +73,22 @@ namespace ft
 				pointer   operator -> (void) const {return ( _ptr);};
 
 				//// Comparaison
-				bool  operator == (RAI const &rhs) {return (_ptr == rhs._ptr);};
-				bool  operator != (RAI const &rhs) {return (_ptr != rhs._ptr);};
-				bool  operator <  (RAI const &rhs) {return (_ptr <  rhs._ptr);};
-				bool  operator >  (RAI const &rhs) {return (_ptr >  rhs._ptr);};
-				bool  operator <= (RAI const &rhs) {return (_ptr <= rhs._ptr);};
-				bool  operator >= (RAI const &rhs) {return (_ptr >= rhs._ptr);};
+				bool  operator == (RAI const &rhs) const {return (_ptr == rhs._ptr);};
+				bool  operator != (RAI const &rhs) const {return (_ptr != rhs._ptr);};
+				bool  operator <  (RAI const &rhs) const {return (_ptr <  rhs._ptr);};
+				bool  operator >  (RAI const &rhs) const {return (_ptr >  rhs._ptr);};
+				bool  operator <= (RAI const &rhs) const {return (_ptr <= rhs._ptr);};
+				bool  operator >= (RAI const &rhs) const {return (_ptr >= rhs._ptr);};
 
 				//// Increment, decrement
-				RAI   operator ++ (int              ) {_ptr++;    return (*this);}; // TODO post increment what is it - triggered by (int)?
-				RAI & operator ++ (void             ) {_ptr++;    return (*this);}; // TODO does it work without creating deep copy? {random_access_iterator}
-				RAI   operator -- (int              ) {_ptr++;    return (*this);};
-				RAI & operator -- (void             ) {_ptr++;    return (*this);};
-				RAI   operator +  (difference_type n) {           return (RAI(_ptr + n));}; // TODO ok without dep copy? (RAI<T>(ptr + n)) TODO ok without const? why const?
-				RAI   operator -  (difference_type n) {           return (RAI(_ptr - n));}; // TODO ok without dep copy? (RAI<T>(ptr + n)) TODO ok without const? why const?
-				RAI & operator += (difference_type n) {_ptr += n; return (*this);};
-				RAI & operator -= (difference_type n) {_ptr -= n; return (*this);};
+				RAI &  operator ++ (void)             { _ptr++;    return (*this);}; // TODO post increment what is it[ ]- triggered by (int)?
+				RAI  operator ++ (int             )   { random_access_iterator<T> tmp = *this; _ptr++;    return (tmp);}; // TODO does it work without creating deep copy? {random_access_iterator}
+				RAI & operator -- (void             ) { _ptr--;    return (*this);};
+				RAI  operator -- (int             )   { random_access_iterator<T> tmp = *this; _ptr--;    return (tmp);}; // TODO does it work without creating deep copy? {random_access_iterator}
+				RAI   operator +  (difference_type n) { return (RAI(_ptr + n));}; // TODO ok without dep copy? (RAI<T>(ptr + n)) TODO ok without const? why const?
+				RAI   operator -  (difference_type n) { return (RAI(_ptr - n));}; // TODO ok without dep copy? (RAI<T>(ptr + n)) TODO ok without const? why const?
+				RAI & operator += (difference_type n) { _ptr += n; return (*this);};
+				RAI & operator -= (difference_type n) { _ptr -= n; return (*this);};
 
 				//// Misc
 				reference       operator [] (difference_type n) {return *(_ptr + n);}; // TODO why ptrdiff?

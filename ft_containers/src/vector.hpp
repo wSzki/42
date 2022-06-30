@@ -39,7 +39,7 @@ namespace ft
 				typedef Allocator                                    allocator_type;
 
 				typedef ft::random_access_iterator<value_type>       iterator;
-				typedef ft::random_access_iterator<value_type> const const_iterator;
+				typedef ft::random_access_iterator<value_type const> const_iterator;
 
 
 
@@ -103,9 +103,9 @@ namespace ft
 			}
 
 				// CONSTRUCTOR
-				vector (size_t n, T const &val = value_type()) : // T const &val is a function style cast, == const value_type &val = value_type()
+				vector (size_t n, T const &val = value_type(), const allocator_type &alloc = allocator_type() ) : // T const &val is a function style cast, == const value_type &val = value_type()
 					_array(NULL),
-					_alloc(std::allocator<T>()),
+					_alloc(alloc),
 					_size(n),
 					_capacity(n)
 			{
@@ -128,8 +128,8 @@ namespace ft
 				// ITERATORS
 				iterator               begin        (void)       { return iterator(_array);         };
 				iterator               end          (void)       { return iterator(_array + _size); };
-				const_iterator         begin        (void) const { return iterator(_array);         };
-				const_iterator         end          (void) const { return iterator(_array + _size); };
+				const_iterator         begin        (void) const { return const_iterator(_array);         };
+				const_iterator         end          (void) const { return const_iterator(_array + _size); };
 
 				//reverse_iterator       rbegin       (void)       { return reverse_iterator(end());            };
 				//reverse_iterator       rend         (void)       { return reverse_iterator(begin());          };
