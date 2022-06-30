@@ -34,7 +34,7 @@ HEADERS     := \
 	${DIR_SRC}/vector.hpp \
 
 SRCS		:= \
-			   #main.cpp
+			   main.cpp
 
 
 OBJS		= \
