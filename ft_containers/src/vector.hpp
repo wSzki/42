@@ -99,7 +99,7 @@ namespace ft
 					_size(0),
 					_capacity(0)
 			{
-				std::cout << "Default constructor called" << std::endl;
+				//std::cout << "Default constructor called" << std::endl;
 			}
 
 				// CONSTRUCTOR
@@ -112,7 +112,7 @@ namespace ft
 				_array = _alloc.allocate(_capacity);
 				for (size_type i = 0; i < n; i++)
 					_alloc.construct(_array + i, val);
-				std::cout << "Constructor called" << std::endl;
+				//std::cout << "Constructor called" << std::endl;
 			}
 
 				// DESTRUCTOR
@@ -122,7 +122,7 @@ namespace ft
 					if (_capacity > 0)
 						_alloc.deallocate(_array, _capacity);
 					_capacity = 0;
-					std::cout << "Destructor called" << std::endl;
+					//std::cout << "Destructor called" << std::endl;
 				}
 
 				// ITERATORS
@@ -151,7 +151,7 @@ namespace ft
 				// ELEMENT ACCESS
 				//reference              operator[] (size_type n);
 				reference              at         (size_type n)       { if (n >= _size) throw std::out_of_range("Error: at:: out of range"); return *(_array + n);  };
-				const_reference        at         (size_type n) const { return (at(n));  };
+				const_reference              at         (size_type n) const       { if (n >= _size) throw std::out_of_range("Error: at:: out of range"); return *(_array + n);  };
 
 				reference       operator[] (size_type n)       { return *(_array + n);};
 				const_reference operator[] (size_type n) const { return *(_array + n);};
