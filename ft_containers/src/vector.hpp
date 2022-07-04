@@ -33,6 +33,7 @@ namespace ft
 
 			public:
 
+
 				// TYPEDEFS
 				typedef T                                            value_type;
 				typedef Allocator                                    allocator_type;
@@ -62,17 +63,6 @@ namespace ft
 				size_type      _size;
 				size_type      _capacity;
 
-				void realloc (size_type n)// TODO rework, understand
-				{
-					pointer tmp = _alloc.allocate(n);
-					size_type new_size = _size;
-					for (size_type i = 0; i < _size; i++)
-						_alloc.construct(tmp + i, _array + i);
-					~vector();
-					_array = tmp;
-					_size = new_size;
-					_capacity = n;
-				}
 
 			public :
 				// MEMBER FUNCTIONS
@@ -108,7 +98,9 @@ namespace ft
 					_alloc(std::allocator<T>()),
 					_size(0),
 					_capacity(0)
-			{}
+			{
+				//std::cout << "Default constructor called" << std::endl;
+			}
 
 				// CONSTRUCTOR
 				vector (size_t n, T const &val = value_type(), const allocator_type &alloc = allocator_type() ) : // T const &val is a function style cast, == const value_type &val = value_type()
@@ -120,6 +112,7 @@ namespace ft
 				_array = _alloc.allocate(_capacity);
 				for (size_type i = 0; i < n; i++)
 					_alloc.construct(_array + i, val);
+				//std::cout << "Constructor called" << std::endl;
 			}
 
 				// DESTRUCTOR
@@ -152,15 +145,7 @@ namespace ft
 				void                   pop_back   (void)       { _alloc.destroy(_array + (_size - 1)); _size ? _size-- : _size = 0; };
 				void                   clear      (void)       { while (empty() == false) pop_back();                               };
 
-				void                   resize     (size_type n, value_type val = value_type())
-				{
-					if (n < _size)
-						while (n != _size)
-							pop_back();
-
-					// TODO wip
-
-				};
+				//void                   resize     (size_type n, value_type val = value_type());
 				//void                   reserve    (size_type n);
 
 				// ELEMENT ACCESS
