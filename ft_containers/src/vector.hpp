@@ -63,6 +63,20 @@ namespace ft
 				size_type      _size;
 				size_type      _capacity;
 
+				void realloc (size_type n)
+				{
+					pointer   _array_new = _alloc.allocate(n);
+					size_type _size_new  = -1;
+
+					while (++_size_new < _size)
+						_alloc.construct(_array_new + _size_new, _array[_size_new]);
+					this->~vector();
+					_array    = _array_new;
+					_size     = _size_new;
+					_capacity = n;
+
+				}
+
 
 			public :
 				// MEMBER FUNCTIONS
@@ -118,7 +132,7 @@ namespace ft
 				// DESTRUCTOR
 				~vector()
 				{
-					//clear();
+					clear();
 					if (_capacity > 0)
 						_alloc.deallocate(_array, _capacity);
 					_capacity = 0;
@@ -145,7 +159,45 @@ namespace ft
 				void                   pop_back   (void)       { _alloc.destroy(_array + (_size - 1)); _size ? _size-- : _size = 0; };
 				void                   clear      (void)       { while (empty() == false) pop_back();                               };
 
-				//void                   resize     (size_type n, value_type val = value_type());
+				void                   resize     (size_type n, value_type val = value_type())
+				{
+					if (_size >= n)
+						while (_size > n)
+							pop_back();
+					else
+					{
+						if (n > (_capacity))
+						{
+							T* tmp  = _array;
+
+							size_type old = _capacity;
+
+
+							_alloc.allocate(n);
+							size_type i = 0;
+							size_type counter = 0;
+							for (; i < size(); i++, counter++)
+								_alloc.construct(_array + counter, tmp[counter]);
+							_alloc.deallocate(tmp, old);
+
+						}
+						//(n > (_capacity * 2)) ? realloc(n) : realloc(_capacity * 2);
+						while (_size > n)
+							push_back(val);
+					}
+
+				}
+
+
+				void reserve(size_type n)
+				{
+					if (n > max_size())
+						throw std::length_error("allocator<T>::allocate(size_t n) 'n' exceeds maximum supported size");
+					if (n > _capacity)
+						realloc(n);
+				}
+
+
 				//void                   reserve    (size_type n);
 
 				// ELEMENT ACCESS
@@ -164,7 +216,7 @@ namespace ft
 				//const_reference        at         (size_type n) const;
 
 				// MODIFIERS
-				//void                   push_back  (const value_type& val);
+				void                   push_back  (const value_type& val);
 				//iterator               erase      (iterator position);
 				//iterator               erase      (iterator first, iterator last);
 				//void                   swap       (vector&  x);
@@ -175,7 +227,29 @@ namespace ft
 				template <class InputIterator>                                           // Range
 					void insert (iterator position, InputIterator first, InputIterator last);
 				// -- Assign
-				void assign     (size_type n, const value_type& val); // Fill elements
+				void assign     (size_type n, const value_type& val) // Fill elements
+					;
+				//{
+				//// {
+				//if (n > _capacity)
+				//{
+				//this->~vector();
+				//this->_size = 0;
+				//this->_capacity = n;
+				//this->_array = _alloc.allocate(_capacity);
+				//while (_size < n)
+				//_alloc.construct(_array + _size++, val);
+				//}
+				//else
+				//{
+				//clear();
+				//while (_size < n)
+				//_alloc.construct(_array + _size++, val);
+				//}
+				//}
+
+
+
 				template <class InputIterator>                    // Range of elements
 					void assign (InputIterator first, InputIterator last);
 
@@ -197,6 +271,6 @@ namespace ft
 
 		};
 
-}
+		}
 #endif
 
