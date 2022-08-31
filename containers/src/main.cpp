@@ -13,6 +13,7 @@
 
 
 void test_random_access_iterator(void);
+void test_vector(void);
 
 
 int main(int ac, char **av, char **env)
@@ -22,12 +23,15 @@ int main(int ac, char **av, char **env)
 	(void)env;
 
 	//test_random_access_iterator();
+	test_vector();
 
 
 	ft::vector<int> vect(5, 42);
 	//ft::vector<int>::iterator it(vect.begin());
 
-	PRINT(vect.max_size());
+	//PRINT(vect.max_size());
+	PRINT(vect.size());
+	vect.clear();
 
 
 	//PRINT(vect.capacity());

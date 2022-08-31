@@ -22,6 +22,7 @@
 #include <iostream>
 
 #include <memory> // TODO something else calls it. WHAT
+#include <new>
 #include <stdexcept>
 
 #include "random_access_iterator.hpp"
@@ -95,6 +96,7 @@ namespace ft
 					_size     (0) {}
 
 				/* ---------------------   CONSTRUCTOR  --------------------- */
+				// Checking that n is >= 0 from c++11
 				vector (
 						size_type n,
 						const T &value = T(),
@@ -112,9 +114,9 @@ namespace ft
 				/* -------------------- COPY CONSTRUCTOR -------------------- */
 				vector (vector &old_vector) :
 					_ptr      (NULL),
-					_alloc    (_alloc),
-					_capacity (_capacity),
-					_size     (_size) {
+					_alloc    (old_vector._alloc),
+					_capacity (old_vector._capacity),
+					_size     (old_vector._size) {
 						_ptr = _alloc.allocate(_capacity);
 						for (size_type i = 0; i < _size; i++)
 							_alloc.construct(&(_ptr[i]), old_vector._ptr[i] );
@@ -132,8 +134,8 @@ namespace ft
 				/* ----------------------- OVERLOADS ------------------------ */
 				/* ========================================================== */
 
-				reference       operator [] (const size_type n)       { return (*_ptr + n); };
-				const_reference operator [] (const size_type n) const { return (*_ptr + n); };
+				reference       operator [] (const size_type n)       { return *(_ptr + n); };
+				const_reference operator [] (const size_type n) const { return *(_ptr + n); };
 
 				/* ========================================================== */
 				/* -------------------- ITERATOR METHODS -------------------- */
@@ -170,10 +172,8 @@ namespace ft
 				/* ========================================================== */
 
 				void clear() {
-					if (_size > 0)
-						for (iterator it = begin(); it != end(); it++)
-							_alloc.destroy(it);
-					_size = 0;
+					while (empty() == false)
+						pop_back();
 				}
 
 				/* ========================================================== */
