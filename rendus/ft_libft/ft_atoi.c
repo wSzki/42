@@ -12,7 +12,7 @@
 
 #include "libft.h"
 
-static int	ft_count_numbers(int n)
+static int	ft_count_numbers(int n)//233
 {
 	size_t i;
 
@@ -39,8 +39,11 @@ int			ft_atoi(const char *str)
 	while ((str[i] >= 9 && str[i] <= 13) || (str[i] == 32))
 		i++;
 	if (str[i] == '-' || str[i] == '+')
-		if (str[i++] == '-')
+	{
+		if (str[i] == '-')
 			np = -np;
+		i++;
+	}
 	while (str[i] == '0')
 		i++;
 	while (str[i] >= '0' && str[i] <= '9' && j++ >= 0)
